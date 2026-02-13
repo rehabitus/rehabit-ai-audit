@@ -2,13 +2,22 @@
 
 import { useEffect, useRef } from "react";
 
+// Extend Window interface to include Trustpilot
+declare global {
+    interface Window {
+        Trustpilot?: {
+            loadFromElement: (element: HTMLElement | null) => void;
+        };
+    }
+}
+
 export function TrustpilotWidget() {
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         // If Trustpilot is already loaded, we might need to trigger a reload for the widget
-        if ((window as any).Trustpilot) {
-            (window as any).Trustpilot.loadFromElement(ref.current);
+        if (window.Trustpilot) {
+            window.Trustpilot.loadFromElement(ref.current);
         }
     }, []);
 
