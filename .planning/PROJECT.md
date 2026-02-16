@@ -1,116 +1,88 @@
-# Rehabit
+# Audit.Rehabit.biz
 
 ## What This Is
 
-A web app where users describe their ideal future self and AI generates personalized meditation/affirmation content to help them embody that vision through consistent practice. Users chat with the app (text + optional video/voice capture), the system builds a Future Self Persona, generates a tailored script with voice, music, and visuals, and composes these into a playable meditation video. The focus is on building a transformation practice with subtle novelty to maintain engagement — personally resonant content, never generic.
+A high-converting landing page and sales funnel for rehabit.ai's "AI Transformation Audit" service. A single-page Next.js application designed to educate, convince, and convert visitors into paying customers for a $1,200 AI business audit. The page targets business owners (coaches, course creators, platform operators) losing revenue to broken workflows.
 
 ## Core Value
 
-Every interaction produces something personally resonant that helps the user embody their future self through practice — not generic meditation content.
+Drive qualified leads through a compelling sales page with transparent pricing, social proof, and a frictionless Stripe checkout — removing every objection between landing and purchase.
 
 ## Core Systems
 
-### VPS (Vision Projection System)
-The user's Clear Vision / Future Self Persona. Captures attributes, values, challenges overcome, and the vision of who they're becoming. One Vision Project per basic account. Can be refined but represents the singular vision they're working toward.
+### Sales Page Engine
+11-section single-page design following a proven sales framework: Hero → Problem → Bridge → Offer → Outcomes → Process → Trust → Pricing → FAQ → Final CTA. All copy lives in `src/lib/constants.ts` for centralized management.
 
-### CoSM (Conscious State Management System)
-The practice engine that produces meditation content. Generates scripts, assets, and composed products. Manages the asset library for remixing. Goal: get user "In-State" — gratitude, elevated emotions, alignment, embodiment.
+### Stripe Checkout Integration
+Server-side checkout session creation via `/api/checkout`. Single product ($1,200 AI Transformation Audit). Supports promotion codes. Redirects to Stripe-hosted checkout with success/cancel callbacks.
 
-### Vision Co-Pilot
-Agent that helps build and refine the vision through the initial chat experience. Hybrid approach: starts open, probes for gaps, captures rich media (video/voice) for future use. Optimizes for getting user to "wow" moment as fast as possible while capturing complete context.
+### WebGL Visual Layer
+Three custom Three.js scenes (Network Nodes, Particle Field, Aurora Orbs) providing premium depth to key sections. Performance-capped framerates, demand-based rendering, graceful CSS gradient fallbacks on mobile and unsupported devices.
 
-### Journey Co-Pilot
-Agent that guides the practice over time. Tracks engagement (login frequency, product plays, user feedback), decides variations, prompts for insights. Manages the balance between novelty (helps transformation) and consistency (builds practice). Aware of account status, subscription level, credits.
+### Animation System
+Framer Motion scroll-triggered animations on all sections with staggered children. Custom CSS keyframes for gradient shifts, button shimmers, and breathing effects. Respects `prefers-reduced-motion`.
 
 ## Core Flow
 
-1. **Chat** — User describes future self via multimodal chat (text + video/voice capture)
-2. **Persona** — System builds Future Self Persona (VPS)
-3. **Script** — System generates meditation/affirmation script tailored to persona
-4. **Assets** — System generates voice (narrator), music, visuals (symbols/scenes from vision)
-5. **Compose** — System assembles into playable meditation video
+1. **Land** — Visitor arrives, sees hero with clear value prop and urgency ("3 audits left")
+2. **Educate** — Problem/Bridge sections establish pain and market context
+3. **Present** — Offer/Outcomes/Process sections detail deliverables, before/after, and 5-day timeline
+4. **Trust** — Founder credentials, Trustpilot reviews, guarantees
+5. **Convert** — CTA triggers Stripe checkout → payment → success redirect
 
-User receives video (richest format) with option for audio-only playback/download.
+## Tech Stack
 
-## Asset Library
+- **Framework:** Next.js 14 (App Router, TypeScript, React 18)
+- **Styling:** Tailwind CSS 3.4 + custom CSS (gradients, keyframes)
+- **Animation:** Framer Motion 12
+- **3D:** Three.js + React Three Fiber + Drei
+- **Payments:** Stripe (server-side checkout sessions)
+- **Reviews:** Trustpilot widget embed
+- **Fonts:** Geist Sans, Geist Mono, Comfortaa (logo)
+- **Hosting:** Vercel
 
-Component assets (voice clips, music, visuals) stored for remixing into future "rolls." Hidden from user in v1 but architecturally present. Enables surgical variations without full re-generation.
+## Architecture
 
-## Variation Philosophy
+```
+src/
+├── app/
+│   ├── layout.tsx              # Root layout, fonts, metadata, Trustpilot script
+│   ├── page.tsx                # Main page (nav + 11 sections + footer)
+│   ├── globals.css             # Global styles, gradients, keyframes
+│   └── api/checkout/route.ts   # Stripe checkout endpoint
+├── components/
+│   ├── sections/               # 10 page sections (Hero through FinalCTA)
+│   ├── ui/                     # CTAButton, NavCheckoutButton, Section, AnimatedCounter, etc.
+│   └── backgrounds/            # 3 WebGL scenes + wrapper with mobile fallback
+├── lib/
+│   ├── constants.ts            # All copy, FAQs, stats, pricing data
+│   ├── animations.ts           # Framer Motion variants
+│   └── stripe.ts               # Stripe client init
+└── hooks/                      # useIsMobile, useWebGLSupported, useReducedMotion
+```
 
-Subtle changes maintain engagement without losing the practice thread:
-- Re-order lines in timeline
-- Adjust spacing (3s vs 5s between affirmations)
-- Change/animate visuals differently
-- Re-roll music
-- Change voice
+## Design System
 
-Full re-rolls are rare — prompt user for insights and adapt accordingly. The point is building consistent practice, not novelty for novelty's sake.
+- **Palette:** Dark theme — brand-dark (#0F172A), brand-navy (#1E293B), brand-green (#10B981) primary accent, brand-orange (#F97316) secondary, brand-gold (#F59E0B) for premium highlights
+- **Typography:** Geist Sans (body), Comfortaa (logo), system hierarchy from xs to 6xl
+- **Responsive:** Mobile-first, WebGL disabled below 768px with CSS gradient fallbacks
+- **Animations:** Scroll-triggered (whileInView, once: true), 0.6s duration, custom easing
 
-## Requirements
+## External Integrations
 
-### Validated
+| Service | Purpose | Config |
+|---------|---------|--------|
+| Stripe | Payment processing | `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_BASE_URL` |
+| Trustpilot | Review widget embed | Hardcoded business unit ID |
+| Vercel | Hosting & deployment | `.vercel/` project config |
 
-(None yet — ship to validate)
+## Target Audience
 
-### Active
+Coaches, therapists, authors, course creators, and platform operators losing $20K+/year to manual workflows that AI could automate. Business owners who know AI matters but don't know where to start.
 
-- [ ] Multimodal chat experience (text + video/voice capture)
-- [ ] Future Self Persona generation and storage
-- [ ] Script generation from persona
-- [ ] Voice generation (narrator voice)
-- [ ] Music generation
-- [ ] Visual generation (symbols/scenes from vision)
-- [ ] Video composition from assets
-- [ ] Audio-only playback/download option
-- [ ] Asset library (backend, hidden from user)
-- [ ] Partial re-rolls (single element)
-- [ ] Full re-rolls
-- [ ] Credit system with consumption tracking
-- [ ] Subscription tiers
-- [ ] User authentication
-- [ ] Vision Project management (1 per basic account)
-- [ ] Coupon/gift credit mechanism
+## Product Offering
 
-### Out of Scope
-
-- Voice cloning (user's own voice) — v2, capture infrastructure ready
-- User image in AI visuals — v2, capture infrastructure ready
-- Exposed asset library UI — v2, backend ready
-- Multiple Vision Projects on basic tier — premium feature
-- Mobile app — web-first
-
-## Context
-
-**Target user:** People seeking personal transformation who want to build a consistent meditation/visualization practice with content that actually feels personal to their journey.
-
-**Problem being solved:** Generic meditation apps don't connect to your specific vision. Affirmations feel hollow when they're not yours. This creates personally resonant content from your own articulated future self.
-
-**Differentiator:** The content speaks to YOUR specific vision, generated from YOUR words, potentially in YOUR voice (v2). Practice management with intelligent variation keeps engagement without losing the thread.
-
-## Constraints
-
-- **Tech stack**: Next.js/React for web app
-- **Auth**: Managed authentication (Clerk, Supabase Auth, or similar)
-- **Architecture**: Model-agnostic asset generation — must swap providers without touching core logic
-- **LLM routing**: OpenRouter with dynamic routing based on quality needs vs cost
-- **Voice providers**: ElevenLabs primary, open source fallbacks for cost reduction
-- **Music providers**: Suno/Mubert/Mureka, open source options
-- **Video providers**: Kling and others, swappable
-- **Timeline**: Ship as soon as possible, no hard deadline but speed matters
-- **Pricing**: Full markup from day 1, gift/coupon credits for early adopters
-
-## Key Decisions
-
-| Decision | Rationale | Outcome |
-|----------|-----------|---------|
-| Narrator voice for v1 (not cloned) | Simplest path to value, voice cloning is v2 | — Pending |
-| AI-generated scenes/symbols for v1 (not user image) | Reduce complexity, user image is v2 | — Pending |
-| Hidden asset library | Backend complexity now, expose UI later when UX is clear | — Pending |
-| Model-agnostic architecture | Must swap providers for cost/quality optimization | — Pending |
-| Credit system from day 1 | Validate willingness to pay early, gift credits for early adopters | — Pending |
-| 1 Vision Project on basic | Forces focus, premium unlocks multiple | — Pending |
-| Partial re-roll cheaper than full | Encourages surgical changes over wholesale regeneration | — Pending |
-
----
-*Last updated: 2025-01-22 after initialization*
+- **Price:** $1,200 (one-time)
+- **Deliverables:** 5-day audit, ROI-projected opportunity matrix, implementation plan
+- **Bonus:** Pay-in-full gets first Core AI System built free
+- **Guarantee:** Reveals $20K+ in annual savings or full refund

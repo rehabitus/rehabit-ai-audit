@@ -1,132 +1,89 @@
-# Project State: Rehabit
+# Project State: Audit.Rehabit.biz
 
-**Last Updated:** 2026-01-22
+**Last Updated:** 2026-02-16
 
 ## Current Position
 
-**Phase:** Not started
-**Status:** Ready for Phase 1 planning
-**Last Activity:** Roadmap created with 6 phases covering 45 v1 requirements
+**Phase:** 1 (Complete) — Ready for Phase 2
+**Status:** Landing page shipped and deployed
+**Last Activity:** Rewrote .planning/ docs to reflect actual codebase
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-22)
+See: .planning/PROJECT.md (updated 2026-02-16)
 
-**Core value:** Every interaction produces something personally resonant that helps the user embody their future self through practice — not generic meditation content.
+**Core value:** Drive qualified leads through a compelling sales page with transparent pricing, social proof, and frictionless Stripe checkout.
 
-**Current focus:** Foundation & Validation (Phase 1)
+**Current focus:** Phase 2 — Analytics & Conversion Tracking
 
-**Target:** Users can create their Future Self Persona and experience their first personalized meditation with transparent pricing.
+**Target:** Understand visitor behavior and measure conversion funnel.
 
 ## Progress Overview
 
 ```
-[░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░] 0%
+[████████████████████████████░░░░░░░░░░░░] 76%
 
-Phase 1: Foundation & Validation          [Pending]
-Phase 2: Async Pipeline & Engagement      [Pending]
-Phase 3: Multi-Provider & Asset Mgmt      [Pending]
-Phase 4: Journey Intelligence             [Pending]
-Phase 5: Advanced Playback & Personalization [Pending]
-Phase 6: Scale & Polish                   [Pending]
+Phase 1: Landing Page & Checkout            [Complete]
+Phase 2: Analytics & Conversion Tracking    [Pending]
+Phase 3: Lead Capture & Qualification       [Pending]
+Phase 4: SEO & Discoverability             [Pending]
+Phase 5: Quality & Monitoring              [Pending]
 ```
 
-| Phase | Status | Plans | Requirements | Completion |
-|-------|--------|-------|--------------|------------|
-| 1 - Foundation & Validation | Pending | 0/? | 17 | 0% |
-| 2 - Async Pipeline & Engagement | Pending | 0/? | 11 | 0% |
-| 3 - Multi-Provider & Asset Management | Pending | 0/? | 7 | 0% |
-| 4 - Journey Intelligence | Pending | 0/? | 5 | 0% |
-| 5 - Advanced Playback & Personalization | Pending | 0/? | 5 | 0% |
-| 6 - Scale & Polish | Pending | 0/? | 0 | 0% |
+| Phase | Status | Requirements | Completion |
+|-------|--------|--------------|------------|
+| 1 - Landing Page & Checkout | Complete | 31 | 100% |
+| 2 - Analytics & Conversion Tracking | Pending | 3 | 0% |
+| 3 - Lead Capture & Qualification | Pending | 2 | 0% |
+| 4 - SEO & Discoverability | Pending | 3 | 0% |
+| 5 - Quality & Monitoring | Pending | 2 | 0% |
 
-**Overall:** 0/45 requirements complete (0%)
+**Overall:** 31/41 requirements complete (76%)
 
-## Performance Metrics
+## Technical Context
 
-**Velocity:** N/A (no plans executed yet)
+### Stack
+- Next.js 14 (App Router, TypeScript, React 18)
+- Tailwind CSS 3.4 + Framer Motion 12
+- Three.js + React Three Fiber (WebGL scenes)
+- Stripe (server-side checkout)
+- Vercel (hosting)
 
-**Blockers resolved:** 0
-**Plans completed:** 0
-**Days active:** 1
+### Key Files
+| File | Purpose |
+|------|---------|
+| `src/app/page.tsx` | Main landing page |
+| `src/lib/constants.ts` | All marketing copy and data |
+| `src/app/api/checkout/route.ts` | Stripe checkout endpoint |
+| `src/components/sections/` | 10 page sections |
+| `src/components/backgrounds/` | WebGL scenes |
+| `tailwind.config.ts` | Brand color system |
 
-## Recent Decisions
+### Environment
+- `STRIPE_SECRET_KEY` — Stripe API key (server-side)
+- `NEXT_PUBLIC_BASE_URL` — Site URL for checkout redirects
 
-| Date | Decision | Rationale | Impact |
-|------|----------|-----------|--------|
-| 2026-01-22 | Full v1 scope (45 requirements) | User confirmed all features essential for launch | Complete roadmap coverage |
-| 2026-01-22 | 6-phase structure | Standard depth (5-8 phases), derived from natural requirement clusters | Clear delivery boundaries |
-| 2026-01-22 | Audio-only in Phase 1-2, defer video to later | Control costs, validate core value before expensive video generation | Faster MVP, lower risk |
-| 2026-01-22 | Human review of AI scripts in Phase 1 | Prevent generic content pitfall before scale | Quality over automation speed |
-| 2026-01-22 | Multi-provider abstraction in Phase 3 | Research shows provider lock-in is existential risk | Flexibility for cost/quality optimization |
+## Known Issues
 
-## Accumulated Context
-
-### Key Insights
-- Meditation apps face 96% retention failure after 30 days — habit formation architecture more critical than content volume
-- Each meditation costs $0.35-$4.65 in provider fees — unit economics require careful validation before scale
-- Generation takes 30-120s (voice 10-30s, music 1-2min, video 3-5min) — async job queues non-negotiable from day 1
-- Research shows users explicitly DON'T want social features, extensive content libraries cause paralysis
-- "Believable imperfection" in AI voice prevents uncanny valley — technical perfection less important than emotional resonance
-
-### Technical Constraints
-- Next.js 15 App Router with Server Components
-- Model-agnostic architecture (OpenRouter for LLM routing)
-- Provider abstraction layer for all AI services (voice, music, video)
-- Credit system with idempotency (prevent double-charging during retries)
-- Async job queue (BullMQ) required for generation workflows
-- WebSocket real-time updates during 30-120s generation
-
-### Business Constraints
-- Full markup from day 1, gift/coupon credits for early adopters
-- 1 Vision Project per basic account (forces focus)
-- Partial re-roll cheaper than full (encourages surgical changes)
-- Ship as soon as possible, no hard deadline but speed matters
-
-## Active TODOs
-
-### Immediate (Next Session)
-- [ ] Plan Phase 1: Foundation & Validation (17 requirements)
-- [ ] Set up project repository structure
-- [ ] Consult privacy lawyer re: GDPR/HIPAA compliance before building (mental health data)
-- [ ] Consult meditation teachers re: safety protocols (psychological harm prevention)
-
-### Upcoming (This Phase)
-- [ ] Calculate exact unit economics with real provider costs
-- [ ] Design friction-free onboarding flow (landing → listening in <60s)
-- [ ] Prototype Vision Co-Pilot conversation flow
-- [ ] Define human review process for AI-generated scripts
-
-### Deferred (Later Phases)
-- [ ] A/B test pricing models (subscription vs credits vs hybrid) — Phase 2
-- [ ] FFmpeg composition research for meditation-specific audio mixing — Phase 3
-- [ ] Load testing with realistic generation volumes — Phase 2
-- [ ] User testing for video necessity validation — Phase 4+
-
-## Known Blockers
-
-None currently.
+- No analytics — can't measure conversion rates
+- No lead capture — visitors who don't buy are lost
+- No Open Graph tags — poor social sharing previews
+- No error boundaries — WebGL failures could crash page
+- Copy is hardcoded in constants.ts (no CMS)
 
 ## Session Continuity
 
-**Last session:** 2026-01-22
+**Last session:** 2026-02-16
 **Context:**
-- Project initialized with PROJECT.md, REQUIREMENTS.md (45 v1 requirements), research/SUMMARY.md
-- Roadmap created with 6 phases following research recommendations
-- Phase 1 targets: 17 requirements covering auth, persona creation, basic generation, playback, progress tracking, credits
-- Research identified critical pitfalls: generic AI content, async orchestration failures, credit unpredictability, overwhelming onboarding, 96% retention failure
+- Discovered .planning/ docs were from a different project (Rehabit meditation app)
+- Rewrote all planning docs to accurately describe this codebase
+- Phase 1 is fully shipped — landing page with Stripe checkout is live
 
 **Next session:**
-- Run `/gsd:plan-phase 1` to decompose Phase 1 into executable plans
-- Expected 3-5 plans (standard depth) covering: auth setup, Vision Co-Pilot, content generation, playback, monetization foundation
-
-**Context for continuity:**
-- User wants personally resonant meditation content (not generic)
-- Core flow: Chat → Persona → Script → Voice → Compose → Play
-- Asset library hidden in v1, backend ready for future surgical re-rolls
-- Journey Co-Pilot manages practice evolution with subtle variations
+- Phase 2: Add analytics and conversion tracking
+- Or: Address any immediate priorities the user identifies
 
 ---
 
-*State maintained by: /gsd orchestrator*
+*State maintained by: manual update*
 *Format: STATE.md v1.0*
