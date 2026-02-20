@@ -6,7 +6,7 @@ import { heroStagger, heroChild } from "@/lib/animations";
 
 export function HeroSection() {
   return (
-    <section className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-40 md:pb-28">
       <motion.div
         className="relative z-10 mx-auto max-w-4xl text-center"
         variants={heroStagger}
@@ -41,7 +41,7 @@ export function HeroSection() {
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
         </motion.div>
 
-        <motion.p variants={heroChild} className="mt-5 text-sm text-slate-400">
+        <motion.p variants={heroChild} className="mt-5 text-base text-slate-300">
           Only <span className="font-semibold text-brand-orange">3 audits left</span> at the current
           price&nbsp;&mdash; it goes up $100 every 10 audits. Pay in full and get your first Core AI
           System delivered FREE in the same 5-day window.

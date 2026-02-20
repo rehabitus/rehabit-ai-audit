@@ -61,7 +61,7 @@ export const offerCards = [
   },
   {
     icon: "05",
-    color: "text-slate-300",
+    color: "text-brand-blue",
     title: "Professional 5-Page Audit Report",
     body: "Executive summary. Current state assessment. Opportunity matrix. Solution recommendations. Investment roadmap. Clean, branded, ready to share with your team or partners. This isn't a slide deck with buzzwords — it's a decision-making document with real numbers.",
   },

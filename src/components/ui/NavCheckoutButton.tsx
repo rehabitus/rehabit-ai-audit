@@ -26,7 +26,7 @@ export function NavCheckoutButton() {
     <button
       onClick={handleClick}
       disabled={loading}
-      className="rounded-md bg-brand-green px-4 py-2 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-green-light disabled:opacity-70 disabled:cursor-wait"
+      className="rounded-md bg-brand-green px-5 py-2.5 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-green-light disabled:opacity-70 disabled:cursor-wait min-h-[44px] min-w-[44px]"
     >
       {loading ? "Loading\u2026" : "Reserve Your Slot"}
     </button>

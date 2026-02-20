@@ -26,27 +26,27 @@ export function FinalCTASection() {
         </motion.h2>
 
         <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {/* Option A */}
+          {/* Option A — dimmed, status quo */}
           <motion.div
             variants={slideInLeft}
-            className="rounded-xl border border-white/10 bg-white/5 p-8 text-left opacity-90"
+            className="rounded-xl border border-white/10 bg-white/[0.03] p-8 text-left opacity-70"
           >
-            <p className="text-sm font-bold uppercase tracking-wider text-brand-red">Option A</p>
-            <p className="mt-4 text-slate-300 leading-relaxed">
+            <p className="text-sm font-bold uppercase tracking-wider text-brand-red/80">Option A</p>
+            <p className="mt-4 text-slate-400 leading-relaxed">
               Keep doing things the way you&rsquo;re doing them. Keep copying data by hand. Keep
               losing clients between sessions. Keep hearing about AI and wondering if it applies to
               you. Keep guessing.
             </p>
           </motion.div>
 
-          {/* Option B */}
+          {/* Option B — elevated, the choice */}
           <motion.div
             variants={slideInRight}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            className="rounded-xl border-2 border-brand-green/40 bg-brand-green/5 p-8 text-left"
+            className="rounded-xl border-2 border-brand-green/50 bg-brand-green/10 p-8 text-left shadow-[0_0_40px_rgba(16,185,129,0.1)]"
           >
             <p className="text-sm font-bold uppercase tracking-wider text-brand-green">Option B</p>
-            <p className="mt-4 text-slate-300 leading-relaxed">
+            <p className="mt-4 text-slate-200 leading-relaxed">
               Invest $1,200 and 1 hour of your time. In 5 days, know exactly where you&rsquo;re
               losing money, exactly how to fix it, and exactly what it&rsquo;ll save you. Walk away
               with a professional report, a clear roadmap, a working Digital Twin&nbsp;&mdash; and if
@@ -62,7 +62,7 @@ export function FinalCTASection() {
             will), that&rsquo;s a{" "}
             <span className="font-bold text-brand-green">16x return</span> on a $1,200 investment.
           </p>
-          <p className="mt-2 text-lg text-slate-400">
+          <p className="mt-2 text-lg text-slate-300">
             If it doesn&rsquo;t? You get your money back.
           </p>
         </motion.div>
@@ -81,11 +81,20 @@ export function FinalCTASection() {
           </div>
         </motion.div>
 
-        <motion.p variants={fadeInUp} className="mt-4 text-xs text-slate-500">
+        <motion.p variants={fadeInUp} className="mt-4 text-sm text-slate-400">
           Price increases by $100 every 10 audits. Current: $1,200. Final value: $5,000&ndash;$10,000.
         </motion.p>
-        <motion.p variants={fadeInUp} className="mt-4 text-sm text-slate-400">
-          Questions? Book a 15-minute call or reply to this page.
+        <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-300">
+          Questions?{" "}
+          <a
+            href="https://calendly.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-green underline underline-offset-2 hover:text-brand-green-light transition-colors"
+          >
+            Book a 15-minute call
+          </a>{" "}
+          or reply to this page.
         </motion.p>
       </motion.div>
     </Section>

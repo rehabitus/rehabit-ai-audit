@@ -76,7 +76,7 @@ export function OutcomesSection() {
                   duration={2}
                 />
               </p>
-              <p className="mt-1 text-sm text-slate-400">{stat.label}</p>
+              <p className="mt-1 text-sm text-slate-300">{stat.label}</p>
             </motion.div>
           ))}
         </motion.div>

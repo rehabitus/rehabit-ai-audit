@@ -32,21 +32,34 @@ export function AnimatedCounter({
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const motionValue = useMotionValue(from);
-  const [displayValue, setDisplayValue] = useState(from);
+  // Start with final value so SSR/noscript/reduced-motion users see real numbers
+  const [displayValue, setDisplayValue] = useState(to);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || hasAnimated) return;
 
+    // Check for reduced motion preference
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) {
+      setDisplayValue(to);
+      setHasAnimated(true);
+      return;
+    }
+
+    // Reset to starting value then animate up
+    setDisplayValue(from);
     const controls = animate(motionValue, to, {
       duration,
       ease: [0.25, 0.1, 0.25, 1],
       onUpdate: (v) => {
         setDisplayValue(decimals > 0 ? parseFloat(v.toFixed(decimals)) : Math.round(v));
       },
+      onComplete: () => setHasAnimated(true),
     });
 
     return () => controls.stop();
-  }, [isInView, to, from, duration, decimals, motionValue]);
+  }, [isInView, to, from, duration, decimals, motionValue, hasAnimated]);
 
   return (
     <span ref={ref} className={`tabular-nums ${className}`}>

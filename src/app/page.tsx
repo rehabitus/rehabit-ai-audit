@@ -15,7 +15,15 @@ import { TrustpilotWidget } from "@/components/ui/TrustpilotWidget";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden" id="main-content">
+      {/* ── SKIP TO CONTENT (accessibility) ── */}
+      <a
+        href="#hero"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-md focus:bg-brand-green focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-dark"
+      >
+        Skip to content
+      </a>
+
       {/* ── STICKY NAV BAR ── */}
       <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-brand-dark/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">

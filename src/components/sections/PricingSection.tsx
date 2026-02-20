@@ -51,17 +51,17 @@ export function PricingSection() {
           </p>
           <motion.p
             variants={fadeInUp}
-            className="mt-2 text-sm text-slate-400"
+            className="mt-2 text-base text-slate-300"
           >
             Only <span className="font-semibold text-brand-orange">3 audits left</span> at this
             price. Price increases by $100 every 10 audits.
           </motion.p>
           <motion.p
             variants={fadeInUp}
-            className="mt-1 text-xs text-slate-500"
+            className="mt-1 text-sm text-slate-400"
           >
             Final value: $5,000&ndash;$10,000 &mdash; still below the{" "}
-            <span className="text-slate-400">industry standard of $5K&ndash;$15K</span> for an AI
+            <span className="text-slate-300">industry standard of $5K&ndash;$15K</span> for an AI
             readiness assessment.
           </motion.p>
         </motion.div>
@@ -104,7 +104,9 @@ export function PricingSection() {
         variants={fadeInUp}
       >
         <h3 className="flex items-center gap-2 text-xl font-bold text-white">
-          <span className="text-brand-green text-2xl">&#9432;</span>
+          <svg className="h-6 w-6 flex-shrink-0 text-brand-green" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
+          </svg>
           The &ldquo;It Has to Sound Like You&rdquo; Guarantee
         </h3>
         <p className="mt-4 text-slate-300 leading-relaxed">
