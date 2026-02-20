@@ -17,28 +17,35 @@ export function HeroSection() {
           variants={heroChild}
           className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-orange"
         >
-          For Coaches, Course Creators &amp; Platform Operators Losing Revenue to Broken Workflows
+          For Coaches, Course Creators &amp; Platform Operators
         </motion.p>
 
         <motion.h1
           variants={heroChild}
           className="mx-auto max-w-3xl text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl text-balance"
         >
-          We&rsquo;ll Audit Your Entire Business, Show You Exactly Where You&rsquo;re Bleeding Time
-          and Money, and Hand You a Ready-to-Execute AI Implementation Plan&nbsp;&mdash; In 5 Days.
+          Find Exactly Where Your Business Is Bleeding Money&nbsp;&mdash; And Get a Plan to Fix It in 5&nbsp;Days.
         </motion.h1>
 
         <motion.p
           variants={heroChild}
           className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
         >
-          No jargon. No 90-day &ldquo;discovery phase.&rdquo; No six-figure consulting invoice.
-          Just a clear report with real numbers, real tools, and a real plan&nbsp;&mdash; so you stop
-          guessing and start saving 20+ hours a week.
+          We audit your workflows, quantify the waste, match you with the right AI tools, and hand
+          you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice.
+          Just real numbers and a real roadmap.
         </motion.p>
 
-        <motion.div variants={heroChild} className="mt-10">
+        <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+          <a
+            href="https://calendly.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3.5 text-base font-semibold text-slate-200 transition-all hover:border-brand-green/40 hover:text-white hover:bg-white/5"
+          >
+            Book a Free 15-Min Call
+          </a>
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base text-slate-300">

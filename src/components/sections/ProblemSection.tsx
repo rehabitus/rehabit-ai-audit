@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
+import { CTAButton } from "@/components/ui/CTAButton";
 import { fadeInUp, staggerContainer, scaleIn, viewportOnce } from "@/lib/animations";
 import { painPoints } from "@/lib/constants";
 
@@ -39,8 +40,8 @@ export function ProblemSection() {
         </motion.ul>
 
         <motion.p variants={fadeInUp} className="mt-10 text-lg text-slate-300 leading-relaxed">
-          The result? You&rsquo;re working harder than ever, growing slower than you should, and
-          watching competitors who figured out automation pull ahead.
+          The result? You&rsquo;re <span className="font-semibold text-white">working harder than ever</span>,
+          growing slower than you should, and watching competitors who figured out automation pull ahead.
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-4 text-lg font-semibold text-brand-orange">
           The worst part: You don&rsquo;t know what you don&rsquo;t know. You can&rsquo;t fix what
@@ -49,6 +50,10 @@ export function ProblemSection() {
         <motion.p variants={fadeInUp} className="mt-4 text-xl font-bold text-white">
           That&rsquo;s exactly what this audit reveals.
         </motion.p>
+
+        <motion.div variants={fadeInUp} className="mt-10 text-center">
+          <CTAButton>&rarr; See What the Audit Includes</CTAButton>
+        </motion.div>
       </motion.div>
     </Section>
   );

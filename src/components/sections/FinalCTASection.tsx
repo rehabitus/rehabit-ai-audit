@@ -94,7 +94,13 @@ export function FinalCTASection() {
           >
             Book a 15-minute call
           </a>{" "}
-          or reply to this page.
+          or email{" "}
+          <a
+            href="mailto:mike@rehabit.ai"
+            className="font-semibold text-brand-green underline underline-offset-2 hover:text-brand-green-light transition-colors"
+          >
+            mike@rehabit.ai
+          </a>.
         </motion.p>
       </motion.div>
     </Section>
