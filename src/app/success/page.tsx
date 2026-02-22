@@ -55,7 +55,7 @@ export default function SuccessPage() {
                         </li>
                         <li className="flex gap-3">
                             <span className="text-brand-green font-bold">2.</span>
-                            <span>We'll reach out within 24 hours to schedule your 1:1 kickoff call.</span>
+                            <span>We&rsquo;ll reach out within 24 hours to schedule your 1:1 kickoff call.</span>
                         </li>
                         <li className="flex gap-3">
                             <span className="text-brand-green font-bold">3.</span>

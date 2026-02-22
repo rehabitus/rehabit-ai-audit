@@ -40,7 +40,7 @@ export default function CancelPage() {
                     variants={fadeInUp}
                     className="mt-6 text-xl text-slate-300"
                 >
-                    No problem. Timing is everything in business. If you have questions before you're ready to commit, we're here to help.
+                    No problem. Timing is everything in business. If you have questions before you&rsquo;re ready to commit, we&rsquo;re here to help.
                 </motion.p>
 
                 <motion.div
@@ -49,7 +49,7 @@ export default function CancelPage() {
                 >
                     <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 text-left">
                         <h3 className="font-bold text-white mb-2">Have Questions?</h3>
-                        <p className="text-sm text-slate-400 mb-4">Not sure if the audit is right for your specific stack? Let's chat.</p>
+                        <p className="text-sm text-slate-400 mb-4">Not sure if the audit is right for your specific stack? Let&rsquo;s chat.</p>
                         <a
                             href="https://calendly.com"
                             target="_blank"
