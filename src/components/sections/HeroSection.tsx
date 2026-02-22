@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { heroStagger, heroChild } from "@/lib/animations";
 
+import { VideoPlayer } from "@/components/ui/VideoPlayer";
+
 export function HeroSection() {
   return (
     <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-40 md:pb-28">
@@ -26,6 +28,8 @@ export function HeroSection() {
         >
           Find Exactly Where Your Business Is Bleeding Money&nbsp;&mdash; And Get a Plan to Fix It in 5&nbsp;Days.
         </motion.h1>
+
+        <VideoPlayer />
 
         <motion.p
           variants={heroChild}

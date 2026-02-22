@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { track } from "@vercel/analytics";
 
 interface CTAButtonProps {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ export function CTAButton({ children, className = "" }: CTAButtonProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
+    track("cta_click", { label: typeof children === "string" ? children : "Main CTA" });
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", { method: "POST" });

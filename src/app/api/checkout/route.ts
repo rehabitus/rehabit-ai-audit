@@ -22,8 +22,8 @@ export async function POST() {
           quantity: 1,
         },
       ],
-      success_url: `${baseUrl}?session_id={CHECKOUT_SESSION_ID}&status=success`,
-      cancel_url: `${baseUrl}?status=cancelled`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cancel`,
       allow_promotion_codes: true,
     });
 

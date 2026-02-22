@@ -11,6 +11,7 @@ import { TrustSection } from "@/components/sections/TrustSection";
 import { PricingSection } from "@/components/sections/PricingSection";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
+import { DeliverablesSection } from "@/components/sections/DeliverablesSection";
 import { TrustpilotWidget } from "@/components/ui/TrustpilotWidget";
 
 export default function Home() {
@@ -26,8 +27,8 @@ export default function Home() {
 
       {/* ── STICKY NAV BAR ── */}
       <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-brand-dark/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <span className="font-logo text-lg font-bold tracking-tight text-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <span className="font-logo text-2xl font-bold tracking-tight text-white md:text-3xl">
             rehabit<span className="text-brand-green">.ai</span>
           </span>
           <NavCheckoutButton />
@@ -45,6 +46,8 @@ export default function Home() {
       <div className="section-divider-blue" />
       <OutcomesSection />
       <div className="section-divider-green" />
+      <DeliverablesSection />
+      <div className="section-divider-blue" />
       <ProcessSection />
       <div className="section-divider-blue" />
       <TrustSection />

@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     "We'll audit your entire business, show you where you're bleeding time and money, and hand you a ready-to-execute AI implementation plan — in 5 days.",
 };
 
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -38,6 +41,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased font-sans`}
       >
         {children}
+        <Analytics />
+        <SpeedInsights />
         <Script
           src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js"
           strategy="afterInteractive"
