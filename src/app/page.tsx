@@ -13,6 +13,7 @@ import { FAQSection } from "@/components/sections/FAQSection";
 import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import { DeliverablesSection } from "@/components/sections/DeliverablesSection";
 import { TrustpilotWidget } from "@/components/ui/TrustpilotWidget";
+import { ExitIntentModal } from "@/components/ui/ExitIntentModal";
 
 export default function Home() {
   return (
@@ -65,6 +66,9 @@ export default function Home() {
       <footer className="border-t border-white/5 bg-brand-dark px-6 py-8 text-center text-sm text-slate-500">
         &copy; {new Date().getFullYear()} rehabit.ai &mdash; All rights reserved.
       </footer>
+
+      {/* ── EXIT INTENT LEAD CAPTURE ── */}
+      <ExitIntentModal />
     </main>
   );
 }
