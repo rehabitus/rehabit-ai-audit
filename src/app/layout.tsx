@@ -21,10 +21,36 @@ const comfortaa = Comfortaa({
   display: "swap",
 });
 
+const BASE_URL = "https://audit.rehabit.ai";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: "AI Transformation Audit | rehabit.ai",
   description:
-    "We'll audit your entire business, show you where you're bleeding time and money, and hand you a ready-to-execute AI implementation plan — in 5 days.",
+    "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days. Guaranteed to reveal $20K+ in annual savings.",
+  openGraph: {
+    title: "AI Transformation Audit — Find Exactly Where Your Business Is Bleeding Money",
+    description:
+      "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days. Guaranteed to reveal $20K+ in annual savings.",
+    url: BASE_URL,
+    siteName: "rehabit.ai",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Transformation Audit | rehabit.ai",
+    description:
+      "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days.",
+    site: "@rehabitai",
+  },
+  alternates: {
+    canonical: BASE_URL,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 import { Analytics } from "@vercel/analytics/react";
@@ -41,6 +67,35 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased font-sans`}
       >
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Service",
+              name: "AI Transformation Audit",
+              description:
+                "A 5-day business workflow audit that quantifies waste, matches workflows to specific AI tools, and delivers a ready-to-execute implementation plan with ROI projections.",
+              url: "https://audit.rehabit.ai",
+              provider: {
+                "@type": "Organization",
+                name: "rehabit.ai",
+                url: "https://rehabit.ai",
+              },
+              offers: {
+                "@type": "Offer",
+                price: "1200",
+                priceCurrency: "USD",
+                availability: "https://schema.org/LimitedAvailability",
+                url: "https://audit.rehabit.ai",
+              },
+              areaServed: {
+                "@type": "Place",
+                name: "Worldwide",
+              },
+            }),
+          }}
+        />
         <Analytics />
         <SpeedInsights />
         <Script
