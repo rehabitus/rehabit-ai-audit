@@ -86,9 +86,9 @@ export function ExitIntentModal() {
         chatTranscript?: string
     ) => {
         setStep(4);
-        // Submit lead in background
-        try {
-            await fetch("/api/lead-capture", {
+        // Fire both calls in parallel — silent fail on both
+        await Promise.allSettled([
+            fetch("/api/lead-capture", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -97,10 +97,17 @@ export function ExitIntentModal() {
                     mode: chatTranscript ? "chat" : "survey",
                     chatTranscript,
                 }),
-            });
-        } catch {
-            // Silent fail — lead still shown in UI
-        }
+            }),
+            fetch("/api/generate-score", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    name: contact.name,
+                    email: contact.email,
+                    answers,
+                }),
+            }),
+        ]);
         // Mark converted so modal doesn't show again
         try {
             localStorage.setItem(STORAGE_KEY, String(Date.now() + 1000 * 60 * 60 * 24 * 365));
@@ -122,18 +129,15 @@ export function ExitIntentModal() {
     return (
         <AnimatePresence>
             {isOpen && (
-                <>
-                    {/* Backdrop */}
-                    <motion.div
-                        key="backdrop"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed inset-0 z-[200] bg-black/70 backdrop-blur-sm"
-                        onClick={dismiss}
-                    />
-
+                <motion.div
+                    key="backdrop"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+                    onClick={dismiss}
+                >
                     {/* Modal */}
                     <motion.div
                         key="modal"
@@ -141,8 +145,7 @@ export function ExitIntentModal() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className={`fixed left-1/2 top-1/2 z-[201] -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-2rem)] rounded-2xl border border-white/10 bg-[#0F172A] shadow-2xl ${isWide ? "max-w-lg" : "max-w-sm"
-                            }`}
+                        className={`relative w-full rounded-2xl border border-white/10 bg-[#0F172A] shadow-2xl ${isWide ? "max-w-lg" : "max-w-sm"}`}
                         role="dialog"
                         aria-modal="true"
                         aria-label="AI Readiness Survey"
@@ -166,8 +169,7 @@ export function ExitIntentModal() {
                                 {[1, 2, 3].map((s) => (
                                     <div
                                         key={s}
-                                        className={`h-1.5 rounded-full transition-all ${step === s ? "w-6 bg-brand-green" : "w-1.5 bg-white/20"
-                                            }`}
+                                        className={`h-1.5 rounded-full transition-all ${step === s ? "w-6 bg-brand-green" : "w-1.5 bg-white/20"}`}
                                     />
                                 ))}
                             </div>
@@ -207,7 +209,7 @@ export function ExitIntentModal() {
                             </AnimatePresence>
                         </div>
                     </motion.div>
-                </>
+                </motion.div>
             )}
         </AnimatePresence>
     );
