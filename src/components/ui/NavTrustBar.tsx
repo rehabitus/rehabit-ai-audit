@@ -1,42 +1,43 @@
-// Swap AVATARS src values for real photos when ready.
-// Keep count in sync with your actual customer base.
-
-const AVATARS = [
-    { src: "https://i.pravatar.cc/40?img=11", alt: "Founder" },
-    { src: "https://i.pravatar.cc/40?img=32", alt: "Founder" },
-    { src: "https://i.pravatar.cc/40?img=53", alt: "Founder" },
-    { src: "https://i.pravatar.cc/40?img=64", alt: "Founder" },
-    { src: "https://i.pravatar.cc/40?img=15", alt: "Founder" },
-];
+// To use real photos: replace `gradient` with `src: "/avatars/name.jpg"` and render an <img> instead.
+// Keep COUNT in sync with your actual customer base.
 
 const COUNT = "300+";
 const LABEL = "founders like you";
 const STARS = 5;
 
+// CSS gradient avatars — no external deps, swap for real photos anytime
+const AVATARS = [
+    { initials: "JR", gradient: "linear-gradient(135deg, #6366f1, #8b5cf6)" },
+    { initials: "MK", gradient: "linear-gradient(135deg, #10b981, #059669)" },
+    { initials: "TS", gradient: "linear-gradient(135deg, #f97316, #ef4444)" },
+    { initials: "AL", gradient: "linear-gradient(135deg, #3b82f6, #6366f1)" },
+    { initials: "CW", gradient: "linear-gradient(135deg, #f59e0b, #f97316)" },
+];
+
 export function NavTrustBar() {
     return (
         <div className="flex items-center gap-3">
-            {/* Overlapping avatars */}
+            {/* Overlapping avatar stack */}
             <div className="flex items-center">
                 {AVATARS.map((avatar, i) => (
                     <div
                         key={i}
-                        className="relative h-8 w-8 rounded-full ring-2 ring-brand-dark overflow-hidden"
-                        style={{ marginLeft: i === 0 ? 0 : "-10px", zIndex: AVATARS.length - i }}
+                        className="flex h-8 w-8 items-center justify-center rounded-full ring-2 ring-[#0F172A] text-[10px] font-bold text-white select-none"
+                        style={{
+                            background: avatar.gradient,
+                            marginLeft: i === 0 ? 0 : "-10px",
+                            zIndex: AVATARS.length - i,
+                            position: "relative",
+                        }}
+                        aria-label={`Founder ${avatar.initials}`}
                     >
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                            src={avatar.src}
-                            alt={avatar.alt}
-                            className="h-full w-full object-cover"
-                        />
+                        {avatar.initials}
                     </div>
                 ))}
             </div>
 
-            {/* Stars + text */}
+            {/* Stars + label */}
             <div className="flex flex-col leading-none gap-0.5">
-                {/* Trustpilot-style stars */}
                 <div className="flex items-center gap-0.5">
                     {Array.from({ length: STARS }).map((_, i) => (
                         <svg
@@ -54,7 +55,6 @@ export function NavTrustBar() {
                         </svg>
                     ))}
                 </div>
-                {/* Count + label */}
                 <p className="text-[11px] font-bold text-white/90 whitespace-nowrap">
                     Trusted by <span className="text-brand-green">{COUNT}</span> {LABEL}
                 </p>
