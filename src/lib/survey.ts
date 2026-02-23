@@ -9,7 +9,7 @@ export const surveyQuestions = [
             "Course Creator",
             "Platform or SaaS",
             "Agency",
-            "Other",
+            "Other / Add Detail",
         ],
     },
     {
@@ -33,7 +33,7 @@ export const surveyQuestions = [
             "Client onboarding takes too long",
             "Content creation is eating my time",
             "Clients disengage between sessions",
-            "All of the above, honestly",
+            "Other / Add Detail",
         ],
     },
     {
