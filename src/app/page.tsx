@@ -28,10 +28,19 @@ export default function Home() {
 
       {/* ── STICKY NAV BAR ── */}
       <nav className="fixed top-0 z-50 w-full border-b border-white/5 bg-brand-dark/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
           <span className="font-logo text-2xl font-bold tracking-tight text-white md:text-3xl">
             rehabit<span className="text-brand-green">.ai</span>
           </span>
+          {/* Trust bar — hidden on mobile, centered on desktop */}
+          <div className="hidden md:flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/trust-bar.png"
+              alt="Trusted by 300+ founders"
+              className="h-10 w-auto object-contain"
+            />
+          </div>
           <NavCheckoutButton />
         </div>
       </nav>
