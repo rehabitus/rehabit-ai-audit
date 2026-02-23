@@ -232,13 +232,15 @@ body {
 
 /* ─── Section divider glow ─── */
 .section-divider-green {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.3) 30%, rgba(16, 185, 129, 0.3) 70%, transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.6) 20%, rgba(16, 185, 129, 0.7) 50%, rgba(16, 185, 129, 0.6) 80%, transparent);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25), 0 0 4px rgba(16, 185, 129, 0.4);
 }
 
 .section-divider-blue {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2) 30%, rgba(59, 130, 246, 0.2) 70%, transparent);
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.45) 20%, rgba(59, 130, 246, 0.55) 50%, rgba(59, 130, 246, 0.45) 80%, transparent);
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.2), 0 0 4px rgba(59, 130, 246, 0.35);
 }
 
 /* ─── Reduced motion ─── */

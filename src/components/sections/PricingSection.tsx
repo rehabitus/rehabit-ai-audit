@@ -23,6 +23,14 @@ export function PricingSection() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
+        {/* Founding Member badge */}
+        <motion.div variants={fadeInUp} className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-1.5">
+          <span className="h-1.5 w-1.5 rounded-full bg-brand-gold animate-pulse" />
+          <span className="text-xs font-bold uppercase tracking-widest text-brand-gold">
+            Founding Member Rate — Limited Launch
+          </span>
+        </motion.div>
+
         <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl">
           AI Transformation Audit
         </motion.h2>
@@ -46,23 +54,30 @@ export function PricingSection() {
 
         {/* Price */}
         <motion.div variants={fadeInUp} className="mt-10">
-          <p className="text-6xl font-extrabold text-white">
-            $<AnimatedCounter to={1200} duration={1.5} />
+          {/* Comparable market rate — crossed out */}
+          <p className="text-sm text-slate-500 mb-3">
+            Industry standard:{" "}
+            <span className="line-through decoration-brand-red/60 decoration-2">
+              $5,000 &ndash; $15,000
+            </span>
           </p>
+
+          {/* Founding Member price */}
+          <div className="flex items-baseline justify-center gap-3">
+            <p className="text-7xl font-extrabold text-white tracking-tight">
+              $<AnimatedCounter to={1200} duration={1.5} />
+            </p>
+          </div>
+          <p className="mt-1.5 text-xs font-semibold uppercase tracking-widest text-brand-gold/80">
+            Founding Member Rate
+          </p>
+
           <motion.p
             variants={fadeInUp}
-            className="mt-2 text-base text-slate-300"
+            className="mt-4 text-base text-slate-300"
           >
             Only <span className="font-semibold text-brand-orange">3 audits left</span> at this
-            price. Price increases by $100 every 10 audits.
-          </motion.p>
-          <motion.p
-            variants={fadeInUp}
-            className="mt-1 text-sm text-slate-400"
-          >
-            Final value: $5,000&ndash;$10,000 &mdash; still below the{" "}
-            <span className="text-slate-300">industry standard of $5K&ndash;$15K</span> for an AI
-            readiness assessment.
+            price &mdash; price rises $100 with every new client review.
           </motion.p>
         </motion.div>
 
