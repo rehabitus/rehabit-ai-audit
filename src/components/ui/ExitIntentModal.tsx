@@ -1,27 +1,29 @@
 "use client";
 
 import { useEffect, useState, useCallback, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ModalScreen1Hook } from "./modal/ModalScreen1Hook";
 import { ModalScreen2Contact } from "./modal/ModalScreen2Contact";
 import { ModalScreen3Survey } from "./modal/ModalScreen3Survey";
-import { ModalScreen4ThankYou } from "./modal/ModalScreen4ThankYou";
 
 const STORAGE_KEY = "rh_exit_modal_dismissed";
 const SUPPRESS_DAYS = 7;
 
-type Step = 1 | 2 | 3 | 4;
+type Step = 1 | 2 | 3;
 
 interface ContactData {
     name: string;
     email: string;
     phone: string;
+    website: string;
 }
 
 export function ExitIntentModal() {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const [step, setStep] = useState<Step>(1);
-    const [contact, setContact] = useState<ContactData>({ name: "", email: "", phone: "" });
+    const [contact, setContact] = useState<ContactData>({ name: "", email: "", phone: "", website: "" });
     const hasTriggered = useRef(false);
     const scrollStarted = useRef(false);
     const lastScrollY = useRef(0);
@@ -81,13 +83,12 @@ export function ExitIntentModal() {
         setStep(3);
     };
 
-    const handleSurveyComplete = async (
+    const handleSurveyComplete = (
         answers: Record<string, string>,
         chatTranscript?: string
     ) => {
-        setStep(4);
-        // Fire both calls in parallel — silent fail on both
-        await Promise.allSettled([
+        // Fire both in background — no await, don't block navigation
+        Promise.allSettled([
             fetch("/api/lead-capture", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -104,14 +105,18 @@ export function ExitIntentModal() {
                 body: JSON.stringify({
                     name: contact.name,
                     email: contact.email,
+                    website: contact.website,
                     answers,
                 }),
             }),
         ]);
-        // Mark converted so modal doesn't show again
+        // Mark converted so modal doesn't re-trigger for a year
         try {
             localStorage.setItem(STORAGE_KEY, String(Date.now() + 1000 * 60 * 60 * 24 * 365));
         } catch { }
+        // Close modal and navigate to score page
+        setIsOpen(false);
+        router.push(`/score-thank-you?name=${encodeURIComponent(contact.name)}`);
     };
 
     // ── Keyboard: Esc to close ──
@@ -124,7 +129,7 @@ export function ExitIntentModal() {
     }, [isOpen]);
 
     // Decide overlay size based on step
-    const isWide = step === 3 || step === 4;
+    const isWide = step === 3;
 
     return (
         <AnimatePresence>
@@ -163,17 +168,15 @@ export function ExitIntentModal() {
                             </svg>
                         </button>
 
-                        {/* Step indicator dots (steps 1–3) */}
-                        {step < 4 && (
-                            <div className="flex justify-center gap-1.5 pt-5 pb-0">
+                        {/* Step indicator dots */}
+                        <div className="flex justify-center gap-1.5 pt-5 pb-0">
                                 {[1, 2, 3].map((s) => (
                                     <div
                                         key={s}
                                         className={`h-1.5 rounded-full transition-all ${step === s ? "w-6 bg-brand-green" : "w-1.5 bg-white/20"}`}
                                     />
                                 ))}
-                            </div>
-                        )}
+                        </div>
 
                         {/* Content */}
                         <div className="p-6 pt-4">
@@ -197,13 +200,6 @@ export function ExitIntentModal() {
                                         key="s3"
                                         name={contact.name}
                                         onComplete={handleSurveyComplete}
-                                    />
-                                )}
-                                {step === 4 && (
-                                    <ModalScreen4ThankYou
-                                        key="s4"
-                                        name={contact.name}
-                                        onClose={dismiss}
                                     />
                                 )}
                             </AnimatePresence>

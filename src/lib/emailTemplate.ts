@@ -103,6 +103,23 @@ export function buildScoreEmail({
 
         <tr><td style="height:32px;"></td></tr>
 
+        <!-- Bonus Video CTA -->
+        <tr><td style="background:#1e293b;border-radius:16px;padding:24px 28px;border:1px solid #f59e0b44;">
+          <div style="display:flex;align-items:flex-start;gap:16px;">
+            <div style="font-size:28px;line-height:1;flex-shrink:0;">🎁</div>
+            <div>
+              <div style="color:#f59e0b;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Free Bonus</div>
+              <div style="color:#fff;font-size:16px;font-weight:800;margin-bottom:8px;">Want a video walkthrough of your checklist?</div>
+              <div style="color:#94a3b8;font-size:14px;line-height:1.6;margin-bottom:14px;">
+                Reply to this email with your thoughts on the checklist — what resonates, what feels hard, where you&apos;re stuck — and I&apos;ll send you a personalized bonus video showing you exactly how to implement your top 3 items.
+              </div>
+              <div style="color:#f59e0b;font-size:13px;font-weight:600;">Just hit reply → tell me what you&apos;re thinking → get the video. That simple.</div>
+            </div>
+          </div>
+        </td></tr>
+
+        <tr><td style="height:24px;"></td></tr>
+
         <!-- CTA -->
         <tr><td style="background:#1e293b;border-radius:16px;padding:32px;text-align:center;border:1px solid #334155;">
           <div style="color:#fff;font-size:20px;font-weight:800;margin-bottom:12px;">Ready to implement this?</div>

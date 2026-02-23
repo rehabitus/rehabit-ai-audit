@@ -20,7 +20,7 @@ export interface ScoreResult {
     }>;
 }
 
-const SCORE_PROMPT = (name: string, answers: Record<string, string>) => `
+const SCORE_PROMPT = (name: string, answers: Record<string, string>, website?: string) => `
 You are an expert AI transformation consultant. Analyze this business owner's survey responses and generate a detailed AI Readiness Report.
 
 User: ${name}
@@ -28,7 +28,7 @@ Business Type: ${answers.business_type ?? "Not specified"}
 Team Size: ${answers.team_size ?? "Not specified"}
 Annual Revenue: ${answers.revenue ?? "Not specified"}
 Biggest Pain Point: ${answers.pain_point ?? "Not specified"}
-Weekly Manual Task Hours: ${answers.manual_hours ?? "Not specified"}
+Weekly Manual Task Hours: ${answers.manual_hours ?? "Not specified"}${website ? `\nWebsite: ${website}` : ""}
 
 Generate a JSON response (ONLY JSON, no markdown) with this exact structure:
 {
@@ -72,8 +72,9 @@ export async function POST(req: NextRequest) {
     const {
         name,
         email,
+        website,
         answers,
-    }: { name: string; email: string; answers: Record<string, string> } =
+    }: { name: string; email: string; website?: string; answers: Record<string, string> } =
         await req.json();
 
     try {
@@ -94,7 +95,7 @@ export async function POST(req: NextRequest) {
                     },
                     {
                         role: "user",
-                        content: SCORE_PROMPT(name, answers),
+                        content: SCORE_PROMPT(name, answers, website),
                     },
                 ],
             }),

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 interface Props {
-    onContinue: (contact: { name: string; email: string; phone: string }) => void;
+    onContinue: (contact: { name: string; email: string; phone: string; website: string }) => void;
     onBack: () => void;
 }
 
@@ -12,6 +12,7 @@ export function ModalScreen2Contact({ onContinue, onBack }: Props) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [website, setWebsite] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -25,7 +26,7 @@ export function ModalScreen2Contact({ onContinue, onBack }: Props) {
         }
         setLoading(true);
         setError("");
-        onContinue({ name: name.trim(), email: email.trim(), phone: phone.trim() });
+        onContinue({ name: name.trim(), email: email.trim(), phone: phone.trim(), website: website.trim() });
     };
 
     const inputClass =
@@ -84,6 +85,19 @@ export function ModalScreen2Contact({ onContinue, onBack }: Props) {
                         placeholder="+1 (555) 000-0000"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
+                        className={inputClass}
+                    />
+                </div>
+
+                <div>
+                    <label className="mb-1 block text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        Website <span className="text-slate-600 font-normal">(optional — helps personalize your score)</span>
+                    </label>
+                    <input
+                        type="url"
+                        placeholder="https://yoursite.com"
+                        value={website}
+                        onChange={(e) => setWebsite(e.target.value)}
                         className={inputClass}
                     />
                 </div>
