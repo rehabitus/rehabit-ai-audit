@@ -2,6 +2,7 @@
 
 import { HeroSection } from "@/components/sections/HeroSection";
 import { NavCheckoutButton } from "@/components/ui/NavCheckoutButton";
+import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { ProblemSection } from "@/components/sections/ProblemSection";
 import { BridgeSection } from "@/components/sections/BridgeSection";
 import { OfferSection } from "@/components/sections/OfferSection";
@@ -34,12 +35,7 @@ export default function Home() {
           </span>
           {/* Trust bar — hidden on mobile, centered on desktop */}
           <div className="hidden md:flex items-center">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/trust-bar.png"
-              alt="Trusted by 300+ founders"
-              className="h-10 w-auto object-contain"
-            />
+            <NavTrustBar />
           </div>
           <NavCheckoutButton />
         </div>
