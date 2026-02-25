@@ -45,3 +45,5 @@ ___DOCS
 
 # screenshots
 *.png
+!public/images/*.png
+!public/images/*.jpg

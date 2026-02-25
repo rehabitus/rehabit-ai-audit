@@ -15,9 +15,9 @@ export function ProblemSection() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        <div className="grid gap-12 md:grid-cols-2 md:items-center">
+        <div className="grid gap-12 md:grid-cols-2 md:items-start">
 
-          {/* ── Left: text ── */}
+          {/* ── Left: headline + pain points ── */}
           <div>
             <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl">
               You already know something is&nbsp;off.
@@ -41,32 +41,31 @@ export function ProblemSection() {
                 </motion.li>
               ))}
             </motion.ul>
+          </div>
 
-            <motion.p variants={fadeInUp} className="mt-10 text-lg text-slate-300 leading-relaxed">
+          {/* ── Right: image + closing copy ── */}
+          <div className="flex flex-col gap-6">
+            <motion.div variants={fadeInUp}>
+              <img
+                src="/images/4C-Audit-1a.png"
+                alt="Chaotic workflows transformed into a calm, AI-powered business"
+                className="w-full rounded-2xl shadow-[0_0_60px_rgba(16,185,129,0.12)]"
+              />
+            </motion.div>
+
+            <motion.p variants={fadeInUp} className="text-lg text-slate-300 leading-relaxed">
               The result? You&rsquo;re{" "}
               <span className="font-semibold text-white">working harder than ever</span>,
               growing slower than you should, and watching competitors who figured out automation pull ahead.
             </motion.p>
-            <motion.p variants={fadeInUp} className="mt-4 text-lg font-semibold text-brand-orange">
+            <motion.p variants={fadeInUp} className="text-lg font-semibold text-brand-orange">
               The worst part: You don&rsquo;t know what you don&rsquo;t know. You can&rsquo;t fix what
               you can&rsquo;t see.
             </motion.p>
-            <motion.p variants={fadeInUp} className="mt-4 text-xl font-bold text-white">
+            <motion.p variants={fadeInUp} className="text-xl font-bold text-white">
               That&rsquo;s exactly what this audit reveals.
             </motion.p>
           </div>
-
-          {/* ── Right: visual ── */}
-          <motion.div
-            variants={fadeInUp}
-            className="flex items-center justify-center md:justify-end"
-          >
-            <img
-              src="/images/4caudit-1.jpg"
-              alt="Tangled workflows transformed into a clean, healthy signal"
-              className="w-full max-w-md rounded-2xl bg-white p-6 shadow-[0_0_60px_rgba(16,185,129,0.12)]"
-            />
-          </motion.div>
 
         </div>
       </motion.div>
