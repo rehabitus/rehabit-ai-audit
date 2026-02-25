@@ -20,10 +20,15 @@ export const PRICING_TIERS: PricingTier[] = [
   { minReviews: 25, maxReviews: Infinity, priceUsd: 3000, label: "Full Rate"        },
 ];
 
+/**
+ * UPDATE THIS NUMBER when a verified audit client leaves a review.
+ * Then: commit + push → Vercel auto-deploys → price, slots, and trust bar all update.
+ * Git history becomes the audit trail of every review received.
+ */
+export const REVIEW_COUNT = 0;
+
 export function getReviewCount(): number {
-  const raw = process.env.REVIEW_COUNT ?? "0";
-  const n = parseInt(raw, 10);
-  return isNaN(n) || n < 0 ? 0 : n;
+  return REVIEW_COUNT;
 }
 
 export function getTierForReviews(reviewCount: number): PricingTier {
