@@ -21,7 +21,7 @@ export const faqs = [
   },
   {
     q: "Why is the audit priced so low?",
-    a: "Because it won't stay low. The price increases by $100 after every 10 audits until it reaches its final value of $5,000–$10,000 — which is still below the industry standard of $5,000–$15,000 for an AI readiness assessment. Right now you're catching us early. 75% of audit clients move forward with implementation, so we'd rather earn your trust with results at a price that removes friction.",
+    a: "Because the price reflects the proof — not the value. Right now we're early. Every verified client review moves the price up. You're getting in before the market catches up to what this is worth. Industry standard for this type of done-for-you AI assessment runs $5,000–$15,000. We'd rather earn your trust with results at a price that removes friction — and let the reviews speak for themselves.",
   },
   {
     q: "What happens after the audit?",

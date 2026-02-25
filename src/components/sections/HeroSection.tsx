@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
 
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
@@ -53,10 +54,17 @@ export function HeroSection() {
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base text-slate-300">
-          Only <span className="font-semibold text-brand-orange">3 audits left</span> at the current
-          price&nbsp;&mdash; it goes up $100 every 10 audits. Pay in full and get your first Core AI
-          System delivered FREE in the same 5-day window.
+          Starting at <span className="font-semibold text-white">$500</span> &mdash; price rises with every verified client review.{" "}
+          Pay in full and get your first Core AI System delivered FREE in the same 5-day window.
         </motion.p>
+
+        {/* Trust bar — hero size, centered */}
+        <motion.div
+          variants={heroChild}
+          className="mt-8 flex justify-center"
+        >
+          <NavTrustBar size="md" />
+        </motion.div>
       </motion.div>
     </section>
   );
