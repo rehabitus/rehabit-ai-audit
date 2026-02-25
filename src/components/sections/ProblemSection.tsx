@@ -62,7 +62,7 @@ export function ProblemSection() {
             className="flex items-center justify-center md:justify-end"
           >
             <img
-              src="/images/chaos-to-clarity.png"
+              src="/images/4caudit-1.jpg"
               alt="Tangled workflows transformed into a clean, healthy signal"
               className="w-full max-w-md rounded-2xl bg-white p-6 shadow-[0_0_60px_rgba(16,185,129,0.12)]"
             />
