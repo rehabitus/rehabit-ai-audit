@@ -42,10 +42,6 @@ export function PricingSection() {
   const slotsLeft     = pricing?.slotsRemaining ?? null;
   const subtitle      = TIER_LABELS[label] ?? "";
 
-  // Progress bar: position within the full 0–25 review ladder
-  const MAX_REVIEWS_FOR_BAR = 25;
-  const progressPct = Math.min((reviewCount / MAX_REVIEWS_FOR_BAR) * 100, 100);
-
   return (
     <Section className="bg-brand-navy noise-vignette-bg" id="pricing" noAnimate>
       <motion.div
@@ -127,31 +123,6 @@ export function PricingSection() {
             </motion.div>
           )}
 
-          {/* Review progress */}
-          <motion.div variants={fadeInUp} className="mt-4 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
-            <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-              <span>
-                <span className="font-semibold text-white">{reviewCount}</span>{" "}
-                verified {reviewCount === 1 ? "review" : "reviews"}
-              </span>
-              {nextPrice ? (
-                <span className="text-slate-500">
-                  Price moves to <span className="text-white font-semibold">${nextPrice.toLocaleString()}</span> at {(pricing?.reviewsToNextTier ?? 0) + reviewCount} reviews
-                </span>
-              ) : (
-                <span className="text-brand-green font-semibold">Full Rate</span>
-              )}
-            </div>
-            <div className="h-1 w-full rounded-full bg-white/10">
-              <motion.div
-                className="h-1 rounded-full bg-gradient-to-r from-brand-green to-brand-gold"
-                initial={{ width: 0 }}
-                whileInView={{ width: `${progressPct}%` }}
-                viewport={viewportOnce}
-                transition={{ duration: 1, ease: "easeOut" }}
-              />
-            </div>
-          </motion.div>
 
           <motion.p variants={fadeInUp} className="mt-3 text-xs text-slate-500 italic">
             Every review is a verified client who found $20k+ in savings. That&rsquo;s what moves the price.
