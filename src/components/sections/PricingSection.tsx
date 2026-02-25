@@ -66,6 +66,14 @@ export function PricingSection() {
           Complete Package
         </motion.p>
 
+        <motion.div variants={fadeInUp} className="mt-6 overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)]">
+          <img
+            src="/images/4C-Audit-2c.jpg"
+            alt="The AI Opportunity Audit report"
+            className="w-full object-cover"
+          />
+        </motion.div>
+
         <motion.ul
           variants={staggerContainerFast}
           className="mt-8 space-y-3 text-left text-slate-300"
