@@ -90,9 +90,10 @@ Standalone value: $3,000+. Your cost: $0. This is the primary closer — treat i
 | 25+ | $3,000 | Full Rate (cap) |
 
 **How it works:**
-- Price is driven by `REVIEW_COUNT` env var on Vercel — Mike updates manually when a verified audit client leaves a review
-- Only audit clients count — not B2C app users, not generic Trustpilot reviews
-- `SLOTS_REMAINING` env var controls the "X slots left at this price" scarcity callout independently — set lower than the tier math to tighten urgency
+- **One env var only: `REVIEW_COUNT`** — set on Vercel, update manually when a verified audit client leaves a review, then redeploy
+- Only audit clients count — not B2C app users, not generic Trustpilot strangers
+- "X slots left at this price" is auto-computed: `reviewsToNextTier = nextTier.minReviews - currentReviewCount`
+- Trust bar count auto-shows at 5+ reviews, hides below 5 — same `REVIEW_COUNT` drives it
 - Stripe checkout pulls live price at time of purchase — no hardcoded amount
 
 **The framing:** "Price reflects proof. Right now you're getting in at the lowest this will ever be. Every review is a verified client who found $20k+ in savings — that's what moves the price."
