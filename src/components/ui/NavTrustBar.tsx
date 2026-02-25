@@ -1,30 +1,27 @@
-// Avatar appearance. Swap `gradient` for a real photo path when ready:
-// { gradient: null, src: "/avatars/name.jpg" }
+// Avatar photos: swap src for a local path when you have real client photos.
+// e.g. { src: "/avatars/sarah.jpg" }
 //
-// Count display: auto-shows when reviewCount >= SHOW_COUNT_THRESHOLD.
+// Count display: shows when reviewCount > 5.
 // Pass reviewCount prop from /api/pricing data. Nav defaults to 0 (hidden).
 
-const SHOW_COUNT_THRESHOLD = 5;  // show count only once you have this many reviews
 const STARS = 5;
 
 const AVATARS = [
-  { gradient: "linear-gradient(160deg, #6366f1 0%, #8b5cf6 100%)" },
-  { gradient: "linear-gradient(160deg, #10b981 0%, #059669 100%)" },
-  { gradient: "linear-gradient(160deg, #f97316 0%, #ef4444 100%)" },
-  { gradient: "linear-gradient(160deg, #3b82f6 0%, #6366f1 100%)" },
-  { gradient: "linear-gradient(160deg, #f59e0b 0%, #f97316 100%)" },
+  { src: "https://i.pravatar.cc/40?img=10" },
+  { src: "https://i.pravatar.cc/40?img=25" },
+  { src: "https://i.pravatar.cc/40?img=33" },
+  { src: "https://i.pravatar.cc/40?img=48" },
+  { src: "https://i.pravatar.cc/40?img=56" },
 ];
 
-// Person silhouette — reads as "blank headshot" at small sizes.
-// Replace with <img src={avatar.src} /> when you have real photos.
 function PersonAvatar({
-  gradient,
+  src,
   size = 32,
   offset = 0,
   zIndex = 1,
   ring = "#0F172A",
 }: {
-  gradient: string;
+  src: string;
   size?: number;
   offset?: number;
   zIndex?: number;
@@ -32,11 +29,10 @@ function PersonAvatar({
 }) {
   return (
     <div
-      className="relative overflow-hidden rounded-full"
+      className="relative overflow-hidden rounded-full bg-slate-700"
       style={{
         width: size,
         height: size,
-        background: gradient,
         marginLeft: offset,
         zIndex,
         boxShadow: `0 0 0 2px ${ring}`,
@@ -44,31 +40,12 @@ function PersonAvatar({
       }}
       aria-hidden="true"
     >
-      {/* Head */}
-      <div
-        style={{
-          position: "absolute",
-          top: "18%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "40%",
-          height: "40%",
-          borderRadius: "50%",
-          background: "rgba(255,255,255,0.88)",
-        }}
-      />
-      {/* Shoulders */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: "-10%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "80%",
-          height: "50%",
-          borderRadius: "50% 50% 0 0",
-          background: "rgba(255,255,255,0.72)",
-        }}
+      <img
+        src={src}
+        alt=""
+        width={size}
+        height={size}
+        style={{ width: "100%", height: "100%", objectFit: "cover" }}
       />
     </div>
   );
@@ -81,7 +58,7 @@ export function NavTrustBar({
   size?: "sm" | "md";
   reviewCount?: number;
 }) {
-  const showCount = reviewCount >= SHOW_COUNT_THRESHOLD;
+  const showCount = reviewCount > 5;
   const avatarSize = size === "md" ? 40 : 32;
   const ring = "#0F172A";
   const starSize = size === "md" ? "h-3.5 w-3.5" : "h-3 w-3";
@@ -94,7 +71,7 @@ export function NavTrustBar({
         {AVATARS.map((av, i) => (
           <PersonAvatar
             key={i}
-            gradient={av.gradient}
+            src={av.src}
             size={avatarSize}
             offset={i === 0 ? 0 : -10}
             zIndex={AVATARS.length - i}
@@ -126,7 +103,7 @@ export function NavTrustBar({
           {showCount ? (
             <>Trusted by <span className="text-brand-green">{reviewCount}</span> founders like you</>
           ) : (
-            <>Founders like <span className="text-brand-green">you</span></>
+            <>Trusted by founders like <span className="text-brand-green">you</span></>
           )}
         </p>
       </div>
