@@ -12,6 +12,7 @@ import {
   staggerContainerFast,
   viewportOnce,
 } from "@/lib/animations";
+import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { pricingIncludes, payInFullBonus } from "@/lib/constants";
 import type { PricingInfo } from "@/lib/pricing";
 
@@ -159,6 +160,10 @@ export function PricingSection() {
 
         <motion.div variants={fadeInUp} className="mt-8">
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+        </motion.div>
+
+        <motion.div variants={fadeInUp} className="mt-6 flex justify-center">
+          <NavTrustBar size="md" reviewCount={reviewCount} />
         </motion.div>
       </motion.div>
 

@@ -1,12 +1,38 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer, viewportOnce } from "@/lib/animations";
 import { WebGLBackground } from "@/components/backgrounds/WebGLBackground";
+import type { PricingInfo } from "@/lib/pricing";
 
 export function FinalCTASection() {
+  const [pricing, setPricing] = useState<PricingInfo | null>(null);
+
+  useEffect(() => {
+    fetch("/api/pricing")
+      .then((r) => r.json())
+      .then((d: PricingInfo) => setPricing(d))
+      .catch(() => {});
+  }, []);
+
+  const priceUsd    = pricing?.priceUsd ?? 500;
+  const slotsLeft   = pricing?.slotsRemaining ?? null;
+  const nextPrice   = pricing?.nextPriceUsd ?? null;
+  const reviewCount = pricing?.reviewCount ?? 0;
+  const roi         = Math.round(20000 / priceUsd);
+
+  const ctaLabel = slotsLeft && slotsLeft > 0
+    ? `→ Reserve Your Slot — ${slotsLeft} Left at $${priceUsd.toLocaleString()}`
+    : `→ Reserve Your Audit Slot`;
+
+  const pricingMechanic = nextPrice
+    ? `Price rises $500 every 5 verified client reviews. Currently $${priceUsd.toLocaleString()} — next tier $${nextPrice.toLocaleString()}.`
+    : `Currently at full rate: $${priceUsd.toLocaleString()}.`;
+
   return (
     <Section
       className="relative overflow-hidden bg-gradient-to-b from-brand-navy to-brand-dark text-center"
@@ -47,10 +73,12 @@ export function FinalCTASection() {
           >
             <p className="text-sm font-bold uppercase tracking-wider text-brand-green">Option B</p>
             <p className="mt-4 text-slate-200 leading-relaxed">
-              Invest $1,200 and 1 hour of your time. In 5 days, know exactly where you&rsquo;re
-              losing money, exactly how to fix it, and exactly what it&rsquo;ll save you. Walk away
-              with a professional report, a clear roadmap, a working Digital Twin&nbsp;&mdash; and if
-              you pay in full, your first Core AI System built and live at no extra cost.
+              Invest{" "}
+              <span className="font-semibold text-white">${priceUsd.toLocaleString()}</span>{" "}
+              and 1 hour of your time. In 5 days, know exactly where you&rsquo;re losing money,
+              exactly how to fix it, and exactly what it&rsquo;ll save you. Walk away with a
+              professional report, a clear roadmap, a working Digital Twin&nbsp;&mdash; and if you
+              pay in full, your first Core AI System built and live at no extra cost.
             </p>
           </motion.div>
         </div>
@@ -60,7 +88,8 @@ export function FinalCTASection() {
             The math is simple: if the audit reveals even{" "}
             <span className="font-semibold text-white">$20,000 in annual savings</span> (and it
             will), that&rsquo;s a{" "}
-            <span className="font-bold text-brand-green">16x return</span> on a $1,200 investment.
+            <span className="font-bold text-brand-green">{roi}x return</span> on a{" "}
+            <span className="font-semibold text-white">${priceUsd.toLocaleString()}</span> investment.
           </p>
           <p className="mt-2 text-lg text-slate-300">
             If it doesn&rsquo;t? You get your money back.
@@ -69,20 +98,20 @@ export function FinalCTASection() {
 
         <motion.div variants={fadeInUp} className="mt-10">
           <div className="hidden md:inline-block animate-breathe">
-            <CTAButton>
-              &rarr; Reserve Your Audit Slot &mdash; Only 3 Left at $1,200
-            </CTAButton>
+            <CTAButton>{ctaLabel}</CTAButton>
           </div>
-          {/* Mobile: no breathing animation */}
           <div className="md:hidden">
-            <CTAButton>
-              &rarr; Reserve Your Audit Slot &mdash; Only 3 Left at $1,200
-            </CTAButton>
+            <CTAButton>{ctaLabel}</CTAButton>
           </div>
         </motion.div>
 
+        {/* Trust bar */}
+        <motion.div variants={fadeInUp} className="mt-6 flex justify-center">
+          <NavTrustBar size="md" reviewCount={reviewCount} />
+        </motion.div>
+
         <motion.p variants={fadeInUp} className="mt-4 text-sm text-slate-400">
-          Price increases by $100 every 10 audits. Current: $1,200. Final value: $5,000&ndash;$10,000.
+          {pricingMechanic}
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-300">
           Questions?{" "}
