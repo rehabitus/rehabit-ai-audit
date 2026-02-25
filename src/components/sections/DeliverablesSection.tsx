@@ -54,7 +54,7 @@ const deliverables = [
 
 export function DeliverablesSection() {
     return (
-        <Section className="bg-brand-navy" id="deliverables">
+        <Section className="bg-brand-dark" id="deliverables">
             <motion.div
                 className="relative z-10 mx-auto max-w-6xl"
                 initial="hidden"
@@ -62,13 +62,22 @@ export function DeliverablesSection() {
                 viewport={viewportOnce}
                 variants={staggerContainer}
             >
-                <motion.div variants={fadeInUp} className="text-center mb-16">
+                <motion.div variants={fadeInUp} className="text-center mb-12">
                     <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
                         What You&rsquo;re Actually Getting
                     </h2>
                     <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
                         This isn&rsquo;t a vague PDF. It&rsquo;s a comprehensive ROI-driven transformation strategy designed to be executed immediately.
                     </p>
+                </motion.div>
+
+                {/* Full-width report mockup */}
+                <motion.div variants={fadeInUp} className="mb-16 w-full overflow-hidden rounded-2xl shadow-[0_0_80px_rgba(16,185,129,0.1)]">
+                    <img
+                        src="/images/4C-Audit-2a.jpg"
+                        alt="The AI Opportunity Audit — your deliverable"
+                        className="w-full object-cover"
+                    />
                 </motion.div>
 
                 <div className="grid gap-8 md:grid-cols-3">
