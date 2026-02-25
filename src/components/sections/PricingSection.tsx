@@ -34,12 +34,12 @@ export function PricingSection() {
       .catch(() => {/* fail silently, fallback UI shows */});
   }, []);
 
-  const priceUsd   = pricing?.priceUsd ?? 500;
-  const label      = pricing?.label ?? "Early Access";
-  const reviewCount = pricing?.reviewCount ?? 0;
-  const nextPrice  = pricing?.nextPriceUsd ?? null;
-  const toNext     = pricing?.reviewsToNextTier ?? null;
-  const subtitle   = TIER_LABELS[label] ?? "";
+  const priceUsd      = pricing?.priceUsd ?? 500;
+  const label         = pricing?.label ?? "Early Access";
+  const reviewCount   = pricing?.reviewCount ?? 0;
+  const nextPrice     = pricing?.nextPriceUsd ?? null;
+  const slotsLeft     = pricing?.slotsRemaining ?? null;
+  const subtitle      = TIER_LABELS[label] ?? "";
 
   // Progress bar: position within the full 0–25 review ladder
   const MAX_REVIEWS_FOR_BAR = 25;
@@ -108,49 +108,52 @@ export function PricingSection() {
             <p className="mt-2 text-sm text-slate-500 italic">{subtitle}</p>
           )}
 
-          {/* Review counter + progress bar */}
-          <motion.div variants={fadeInUp} className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
+          {/* Slots remaining — scarcity callout */}
+          {slotsLeft !== null && slotsLeft > 0 && (
+            <motion.div
+              variants={fadeInUp}
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-brand-orange/40 bg-brand-orange/10 px-5 py-2"
+            >
+              <span className="h-2 w-2 rounded-full bg-brand-orange animate-pulse" />
+              <span className="text-sm font-bold text-brand-orange">
+                {slotsLeft} {slotsLeft === 1 ? "slot" : "slots"} left at ${priceUsd.toLocaleString()}
+              </span>
+              {nextPrice && (
+                <span className="text-sm text-slate-400">
+                  — next price <span className="text-white font-semibold">${nextPrice.toLocaleString()}</span>
+                </span>
+              )}
+            </motion.div>
+          )}
+
+          {/* Review progress */}
+          <motion.div variants={fadeInUp} className="mt-4 rounded-lg border border-white/10 bg-white/5 px-4 py-3">
             <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
               <span>
                 <span className="font-semibold text-white">{reviewCount}</span>{" "}
                 verified {reviewCount === 1 ? "review" : "reviews"}
               </span>
-              {toNext !== null && nextPrice !== null ? (
-                <span>
-                  <span className="font-semibold text-brand-orange">{toNext}</span>{" "}
-                  more → price goes to{" "}
-                  <span className="font-semibold text-white">${nextPrice.toLocaleString()}</span>
+              {nextPrice ? (
+                <span className="text-slate-500">
+                  Price moves to <span className="text-white font-semibold">${nextPrice.toLocaleString()}</span> at {(pricing?.reviewsToNextTier ?? 0) + reviewCount} reviews
                 </span>
               ) : (
-                <span className="text-brand-green font-semibold">Full Rate Reached</span>
+                <span className="text-brand-green font-semibold">Full Rate</span>
               )}
             </div>
-
-            {/* Progress bar */}
-            <div className="h-1.5 w-full rounded-full bg-white/10">
+            <div className="h-1 w-full rounded-full bg-white/10">
               <motion.div
-                className="h-1.5 rounded-full bg-gradient-to-r from-brand-green to-brand-gold"
+                className="h-1 rounded-full bg-gradient-to-r from-brand-green to-brand-gold"
                 initial={{ width: 0 }}
                 whileInView={{ width: `${progressPct}%` }}
                 viewport={viewportOnce}
                 transition={{ duration: 1, ease: "easeOut" }}
               />
             </div>
-
-            {toNext !== null && nextPrice !== null && (
-              <p className="mt-2 text-center text-xs text-slate-500">
-                Book now — price moves when the next review lands.
-              </p>
-            )}
           </motion.div>
 
-          <motion.p
-            variants={fadeInUp}
-            className="mt-4 text-sm text-slate-400"
-          >
-            Every new review is a verified audit client who found at least{" "}
-            <span className="text-slate-300 font-medium">$20,000 in savings</span>.
-            That&rsquo;s what moves the price.
+          <motion.p variants={fadeInUp} className="mt-3 text-xs text-slate-500 italic">
+            Every review is a verified client who found $20k+ in savings. That&rsquo;s what moves the price.
           </motion.p>
         </motion.div>
 
@@ -159,28 +162,57 @@ export function PricingSection() {
         </motion.div>
       </motion.div>
 
-      {/* Pay in Full Bonus */}
+      {/* ── PAY IN FULL BONUS — hero callout ── */}
       <motion.div
-        className="relative z-10 mx-auto mt-10 max-w-xl rounded-xl border-2 border-brand-gold/40 bg-brand-gold/5 p-8"
+        className="relative z-10 mx-auto mt-12 max-w-xl overflow-hidden rounded-2xl border-2 border-brand-gold/50 bg-gradient-to-br from-brand-gold/10 via-brand-gold/5 to-transparent"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
         variants={fadeInUp}
       >
-        <div className="flex items-center gap-3">
-          <span className="rounded-full bg-brand-gold/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-gold">
-            Pay-in-Full Bonus
+        {/* Top ribbon */}
+        <div className="bg-brand-gold/20 border-b border-brand-gold/30 px-6 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {/* Gift icon */}
+            <svg className="h-5 w-5 text-brand-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+            </svg>
+            <span className="text-xs font-bold uppercase tracking-widest text-brand-gold">
+              Pay-in-Full Bonus — Included
+            </span>
+          </div>
+          <span className="rounded-full bg-brand-gold px-3 py-0.5 text-xs font-extrabold uppercase tracking-wider text-brand-dark">
+            FREE
           </span>
         </div>
-        <h3 className="mt-3 text-xl font-bold text-white">
-          Your First Core AI System &mdash; Delivered FREE
-        </h3>
-        <p className="mt-3 text-slate-300 leading-relaxed">
-          {payInFullBonus}
-        </p>
-        <p className="mt-3 text-sm font-semibold text-brand-gold">
-          Same 5-day window. Audit + a live, working system. Zero extra cost.
-        </p>
+
+        {/* Body */}
+        <div className="px-6 py-6">
+          <h3 className="text-2xl font-extrabold text-white leading-tight">
+            Your First Core AI System<br />
+            <span className="text-brand-gold">Built &amp; Delivered in the Same 5 Days</span>
+          </h3>
+
+          <p className="mt-3 text-slate-300 leading-relaxed">
+            {payInFullBonus}
+          </p>
+
+          {/* Value row */}
+          <div className="mt-5 flex items-center justify-between rounded-lg border border-brand-gold/20 bg-brand-gold/5 px-4 py-3">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-slate-500 font-semibold">Standalone value</p>
+              <p className="text-xl font-extrabold text-white line-through decoration-brand-red/50 decoration-2">$3,000+</p>
+            </div>
+            <div className="text-right">
+              <p className="text-xs uppercase tracking-widest text-brand-gold font-semibold">Your cost</p>
+              <p className="text-3xl font-extrabold text-brand-gold">$0</p>
+            </div>
+          </div>
+
+          <p className="mt-4 text-sm text-slate-400">
+            One engagement. One timeline. You leave with a complete audit <em>and</em> a working AI system in your business.
+          </p>
+        </div>
       </motion.div>
 
       {/* Guarantee */}

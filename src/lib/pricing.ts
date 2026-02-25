@@ -48,12 +48,25 @@ export interface PricingInfo {
   label: string;
   nextPriceUsd: number | null;
   reviewsToNextTier: number | null;
+  /** Slots remaining at current price. Set SLOTS_REMAINING env var to override
+   *  the auto-calculated value (reviewsToNextTier). Use to tighten scarcity. */
+  slotsRemaining: number | null;
+}
+
+export function getSlotsRemaining(reviewsToNextTier: number | null): number | null {
+  const raw = process.env.SLOTS_REMAINING;
+  if (raw !== undefined && raw !== "") {
+    const n = parseInt(raw, 10);
+    if (!isNaN(n) && n >= 0) return n;
+  }
+  return reviewsToNextTier;
 }
 
 export function getCurrentPricing(): PricingInfo {
   const reviewCount = getReviewCount();
   const tier = getTierForReviews(reviewCount);
   const next = getNextTier(tier);
+  const reviewsToNextTier = next ? next.minReviews - reviewCount : null;
 
   return {
     reviewCount,
@@ -61,6 +74,7 @@ export function getCurrentPricing(): PricingInfo {
     priceCents: tier.priceUsd * 100,
     label: tier.label,
     nextPriceUsd: next?.priceUsd ?? null,
-    reviewsToNextTier: next ? next.minReviews - reviewCount : null,
+    reviewsToNextTier,
+    slotsRemaining: getSlotsRemaining(reviewsToNextTier),
   };
 }

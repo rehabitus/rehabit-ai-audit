@@ -1,9 +1,10 @@
 // Avatar appearance. Swap `gradient` for a real photo path when ready:
 // { gradient: null, src: "/avatars/name.jpg" }
-// To add a count once you have 10+ real clients: set SHOW_COUNT = true and update COUNT.
+//
+// Count display: auto-shows when reviewCount >= SHOW_COUNT_THRESHOLD.
+// Pass reviewCount prop from /api/pricing data. Nav defaults to 0 (hidden).
 
-const SHOW_COUNT = false;
-const COUNT = "";   // e.g. "47+" — only set when real
+const SHOW_COUNT_THRESHOLD = 5;  // show count only once you have this many reviews
 const STARS = 5;
 
 const AVATARS = [
@@ -73,9 +74,16 @@ function PersonAvatar({
   );
 }
 
-export function NavTrustBar({ size = "sm" }: { size?: "sm" | "md" }) {
+export function NavTrustBar({
+  size = "sm",
+  reviewCount = 0,
+}: {
+  size?: "sm" | "md";
+  reviewCount?: number;
+}) {
+  const showCount = reviewCount >= SHOW_COUNT_THRESHOLD;
   const avatarSize = size === "md" ? 40 : 32;
-  const ring = size === "md" ? "#0F172A" : "#0F172A";
+  const ring = "#0F172A";
   const starSize = size === "md" ? "h-3.5 w-3.5" : "h-3 w-3";
   const labelSize = size === "md" ? "text-sm" : "text-[11px]";
 
@@ -115,8 +123,8 @@ export function NavTrustBar({ size = "sm" }: { size?: "sm" | "md" }) {
           ))}
         </div>
         <p className={`${labelSize} font-bold text-white/90 whitespace-nowrap`}>
-          {SHOW_COUNT && COUNT ? (
-            <>Trusted by <span className="text-brand-green">{COUNT}</span> founders</>
+          {showCount ? (
+            <>Trusted by <span className="text-brand-green">{reviewCount}</span> founders like you</>
           ) : (
             <>Founders like <span className="text-brand-green">you</span></>
           )}

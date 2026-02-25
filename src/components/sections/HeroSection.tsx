@@ -1,13 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
-
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import type { PricingInfo } from "@/lib/pricing";
 
 export function HeroSection() {
+  const [pricing, setPricing] = useState<PricingInfo | null>(null);
+
+  useEffect(() => {
+    fetch("/api/pricing")
+      .then((r) => r.json())
+      .then((d: PricingInfo) => setPricing(d))
+      .catch(() => {});
+  }, []);
+
   return (
     <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-40 md:pb-28">
       <motion.div
@@ -58,12 +68,12 @@ export function HeroSection() {
           Pay in full and get your first Core AI System delivered FREE in the same 5-day window.
         </motion.p>
 
-        {/* Trust bar — hero size, centered */}
+        {/* Trust bar — hero size, centered, live review count */}
         <motion.div
           variants={heroChild}
           className="mt-8 flex justify-center"
         >
-          <NavTrustBar size="md" />
+          <NavTrustBar size="md" reviewCount={pricing?.reviewCount ?? 0} />
         </motion.div>
       </motion.div>
     </section>
