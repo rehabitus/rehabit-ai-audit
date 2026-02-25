@@ -69,26 +69,55 @@ Rehabit.us B2C App ($27–197/month)
 
 5. **30-Day Follow-Up** — Check-in call 30 days later.
 
-### Pay-in-Full Bonus (included at $1,200)
-**First Core AI System — delivered FREE** in the same 5-day window as the audit.
+### Pay-in-Full Bonus (included — no extra charge)
+**First Core AI System — built, tested, and delivered FREE** in the same 5-day audit window.
+Standalone value: $3,000+. Your cost: $0. This is the primary closer — treat it as a headline, not a footnote.
 
 ---
 
 ## Pricing Model
 
-**Current price:** $1,200 (Founding Member Rate — launch pricing)
-**Pricing mechanic:** Price rises $100 with every verified client review (manual, controlled by Mike)
+**Pricing mechanic:** Review-based tier ladder. Price rises $500 with every 5 verified audit client reviews.
 **Industry standard comparable:** $5,000–$15,000 for an AI readiness assessment
-**Final value (post-delivery):** $5,000–$10,000 when full implementation is included
 
-**Founding Member framing:**
-- You're getting in at the lowest price this product will ever be
-- Each review signals the product works — and raises the rate accordingly
-- Price is public and transparent (shown on page)
+| Reviews | Price | Tier Label |
+|---------|-------|------------|
+| 0–4 | $500 | Early Access |
+| 5–9 | $1,000 | Founding Member |
+| 10–14 | $1,500 | Early Adopter |
+| 15–19 | $2,000 | Standard |
+| 20–24 | $2,500 | Standard+ |
+| 25+ | $3,000 | Full Rate (cap) |
 
-**Future pricing tiers (4C tiered complexity — TBD):**
-- Level 1 (Standard): Solo operator, standard audit → Base price
-- Level 2 (Complex): Multiple operators, larger org, more discovery interviews needed → TBD multiplier
+**How it works:**
+- Price is driven by `REVIEW_COUNT` env var on Vercel — Mike updates manually when a verified audit client leaves a review
+- Only audit clients count — not B2C app users, not generic Trustpilot reviews
+- `SLOTS_REMAINING` env var controls the "X slots left at this price" scarcity callout independently — set lower than the tier math to tighten urgency
+- Stripe checkout pulls live price at time of purchase — no hardcoded amount
+
+**The framing:** "Price reflects proof. Right now you're getting in at the lowest this will ever be. Every review is a verified client who found $20k+ in savings — that's what moves the price."
+
+**Tier complexity (Level 1 vs Level 2) — TBD:**
+- Level 1 (Standard): Solo operator, standard audit → base tier price
+- Level 2 (Complex): Multiple operators, larger org, requires multiple stakeholder interviews → custom quote
+- For now: all audits start at base price. If Level 2 complexity is discovered post-booking, scope separately.
+
+---
+
+## Trust Widget Rules
+
+The trust bar appears in the nav and hero. Governed by review count.
+
+**Avatar style:** Person silhouettes (CSS head + shoulders) in 5 brand-color gradients. No external image deps. Swap for real photos by replacing gradient with `src: "/avatars/name.jpg"` in `NavTrustBar.tsx`.
+
+**Count display logic:**
+- **0–4 reviews** → label reads: *"Founders like **you**"* — no number shown
+- **5+ reviews** → label reads: *"Trusted by **N** founders like you"* — count auto-shows
+- Threshold is `SHOW_COUNT_THRESHOLD = 5` in `NavTrustBar.tsx`
+
+**Why 5?** Specific (not a round number), feels earned not inflated, achievable in the first quarter, and coincides exactly with the move from Early Access ($500) to Founding Member ($1,000) — both milestones land at the same time.
+
+**DO NOT show a number before 5 verified audit clients.** The ICP are sophisticated founders who will see through fake social proof instantly.
 
 ---
 
