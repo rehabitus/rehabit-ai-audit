@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { CTAButton } from "@/components/ui/CTAButton";
@@ -12,8 +13,38 @@ import {
   viewportOnce,
 } from "@/lib/animations";
 import { pricingIncludes, payInFullBonus } from "@/lib/constants";
+import type { PricingInfo } from "@/lib/pricing";
+
+const TIER_LABELS: Record<string, string> = {
+  "Early Access":    "You're in before anyone else. Lowest price this will ever be.",
+  "Founding Member": "5 verified reviews. Proof is building. Price reflects it.",
+  "Early Adopter":   "10 verified reviews. The results are speaking for themselves.",
+  "Standard":        "15 verified reviews. Fully validated.",
+  "Standard+":       "20 verified reviews. Demand is real.",
+  "Full Rate":       "25+ verified reviews. Market rate. Fully earned.",
+};
 
 export function PricingSection() {
+  const [pricing, setPricing] = useState<PricingInfo | null>(null);
+
+  useEffect(() => {
+    fetch("/api/pricing")
+      .then((r) => r.json())
+      .then((data: PricingInfo) => setPricing(data))
+      .catch(() => {/* fail silently, fallback UI shows */});
+  }, []);
+
+  const priceUsd   = pricing?.priceUsd ?? 500;
+  const label      = pricing?.label ?? "Early Access";
+  const reviewCount = pricing?.reviewCount ?? 0;
+  const nextPrice  = pricing?.nextPriceUsd ?? null;
+  const toNext     = pricing?.reviewsToNextTier ?? null;
+  const subtitle   = TIER_LABELS[label] ?? "";
+
+  // Progress bar: position within the full 0–25 review ladder
+  const MAX_REVIEWS_FOR_BAR = 25;
+  const progressPct = Math.min((reviewCount / MAX_REVIEWS_FOR_BAR) * 100, 100);
+
   return (
     <Section className="bg-brand-navy noise-vignette-bg" id="pricing" noAnimate>
       <motion.div
@@ -23,11 +54,11 @@ export function PricingSection() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        {/* Founding Member badge */}
+        {/* Tier badge */}
         <motion.div variants={fadeInUp} className="mb-6 inline-flex items-center gap-2 rounded-full border border-brand-gold/40 bg-brand-gold/10 px-4 py-1.5">
           <span className="h-1.5 w-1.5 rounded-full bg-brand-gold animate-pulse" />
           <span className="text-xs font-bold uppercase tracking-widest text-brand-gold">
-            Founding Member Rate — Limited Launch
+            {label} — Limited Window
           </span>
         </motion.div>
 
@@ -52,9 +83,9 @@ export function PricingSection() {
           ))}
         </motion.ul>
 
-        {/* Price */}
+        {/* ── Live price block ── */}
         <motion.div variants={fadeInUp} className="mt-10">
-          {/* Comparable market rate — crossed out */}
+          {/* Industry compare */}
           <p className="text-sm text-slate-500 mb-3">
             Industry standard:{" "}
             <span className="line-through decoration-brand-red/60 decoration-2">
@@ -62,22 +93,64 @@ export function PricingSection() {
             </span>
           </p>
 
-          {/* Founding Member price */}
+          {/* Price */}
           <div className="flex items-baseline justify-center gap-3">
             <p className="text-7xl font-extrabold text-white tracking-tight">
-              $<AnimatedCounter to={1200} duration={1.5} />
+              $<AnimatedCounter to={priceUsd} duration={1.2} />
             </p>
           </div>
+
           <p className="mt-1.5 text-xs font-semibold uppercase tracking-widest text-brand-gold/80">
-            Founding Member Rate
+            {label}
           </p>
+
+          {subtitle && (
+            <p className="mt-2 text-sm text-slate-500 italic">{subtitle}</p>
+          )}
+
+          {/* Review counter + progress bar */}
+          <motion.div variants={fadeInUp} className="mt-6 rounded-lg border border-white/10 bg-white/5 p-4">
+            <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
+              <span>
+                <span className="font-semibold text-white">{reviewCount}</span>{" "}
+                verified {reviewCount === 1 ? "review" : "reviews"}
+              </span>
+              {toNext !== null && nextPrice !== null ? (
+                <span>
+                  <span className="font-semibold text-brand-orange">{toNext}</span>{" "}
+                  more → price goes to{" "}
+                  <span className="font-semibold text-white">${nextPrice.toLocaleString()}</span>
+                </span>
+              ) : (
+                <span className="text-brand-green font-semibold">Full Rate Reached</span>
+              )}
+            </div>
+
+            {/* Progress bar */}
+            <div className="h-1.5 w-full rounded-full bg-white/10">
+              <motion.div
+                className="h-1.5 rounded-full bg-gradient-to-r from-brand-green to-brand-gold"
+                initial={{ width: 0 }}
+                whileInView={{ width: `${progressPct}%` }}
+                viewport={viewportOnce}
+                transition={{ duration: 1, ease: "easeOut" }}
+              />
+            </div>
+
+            {toNext !== null && nextPrice !== null && (
+              <p className="mt-2 text-center text-xs text-slate-500">
+                Book now — price moves when the next review lands.
+              </p>
+            )}
+          </motion.div>
 
           <motion.p
             variants={fadeInUp}
-            className="mt-4 text-base text-slate-300"
+            className="mt-4 text-sm text-slate-400"
           >
-            Only <span className="font-semibold text-brand-orange">3 audits left</span> at this
-            price &mdash; price rises $100 with every new client review.
+            Every new review is a verified audit client who found at least{" "}
+            <span className="text-slate-300 font-medium">$20,000 in savings</span>.
+            That&rsquo;s what moves the price.
           </motion.p>
         </motion.div>
 
