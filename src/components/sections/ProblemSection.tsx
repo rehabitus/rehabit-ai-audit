@@ -47,7 +47,7 @@ export function ProblemSection() {
           <div className="flex flex-col gap-6">
             <motion.div variants={fadeInUp}>
               <img
-                src="/images/4C-Audit-1a.png"
+                src="/images/4C-Audit-1a.jpg"
                 alt="Chaotic workflows transformed into a calm, AI-powered business"
                 className="w-full rounded-2xl shadow-[0_0_60px_rgba(16,185,129,0.12)]"
               />
