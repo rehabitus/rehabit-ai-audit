@@ -6,10 +6,12 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
 import type { PricingInfo } from "@/lib/pricing";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
+  const [surveyOpen, setSurveyOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -53,15 +55,18 @@ export function HeroSection() {
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setSurveyOpen(true)}
             className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3.5 text-base font-semibold text-slate-200 transition-all hover:border-brand-green/40 hover:text-white hover:bg-white/5"
           >
             Book a Free 15-Min Call
-          </a>
+          </button>
         </motion.div>
+
+        <BookingQualificationModal
+          isOpen={surveyOpen}
+          onClose={() => setSurveyOpen(false)}
+        />
 
         <motion.p variants={heroChild} className="mt-5 text-base text-slate-300">
           Starting at <span className="font-semibold text-white">$500</span> &mdash; price rises with every verified client review.{" "}
