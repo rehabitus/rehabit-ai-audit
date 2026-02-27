@@ -32,7 +32,7 @@ export function HeroSection() {
           variants={heroChild}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
-          For Coaches, Course Creators &amp; Platform Operators
+          For Coaches, Course Creators &amp; Community Operators
         </motion.div>
 
         <motion.h1
