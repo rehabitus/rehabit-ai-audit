@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
@@ -13,6 +13,7 @@ import type { PricingInfo } from "@/lib/pricing";
 export function FinalCTASection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
   const [surveyOpen, setSurveyOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -88,8 +89,17 @@ export function FinalCTASection() {
         <motion.div variants={fadeInUp} className="mt-10">
           <p className="text-lg text-slate-300">
             The math is simple: if the audit reveals even{" "}
-            <span className="font-semibold text-white">$20,000 in annual savings</span> (and it
-            will), <br className="hidden md:block" /> that&rsquo;s a{" "}
+            <span className="relative inline-flex items-center gap-1 font-semibold text-white">
+              $20,000 in annual savings
+              <button
+                onClick={() => setInfoOpen(true)}
+                className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/10 text-[10px] text-slate-400 transition-colors hover:bg-white/20 hover:text-white"
+                title="How we calculate this"
+              >
+                ?
+              </button>
+            </span>{" "}
+            (and it will), <br className="hidden md:block" /> that&rsquo;s a{" "}
             <span className="font-bold text-brand-green">{roi}x return</span> on a{" "}
             <span className="font-semibold text-white">${priceUsd.toLocaleString()}</span> investment.
           </p>
@@ -132,6 +142,41 @@ export function FinalCTASection() {
           </a>.
         </motion.p>
       </motion.div>
+
+      {/* ROI Info Modal */}
+      <AnimatePresence>
+        {infoOpen && (
+          <div className="fixed inset-0 z-[300] flex items-center justify-center p-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setInfoOpen(false)}
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            />
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-brand-navy p-6 shadow-2xl"
+            >
+              <h3 className="text-lg font-bold text-white">How we calculate ROI</h3>
+              <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+                The $20,000 baseline is typical for an established business (3+ team members or $200k+ revenue).
+              </p>
+              <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+                Automating just <span className="text-brand-green font-semibold">2.5%</span> of manual operational tasks typically reclaims 8-10 hours per week across the team. At a conservative internal labor rate, this results in <span className="text-white font-medium">$20,000+ in annual efficiency gains.</span>
+              </p>
+              <button
+                onClick={() => setInfoOpen(false)}
+                className="mt-6 w-full rounded-lg bg-brand-green/20 py-2.5 text-sm font-semibold text-brand-green transition-colors hover:bg-brand-green/30"
+              >
+                Got it
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       <BookingQualificationModal
         isOpen={surveyOpen}

@@ -1,31 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const QUALIFY_PROMPT = (answers: Record<string, string>) => `You are a qualification specialist for rehabit.ai, an AI transformation consultancy targeting coaches, course creators, and online platform operators.
+const QUALIFY_PROMPT = (answers: Record<string, string>) => `You are a qualification specialist for rehabit.ai, an AI transformation consultancy.
 
-Evaluate if this prospect is a good candidate for a 15-minute strategy call with Mike (the founder), which typically leads to a $1,200 AI Transformation Audit.
+Evaluate if this prospect is a good candidate for a 15-minute strategy call with Mike. We help them reclaim hours and scale by automating manual ops.
 
 Prospect survey answers:
 - Business type: ${answers.business_type ?? "Not specified"}
 - Annual revenue: ${answers.revenue ?? "Not specified"}
+- Team size: ${answers.team_size ?? "Not specified"}
+- Manual man-hours/week: ${answers.manual_hours ?? "Not specified"}
 - Biggest pain point: ${answers.pain_point ?? "Not specified"}
 - Readiness to invest: ${answers.commitment ?? "Not specified"}
 
-Qualification logic:
+Qualification logic (ROI Math):
+A $20,000+ annual saving corresponds to reclaiming ~8-10 hours/week across a business.
 
-QUALIFIED (qualified: true) if:
-- Business is a coach, consultant, course creator, online platform, or service agency
-- Revenue is $50K+ annually (established business with real operations)
-- Has a genuine operational pain point that AI automation can solve
-- Shows any degree of readiness (even "evaluating" qualifies — only "no budget" alone disqualifies)
+QUALIFIED if:
+- They spend 10+ hours/week on manual admin/ops.
+- OR they have a team of 2+ people (easier to find inefficiencies).
+- OR revenue is $50K+ (they have budget and complexity).
+- AND they are not in the "No budget" category.
 
-NOT QUALIFIED (qualified: false) if ALL of these are true:
-- Revenue is under $50K (too early-stage — the ROI math won't work yet)
-- Commitment is "Still exploring" or "No budget available right now"
+NOT QUALIFIED if:
+- They are Solo AND Under $50k revenue AND spend Under 10 hours/week on manual work (ROI is too low for a custom engagement).
+- OR they explicitly have "No budget".
 
-Note: Be generous — err toward qualifying when in doubt. A coach at $50K+ revenue with any operational pain should almost always qualify.
-
-Respond with ONLY valid JSON, no markdown, no code fences:
-{"qualified": true, "reason": "one short friendly sentence"}`;
+Respond with ONLY valid JSON:
+{"qualified": true, "reason": "one short friendly sentence about their ROI potential"}`;
 
 export async function POST(req: NextRequest) {
   const apiKey = process.env.OPENAI_API_KEY;

@@ -19,7 +19,35 @@ const BOOKING_QUESTIONS = [
     id: "revenue",
     category: "Capacity",
     question: "What's your approximate annual revenue?",
-    options: ["Under $50K", "$50K–$250K", "$250K–$1M", "$1M+"],
+    options: [
+      "Under $5K",
+      "$5K–$50K",
+      "$50K–$250K",
+      "$250K–$1M",
+      "$1M+",
+    ],
+  },
+  {
+    id: "team_size",
+    category: "Team size",
+    question: "What's your total team size (including contractors)?",
+    options: [
+      "Solo / 1 person",
+      "2–5 people",
+      "6–15 people",
+      "16+ people",
+    ],
+  },
+  {
+    id: "manual_hours",
+    category: "Workflow",
+    question: "Total manual man-hours spent on admin/ops per week?",
+    options: [
+      "Under 10 hours",
+      "10–25 hours",
+      "25–50 hours",
+      "50+ hours",
+    ],
   },
   {
     id: "pain_point",
