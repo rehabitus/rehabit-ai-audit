@@ -28,12 +28,12 @@ export function HeroSection() {
         initial="hidden"
         animate="visible"
       >
-        <motion.p
+        <motion.div
           variants={heroChild}
-          className="mb-4 text-sm font-semibold uppercase tracking-widest text-brand-orange"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
           For Coaches, Course Creators &amp; Platform Operators
-        </motion.p>
+        </motion.div>
 
         <motion.h1
           variants={heroChild}
@@ -71,10 +71,17 @@ export function HeroSection() {
         <motion.p variants={heroChild} className="mt-5 text-base text-slate-400">
           Starting at <span className="font-semibold text-white">$500</span> &mdash; price rises with every verified client review.
         </motion.p>
-        <motion.p variants={heroChild} className="mt-2 text-base font-medium text-brand-gold">
-          <span className="inline-block rounded bg-brand-gold/10 px-2 py-0.5 mr-2">Limited Bonus:</span>
-          Pay in full and get your first Core AI System delivered <span className="underline decoration-brand-gold/40 underline-offset-4">FREE</span> in the same 5-day window.
-        </motion.p>
+        <motion.div
+          variants={heroChild}
+          className="mt-10 mx-auto max-w-2xl rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-4"
+        >
+          <p className="text-xs font-bold uppercase tracking-wider text-brand-gold">
+            Limited Bonus
+          </p>
+          <p className="mt-1 text-sm md:text-base text-slate-300">
+            Pay in full and get your first Core AI System delivered <span className="font-semibold text-brand-gold">FREE</span> in the same 5-day window.
+          </p>
+        </motion.div>
 
         {/* Trust bar — hero size, centered, live review count */}
         <motion.div
