@@ -2,10 +2,11 @@ import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getCurrentPricing } from "@/lib/pricing";
 
-export async function POST() {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-
+export async function POST(req: Request) {
   try {
+    const { origin } = await req.json().catch(() => ({}));
+    const baseUrl = origin || process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
     const stripe = getStripe();
     const { priceCents, priceUsd, label } = getCurrentPricing();
 

@@ -15,7 +15,11 @@ export function CTAButton({ children, className = "" }: CTAButtonProps) {
     track("cta_click", { label: typeof children === "string" ? children : "Main CTA" });
     setLoading(true);
     try {
-      const res = await fetch("/api/checkout", { method: "POST" });
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        body: JSON.stringify({ origin: window.location.origin }),
+        headers: { "Content-Type": "application/json" }
+      });
       const data = await res.json();
       if (data.url) {
         window.location.href = data.url;

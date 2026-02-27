@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
+import { useState } from "react";
+import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
+
 export default function CancelPage() {
+    const [surveyOpen, setSurveyOpen] = useState(false);
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-brand-dark px-6 text-center">
             <motion.div
@@ -50,18 +55,16 @@ export default function CancelPage() {
                     <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 text-left">
                         <h3 className="font-bold text-white mb-2">Have Questions?</h3>
                         <p className="text-sm text-slate-400 mb-4">Not sure if the audit is right for your specific stack? Let&rsquo;s chat.</p>
-                        <a
-                            href="https://calendly.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                        <button
+                            onClick={() => setSurveyOpen(true)}
                             className="text-brand-green font-semibold hover:underline"
                         >
                             Book 15-min call &rarr;
-                        </a>
+                        </button>
                     </div>
                     <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 text-left">
                         <h3 className="font-bold text-white mb-2">Need More Info?</h3>
-                        <p className="text-sm text-slate-400 mb-4">Check out our FAQs or download or latest case studies.</p>
+                        <p className="text-sm text-slate-400 mb-4">Check out our FAQs or review the details of the audit package.</p>
                         <Link
                             href="/#faq"
                             className="text-brand-green font-semibold hover:underline"
@@ -80,6 +83,11 @@ export default function CancelPage() {
                     </Link>
                 </motion.div>
             </motion.div>
+
+            <BookingQualificationModal
+                isOpen={surveyOpen}
+                onClose={() => setSurveyOpen(false)}
+            />
         </main>
     );
 }
