@@ -7,10 +7,12 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { fadeInUp, slideInLeft, slideInRight, staggerContainer, viewportOnce } from "@/lib/animations";
 import { WebGLBackground } from "@/components/backgrounds/WebGLBackground";
+import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
 import type { PricingInfo } from "@/lib/pricing";
 
 export function FinalCTASection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
+  const [surveyOpen, setSurveyOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -115,14 +117,12 @@ export function FinalCTASection() {
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-300">
           Questions?{" "}
-          <a
-            href="https://calendly.com"
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => setSurveyOpen(true)}
             className="font-semibold text-brand-green underline underline-offset-2 hover:text-brand-green-light transition-colors"
           >
             Book a 15-minute call
-          </a>{" "}
+          </button>{" "}
           or email{" "}
           <a
             href="mailto:mike@rehabit.ai"
@@ -132,6 +132,11 @@ export function FinalCTASection() {
           </a>.
         </motion.p>
       </motion.div>
+
+      <BookingQualificationModal
+        isOpen={surveyOpen}
+        onClose={() => setSurveyOpen(false)}
+      />
     </Section>
   );
 }
