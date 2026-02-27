@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { fadeInUp, slideInLeft, staggerContainer, viewportOnce } from "@/lib/animations";
@@ -14,6 +15,16 @@ export function BridgeSection() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
+        <motion.div variants={fadeInUp} className="mb-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-brand-green/10">
+          <Image
+            src="/images/RHB-AI-Audit.png"
+            alt="AI Audit Visualization"
+            width={1200}
+            height={600}
+            className="w-full object-cover"
+            priority
+          />
+        </motion.div>
         <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl">
           Here&rsquo;s what changed.
         </motion.h2>
@@ -22,7 +33,7 @@ export function BridgeSection() {
           spending <span className="font-semibold text-white">$50K+</span>, and
           waiting <span className="font-semibold text-white">6 months</span> for something that probably
           wouldn&rsquo;t work. <span className="font-semibold text-white">95% of complex AI
-          projects failed</span> to deliver ROI.
+            projects failed</span> to deliver ROI.
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-4 text-lg text-slate-300 leading-relaxed">
           Today? The tools exist. Zapier. Make. n8n. Voice AI agents. Custom GPTs. They&rsquo;re
