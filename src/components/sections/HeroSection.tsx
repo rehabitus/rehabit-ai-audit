@@ -21,7 +21,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-40 md:pb-28">
+    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-24 pb-20 md:pt-32 md:pb-28">
       <motion.div
         className="relative z-10 mx-auto max-w-4xl text-center"
         variants={heroStagger}
@@ -34,6 +34,13 @@ export function HeroSection() {
         >
           For Coaches, Course Creators &amp; Community Operators
         </motion.div>
+
+        <motion.p
+          variants={heroChild}
+          className="mb-4 text-sm font-medium italic text-slate-400"
+        >
+          &ldquo;Revolutionizing the Habits &amp; Systems of Your Business in the AI Era&rdquo;
+        </motion.p>
 
         <motion.h1
           variants={heroChild}
@@ -91,6 +98,6 @@ export function HeroSection() {
           <NavTrustBar size="md" reviewCount={pricing?.reviewCount ?? 0} />
         </motion.div>
       </motion.div>
-    </section>
+    </section >
   );
 }
