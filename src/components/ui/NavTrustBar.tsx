@@ -1,29 +1,25 @@
-// Avatar photos: swap src for a local path when you have real client photos.
-// e.g. { src: "/avatars/sarah.jpg" }
-//
-// Count display: shows when reviewCount > 5.
-// Pass reviewCount prop from /api/pricing data. Nav defaults to 0 (hidden).
-
 const STARS = 5;
 
-const AVATARS = [
-  { src: "https://i.pravatar.cc/40?img=10" },
-  { src: "https://i.pravatar.cc/40?img=25" },
-  { src: "https://i.pravatar.cc/40?img=33" },
-  { src: "https://i.pravatar.cc/40?img=48" },
-  { src: "https://i.pravatar.cc/40?img=56" },
+const AVATAR_COLORS = [
+  "from-emerald-400 to-teal-600",
+  "from-sky-400 to-blue-600",
+  "from-violet-400 to-purple-600",
+  "from-amber-400 to-orange-600",
+  "from-rose-400 to-pink-600",
 ];
 
-import Image from "next/image";
+const AVATAR_INITIALS = ["M", "S", "J", "A", "K"];
 
 function PersonAvatar({
-  src,
+  color,
+  initial,
   size = 32,
   offset = 0,
   zIndex = 1,
   ring = "#0F172A",
 }: {
-  src: string;
+  color: string;
+  initial: string;
   size?: number;
   offset?: number;
   zIndex?: number;
@@ -31,7 +27,7 @@ function PersonAvatar({
 }) {
   return (
     <div
-      className="relative overflow-hidden rounded-full bg-slate-700"
+      className={`relative flex items-center justify-center rounded-full bg-gradient-to-br ${color}`}
       style={{
         width: size,
         height: size,
@@ -39,16 +35,11 @@ function PersonAvatar({
         zIndex,
         boxShadow: `0 0 0 2px ${ring}`,
         flexShrink: 0,
+        fontSize: size * 0.4,
       }}
       aria-hidden="true"
     >
-      <Image
-        src={src}
-        alt=""
-        width={size}
-        height={size}
-        className="h-full w-full object-cover"
-      />
+      <span className="font-bold text-white/90 leading-none">{initial}</span>
     </div>
   );
 }
@@ -70,13 +61,14 @@ export function NavTrustBar({
     <div className="flex items-center gap-3">
       {/* Avatar stack */}
       <div className="flex items-center">
-        {AVATARS.map((av, i) => (
+        {AVATAR_COLORS.map((color, i) => (
           <PersonAvatar
             key={i}
-            src={av.src}
+            color={color}
+            initial={AVATAR_INITIALS[i]}
             size={avatarSize}
             offset={i === 0 ? 0 : -10}
-            zIndex={AVATARS.length - i}
+            zIndex={AVATAR_COLORS.length - i}
             ring={ring}
           />
         ))}

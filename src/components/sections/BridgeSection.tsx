@@ -17,7 +17,7 @@ export function BridgeSection() {
       >
         <motion.div variants={fadeInUp} className="mb-10 overflow-hidden rounded-2xl border border-white/10 shadow-2xl shadow-brand-green/10">
           <Image
-            src="/images/audit-viz.png"
+            src="/images/RHB-AI-Audit.jpg"
             alt="AI Audit Visualization"
             width={1200}
             height={600}

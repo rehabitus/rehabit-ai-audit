@@ -47,3 +47,6 @@ ___DOCS
 *.png
 !public/images/*.png
 !public/images/*.jpg
+
+# large video files — use YouTube/CDN embed instead
+public/videos/
