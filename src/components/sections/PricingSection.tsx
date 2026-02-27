@@ -17,12 +17,12 @@ import { pricingIncludes, payInFullBonus } from "@/lib/constants";
 import type { PricingInfo } from "@/lib/pricing";
 
 const TIER_LABELS: Record<string, string> = {
-  "Early Access":    "You're in before anyone else. Lowest price this will ever be.",
+  "Early Access": "You're in before anyone else. Lowest price this will ever be.",
   "Founding Member": "5 verified reviews. Proof is building. Price reflects it.",
-  "Early Adopter":   "10 verified reviews. The results are speaking for themselves.",
-  "Standard":        "15 verified reviews. Fully validated.",
-  "Standard+":       "20 verified reviews. Demand is real.",
-  "Full Rate":       "25+ verified reviews. Market rate. Fully earned.",
+  "Early Adopter": "10 verified reviews. The results are speaking for themselves.",
+  "Standard": "15 verified reviews. Fully validated.",
+  "Standard+": "20 verified reviews. Demand is real.",
+  "Full Rate": "25+ verified reviews. Market rate. Fully earned.",
 };
 
 export function PricingSection() {
@@ -32,15 +32,15 @@ export function PricingSection() {
     fetch("/api/pricing")
       .then((r) => r.json())
       .then((data: PricingInfo) => setPricing(data))
-      .catch(() => {/* fail silently, fallback UI shows */});
+      .catch(() => {/* fail silently, fallback UI shows */ });
   }, []);
 
-  const priceUsd      = pricing?.priceUsd ?? 500;
-  const label         = pricing?.label ?? "Early Access";
-  const reviewCount   = pricing?.reviewCount ?? 0;
-  const nextPrice     = pricing?.nextPriceUsd ?? null;
-  const slotsLeft     = pricing?.slotsRemaining ?? null;
-  const subtitle      = TIER_LABELS[label] ?? "";
+  const priceUsd = pricing?.priceUsd ?? 500;
+  const label = pricing?.label ?? "Early Access";
+  const reviewCount = pricing?.reviewCount ?? 0;
+  const nextPrice = pricing?.nextPriceUsd ?? null;
+  const slotsLeft = pricing?.slotsRemaining ?? null;
+  const subtitle = TIER_LABELS[label] ?? "";
 
   return (
     <Section className="bg-brand-navy noise-vignette-bg" id="pricing" noAnimate>
@@ -211,18 +211,12 @@ export function PricingSection() {
           <svg className="h-6 w-6 flex-shrink-0 text-brand-green" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
           </svg>
-          The &ldquo;It Has to Sound Like You&rdquo; Guarantee
+          The &ldquo;$20,000 Baseline&rdquo; Guarantee
         </h3>
-        <p className="mt-4 text-slate-300 leading-relaxed">
-          If your Digital Twin doesn&rsquo;t produce content that genuinely sounds like
-          you&nbsp;&mdash; capturing your voice, your methodology, and your
-          expertise&nbsp;&mdash; we&rsquo;ll rebuild it until it does. Or we&rsquo;ll refund your
-          investment completely.
-        </p>
-        <p className="mt-4 text-slate-300 leading-relaxed">
-          And if the audit doesn&rsquo;t reveal at least{" "}
-          <span className="font-semibold text-white">$20,000 in annual savings opportunities</span>?
-          Same deal. Full refund. No questions.
+        <p className="mt-4 text-slate-300 leading-relaxed text-balance">
+          If the audit doesn&rsquo;t reveal at least{" "}
+          <span className="font-semibold text-white">$20,000 in annual savings opportunities</span>,
+          you get a full refund. No questions asked.
         </p>
         <p className="mt-4 text-sm font-semibold text-brand-green">
           We&rsquo;re that confident in what we&rsquo;ll find&nbsp;&mdash; because we&rsquo;ve
