@@ -176,15 +176,25 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                       Quick qualification before we book
                     </h2>
                     <p className="mt-2 text-sm text-slate-400 leading-relaxed">
-                      4 questions (60 seconds) so Mike can come prepared with
-                      specific insights for your business — and confirm this
-                      call is the right next step for you.
+                      4 questions (60 seconds) so we can ensure this call is the
+                      right next step for your specific business operations.
                     </p>
-                    <ul className="mt-4 space-y-2">
+
+                    {/* Bonus callout inside modal */}
+                    <div className="mt-4 rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-4">
+                      <p className="text-xs font-bold uppercase tracking-wider text-brand-gold">
+                        Prefer to skip the call?
+                      </p>
+                      <p className="mt-1 text-sm text-slate-300">
+                        If you buy now, you get the <span className="font-semibold text-brand-gold">First Core AI System FREE</span> ($3,000+ value) and you&rsquo;re still 100% covered by our <span className="text-white font-medium italic underline underline-offset-4 decoration-brand-green/30">Risk Reversal Guarantee</span>.
+                      </p>
+                    </div>
+
+                    <ul className="mt-5 space-y-2">
                       {[
                         "No sales pressure",
                         "Personalized insights for your business",
-                        "Routed to the best resource for where you are right now",
+                        "Routed to the best resource for where you are now",
                       ].map((item) => (
                         <li
                           key={item}

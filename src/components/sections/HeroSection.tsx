@@ -17,7 +17,7 @@ export function HeroSection() {
     fetch("/api/pricing")
       .then((r) => r.json())
       .then((d: PricingInfo) => setPricing(d))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   return (
@@ -68,9 +68,12 @@ export function HeroSection() {
           onClose={() => setSurveyOpen(false)}
         />
 
-        <motion.p variants={heroChild} className="mt-5 text-base text-slate-300">
-          Starting at <span className="font-semibold text-white">$500</span> &mdash; price rises with every verified client review.{" "}
-          Pay in full and get your first Core AI System delivered FREE in the same 5-day window.
+        <motion.p variants={heroChild} className="mt-5 text-base text-slate-400">
+          Starting at <span className="font-semibold text-white">$500</span> &mdash; price rises with every verified client review.
+        </motion.p>
+        <motion.p variants={heroChild} className="mt-2 text-base font-medium text-brand-gold">
+          <span className="inline-block rounded bg-brand-gold/10 px-2 py-0.5 mr-2">Limited Bonus:</span>
+          Pay in full and get your first Core AI System delivered <span className="underline decoration-brand-gold/40 underline-offset-4">FREE</span> in the same 5-day window.
         </motion.p>
 
         {/* Trust bar — hero size, centered, live review count */}
