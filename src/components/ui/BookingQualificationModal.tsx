@@ -253,7 +253,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                     </h2>
 
                     <div className="mt-4 space-y-2">
-                      {question.options.map((opt) => (
+                      {question.options.map((opt, idx) => (
                         <button
                           key={opt}
                           onClick={() => handleAnswer(question.id, opt)}
@@ -261,7 +261,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                         >
                           <span className="flex items-center gap-3">
                             <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/20 text-[10px] text-slate-500 group-hover:border-brand-green/50 group-hover:text-brand-green transition-all">
-                              {String.fromCharCode(65 + question.options.indexOf(opt))}
+                              {String.fromCharCode(65 + idx)}
                             </span>
                             {opt}
                           </span>
