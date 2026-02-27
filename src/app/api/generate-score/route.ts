@@ -20,15 +20,24 @@ export interface ScoreResult {
     }>;
 }
 
-const SCORE_PROMPT = (name: string, answers: Record<string, string>, website?: string) => `
+const SCORE_PROMPT = (name: string, answers: Record<string, string>, website?: string, chatTranscript?: string) => `
 You are an expert AI transformation consultant. Analyze this business owner's survey responses and generate a detailed AI Readiness Report.
 
 User: ${name}
-Business Type: ${answers.business_type ?? "Not specified"}
-Team Size: ${answers.team_size ?? "Not specified"}
-Annual Revenue: ${answers.revenue ?? "Not specified"}
-Biggest Pain Point: ${answers.pain_point ?? "Not specified"}
-Weekly Manual Task Hours: ${answers.manual_hours ?? "Not specified"}${website ? `\nWebsite: ${website}` : ""}
+${chatTranscript ? `\n--- CHAT TRANSCRIPT ---\n${chatTranscript}\n--- END TRANSCRIPT ---\n` : ""}
+
+Business Information:
+- Business Type: ${answers.business_type || answers.business_model || "Not specified"}
+- Team Size: ${answers.team_size || "Not specified"}
+- Annual Revenue: ${answers.revenue || "Not specified"}
+- Biggest Bottleneck: ${answers.pain_point || answers.bottleneck || "Not specified"}
+
+Big 4 Departments Analysis (Marketing, Sales, Delivery, Operations):
+${Object.entries(answers)
+        .filter(([k]) => k.startsWith("mkt_") || k.startsWith("sales_") || k.startsWith("del_") || k.startsWith("ops_"))
+        .map(([k, v]) => `- ${k}: ${v}`)
+        .join("\n")}
+${website ? `\nWebsite: ${website}` : ""}
 
 Generate a JSON response (ONLY JSON, no markdown) with this exact structure:
 {
@@ -74,7 +83,8 @@ export async function POST(req: NextRequest) {
         email,
         website,
         answers,
-    }: { name: string; email: string; website?: string; answers: Record<string, string> } =
+        chatTranscript,
+    }: { name: string; email: string; website?: string; answers: Record<string, string>; chatTranscript?: string } =
         await req.json();
 
     try {
@@ -95,7 +105,7 @@ export async function POST(req: NextRequest) {
                     },
                     {
                         role: "user",
-                        content: SCORE_PROMPT(name, answers, website),
+                        content: SCORE_PROMPT(name, answers, website, chatTranscript),
                     },
                 ],
             }),
@@ -120,6 +130,20 @@ export async function POST(req: NextRequest) {
 
         // Send the score email
         await sendScoreEmail({ name, email, result });
+
+        // Sync lead to GHL (including score results)
+        const { syncLeadToGHL } = await import("@/lib/crm");
+        await syncLeadToGHL({
+            name,
+            email,
+            source: "AI Scorecard Generated",
+            tags: ["AI Scorecard", `Grade-${result.grade}`, "Qualified Lead"],
+            customFields: {
+                ai_readiness_score: result.score,
+                ai_readiness_grade: result.grade,
+                potential_savings: `${result.savings_min}-${result.savings_max}`
+            }
+        });
 
         return NextResponse.json({ success: true, score: result.score });
     } catch (err) {
@@ -150,9 +174,10 @@ async function sendScoreEmail({
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            from: "AI Score <score@rehabit.ai>",
+            from: "AI Score <score@rehabit.biz>",
             to: email,
             subject: `Your AI Readiness Score: ${result.grade} — ${result.score}/100`,
+            reply_to: "mike@rehabit.ai",
             html,
         }),
     });

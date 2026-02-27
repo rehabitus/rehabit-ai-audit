@@ -1,18 +1,18 @@
 import type { ScoreResult } from "@/app/api/generate-score/route";
 
 export function buildScoreEmail({
-    name,
-    result,
+  name,
+  result,
 }: {
-    name: string;
-    result: ScoreResult;
+  name: string;
+  result: ScoreResult;
 }): string {
-    const firstName = name.split(" ")[0] || "there";
-    const gradeColor = result.score >= 75 ? "#10b981" : result.score >= 55 ? "#f59e0b" : "#ef4444";
+  const firstName = name.split(" ")[0] || "there";
+  const gradeColor = result.score >= 75 ? "#10b981" : result.score >= 55 ? "#f59e0b" : "#ef4444";
 
-    const opportunitiesHtml = result.opportunities
-        .map(
-            (op, i) => `
+  const opportunitiesHtml = result.opportunities
+    .map(
+      (op, i) => `
       <tr>
         <td style="padding: 16px; border-bottom: 1px solid #1e293b;">
           <div style="display:flex; align-items:flex-start; gap:12px;">
@@ -25,16 +25,16 @@ export function buildScoreEmail({
           </div>
         </td>
       </tr>`
-        )
-        .join("");
+    )
+    .join("");
 
-    const impactColor = (level: string) =>
-        level === "high" ? "#10b981" : level === "medium" ? "#f59e0b" : "#94a3b8";
+  const impactColor = (level: string) =>
+    level === "high" ? "#10b981" : level === "medium" ? "#f59e0b" : "#94a3b8";
 
-    const checklistHtml = result.checklist
-        .sort((a, b) => a.priority - b.priority)
-        .map(
-            (item) => `
+  const checklistHtml = result.checklist
+    .sort((a, b) => a.priority - b.priority)
+    .map(
+      (item) => `
       <tr>
         <td style="padding:14px 16px;border-bottom:1px solid #1e293b;">
           <div style="display:flex;align-items:flex-start;gap:12px;">
@@ -50,14 +50,14 @@ export function buildScoreEmail({
           </div>
         </td>
       </tr>`
-        )
-        .join("");
+    )
+    .join("");
 
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.startsWith("http")
-        ? process.env.NEXT_PUBLIC_BASE_URL
-        : "https://audit.rehabit.ai";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.startsWith("http")
+    ? process.env.NEXT_PUBLIC_BASE_URL
+    : "https://audit.rehabit.ai";
 
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your AI Readiness Score</title></head>
 <body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
@@ -137,6 +137,94 @@ export function buildScoreEmail({
           <a href="${baseUrl}" style="color:#475569;text-decoration:none;">audit.rehabit.ai</a>
         </td></tr>
 
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+export function buildBookingSuccessEmail({
+  name,
+  amountPaid,
+}: {
+  name: string;
+  amountPaid: number;
+}): string {
+  const firstName = name.split(" ")[0] || "there";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://audit.rehabit.ai";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Audit Reserved</title></head>
+<body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:40px 16px;">
+    <tr><td>
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;">
+        <tr><td style="padding-bottom:32px;text-align:center;">
+          <div style="color:#10b981;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">rehabit.ai</div>
+          <div style="color:#fff;font-size:24px;font-weight:800;">Audit Reserved!</div>
+        </td></tr>
+        <tr><td style="background:#1e293b;border-radius:16px;padding:32px;border:1px solid #334155;">
+          <p style="color:#e2e8f0;font-size:16px;line-height:1.6;margin-top:0;">Hi ${firstName},</p>
+          <p style="color:#94a3b8;font-size:15px;line-height:1.6;">Congratulations on taking the first step to reclaiming your time. We've received your payment of <strong>$${amountPaid}</strong> and your AI Transformation Audit is now officially in the queue.</p>
+          
+          <div style="margin:32px 0;padding:24px;background:#0f172a;border-radius:12px;border-left:4px solid #10b981;">
+            <h3 style="color:#fff;font-size:14px;text-transform:uppercase;letter-spacing:0.05em;margin:0 0 16px 0;">What Happens Now:</h3>
+            <ul style="color:#cbd5e1;font-size:14px;line-height:1.8;padding-left:18px;margin:0;">
+              <li><strong>Kickoff Call:</strong> We'll reach out within 24 hours to schedule your 1:1 strategy session.</li>
+              <li><strong>Audit Phase:</strong> We begin profiling your systems and identifying the "leaks".</li>
+              <li><strong>Delivery:</strong> In 5 days, you'll receive your Opportunity Matrix and Roadmap.</li>
+            </ul>
+          </div>
+
+          <p style="color:#94a3b8;font-size:14px;line-height:1.6;"><strong>Bonus:</strong> Since you paid in full, we're building your first Core AI System for free during this audit. Think about which manual task is bugging you the most — we'll likely start there.</p>
+          
+          <p style="color:#94a3b8;font-size:14px;line-height:1.6;margin-bottom:0;">Talk soon,<br>Mike Olaski & The Rehabit Team</p>
+        </td></tr>
+        <tr><td style="padding:32px 0;text-align:center;color:#334155;font-size:12px;">
+          rehabit.ai &mdash; <a href="${baseUrl}" style="color:#475569;text-decoration:none;">audit.rehabit.ai</a>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+export function buildApplicationReceivedEmail({
+  name,
+}: {
+  name: string;
+}): string {
+  const firstName = name.split(" ")[0] || "there";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://audit.rehabit.ai";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Application Received</title></head>
+<body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:40px 16px;">
+    <tr><td>
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;">
+        <tr><td style="padding-bottom:32px;text-align:center;">
+          <div style="color:#10b981;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">rehabit.ai</div>
+          <div style="color:#fff;font-size:24px;font-weight:800;">Application Received</div>
+        </td></tr>
+        <tr><td style="background:#1e293b;border-radius:16px;padding:32px;border:1px solid #334155;">
+          <p style="color:#e2e8f0;font-size:16px;line-height:1.6;margin-top:0;">Hi ${firstName},</p>
+          <p style="color:#94a3b8;font-size:15px;line-height:1.6;">We've received your application and survey responses. Mike is personally reviewing them to see if we're a good fit for an AI Transformation Audit.</p>
+          
+          <div style="margin:24px 0;padding:20px;background:#0f172a;border-radius:12px;">
+            <p style="color:#e2e8f0;font-size:14px;margin:0;"><strong>What's Next?</strong></p>
+            <p style="color:#94a3b8;font-size:13px;margin:8px 0 0 0;">If you've already booked a call via Calendly, we'll see you then. If not, we'll reach out within 24 hours if we need any more details.</p>
+          </div>
+
+          <p style="color:#94a3b8;font-size:14px;line-height:1.6;margin-bottom:0;">Talk soon,<br>The Rehabit Team</p>
+        </td></tr>
+        <tr><td style="padding:32px 0;text-align:center;color:#334155;font-size:12px;">
+          rehabit.ai &mdash; <a href="${baseUrl}" style="color:#475569;text-decoration:none;">audit.rehabit.ai</a>
+        </td></tr>
       </table>
     </td></tr>
   </table>

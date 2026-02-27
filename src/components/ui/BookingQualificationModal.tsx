@@ -73,7 +73,7 @@ const BOOKING_QUESTIONS = [
   },
 ] as const;
 
-type Phase = "intro" | "questions" | "loading" | "qualified" | "redirect";
+type Phase = "intro" | "contact" | "questions" | "loading" | "qualified" | "redirect";
 
 interface Props {
   isOpen: boolean;
@@ -85,6 +85,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [redirectUrl, setRedirectUrl] = useState("");
+  const [contact, setContact] = useState({ name: "", email: "", phone: "" });
 
   const reset = () => {
     setPhase("intro");
@@ -94,10 +95,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
     onClose();
   };
 
-  const handleStart = () => {
-    setPhase("questions");
-    setCurrentStep(0);
-  };
+
 
   const handleAnswer = async (questionId: string, answer: string) => {
     const newAnswers = { ...answers, [questionId]: answer };
@@ -117,18 +115,49 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
           body: JSON.stringify({ answers: newAnswers }),
         });
         const data: { qualified: boolean; reason: string } = await res.json();
+
+        // Sync to GHL & Send Notification in background
+        fetch("/api/lead-capture", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: contact.name,
+            email: contact.email,
+            phone: contact.phone,
+            answers: newAnswers,
+            mode: "survey",
+          })
+        }).catch(() => { });
+
         if (data.qualified) {
-          setRedirectUrl("https://calendly.com/mikeolaski/");
+          const params = new URLSearchParams({
+            name: contact.name,
+            email: contact.email,
+            ...(contact.phone ? { a1: contact.phone } : {})
+          });
+          setRedirectUrl(`https://calendly.com/mikeolaski/?${params.toString()}`);
           setPhase("qualified");
         } else {
           setRedirectUrl("https://rehabit.pro/");
           setPhase("redirect");
         }
       } catch {
-        // On error, default to Calendly — never block a user
-        setRedirectUrl("https://calendly.com/mikeolaski/");
+        // On error, default to Calendly
+        setRedirectUrl(`https://calendly.com/mikeolaski/?name=${encodeURIComponent(contact.name)}&email=${encodeURIComponent(contact.email)}`);
         setPhase("qualified");
       }
+    }
+  };
+
+  const handleStart = () => {
+    setPhase("contact");
+  };
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (contact.name && contact.email.includes("@")) {
+      setPhase("questions");
+      setCurrentStep(0);
     }
   };
 
@@ -254,6 +283,65 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                     <p className="mt-3 text-center text-xs text-slate-500">
                       Takes about 60 seconds
                     </p>
+                  </motion.div>
+                )}
+
+                {/* ── Contact Info ── */}
+                {phase === "contact" && (
+                  <motion.div
+                    key="contact"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <h2 className="text-xl font-bold text-white mb-2">
+                      About Your Business
+                    </h2>
+                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+                      First, let us know who Mike will be speaking with.
+                    </p>
+
+                    <form onSubmit={handleContactSubmit} className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Full Name</label>
+                        <input
+                          required
+                          type="text"
+                          placeholder="Jane Doe"
+                          value={contact.name}
+                          onChange={(e) => setContact({ ...contact, name: e.target.value })}
+                          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Work Email</label>
+                        <input
+                          required
+                          type="email"
+                          placeholder="jane@company.com"
+                          value={contact.email}
+                          onChange={(e) => setContact({ ...contact, email: e.target.value })}
+                          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 ml-1">Phone (Optional)</label>
+                        <input
+                          type="tel"
+                          placeholder="+1 (555) 000-0000"
+                          value={contact.phone}
+                          onChange={(e) => setContact({ ...contact, phone: e.target.value })}
+                          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        className="mt-4 w-full rounded-lg bg-brand-green px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-green-light active:scale-[0.98]"
+                      >
+                        Continue to Questions →
+                      </button>
+                    </form>
                   </motion.div>
                 )}
 

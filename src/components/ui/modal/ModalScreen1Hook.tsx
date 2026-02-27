@@ -1,13 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface Props {
     onContinue: () => void;
     onDismiss: () => void;
 }
 
-export function ModalScreen1Hook({ onContinue, onDismiss }: Props) {
+export function ModalScreen1Hook({ onDismiss }: Props) {
     return (
         <motion.div
             key="screen1"
@@ -26,25 +27,25 @@ export function ModalScreen1Hook({ onContinue, onDismiss }: Props) {
 
             {/* Headline */}
             <h2 className="text-2xl font-extrabold text-white md:text-3xl leading-tight mb-3">
-                Before You Leave&nbsp;&mdash;<br />
-                <span className="text-brand-green">Find Out Your AI Score</span>
+                Wait! How Much are You<br />
+                <span className="text-brand-green">Actually Leaving on the Table?</span>
             </h2>
 
             {/* Value prop */}
             <p className="text-slate-300 text-base leading-relaxed mb-2 max-w-sm">
-                Answer 5 quick questions and we&rsquo;ll calculate exactly how many hours and dollars your business is leaving on the table every year.
+                Get your personalized <span className="text-white font-bold">AI Opportunity Scorecard</span>. We&apos;ll audit your Big 4 departments in under 2 minutes.
             </p>
             <p className="text-slate-500 text-sm mb-8">
                 Free. No credit card. Takes 90 seconds.
             </p>
 
             {/* CTA */}
-            <button
-                onClick={onContinue}
-                className="w-full max-w-xs rounded-xl bg-brand-green px-8 py-4 text-base font-bold text-brand-dark transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-green/20"
+            <Link
+                href="/scorecard"
+                className="w-full max-w-xs rounded-xl bg-brand-green px-8 py-4 text-base font-bold text-center text-brand-dark transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-green/20"
             >
-                &#8594;&ensp;Get My AI Score (Free)
-            </button>
+                &#8594;&ensp;Start My Full Scorecard
+            </Link>
 
             {/* Dismiss */}
             <button

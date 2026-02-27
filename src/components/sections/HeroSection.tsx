@@ -8,6 +8,7 @@ import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
 import type { PricingInfo } from "@/lib/pricing";
+import Link from "next/link";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
@@ -35,19 +36,19 @@ export function HeroSection() {
           For Coaches, Course Creators &amp; Community Operators
         </motion.div>
 
-        <motion.p
-          variants={heroChild}
-          className="mb-4 text-sm font-medium italic text-slate-400"
-        >
-          &ldquo;Revolutionizing the Habits &amp; Systems of Your Business in the AI Era&rdquo;
-        </motion.p>
-
         <motion.h1
           variants={heroChild}
           className="mx-auto max-w-3xl text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl text-balance"
         >
           Find Exactly Where Your Business Is Bleeding Money&nbsp;&mdash; And Get a Plan to Fix It in 5&nbsp;Days.
         </motion.h1>
+
+        <motion.p
+          variants={heroChild}
+          className="mt-4 mb-2 text-sm font-medium italic text-brand-green/80 uppercase tracking-widest"
+        >
+          &ldquo;Revolutionizing the Habits &amp; Systems of Your Business in the AI Era&rdquo;
+        </motion.p>
 
         <VideoPlayer />
 
@@ -62,11 +63,17 @@ export function HeroSection() {
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+          <Link
+            href="/scorecard"
+            className="inline-flex items-center gap-2 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-4 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
+          >
+            <span className="text-brand-green">Free:</span> AI Opportunity Scorecard
+          </Link>
           <button
             onClick={() => setSurveyOpen(true)}
-            className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3.5 text-base font-semibold text-slate-200 transition-all hover:border-brand-green/40 hover:text-white hover:bg-white/5"
+            className="text-slate-500 hover:text-white text-sm font-semibold transition-all px-4 py-2 underline underline-offset-4"
           >
-            Book a Free 15-Min Call
+            Book 15-Min Call
           </button>
         </motion.div>
 

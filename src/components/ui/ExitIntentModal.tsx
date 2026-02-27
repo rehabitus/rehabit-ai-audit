@@ -80,7 +80,14 @@ export function ExitIntentModal() {
 
     const handleContactContinue = (data: ContactData) => {
         setContact(data);
-        setStep(3);
+        // Redirect to full screen scorecard skipping intro/contact
+        const params = new URLSearchParams({
+            name: data.name,
+            email: data.email,
+            website: data.website || "",
+            source: "Exit Intent"
+        });
+        window.location.href = `/scorecard?${params.toString()}`;
     };
 
     const handleSurveyComplete = (
@@ -170,12 +177,12 @@ export function ExitIntentModal() {
 
                         {/* Step indicator dots */}
                         <div className="flex justify-center gap-1.5 pt-5 pb-0">
-                                {[1, 2, 3].map((s) => (
-                                    <div
-                                        key={s}
-                                        className={`h-1.5 rounded-full transition-all ${step === s ? "w-6 bg-brand-green" : "w-1.5 bg-white/20"}`}
-                                    />
-                                ))}
+                            {[1, 2, 3].map((s) => (
+                                <div
+                                    key={s}
+                                    className={`h-1.5 rounded-full transition-all ${step === s ? "w-6 bg-brand-green" : "w-1.5 bg-white/20"}`}
+                                />
+                            ))}
                         </div>
 
                         {/* Content */}

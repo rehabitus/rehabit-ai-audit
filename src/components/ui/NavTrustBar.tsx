@@ -14,6 +14,8 @@ const AVATARS = [
   { src: "https://i.pravatar.cc/40?img=56" },
 ];
 
+import Image from "next/image";
+
 function PersonAvatar({
   src,
   size = 32,
@@ -40,12 +42,12 @@ function PersonAvatar({
       }}
       aria-hidden="true"
     >
-      <img
+      <Image
         src={src}
         alt=""
         width={size}
         height={size}
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        className="h-full w-full object-cover"
       />
     </div>
   );

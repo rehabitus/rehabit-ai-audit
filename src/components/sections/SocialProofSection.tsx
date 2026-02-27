@@ -36,7 +36,7 @@ export function SocialProofSection() {
                 </motion.p>
 
                 <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:gap-8">
-                    {PEOPLE.map((person, idx) => (
+                    {PEOPLE.map((person) => (
                         <motion.div
                             key={person.name}
                             variants={fadeInUp}

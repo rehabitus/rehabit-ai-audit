@@ -9,6 +9,8 @@ function ScoreThankYouContent() {
     const params = useSearchParams();
     const rawName = params.get("name") ?? "";
     const firstName = rawName.split(" ")[0] || "there";
+    const score = params.get("score");
+    const grade = params.get("grade") || (score ? (parseInt(score) > 85 ? "A" : parseInt(score) > 70 ? "B+" : "B") : null);
 
     return (
         <main className="min-h-screen bg-[#0F172A] flex flex-col items-center justify-center px-4 py-16">
@@ -22,25 +24,32 @@ function ScoreThankYouContent() {
                 }}
             />
 
-            <div className="relative z-10 w-full max-w-lg text-center">
+            <div className="relative z-10 w-full max-w-xl text-center">
 
-                {/* Animated checkmark */}
+                {/* Animated checkmark or Score */}
                 <motion.div
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 18, delay: 0.1 }}
-                    className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-brand-green/15 ring-2 ring-brand-green/30"
+                    className="mx-auto mb-8 flex h-32 w-32 items-center justify-center rounded-full bg-brand-green/10 ring-4 ring-brand-green/20 relative"
                 >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2.5}
-                        stroke="currentColor"
-                        className="h-10 w-10 text-brand-green"
-                    >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                    </svg>
+                    {score ? (
+                        <div className="flex flex-col items-center">
+                            <span className="text-4xl font-black text-brand-green">{score}</span>
+                            <span className="text-[10px] font-bold text-brand-green/60 tracking-widest uppercase">/ 100</span>
+                        </div>
+                    ) : (
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2.5}
+                            stroke="currentColor"
+                            className="h-12 w-12 text-brand-green"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                    )}
                 </motion.div>
 
                 {/* Headline */}
@@ -50,13 +59,15 @@ function ScoreThankYouContent() {
                     transition={{ duration: 0.5, delay: 0.25 }}
                 >
                     <p className="mb-2 text-xs font-bold uppercase tracking-widest text-brand-green">
-                        Survey Complete
+                        Analysis Complete
                     </p>
-                    <h1 className="mb-4 text-3xl font-extrabold text-white sm:text-4xl">
-                        Your Score Is Being Calculated, {firstName}!
+                    <h1 className="mb-4 text-4xl font-extrabold text-white sm:text-5xl tracking-tight">
+                        {score ? `Congratulations, ${firstName}!` : `Calculating your score, ${firstName}!`}
                     </h1>
-                    <p className="mx-auto mb-10 max-w-sm text-base leading-relaxed text-slate-400">
-                        Our AI is analyzing your answers right now. Your personalized AI Savings Report — with your score, savings estimate, and action plan — will land in your inbox within a few minutes.
+                    <p className="mx-auto mb-10 max-w-lg text-lg leading-relaxed text-slate-400">
+                        {score
+                            ? `Your AI Readiness Score is ${score}/100 (Grade: ${grade}). We’ve identified significant automation potential in your Big 4 departments.`
+                            : "Our AI is analyzing your answers right now. Your personalized AI Savings Report will land in your inbox within a few minutes."}
                     </p>
                 </motion.div>
 
