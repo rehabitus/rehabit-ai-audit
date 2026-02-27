@@ -85,8 +85,8 @@ export function HeroSection() {
           <p className="text-xs font-bold uppercase tracking-wider text-brand-gold">
             Limited Bonus
           </p>
-          <p className="mt-1 text-sm md:text-base text-slate-300">
-            Pay in full and get your first Core AI System delivered <span className="font-semibold text-brand-gold">FREE</span> in the same 5-day window.
+          <p className="mt-1 text-sm md:text-base text-slate-300 text-balance">
+            Pay in full and get your first Core AI System delivered <span className="font-semibold text-brand-gold">FREE</span> in the same 5-day&nbsp;window.
           </p>
         </motion.div>
 

@@ -80,6 +80,10 @@ git pull origin main   # AntiGravity also pushes here
 - Success URL: `/?session_id={CHECKOUT_SESSION_ID}&status=success`
 - API version: `2026-01-28.clover`
 
+## Design & Copy Rules
+- **No Orphans/Widows**: Marketing copy must NEVER have a single word on its own line. Use `text-balance` (CSS `text-wrap: balance`) or `&nbsp;` between the last two words to prevent this.
+- **Micro-Copy Styling**: Use boxed callouts with `brand-gold/20` borders for premiums and `brand-orange/20` for ICP/segments.
+
 ## Workflow
 - `main` branch auto-deploys to Vercel on push
 - Both Claude Code and AntiGravity work on this repo
