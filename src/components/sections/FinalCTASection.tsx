@@ -18,14 +18,14 @@ export function FinalCTASection() {
     fetch("/api/pricing")
       .then((r) => r.json())
       .then((d: PricingInfo) => setPricing(d))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
-  const priceUsd    = pricing?.priceUsd ?? 500;
-  const slotsLeft   = pricing?.slotsRemaining ?? null;
-  const nextPrice   = pricing?.nextPriceUsd ?? null;
+  const priceUsd = pricing?.priceUsd ?? 500;
+  const slotsLeft = pricing?.slotsRemaining ?? null;
+  const nextPrice = pricing?.nextPriceUsd ?? null;
   const reviewCount = pricing?.reviewCount ?? 0;
-  const roi         = Math.round(20000 / priceUsd);
+  const roi = Math.round(20000 / priceUsd);
 
   const ctaLabel = slotsLeft && slotsLeft > 0
     ? `→ Reserve Your Slot — ${slotsLeft} Left at $${priceUsd.toLocaleString()}`
@@ -89,7 +89,7 @@ export function FinalCTASection() {
           <p className="text-lg text-slate-300">
             The math is simple: if the audit reveals even{" "}
             <span className="font-semibold text-white">$20,000 in annual savings</span> (and it
-            will), that&rsquo;s a{" "}
+            will), <br className="hidden md:block" /> that&rsquo;s a{" "}
             <span className="font-bold text-brand-green">{roi}x return</span> on a{" "}
             <span className="font-semibold text-white">${priceUsd.toLocaleString()}</span> investment.
           </p>
