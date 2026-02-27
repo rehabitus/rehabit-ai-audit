@@ -22,7 +22,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-24 pb-20 md:pt-32 md:pb-28">
+    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-44 md:pb-28">
       <motion.div
         className="relative z-10 mx-auto max-w-4xl text-center"
         variants={heroStagger}
