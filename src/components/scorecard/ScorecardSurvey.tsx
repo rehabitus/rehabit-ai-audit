@@ -41,8 +41,9 @@ export function ScorecardSurvey({ onComplete }: Props) {
     // Keyboard support: Numbers for options, Enter for next
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === "Enter" && selected) {
-                handleNext();
+            if (e.key === "Enter") {
+                e.preventDefault();
+                if (selected) handleNext();
             } else if (["1", "2", "3", "4", "5"].includes(e.key)) {
                 const idx = parseInt(e.key) - 1;
                 if (question.options[idx]) {
@@ -67,7 +68,7 @@ export function ScorecardSurvey({ onComplete }: Props) {
     };
 
     return (
-        <div className="w-full flex flex-col items-center justify-center min-h-[60vh]">
+        <div className="w-full flex flex-col items-center justify-start min-h-[60vh] pb-16">
             {/* Question Counter & Category */}
             <div className="flex flex-col items-center gap-4 mb-12">
                 <div className={`px-4 py-1.5 rounded-full border text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-500 ${getCategoryColor(question.category)}`}>

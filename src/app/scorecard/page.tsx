@@ -81,7 +81,7 @@ function ScorecardContent() {
     };
 
     return (
-        <main className="min-h-screen bg-[#0F172A] text-white selection:bg-brand-green/30 relative overflow-hidden flex flex-col">
+        <main className="min-h-screen bg-[#0F172A] text-white selection:bg-brand-green/30 relative flex flex-col overflow-y-auto">
             {/* Background elements */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-brand-green/5 blur-[120px] rounded-full animate-pulse" />
@@ -119,7 +119,7 @@ function ScorecardContent() {
             </header>
 
             {/* Controller Container */}
-            <div className="flex-1 flex flex-col items-center justify-center relative z-10 px-6 py-12">
+            <div className="flex-1 flex flex-col items-center justify-start relative z-10 px-6 pt-16 pb-24">
                 <AnimatePresence mode="wait">
                     {step === "intro" && (
                         <motion.div
@@ -222,7 +222,7 @@ function ScorecardContent() {
                     )}
 
                     {step === "questions" && (
-                        <div key="questions" className="w-full max-w-4xl h-full flex items-center justify-center">
+                        <div key="questions" className="w-full max-w-4xl h-full flex flex-col items-center justify-start mt-4">
                             {mode === "survey" ? (
                                 <ScorecardSurvey onComplete={handleComplete} />
                             ) : (
