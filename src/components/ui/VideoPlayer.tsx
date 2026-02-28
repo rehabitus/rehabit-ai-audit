@@ -4,7 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { fadeInUp } from "@/lib/animations";
 
-const YOUTUBE_ID = "Oq_SvL-3o4I";
+const VIDEO_URL = "https://rehabitbiz.s3.eu-north-1.amazonaws.com/Rehabit-4CAudit-v4-StoryboardWithVideo.mp4";
+const THUMBNAIL_PATH = "/images/4c-audit-vsl-thumbnail.png";
 
 export function VideoPlayer() {
     const [showVideo, setShowVideo] = useState(false);
@@ -22,12 +23,13 @@ export function VideoPlayer() {
             {/* Video Container */}
             <div className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-white/10 bg-black shadow-2xl">
                 {showVideo ? (
-                    <iframe
+                    <video
                         className="h-full w-full"
-                        src={`https://www.youtube-nocookie.com/embed/${YOUTUBE_ID}?autoplay=1&rel=0&modestbranding=1`}
-                        title="AI Transformation Audit"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
+                        src={VIDEO_URL}
+                        controls
+                        autoPlay
+                        playsInline
+                        poster={THUMBNAIL_PATH}
                     />
                 ) : (
                     <button
@@ -35,10 +37,10 @@ export function VideoPlayer() {
                         className="group absolute inset-0 flex items-center justify-center"
                         aria-label="Play video"
                     >
-                        {/* YouTube thumbnail as background */}
+                        {/* New VSL thumbnail as background */}
                         <img
-                            src={`https://img.youtube.com/vi/${YOUTUBE_ID}/maxresdefault.jpg`}
-                            alt=""
+                            src={THUMBNAIL_PATH}
+                            alt="Video Thumbnail"
                             className="absolute inset-0 h-full w-full object-cover"
                         />
                         <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/20" />
