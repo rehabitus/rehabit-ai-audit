@@ -46,7 +46,7 @@ export function PricingSection() {
   return (
     <Section className="bg-brand-navy noise-vignette-bg" id="pricing" noAnimate>
       <motion.div
-        className="relative z-10 mx-auto max-w-xl text-center"
+        className="relative z-10 mx-auto max-w-4xl text-center"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -151,7 +151,7 @@ export function PricingSection() {
 
       {/* ── PAY IN FULL BONUS — hero callout ── */}
       <motion.div
-        className="relative z-10 mx-auto mt-12 max-w-xl overflow-hidden rounded-2xl border-2 border-brand-gold/50 bg-gradient-to-br from-brand-gold/10 via-brand-gold/5 to-transparent"
+        className="relative z-10 mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border-2 border-brand-gold/50 bg-gradient-to-br from-brand-gold/10 via-brand-gold/5 to-transparent"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -204,7 +204,7 @@ export function PricingSection() {
 
       {/* Guarantee */}
       <motion.div
-        className="relative z-10 mx-auto mt-8 max-w-xl rounded-xl border border-brand-green/30 bg-brand-green/5 p-8"
+        className="relative z-10 mx-auto mt-8 max-w-4xl rounded-xl border border-brand-green/30 bg-brand-green/5 p-8"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
