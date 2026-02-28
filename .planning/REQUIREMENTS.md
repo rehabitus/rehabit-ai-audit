@@ -1,7 +1,7 @@
 # Requirements: Audit.Rehabit.biz
 
-**Version:** v1.0 (Landing Page)
-**Last Updated:** 2026-02-16
+**Version:** v1.1
+**Last Updated:** 2026-02-28
 
 ## Completed (Shipped)
 
@@ -58,15 +58,16 @@
 - [ ] REQ-36: Pre-qualification questionnaire
 
 ### SEO
-- [ ] REQ-37: Open Graph meta tags for social sharing
-- [ ] REQ-38: Structured data (JSON-LD) for service offering
+- [x] REQ-37: Open Graph meta tags for social sharing *(shipped 2026-02-28)*
+- [x] REQ-38: Structured data (JSON-LD) for service offering *(updated to AggregateOffer $500–$3,000, 2026-02-28)*
 - [ ] REQ-39: Sitemap and robots.txt
 
 ### Quality
+- [x] REQ-42: Security headers (X-Frame-Options, XSS, Referrer-Policy, Permissions-Policy) *(shipped 2026-02-28)*
 - [ ] REQ-40: React error boundaries for graceful degradation
 - [ ] REQ-41: Core Web Vitals monitoring (Vercel Analytics)
 
 ---
 
-**Shipped:** 31/41 (76%)
-**Remaining:** 10 requirements across analytics, lead capture, SEO, and quality
+**Shipped:** 34/42 (81%)
+**Remaining:** 8 requirements across analytics, lead capture, SEO (sitemap), and quality
