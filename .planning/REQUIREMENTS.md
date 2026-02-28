@@ -54,8 +54,8 @@
 - [x] REQ-34: Stripe success page fires purchase conversion event on session_id *(shipped 2026-02-28)*
 
 ### Lead Capture
-- [ ] REQ-35: Email opt-in / lead magnet before checkout
-- [ ] REQ-36: Pre-qualification questionnaire
+- [x] REQ-35: Email opt-in / lead magnet — covered by exit intent modal *(existing)*
+- [x] REQ-36: Pre-qualification questionnaire — covered by booking qualification modal *(existing)*
 
 ### SEO
 - [x] REQ-37: Open Graph meta tags for social sharing *(shipped 2026-02-28)*
@@ -64,10 +64,9 @@
 
 ### Quality
 - [x] REQ-42: Security headers (X-Frame-Options, XSS, Referrer-Policy, Permissions-Policy) *(shipped 2026-02-28)*
-- [ ] REQ-40: React error boundaries for graceful degradation
-- [ ] REQ-41: Core Web Vitals monitoring (Vercel Analytics)
+- [x] REQ-40: React error boundaries — WebGL crashes fall back to CSS gradients *(shipped 2026-02-28)*
+- [x] REQ-41: Core Web Vitals monitoring — SpeedInsights in layout, Vercel dashboard *(existing)*
 
 ---
 
-**Shipped:** 39/42 (93%)
-**Remaining:** 3 requirements — lead capture (REQ-35, REQ-36) and quality (REQ-40, REQ-41)
+**Shipped:** 42/42 (100%) ✅
