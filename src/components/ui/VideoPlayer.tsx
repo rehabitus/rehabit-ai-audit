@@ -30,6 +30,8 @@ export function VideoPlayer() {
                         autoPlay
                         playsInline
                         poster={THUMBNAIL_PATH}
+                        controlsList="nodownload"
+                        onContextMenu={(e) => e.preventDefault()}
                     />
                 ) : (
                     <button
