@@ -40,6 +40,7 @@ export function ScorecardChat({ name, onComplete }: Props) {
     const [messages, setMessages] = useState<Message[]>([]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [initError, setInitError] = useState(false);
     const [isListening, setIsListening] = useState(false);
     const [isComplete, setIsComplete] = useState(false);
     const bottomRef = useRef<HTMLDivElement>(null);
@@ -78,6 +79,7 @@ export function ScorecardChat({ name, onComplete }: Props) {
 
             if (!res.ok || !res.body) {
                 setIsLoading(false);
+                if (currentMessages.length === 0) setInitError(true);
                 return;
             }
 
@@ -129,7 +131,9 @@ export function ScorecardChat({ name, onComplete }: Props) {
                 setIsComplete(true);
                 setTimeout(() => onComplete(getTranscript(finalMessages)), 2000);
             }
-        } catch { } finally {
+        } catch {
+            if (currentMessages.length === 0) setInitError(true);
+        } finally {
             setIsLoading(false);
         }
     };
@@ -185,6 +189,17 @@ export function ScorecardChat({ name, onComplete }: Props) {
 
             {/* Messages */}
             <div className="flex-1 overflow-y-auto px-8 py-10 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                {initError && (
+                    <div className="flex flex-col items-center justify-center h-full gap-4 text-center">
+                        <p className="text-slate-400">Chat AI is temporarily unavailable.</p>
+                        <button
+                            onClick={() => { setInitError(false); startChat(); }}
+                            className="text-sm text-brand-green underline hover:no-underline"
+                        >
+                            Try again
+                        </button>
+                    </div>
+                )}
                 <AnimatePresence initial={false}>
                     {messages.map((msg, i) => (
                         <motion.div

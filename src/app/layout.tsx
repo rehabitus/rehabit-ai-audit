@@ -36,6 +36,14 @@ export const metadata: Metadata = {
     siteName: "rehabit.ai",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/images/RHB-AI-Audit.png",
+        width: 1766,
+        height: 714,
+        alt: "AI Transformation Audit — rehabit.ai",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -43,6 +51,7 @@ export const metadata: Metadata = {
     description:
       "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days.",
     site: "@rehabitai",
+    images: ["/images/4c-audit-vsl-thumbnail.png"],
   },
   alternates: {
     canonical: BASE_URL,
@@ -83,11 +92,13 @@ export default function RootLayout({
                 url: "https://rehabit.ai",
               },
               offers: {
-                "@type": "Offer",
-                price: "1200",
+                "@type": "AggregateOffer",
+                lowPrice: "500",
+                highPrice: "3000",
                 priceCurrency: "USD",
                 availability: "https://schema.org/LimitedAvailability",
                 url: "https://audit.rehabit.ai",
+                description: "Price rises with each verified client review. Early Access starts at $500.",
               },
               areaServed: {
                 "@type": "Place",

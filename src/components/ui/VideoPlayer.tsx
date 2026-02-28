@@ -45,6 +45,7 @@ export function VideoPlayer() {
                             src={THUMBNAIL_PATH}
                             alt="Video Thumbnail"
                             fill
+                            priority
                             sizes="(max-width: 1024px) 100vw, 800px"
                             className="object-cover"
                         />
