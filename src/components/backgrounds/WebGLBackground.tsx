@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { useWebGLSupported } from "@/hooks/useWebGLSupported";
+import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 
 const NetworkNodesBackground = dynamic(
   () => import("./NetworkNodesBackground").then((m) => m.NetworkNodesBackground),
@@ -43,23 +44,27 @@ export function WebGLBackground({ scene, fallback }: WebGLBackgroundProps) {
   const isMobile = useIsMobile();
   const isWebGL = useWebGLSupported();
 
+  const cssFallback = fallback ? (
+    <>{fallback}</>
+  ) : (
+    <div className={fallbackClasses[scene]} aria-hidden="true" />
+  );
+
   if (isMobile || !isWebGL) {
-    return fallback ? (
-      <>{fallback}</>
-    ) : (
-      <div className={fallbackClasses[scene]} aria-hidden="true" />
-    );
+    return cssFallback;
   }
 
   const Scene = scenes[scene];
 
   return (
-    <div
-      className="absolute inset-0 z-0"
-      style={{ pointerEvents: "none" }}
-      aria-hidden="true"
-    >
-      <Scene />
-    </div>
+    <ErrorBoundary fallback={cssFallback}>
+      <div
+        className="absolute inset-0 z-0"
+        style={{ pointerEvents: "none" }}
+        aria-hidden="true"
+      >
+        <Scene />
+      </div>
+    </ErrorBoundary>
   );
 }
