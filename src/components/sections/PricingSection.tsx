@@ -67,12 +67,12 @@ export function PricingSection() {
           Complete Package
         </motion.p>
 
-        <motion.div variants={fadeInUp} className="mt-6 overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)] relative aspect-video">
+        <motion.div variants={fadeInUp} className="mt-6 mx-auto max-w-xl overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)] relative aspect-video">
           <Image
             src="/images/4C-Audit-2c.jpg"
             alt="The AI Opportunity Audit report"
             fill
-            sizes="(max-width: 768px) 100vw, 800px"
+            sizes="(max-width: 768px) 100vw, 576px"
             className="object-cover"
           />
         </motion.div>
