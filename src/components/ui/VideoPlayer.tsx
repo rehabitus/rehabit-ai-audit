@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { fadeInUp } from "@/lib/animations";
 
 const VIDEO_URL = "https://rehabitbiz.s3.eu-north-1.amazonaws.com/Rehabit-4CAudit-v4-StoryboardWithVideo.mp4";
@@ -40,10 +41,12 @@ export function VideoPlayer() {
                         aria-label="Play video"
                     >
                         {/* New VSL thumbnail as background */}
-                        <img
+                        <Image
                             src={THUMBNAIL_PATH}
                             alt="Video Thumbnail"
-                            className="absolute inset-0 h-full w-full object-cover"
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 800px"
+                            className="object-cover"
                         />
                         <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/20" />
                         <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-brand-green/90 text-white shadow-lg shadow-brand-green/25 transition-transform group-hover:scale-110">

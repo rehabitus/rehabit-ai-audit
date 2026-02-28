@@ -38,14 +38,14 @@ export function TrustSection() {
   return (
     <Section className="bg-brand-dark trust-glow-bg overflow-hidden !py-10 md:!py-14" id="trust" noAnimate>
       <motion.div
-        className="relative z-10 mx-auto max-w-2xl"
+        className="relative z-10 mx-auto max-w-4xl"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        <div className="grid gap-12 lg:grid-cols-1">
-          <motion.div variants={fadeInUp}>
+        <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+          <motion.div variants={fadeInUp} className="lg:col-span-7">
             <h2 className="text-[28px] font-bold text-white md:text-[34px] leading-tight text-balance">
               Built by someone who&rsquo;s done this before.
             </h2>
@@ -73,6 +73,19 @@ export function TrustSection() {
               When we audit your business, we&rsquo;re not just giving advice.
               We&rsquo;re applying the exact engineering principles that scale 7-figure digital coaching businesses.
             </motion.p>
+          </motion.div>
+
+          <motion.div variants={fadeInUp} className="hidden lg:flex justify-end lg:col-span-5 relative">
+            <div className="relative h-[22rem] w-[22rem] overflow-hidden rounded-[2rem] border-2 border-white/10 shadow-[0_0_40px_rgba(16,185,129,0.15)] bg-white/5">
+              <Image
+                src="/images/rehabit-mike-olaski-headshot-suit.png"
+                alt="Mike Olaski"
+                fill
+                sizes="(max-width: 1024px) 100vw, 350px"
+                className="object-cover object-top"
+                priority
+              />
+            </div>
           </motion.div>
         </div>
 

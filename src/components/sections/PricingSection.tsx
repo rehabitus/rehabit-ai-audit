@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
@@ -66,11 +67,13 @@ export function PricingSection() {
           Complete Package
         </motion.p>
 
-        <motion.div variants={fadeInUp} className="mt-6 overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)]">
-          <img
+        <motion.div variants={fadeInUp} className="mt-6 overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)] relative aspect-video">
+          <Image
             src="/images/4C-Audit-2c.jpg"
             alt="The AI Opportunity Audit report"
-            className="w-full object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 800px"
+            className="object-cover"
           />
         </motion.div>
 

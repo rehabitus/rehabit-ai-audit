@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
+import Image from "next/image";
 import { fadeInUp, staggerContainer, scaleIn, viewportOnce } from "@/lib/animations";
 import { painPoints } from "@/lib/constants";
 
@@ -45,11 +46,13 @@ export function ProblemSection() {
 
           {/* ── Right: image + closing copy ── */}
           <div className="flex flex-col gap-6">
-            <motion.div variants={fadeInUp}>
-              <img
+            <motion.div variants={fadeInUp} className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(16,185,129,0.12)]">
+              <Image
                 src="/images/4C-Audit-1a.jpg"
                 alt="Chaotic workflows transformed into a calm, AI-powered business"
-                className="w-full rounded-2xl shadow-[0_0_60px_rgba(16,185,129,0.12)]"
+                fill
+                sizes="(max-width: 768px) 100vw, 600px"
+                className="object-cover"
               />
             </motion.div>
 
