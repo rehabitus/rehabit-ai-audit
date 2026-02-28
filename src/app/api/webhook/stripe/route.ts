@@ -62,11 +62,10 @@ export async function POST(req: NextRequest) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        from: "Confirm <confirm@rehabit.biz>",
+                        from: "Rehabit AI Audit <hello@rehabit.ai>",
                         to: customerEmail,
-                        bcc: "mike@rehabit.ai", // Notify Mike
-                        subject: "Your Audit is Reserved - Welcome!",
-                        reply_to: "mike@rehabit.ai",
+                        bcc: "support@rehabit.ai", // Notify Support
+                        reply_to: "support@rehabit.ai",
                         html,
                     }),
                 });

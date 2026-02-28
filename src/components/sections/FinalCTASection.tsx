@@ -135,10 +135,10 @@ export function FinalCTASection() {
           </button>{" "}
           or email{" "}
           <a
-            href="mailto:mike@rehabit.ai"
-            className="font-semibold text-brand-green underline underline-offset-2 hover:text-brand-green-light transition-colors"
+            href="mailto:support@rehabit.ai"
+            className="text-brand-green underline transition-colors hover:text-brand-green/80"
           >
-            mike@rehabit.ai
+            support@rehabit.ai
           </a>.
         </motion.p>
       </motion.div>

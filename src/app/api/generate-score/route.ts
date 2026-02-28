@@ -177,7 +177,7 @@ async function sendScoreEmail({
             from: "AI Score <score@rehabit.biz>",
             to: email,
             subject: `Your AI Readiness Score: ${result.grade} — ${result.score}/100`,
-            reply_to: "mike@rehabit.ai",
+            reply_to: "support@rehabit.ai",
             html,
         }),
     });

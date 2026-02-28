@@ -76,7 +76,7 @@ ${body.chatTranscript ? `\nChat Transcript:\n${body.chatTranscript}` : ""}
                     from: "Rehabit Team <hello@rehabit.biz>",
                     to: body.email,
                     subject: "Application Received - re-habit.ai",
-                    reply_to: "mike@rehabit.ai",
+                    reply_to: "support@rehabit.ai",
                     html: userHtml,
                 }),
             });
