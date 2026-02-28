@@ -49,9 +49,9 @@
 ## Not Yet Implemented
 
 ### Analytics & Tracking
-- [ ] REQ-32: Conversion tracking (Google Analytics or similar)
-- [ ] REQ-33: Event tracking on CTA clicks, scroll depth, section views
-- [ ] REQ-34: Stripe success page with conversion confirmation
+- [x] REQ-32: Conversion tracking — Vercel Analytics + SpeedInsights in layout *(shipped 2026-02-28)*
+- [x] REQ-33: Event tracking on CTA clicks, scroll depth, section views *(shipped 2026-02-28)*
+- [x] REQ-34: Stripe success page fires purchase conversion event on session_id *(shipped 2026-02-28)*
 
 ### Lead Capture
 - [ ] REQ-35: Email opt-in / lead magnet before checkout
@@ -60,7 +60,7 @@
 ### SEO
 - [x] REQ-37: Open Graph meta tags for social sharing *(shipped 2026-02-28)*
 - [x] REQ-38: Structured data (JSON-LD) for service offering *(updated to AggregateOffer $500–$3,000, 2026-02-28)*
-- [ ] REQ-39: Sitemap and robots.txt
+- [x] REQ-39: Sitemap and robots.txt *(already shipped via src/app/sitemap.ts + robots.ts)*
 
 ### Quality
 - [x] REQ-42: Security headers (X-Frame-Options, XSS, Referrer-Policy, Permissions-Policy) *(shipped 2026-02-28)*
@@ -69,5 +69,5 @@
 
 ---
 
-**Shipped:** 34/42 (81%)
-**Remaining:** 8 requirements across analytics, lead capture, SEO (sitemap), and quality
+**Shipped:** 39/42 (93%)
+**Remaining:** 3 requirements — lead capture (REQ-35, REQ-36) and quality (REQ-40, REQ-41)
