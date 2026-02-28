@@ -3,8 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
-import { fadeInUp, staggerContainer, scaleIn, viewportOnce } from "@/lib/animations";
-import { credentials } from "@/lib/constants";
+import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
 const PEOPLE = [
   { name: "Eckhart Tolle", image: "/images/social-proof/eckhart-tolle.jpg" },
