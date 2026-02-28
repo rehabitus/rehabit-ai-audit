@@ -45,8 +45,6 @@ export default function Home() {
       {/* ── SECTIONS ── */}
       <HeroSection />
       <div className="section-divider-blue" />
-      <SocialProofSection />
-      <div className="section-divider-green" />
       <ProblemSection />
       <div className="section-divider-blue" />
       <BridgeSection />
