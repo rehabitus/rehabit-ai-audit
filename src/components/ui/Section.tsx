@@ -14,14 +14,14 @@ interface SectionProps {
 export function Section({ children, className = "", id, noAnimate }: SectionProps) {
   if (noAnimate) {
     return (
-      <section id={id} className={`px-6 py-20 md:py-28 ${className}`}>
+      <section id={id} className={`px-6 py-16 md:py-24 ${className}`}>
         <div className="mx-auto max-w-4xl">{children}</div>
       </section>
     );
   }
 
   return (
-    <section id={id} className={`px-6 py-20 md:py-28 ${className}`}>
+    <section id={id} className={`px-6 py-16 md:py-24 ${className}`}>
       <motion.div
         className="mx-auto max-w-4xl"
         initial="hidden"

@@ -22,9 +22,9 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-32 pb-20 md:pt-44 md:pb-28">
+    <section id="hero" className="hero-gradient bg-brand-dark px-6 pt-16 pb-10 md:pt-22 md:pb-14">
       <motion.div
-        className="relative z-10 mx-auto max-w-4xl text-center"
+        className="relative z-10 mx-auto max-w-5xl text-center"
         variants={heroStagger}
         initial="hidden"
         animate="visible"
@@ -38,7 +38,7 @@ export function HeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-3xl text-4xl font-extrabold leading-tight text-white md:text-5xl lg:text-6xl text-balance"
+          className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance"
         >
           Find Exactly Where Your Business Is Bleeding Money&nbsp;&mdash; And Get a Plan to Fix It in 5&nbsp;Days.
         </motion.h1>
