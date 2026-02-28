@@ -15,8 +15,15 @@ import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import { DeliverablesSection } from "@/components/sections/DeliverablesSection";
 import { TrustpilotWidget } from "@/components/ui/TrustpilotWidget";
 import { ExitIntentModal } from "@/components/ui/ExitIntentModal";
+import { useScrollDepth } from "@/hooks/useScrollDepth";
+import { useSectionView } from "@/hooks/useSectionView";
+
+const SECTION_IDS = ["hero", "problem", "why-now", "offer", "outcomes", "deliverables", "process", "trust", "pricing", "faq", "reserve"];
 
 export default function Home() {
+  useScrollDepth();
+  useSectionView(SECTION_IDS);
+
   return (
     <main className="overflow-x-hidden" id="main-content">
       {/* ── SKIP TO CONTENT (accessibility) ── */}

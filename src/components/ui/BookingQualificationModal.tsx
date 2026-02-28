@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackBookingModalCompleted } from "@/lib/analytics";
 import { AnimatePresence, motion } from "framer-motion";
 
 const BOOKING_QUESTIONS = [
@@ -129,6 +130,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
           })
         }).catch(() => { });
 
+        trackBookingModalCompleted();
         if (data.qualified) {
           const params = new URLSearchParams({
             name: contact.name,

@@ -1,12 +1,31 @@
 "use client";
 
+import { useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
+import { trackPurchase } from "@/lib/analytics";
+
+function SuccessContent() {
+  const params = useSearchParams();
+
+  useEffect(() => {
+    const sessionId = params.get("session_id");
+    if (sessionId) {
+      trackPurchase(sessionId);
+    }
+  }, [params]);
+
+  return null;
+}
 
 export default function SuccessPage() {
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-brand-dark px-6 text-center">
+            <Suspense>
+                <SuccessContent />
+            </Suspense>
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"

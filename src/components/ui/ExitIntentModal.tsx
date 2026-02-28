@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ModalScreen1Hook } from "./modal/ModalScreen1Hook";
 import { ModalScreen2Contact } from "./modal/ModalScreen2Contact";
 import { ModalScreen3Survey } from "./modal/ModalScreen3Survey";
+import { trackExitIntentShown, trackExitIntentDismissed, trackExitIntentConverted } from "@/lib/analytics";
 
 const STORAGE_KEY = "rh_exit_modal_dismissed";
 const SUPPRESS_DAYS = 7;
@@ -44,6 +45,7 @@ export function ExitIntentModal() {
         if (hasTriggered.current || shouldSuppress()) return;
         hasTriggered.current = true;
         setIsOpen(true);
+        trackExitIntentShown();
     }, []);
 
     // ── Desktop: exit intent (mouse leaves top of viewport) ──
@@ -72,6 +74,7 @@ export function ExitIntentModal() {
     }, [triggerModal]);
 
     const dismiss = () => {
+        trackExitIntentDismissed();
         try {
             localStorage.setItem(STORAGE_KEY, String(Date.now()));
         } catch { }
@@ -117,6 +120,7 @@ export function ExitIntentModal() {
                 }),
             }),
         ]);
+        trackExitIntentConverted();
         // Mark converted so modal doesn't re-trigger for a year
         try {
             localStorage.setItem(STORAGE_KEY, String(Date.now() + 1000 * 60 * 60 * 24 * 365));

@@ -1,11 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { trackCtaClick } from "@/lib/analytics";
 
 export function NavCheckoutButton() {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
+    trackCtaClick("Reserve Your Slot", "nav");
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {

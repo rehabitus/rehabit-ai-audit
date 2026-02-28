@@ -9,6 +9,7 @@ import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
 import type { PricingInfo } from "@/lib/pricing";
 import Link from "next/link";
+import { trackBookingModalOpen, trackScorecardLinkClick } from "@/lib/analytics";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
@@ -65,12 +66,13 @@ export function HeroSection() {
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
           <Link
             href="/scorecard"
+            onClick={trackScorecardLinkClick}
             className="inline-flex items-center gap-2 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-4 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
           >
             <span className="text-brand-green">Free:</span> AI Opportunity Scorecard
           </Link>
           <button
-            onClick={() => setSurveyOpen(true)}
+            onClick={() => { trackBookingModalOpen("hero"); setSurveyOpen(true); }}
             className="text-slate-500 hover:text-white text-sm font-semibold transition-all px-4 py-2 underline underline-offset-4"
           >
             Book 15-Min Call

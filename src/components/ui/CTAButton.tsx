@@ -1,18 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { track } from "@vercel/analytics";
+import { trackCtaClick } from "@/lib/analytics";
 
 interface CTAButtonProps {
   children: React.ReactNode;
   className?: string;
+  location?: "nav" | "hero" | "pricing" | "final_cta" | "other";
 }
 
-export function CTAButton({ children, className = "" }: CTAButtonProps) {
+export function CTAButton({ children, className = "", location = "other" }: CTAButtonProps) {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
-    track("cta_click", { label: typeof children === "string" ? children : "Main CTA" });
+    trackCtaClick(typeof children === "string" ? children : "Main CTA", location);
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {
