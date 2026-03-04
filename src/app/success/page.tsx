@@ -12,9 +12,11 @@ function SuccessContent() {
 
   useEffect(() => {
     const sessionId = params.get("session_id");
-    if (sessionId) {
-      trackPurchase(sessionId);
-    }
+    if (!sessionId) return;
+    fetch("/api/pricing")
+      .then((r) => r.json())
+      .then((d) => trackPurchase(sessionId, d.priceUsd ?? 500))
+      .catch(() => trackPurchase(sessionId, 500));
   }, [params]);
 
   return null;
