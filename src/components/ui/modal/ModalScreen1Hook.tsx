@@ -26,17 +26,17 @@ export function ModalScreen1Hook({ onDismiss }: Props) {
             </div>
 
             {/* Headline */}
-            <h2 className="text-2xl font-extrabold text-white md:text-3xl leading-tight mb-3">
-                Wait! How Much are You<br />
-                <span className="text-brand-green">Actually Leaving on the Table?</span>
+            <h2 className="text-2xl font-extrabold text-white md:text-3xl leading-tight mb-3 text-balance">
+                Wait — How Much Are You{" "}
+                <span className="text-brand-green">Actually Leaving on&nbsp;the Table?</span>
             </h2>
 
             {/* Value prop */}
             <p className="text-slate-300 text-base leading-relaxed mb-2 max-w-sm">
-                Get your personalized <span className="text-white font-bold">AI Opportunity Scorecard</span>. We&apos;ll audit your Big 4 departments in under 2 minutes.
+                Get your personalized <span className="text-white font-bold">AI Opportunity Scorecard</span>. We&apos;ll show you exactly where your business is leaking revenue.
             </p>
             <p className="text-slate-500 text-sm mb-8">
-                Free. No credit card. Takes 90 seconds.
+                Free. No credit card. Under 2 minutes.
             </p>
 
             {/* CTA */}
@@ -44,7 +44,7 @@ export function ModalScreen1Hook({ onDismiss }: Props) {
                 href="/scorecard"
                 className="w-full max-w-xs rounded-xl bg-brand-green px-8 py-4 text-base font-bold text-center text-brand-dark transition-all hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-green/20"
             >
-                &#8594;&ensp;Start My Full Scorecard
+                &#8594;&ensp;Get My Free Scorecard
             </Link>
 
             {/* Dismiss */}
@@ -52,7 +52,7 @@ export function ModalScreen1Hook({ onDismiss }: Props) {
                 onClick={onDismiss}
                 className="mt-4 text-sm text-slate-500 hover:text-slate-300 transition-colors"
             >
-                No thanks, I don&rsquo;t want to know
+                No thanks, maybe later
             </button>
         </motion.div>
     );
