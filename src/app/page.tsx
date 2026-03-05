@@ -15,6 +15,7 @@ import { FinalCTASection } from "@/components/sections/FinalCTASection";
 import { DeliverablesSection } from "@/components/sections/DeliverablesSection";
 import { TrustpilotWidget } from "@/components/ui/TrustpilotWidget";
 import { ExitIntentModal } from "@/components/ui/ExitIntentModal";
+import { CTAButton } from "@/components/ui/CTAButton";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { useSectionView } from "@/hooks/useSectionView";
 
@@ -60,6 +61,18 @@ export default function Home() {
       <OutcomesSection />
       <div className="section-divider-green" />
       <DeliverablesSection />
+
+      {/* ── MID-PAGE CTA ── high-intent visitors who don't need to read everything */}
+      <section className="bg-brand-dark px-6 py-10 text-center">
+        <div className="mx-auto max-w-2xl">
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-brand-green">Ready to find your number?</p>
+          <p className="mb-6 text-xl font-bold text-white text-balance">
+            Know exactly what your workflows are costing you&nbsp;&mdash; in 5&nbsp;days.
+          </p>
+          <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+        </div>
+      </section>
+
       <div className="section-divider-blue" />
       <ProcessSection />
       <div className="section-divider-blue" />

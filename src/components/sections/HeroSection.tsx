@@ -6,14 +6,12 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
-import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
 import type { PricingInfo } from "@/lib/pricing";
 import Link from "next/link";
-import { trackBookingModalOpen, trackScorecardLinkClick } from "@/lib/analytics";
+import { trackScorecardLinkClick } from "@/lib/analytics";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
-  const [surveyOpen, setSurveyOpen] = useState(false);
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -34,7 +32,7 @@ export function HeroSection() {
           variants={heroChild}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
-          For Coaches, Course Creators &amp; Community Operators
+          For 6-Figure Coaches Running on Manual Workflows
         </motion.div>
 
         <motion.h1
@@ -43,13 +41,6 @@ export function HeroSection() {
         >
           Find Exactly Where Your Business Is Bleeding Money&nbsp;&mdash; And Get a Plan to Fix It in 5&nbsp;Days.
         </motion.h1>
-
-        <motion.p
-          variants={heroChild}
-          className="mt-4 mb-2 text-sm font-medium italic text-brand-green/80 uppercase tracking-widest"
-        >
-          &ldquo;Revolutionizing the Habits &amp; Systems of Your Business in the AI Era&rdquo;
-        </motion.p>
 
         <VideoPlayer />
 
@@ -67,25 +58,18 @@ export function HeroSection() {
           <Link
             href="/scorecard"
             onClick={trackScorecardLinkClick}
-            className="inline-flex items-center gap-2 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-4 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
+            className="inline-flex flex-col items-center gap-0.5 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-3 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
           >
-            <span className="text-brand-green">Free:</span> AI Opportunity Scorecard
+            <span><span className="text-brand-green">Free:</span> Score Your AI Readiness (2&nbsp;min)</span>
+            <span className="text-xs font-normal text-slate-400">See where you rank before you invest</span>
           </Link>
-          <button
-            onClick={() => { trackBookingModalOpen("hero"); setSurveyOpen(true); }}
-            className="text-slate-500 hover:text-white text-sm font-semibold transition-all px-4 py-2 underline underline-offset-4"
-          >
-            Book 15-Min Call
-          </button>
         </motion.div>
 
-        <BookingQualificationModal
-          isOpen={surveyOpen}
-          onClose={() => setSurveyOpen(false)}
-        />
-
-        <motion.p variants={heroChild} className="mt-5 text-base text-slate-400">
-          Starting at <span className="font-semibold text-white">$500</span> &mdash; price rises with every verified client review.
+        <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-white">
+          Guaranteed to reveal $20K+ in savings &mdash; or your money back.
+        </motion.p>
+        <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">
+          Starting at <span className="font-semibold text-white">${(pricing?.priceUsd ?? 500).toLocaleString()}</span> &mdash; price rises with every verified client review.
         </motion.p>
         <motion.div
           variants={heroChild}

@@ -22,7 +22,7 @@ export function VideoPlayer() {
             </div>
 
             {/* Video Container */}
-            <div className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-white/10 bg-black shadow-2xl">
+            <div className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-white/10 bg-black shadow-2xl" aria-label="Watch: How the audit works (4 min)">
                 {showVideo ? (
                     <video
                         className="h-full w-full"
@@ -67,6 +67,9 @@ export function VideoPlayer() {
                     </button>
                 )}
             </div>
+            <p className="mt-2 text-center text-sm text-slate-500">
+                Watch: How the audit works (4 min)
+            </p>
         </motion.div>
     );
 }
