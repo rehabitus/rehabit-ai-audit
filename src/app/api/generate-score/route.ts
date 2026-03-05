@@ -139,7 +139,7 @@ export async function POST(req: NextRequest) {
 }
 
 /**
- * Tries OpenAI (gpt-4o) first, falls back to Gemini (gemini-2.0-flash) if
+ * Tries OpenAI (gpt-4o) first, falls back to Gemini (gemini-2.5-pro) if
  * the key is missing or the request fails. Throws if both providers fail.
  */
 async function callLLM(userPrompt: string): Promise<string> {
@@ -185,7 +185,7 @@ async function callLLM(userPrompt: string): Promise<string> {
             method: "POST",
             headers: { Authorization: `Bearer ${geminiKey}`, "Content-Type": "application/json" },
             body: JSON.stringify({
-                model: "gemini-2.0-flash",
+                model: "gemini-2.5-pro",
                 temperature: 0.4,
                 messages: [
                     { role: "system", content: systemPrompt },
