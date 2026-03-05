@@ -56,26 +56,21 @@ function ScorecardContent() {
             console.error("GHL sync failed", e);
         }
 
-        // Generate score
-        try {
-            const res = await fetch("/api/generate-score", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: contact.name,
-                    email: contact.email,
-                    website: contact.website,
-                    answers: finalAnswers,
-                    chatTranscript: transcript,
-                }),
-            });
-            const data = await res.json();
-            const score = data.success ? `&score=${data.score}` : "";
-            window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}${score}`;
-        } catch (e) {
-            console.error("Score generation failed", e);
-            window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}`;
-        }
+        // Fire score generation without waiting — server finishes and sends email in background
+        fetch("/api/generate-score", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                name: contact.name,
+                email: contact.email,
+                website: contact.website,
+                answers: finalAnswers,
+                chatTranscript: transcript,
+            }),
+        }).catch(() => {});
+
+        // Redirect immediately — score arrives in their inbox
+        window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}`;
     };
 
     return (

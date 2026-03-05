@@ -16,6 +16,7 @@ export interface NotionLead {
     score?: number;
     savingsRange?: string;
     keyFinding?: string;
+    departmentScores?: string;
     businessType?: string;
     teamSize?: string;
     revenue?: string;
@@ -48,6 +49,7 @@ export async function syncLeadToNotion(lead: NotionLead): Promise<boolean> {
     if (lead.score != null) properties.Score = { number: lead.score };
     if (lead.savingsRange) properties["Savings Range"] = text(lead.savingsRange);
     if (lead.keyFinding) properties["Key Finding"] = text(lead.keyFinding);
+    if (lead.departmentScores) properties["Department Scores"] = text(lead.departmentScores);
     if (lead.businessType) properties["Business Type"] = text(lead.businessType);
     if (lead.teamSize) properties["Team Size"] = text(lead.teamSize);
     if (lead.revenue) properties.Revenue = text(lead.revenue);
