@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
             });
 
             // 2. Send confirmation email via Resend
-            const resendKey = process.env.RESEND_API_KEY;
+            const resendKey = process.env.RESEND_API_KEY_TOKEN;
             if (resendKey && customerEmail) {
                 const { buildBookingSuccessEmail } = await import("@/lib/emailTemplate");
                 const html = buildBookingSuccessEmail({ name: customerName, amountPaid: amountTotal });

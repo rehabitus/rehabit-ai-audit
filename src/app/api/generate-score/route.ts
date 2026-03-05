@@ -164,7 +164,7 @@ async function sendScoreEmail({
     email: string;
     result: ScoreResult;
 }) {
-    const resendKey = process.env.RESEND_API_KEY;
+    const resendKey = process.env.RESEND_API_KEY_TOKEN;
     if (!resendKey) return;
 
     const { buildScoreEmail } = await import("@/lib/emailTemplate");

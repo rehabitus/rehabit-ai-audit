@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
         const body: LeadPayload = await req.json();
 
         // Send email notification via Resend (if configured)
-        const resendKey = process.env.RESEND_API_KEY;
+        const resendKey = process.env.RESEND_API_KEY_TOKEN;
         const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
 
         // Sync to GHL
