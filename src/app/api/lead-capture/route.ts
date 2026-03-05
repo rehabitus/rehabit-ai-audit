@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { syncLeadToNotion } from "@/lib/notion";
 
 export interface LeadPayload {
     name: string;
@@ -17,9 +18,9 @@ export async function POST(req: NextRequest) {
         const resendKey = process.env.RESEND_API_KEY_TOKEN;
         const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
 
-        // Sync to GHL
+        // Sync to GHL + Notion (fire-and-forget — don't block the response)
         const { syncLeadToGHL } = await import("@/lib/crm");
-        await syncLeadToGHL({
+        syncLeadToGHL({
             name: body.name,
             email: body.email,
             phone: body.phone,
@@ -27,9 +28,20 @@ export async function POST(req: NextRequest) {
             tags: ["AI Scorecard", "Optin", body.mode === "survey" ? "Survey" : "Chat-Bot"],
             customFields: {
                 ...body.answers,
-                chat_transcript: body.chatTranscript || "None"
-            }
-        });
+                chat_transcript: body.chatTranscript || "None",
+            },
+        }).catch((e) => console.error("GHL sync failed:", e));
+
+        syncLeadToNotion({
+            name: body.name,
+            email: body.email,
+            source: body.mode === "chat" ? "Chat" : "Scorecard",
+            businessType: body.answers.business_type || body.answers.business_model,
+            teamSize: body.answers.team_size,
+            revenue: body.answers.revenue,
+            painPoint: body.answers.pain_point || body.answers.bottleneck,
+            chatTranscript: body.chatTranscript,
+        }).catch((e) => console.error("Notion sync failed:", e));
 
         if (resendKey && notifyEmail) {
             const emailBody = `

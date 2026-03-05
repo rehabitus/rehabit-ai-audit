@@ -1,3 +1,4 @@
+import { syncLeadToNotion } from "@/lib/notion";
 import { NextRequest, NextResponse } from "next/server";
 
 export const maxDuration = 60; // seconds — gpt-4o needs room to breathe
@@ -147,6 +148,21 @@ export async function POST(req: NextRequest) {
                 },
             }).catch((e) => console.error("GHL sync failed:", e))
         );
+        syncLeadToNotion({
+            name,
+            email,
+            website,
+            source: chatTranscript ? "Chat" : "Scorecard",
+            grade: result.grade,
+            score: result.score,
+            savingsRange: `$${result.savings_min.toLocaleString()}–$${result.savings_max.toLocaleString()}`,
+            keyFinding: result.key_finding,
+            businessType: answers.business_type || answers.business_model,
+            teamSize: answers.team_size,
+            revenue: answers.revenue,
+            painPoint: answers.pain_point || answers.bottleneck,
+            chatTranscript,
+        }).catch((e) => console.error("Notion sync failed:", e));
 
         return NextResponse.json({ success: true, score: result.score });
     } catch (err) {
