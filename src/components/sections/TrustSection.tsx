@@ -118,60 +118,72 @@ export function TrustSection() {
           </div>
         </motion.div>
 
-        {/* Audit client testimonials */}
-        <motion.div variants={fadeInUp} className="mt-16 grid gap-4 md:grid-cols-3">
-          {[
-            {
-              quote: "Found $47K in annual savings in the first audit session. Mike had already spotted three workflows we could automate before we finished the call.",
-              name: "Sarah M.",
-              role: "Course Creator",
-            },
-            {
-              quote: "75% of what we mapped in the audit window is live and saving us 12 hours a week. The roadmap was that clear — we just executed it.",
-              name: "Daniel R.",
-              role: "Online Coach",
-            },
-            {
-              quote: "The audit paid for itself in the first week with a single automation. Best $1,200 I've spent on my business this year.",
-              name: "Priya K.",
-              role: "Community Operator",
-            },
-          ].map((t) => (
-            <div
-              key={t.name}
-              className="rounded-xl border border-brand-green/10 bg-brand-green/[0.04] p-6 flex flex-col gap-4"
-            >
-              <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
-              <div className="mt-auto">
-                <p className="text-sm font-bold text-white">{t.name}</p>
-                <p className="text-xs text-slate-500">{t.role}</p>
-              </div>
-            </div>
-          ))}
-        </motion.div>
-
         {/* Results delivered summary */}
         <motion.div
           variants={fadeInUp}
-          className="mt-10 mx-auto max-w-3xl rounded-2xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm"
+          className="mt-10 mx-auto rounded-2xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm"
         >
           <h3 className="text-xl font-bold text-white md:text-2xl mb-8 text-center">Results Delivered</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="flex flex-col items-center text-center">
-              <span className="text-2xl font-bold text-brand-green mb-1">Generated</span>
-              <span className="text-lg text-slate-300 font-medium">$75,000 / mo</span>
-              <span className="text-xs text-slate-500 uppercase">in MRR for agency</span>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <span className="text-2xl font-bold text-brand-blue mb-1">Built</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Marketing</span>
+              <span className="text-2xl font-bold text-brand-green mb-1">Built</span>
               <span className="text-lg text-slate-300 font-medium">250,000</span>
               <span className="text-xs text-slate-500 uppercase">email list in 18 mo</span>
             </div>
             <div className="flex flex-col items-center text-center">
-              <span className="text-2xl font-bold text-brand-orange mb-1">Systems</span>
-              <span className="text-lg text-slate-300 font-medium">7-Figure</span>
-              <span className="text-xs text-slate-500 uppercase">Coaching Launch</span>
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Sales</span>
+              <span className="text-2xl font-bold text-brand-blue mb-1">Generated</span>
+              <span className="text-lg text-slate-300 font-medium">$75,000 / mo</span>
+              <span className="text-xs text-slate-500 uppercase">in MRR for agency</span>
             </div>
+            <div className="flex flex-col items-center text-center">
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Delivery</span>
+              <span className="text-2xl font-bold text-brand-orange mb-1">Launched</span>
+              <span className="text-lg text-slate-300 font-medium">7-Figure</span>
+              <span className="text-xs text-slate-500 uppercase">coaching program</span>
+            </div>
+            <div className="flex flex-col items-center text-center">
+              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Operations</span>
+              <span className="text-2xl font-bold text-brand-gold mb-1">Recovered</span>
+              <span className="text-lg text-slate-300 font-medium">40 hrs / wk</span>
+              <span className="text-xs text-slate-500 uppercase">in team overhead</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* What Customers Say */}
+        <motion.div variants={fadeInUp} className="mt-10">
+          <h3 className="text-xl font-bold text-white md:text-2xl mb-6 text-center">What Customers Say</h3>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                quote: "Found $47K in annual savings in the first audit session. Mike had already spotted three workflows we could automate before we finished the call.",
+                name: "Sarah M.",
+                role: "Course Creator",
+              },
+              {
+                quote: "75% of what we mapped in the audit window is live and saving us 12 hours a week. The roadmap was that clear — we just executed it.",
+                name: "Daniel R.",
+                role: "Online Coach",
+              },
+              {
+                quote: "The audit paid for itself in the first week with a single automation. Best $1,200 I've spent on my business this year.",
+                name: "Priya K.",
+                role: "Community Operator",
+              },
+            ].map((t) => (
+              <div
+                key={t.name}
+                className="rounded-xl border border-brand-green/10 bg-brand-green/[0.04] p-6 flex flex-col gap-4"
+              >
+                <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
+                <div className="mt-auto">
+                  <p className="text-sm font-bold text-white">{t.name}</p>
+                  <p className="text-xs text-slate-500">{t.role}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
       </motion.div>
