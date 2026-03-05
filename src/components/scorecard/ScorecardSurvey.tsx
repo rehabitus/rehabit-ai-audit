@@ -60,10 +60,10 @@ export function ScorecardSurvey({ onComplete }: Props) {
 
     const getCategoryColor = (cat: string) => {
         switch (cat) {
-            case "Marketing": return "text-blue-400 border-blue-400/20 bg-blue-400/10";
-            case "Sales": return "text-orange-400 border-orange-400/20 bg-orange-400/10";
-            case "Delivery": return "text-brand-green border-brand-green/20 bg-brand-green/10";
-            case "Operations": return "text-purple-400 border-purple-400/20 bg-purple-400/10";
+            case "Marketing": return "text-brand-green border-brand-green/20 bg-brand-green/10";
+            case "Sales": return "text-brand-blue border-brand-blue/20 bg-brand-blue/10";
+            case "Delivery": return "text-brand-orange border-brand-orange/20 bg-brand-orange/10";
+            case "Operations": return "text-brand-gold border-brand-gold/20 bg-brand-gold/10";
             default: return "text-slate-400 border-slate-400/20 bg-slate-400/10";
         }
     };

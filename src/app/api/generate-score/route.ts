@@ -76,11 +76,6 @@ Rules:
 `;
 
 export async function POST(req: NextRequest) {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-        return NextResponse.json({ error: "OpenAI not configured" }, { status: 503 });
-    }
-
     const {
         name,
         email,
@@ -91,44 +86,15 @@ export async function POST(req: NextRequest) {
         await req.json();
 
     try {
-        const response = await fetch("https://api.openai.com/v1/chat/completions", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                model: "gpt-4o",
-                temperature: 0.4,
-                messages: [
-                    {
-                        role: "system",
-                        content:
-                            "You are an expert AI transformation consultant. Always respond with pure JSON only — no markdown, no code fences.",
-                    },
-                    {
-                        role: "user",
-                        content: SCORE_PROMPT(name, answers, website, chatTranscript),
-                    },
-                ],
-            }),
-        });
-
-        if (!response.ok) {
-            const err = await response.text();
-            console.error("OpenAI error:", err);
-            return NextResponse.json({ error: "OpenAI request failed" }, { status: 500 });
-        }
-
-        const data = await response.json();
-        const raw = data.choices?.[0]?.message?.content ?? "{}";
+        const raw = await callLLM(SCORE_PROMPT(name, answers, website, chatTranscript));
 
         let result: ScoreResult;
         try {
             result = JSON.parse(raw);
         } catch {
             console.error("Failed to parse score JSON:", raw);
-            return NextResponse.json({ error: "Invalid JSON from OpenAI" }, { status: 500 });
+            sendFallbackEmail({ name, email }).catch(() => {});
+            return NextResponse.json({ error: "Invalid JSON from LLM" }, { status: 500 });
         }
 
         // Fire-and-forget — don't block the response
@@ -167,8 +133,92 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ success: true, score: result.score });
     } catch (err) {
         console.error("generate-score error:", err);
-        return NextResponse.json({ error: "Internal error" }, { status: 500 });
+        sendFallbackEmail({ name, email }).catch(() => {});
+        return NextResponse.json({ error: "Score generation failed" }, { status: 500 });
     }
+}
+
+/**
+ * Tries OpenAI (gpt-4o) first, falls back to Gemini (gemini-2.5-pro) if
+ * the key is missing or the request fails. Throws if both providers fail.
+ */
+async function callLLM(userPrompt: string): Promise<string> {
+    const systemPrompt =
+        "You are an expert AI transformation consultant. Always respond with pure JSON only — no markdown, no code fences.";
+
+    const openaiKey = process.env.OPENAI_API_KEY;
+    if (openaiKey) {
+        try {
+            const res = await fetch("https://api.openai.com/v1/chat/completions", {
+                method: "POST",
+                headers: { Authorization: `Bearer ${openaiKey}`, "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    model: "gpt-4o",
+                    temperature: 0.4,
+                    messages: [
+                        { role: "system", content: systemPrompt },
+                        { role: "user", content: userPrompt },
+                    ],
+                }),
+            });
+            if (res.ok) {
+                const data = await res.json();
+                return data.choices?.[0]?.message?.content ?? "{}";
+            }
+            console.warn("OpenAI failed (%d) — falling back to Gemini", res.status);
+        } catch (e) {
+            console.warn("OpenAI threw — falling back to Gemini:", e);
+        }
+    } else {
+        console.warn("OPENAI_API_KEY not set — trying Gemini");
+    }
+
+    const geminiKey = process.env.GEMINI_API_KEY;
+    if (!geminiKey) {
+        throw new Error("No LLM provider available (OPENAI_API_KEY and GEMINI_API_KEY both missing)");
+    }
+
+    // Gemini exposes an OpenAI-compatible endpoint — same request shape
+    const res = await fetch(
+        "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+        {
+            method: "POST",
+            headers: { Authorization: `Bearer ${geminiKey}`, "Content-Type": "application/json" },
+            body: JSON.stringify({
+                model: "gemini-2.5-pro",
+                temperature: 0.4,
+                messages: [
+                    { role: "system", content: systemPrompt },
+                    { role: "user", content: userPrompt },
+                ],
+            }),
+        }
+    );
+
+    if (!res.ok) {
+        const err = await res.text();
+        throw new Error(`Gemini failed (${res.status}): ${err}`);
+    }
+
+    const data = await res.json();
+    return data.choices?.[0]?.message?.content ?? "{}";
+}
+
+async function sendFallbackEmail({ name, email }: { name: string; email: string }) {
+    const resendKey = process.env.RESEND_API_KEY_TOKEN;
+    if (!resendKey) return;
+    const { buildApplicationReceivedEmail } = await import("@/lib/emailTemplate");
+    await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+            from: "AI Score <score@rehabit.biz>",
+            to: email,
+            subject: "Your AI Readiness Scorecard — We're on it",
+            reply_to: "support@rehabit.ai",
+            html: buildApplicationReceivedEmail({ name }),
+        }),
+    });
 }
 
 async function sendScoreEmail({
