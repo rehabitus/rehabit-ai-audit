@@ -62,12 +62,12 @@ function ScoreThankYouContent() {
                         Analysis Complete
                     </p>
                     <h1 className="mb-4 text-4xl font-extrabold text-white sm:text-5xl tracking-tight">
-                        {score ? `Congratulations, ${firstName}!` : `Calculating your score, ${firstName}!`}
+                        {score ? `Congratulations, ${firstName}!` : `You’re all set, ${firstName}!`}
                     </h1>
                     <p className="mx-auto mb-10 max-w-lg text-lg leading-relaxed text-slate-400">
                         {score
                             ? `Your AI Readiness Score is ${score}/100 (Grade: ${grade}). We’ve identified significant automation potential in your Big 4 departments.`
-                            : "Our AI is analyzing your answers right now. Your personalized AI Savings Report will land in your inbox within a few minutes."}
+                            : "Your full AI Readiness Score — with savings estimates, opportunities, and a prioritized action checklist — is on its way to your inbox now."}
                     </p>
                 </motion.div>
 
