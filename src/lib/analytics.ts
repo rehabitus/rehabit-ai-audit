@@ -7,8 +7,8 @@ import { track } from "@vercel/analytics";
 /** Fire a custom event to GA4 via gtag (no-op if gtag not loaded). */
 function ga(eventName: string, params?: Record<string, unknown>) {
   try {
-    if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: Function }).gtag === "function") {
-      (window as unknown as { gtag: Function }).gtag("event", eventName, params ?? {});
+    if (typeof window !== "undefined" && typeof (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag === "function") {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", eventName, params ?? {});
     }
   } catch {
     // fail silently
