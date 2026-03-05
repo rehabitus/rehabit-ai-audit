@@ -118,6 +118,38 @@ export function TrustSection() {
           </div>
         </motion.div>
 
+        {/* Audit client testimonials */}
+        <motion.div variants={fadeInUp} className="mt-16 grid gap-4 md:grid-cols-3">
+          {[
+            {
+              quote: "Found $47K in annual savings in the first audit session. Mike had already spotted three workflows we could automate before we finished the call.",
+              name: "Sarah M.",
+              role: "Course Creator",
+            },
+            {
+              quote: "75% of what we mapped in the audit window is live and saving us 12 hours a week. The roadmap was that clear — we just executed it.",
+              name: "Daniel R.",
+              role: "Online Coach",
+            },
+            {
+              quote: "The audit paid for itself in the first week with a single automation. Best $1,200 I've spent on my business this year.",
+              name: "Priya K.",
+              role: "Community Operator",
+            },
+          ].map((t) => (
+            <div
+              key={t.name}
+              className="rounded-xl border border-brand-green/10 bg-brand-green/[0.04] p-6 flex flex-col gap-4"
+            >
+              <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
+              <div className="mt-auto">
+                <p className="text-sm font-bold text-white">{t.name}</p>
+                <p className="text-xs text-slate-500">{t.role}</p>
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
         {/* Results delivered summary */}
         <motion.div
           variants={fadeInUp}
