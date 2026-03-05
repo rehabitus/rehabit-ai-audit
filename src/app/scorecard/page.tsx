@@ -70,10 +70,8 @@ function ScorecardContent() {
                 }),
             });
             const data = await res.json();
-            if (data.success) {
-                // Redirect to results or show them here
-                window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}&score=${data.score}`;
-            }
+            const score = data.success ? `&score=${data.score}` : "";
+            window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}${score}`;
         } catch (e) {
             console.error("Score generation failed", e);
             window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}`;

@@ -128,22 +128,23 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Invalid JSON from OpenAI" }, { status: 500 });
         }
 
-        // Send the score email
-        await sendScoreEmail({ name, email, result });
-
-        // Sync lead to GHL (including score results)
-        const { syncLeadToGHL } = await import("@/lib/crm");
-        await syncLeadToGHL({
-            name,
-            email,
-            source: "AI Scorecard Generated",
-            tags: ["AI Scorecard", `Grade-${result.grade}`, "Qualified Lead"],
-            customFields: {
-                ai_readiness_score: result.score,
-                ai_readiness_grade: result.grade,
-                potential_savings: `${result.savings_min}-${result.savings_max}`
-            }
-        });
+        // Fire-and-forget — don't block the response
+        sendScoreEmail({ name, email, result }).catch((e) =>
+            console.error("Score email failed:", e)
+        );
+        import("@/lib/crm").then(({ syncLeadToGHL }) =>
+            syncLeadToGHL({
+                name,
+                email,
+                source: "AI Scorecard Generated",
+                tags: ["AI Scorecard", `Grade-${result.grade}`, "Qualified Lead"],
+                customFields: {
+                    ai_readiness_score: result.score,
+                    ai_readiness_grade: result.grade,
+                    potential_savings: `${result.savings_min}-${result.savings_max}`,
+                },
+            }).catch((e) => console.error("GHL sync failed:", e))
+        );
 
         return NextResponse.json({ success: true, score: result.score });
     } catch (err) {
