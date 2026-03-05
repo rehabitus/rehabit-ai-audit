@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const maxDuration = 60; // seconds — gpt-4o needs room to breathe
+
 export interface ScoreResult {
     score: number;
     grade: string;
