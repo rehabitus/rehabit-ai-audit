@@ -32,7 +32,7 @@ export function HeroSection() {
           variants={heroChild}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
-          For Coaches, Course Creators &amp; Community Operators
+          For 6-Figure Coaches Running on Manual Workflows
         </motion.div>
 
         <motion.h1
@@ -58,9 +58,10 @@ export function HeroSection() {
           <Link
             href="/scorecard"
             onClick={trackScorecardLinkClick}
-            className="inline-flex items-center gap-2 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-4 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
+            className="inline-flex flex-col items-center gap-0.5 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-3 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
           >
-            <span className="text-brand-green">Free:</span> AI Opportunity Scorecard
+            <span><span className="text-brand-green">Free:</span> Score Your AI Readiness (2&nbsp;min)</span>
+            <span className="text-xs font-normal text-slate-400">See where you rank before you invest</span>
           </Link>
         </motion.div>
 
