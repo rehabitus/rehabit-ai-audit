@@ -74,24 +74,8 @@ ${body.chatTranscript ? `\nChat Transcript:\n${body.chatTranscript}` : ""}
                 }),
             });
 
-            // ALSO: Send a "Thank You" email to the user
-            const { buildApplicationReceivedEmail } = await import("@/lib/emailTemplate");
-            const userHtml = buildApplicationReceivedEmail({ name: body.name });
-
-            await fetch("https://api.resend.com/emails", {
-                method: "POST",
-                headers: {
-                    Authorization: `Bearer ${resendKey}`,
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    from: "Rehabit Team <hello@rehabit.biz>",
-                    to: body.email,
-                    subject: "Application Received - re-habit.ai",
-                    reply_to: "support@rehabit.ai",
-                    html: userHtml,
-                }),
-            });
+            // Note: score email is sent by /api/generate-score (buildScoreEmail)
+            // Do NOT send a user-facing email here — wrong context for scorecard leads
         }
 
         return NextResponse.json({ success: true });

@@ -109,25 +109,7 @@ function ScoreThankYouContent() {
                     </ul>
                 </motion.div>
 
-                {/* Bonus callout */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.55 }}
-                    className="mb-8 rounded-2xl border border-brand-gold/30 bg-brand-gold/5 p-5 text-left"
-                >
-                    <div className="flex items-start gap-3">
-                        <span className="text-2xl leading-none">🎁</span>
-                        <div>
-                            <p className="mb-1 text-xs font-bold uppercase tracking-wider text-brand-gold">
-                                Free Bonus
-                            </p>
-                            <p className="text-sm leading-relaxed text-slate-300">
-                                <span className="font-semibold text-white">Reply to your score email</span> with your thoughts on the checklist and get a personalized video walkthrough — free.
-                            </p>
-                        </div>
-                    </div>
-                </motion.div>
+                {/* TODO (roadmap): Bonus callout — re-enable once video walkthrough offer is ready */}
 
                 {/* Back to page */}
                 <motion.div

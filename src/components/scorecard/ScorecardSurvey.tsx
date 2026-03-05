@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { scorecardQuestions } from "@/lib/scorecardQuestions";
 
 interface Props {
@@ -13,6 +13,7 @@ export function ScorecardSurvey({ onComplete }: Props) {
     const [answers, setAnswers] = useState<Record<string, string>>({});
     const [selected, setSelected] = useState<string | null>(null);
 
+    const autoAdvanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     const question = scorecardQuestions[currentIndex];
     const progress = ((currentIndex + 1) / scorecardQuestions.length) * 100;
     const isLast = currentIndex === scorecardQuestions.length - 1;
@@ -100,7 +101,22 @@ export function ScorecardSurvey({ onComplete }: Props) {
                             return (
                                 <button
                                     key={option}
-                                    onClick={() => setSelected(option)}
+                                    onClick={() => {
+                                        setSelected(option);
+                                        if (autoAdvanceTimer.current) clearTimeout(autoAdvanceTimer.current);
+                                        autoAdvanceTimer.current = setTimeout(() => {
+                                            setAnswers((prev) => {
+                                                const updated = { ...prev, [question.id]: option };
+                                                if (isLast) {
+                                                    onComplete(updated);
+                                                } else {
+                                                    setCurrentIndex((i) => i + 1);
+                                                    setSelected(null);
+                                                }
+                                                return updated;
+                                            });
+                                        }, 420);
+                                    }}
                                     className={`w-full group flex items-center transition-all duration-200 rounded-2xl border ${isActive
                                         ? "bg-brand-green border-brand-green text-brand-dark shadow-xl shadow-brand-green/20"
                                         : "bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/30 hover:bg-white/[0.06]"

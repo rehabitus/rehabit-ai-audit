@@ -90,3 +90,12 @@
 - Alert on checkout API errors
 
 **Success Criteria:** No white-screen crashes; Core Web Vitals in "Good" range.
+
+---
+
+## Backlog / Deferred
+
+**Score Thank-You Page — Bonus Callout**
+- Offer: "Reply to your score email with your thoughts on the checklist and get a personalized video walkthrough — free."
+- Currently hidden (`score-thank-you/page.tsx`) — re-enable once the video walkthrough is recorded and the fulfillment workflow is in place.
+- Design: gold-bordered callout with 🎁 icon, already coded, just commented out.
