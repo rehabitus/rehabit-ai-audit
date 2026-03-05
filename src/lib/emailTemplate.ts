@@ -214,17 +214,83 @@ export function buildApplicationReceivedEmail({
         <tr><td style="background:#1e293b;border-radius:16px;padding:32px;border:1px solid #334155;">
           <p style="color:#e2e8f0;font-size:16px;line-height:1.6;margin-top:0;">Hi ${firstName},</p>
           <p style="color:#94a3b8;font-size:15px;line-height:1.6;">We've received your application and survey responses. Mike is personally reviewing them to see if we're a good fit for an AI Transformation Audit.</p>
-          
+
           <div style="margin:24px 0;padding:20px;background:#0f172a;border-radius:12px;">
             <p style="color:#e2e8f0;font-size:14px;margin:0;"><strong>What's Next?</strong></p>
             <p style="color:#94a3b8;font-size:13px;margin:8px 0 0 0;">If you've already booked a call via Calendly, we'll see you then. If not, we'll reach out within 24 hours if we need any more details.</p>
           </div>
 
-          <p style="color:#94a3b8;font-size:14px;line-height:1.6;margin-bottom:0;">Talk soon,<br>The Rehabit Team</p>
+          <p style="color:#94a3b8;font-size:14px;line-height:1.6;margin-bottom:0;">Talk soon,<br>Mike Olaski &mdash; rehabit.ai</p>
         </td></tr>
         <tr><td style="padding:32px 0;text-align:center;color:#334155;font-size:12px;">
           rehabit.ai &mdash; <a href="${baseUrl}" style="color:#475569;text-decoration:none;">audit.rehabit.ai</a>
         </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+/** Sent when the LLM score generation fails — reassures the user their scorecard is coming */
+export function buildScorecardProcessingEmail({
+  name,
+}: {
+  name: string;
+}): string {
+  const firstName = name.split(" ")[0] || "there";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://audit.rehabit.ai";
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your AI Score is on its way</title></head>
+<body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:40px 16px;">
+    <tr><td>
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;margin:0 auto;">
+
+        <!-- Header -->
+        <tr><td style="padding-bottom:32px;text-align:center;">
+          <div style="color:#10b981;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">rehabit.ai</div>
+          <div style="color:#fff;font-size:24px;font-weight:800;">Your AI Score is Being Generated</div>
+        </td></tr>
+
+        <!-- Body -->
+        <tr><td style="background:#1e293b;border-radius:16px;padding:32px;border:1px solid #334155;">
+          <p style="color:#e2e8f0;font-size:16px;line-height:1.6;margin-top:0;">Hi ${firstName},</p>
+          <p style="color:#94a3b8;font-size:15px;line-height:1.6;">
+            Thanks for completing the AI Opportunity Scorecard. Our AI is still analyzing your Big 4 department responses — your full score report will arrive in a second email within the next few minutes.
+          </p>
+
+          <div style="margin:24px 0;background:#0f172a;border-radius:12px;padding:20px 24px;border-left:3px solid #10b981;">
+            <div style="color:#94a3b8;font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;">Your Score Report Will Include</div>
+            <table cellpadding="0" cellspacing="0" width="100%">
+              ${["AI Readiness Score (0–100) with Letter Grade", "Estimated Annual Savings Potential", "Your Top 3 Highest-ROI Automation Opportunities", "Prioritized 5-Step Implementation Checklist"].map(item => `
+              <tr><td style="padding:6px 0;">
+                <span style="color:#10b981;font-weight:700;margin-right:10px;">✓</span>
+                <span style="color:#cbd5e1;font-size:14px;">${item}</span>
+              </td></tr>`).join("")}
+            </table>
+          </div>
+
+          <p style="color:#94a3b8;font-size:14px;line-height:1.6;">Keep an eye on your inbox — it's on its way.</p>
+
+          <div style="margin-top:24px;">
+            <a href="${baseUrl}/scorecard" style="display:inline-block;background:#10b981;color:#0f172a;font-size:14px;font-weight:800;padding:14px 28px;border-radius:10px;text-decoration:none;">
+              Retake the Scorecard →
+            </a>
+          </div>
+
+          <p style="color:#475569;font-size:13px;line-height:1.6;margin-top:24px;margin-bottom:0;">
+            Mike Olaski &mdash; rehabit.ai
+          </p>
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="padding:32px 0;text-align:center;color:#334155;font-size:12px;">
+          rehabit.ai &mdash; <a href="${baseUrl}" style="color:#475569;text-decoration:none;">audit.rehabit.ai</a>
+        </td></tr>
+
       </table>
     </td></tr>
   </table>

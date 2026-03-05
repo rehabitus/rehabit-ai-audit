@@ -207,16 +207,16 @@ async function callLLM(userPrompt: string): Promise<string> {
 async function sendFallbackEmail({ name, email }: { name: string; email: string }) {
     const resendKey = process.env.RESEND_API_KEY_TOKEN;
     if (!resendKey) return;
-    const { buildApplicationReceivedEmail } = await import("@/lib/emailTemplate");
+    const { buildScorecardProcessingEmail } = await import("@/lib/emailTemplate");
     await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-            from: "AI Score <score@rehabit.biz>",
+            from: "Mike @ rehabit.ai <score@rehabit.biz>",
             to: email,
-            subject: "Your AI Readiness Scorecard — We're on it",
-            reply_to: "support@rehabit.ai",
-            html: buildApplicationReceivedEmail({ name }),
+            subject: "Your AI Readiness Score is generating — rehabit.ai",
+            reply_to: "mike@rehabit.ai",
+            html: buildScorecardProcessingEmail({ name }),
         }),
     });
 }
@@ -243,10 +243,10 @@ async function sendScoreEmail({
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            from: "AI Score <score@rehabit.biz>",
+            from: "Mike @ rehabit.ai <score@rehabit.biz>",
             to: email,
-            subject: `Your AI Readiness Score: ${result.grade} — ${result.score}/100`,
-            reply_to: "support@rehabit.ai",
+            subject: `Your AI Score: ${result.grade} (${result.score}/100) — $${Math.round(result.savings_min / 1000)}K–$${Math.round(result.savings_max / 1000)}K savings identified`,
+            reply_to: "mike@rehabit.ai",
             html,
         }),
     });
