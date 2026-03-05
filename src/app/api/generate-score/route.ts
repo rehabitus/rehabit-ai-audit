@@ -9,6 +9,12 @@ export interface ScoreResult {
     savings_min: number;
     savings_max: number;
     key_finding: string;
+    department_scores: {
+        marketing: number;
+        sales: number;
+        delivery: number;
+        operations: number;
+    };
     opportunities: Array<{
         title: string;
         description: string;
@@ -44,11 +50,17 @@ ${website ? `\nWebsite: ${website}` : ""}
 
 Generate a JSON response (ONLY JSON, no markdown) with this exact structure:
 {
-  "score": <integer 0-100, AI readiness score — higher means more opportunity>,
+  "score": <integer 0-100, overall AI readiness score — higher means more AI automation opportunity>,
   "grade": <"A", "B+", "B", "C+", "C" — based on score>,
   "savings_min": <integer, minimum realistic annual savings in USD from AI automation>,
   "savings_max": <integer, maximum realistic annual savings in USD>,
   "key_finding": <1-2 sentence personalized insight about their biggest opportunity>,
+  "department_scores": {
+    "marketing": <integer 0-100, score for Marketing — higher means more untapped AI opportunity>,
+    "sales": <integer 0-100, score for Sales — higher means more untapped AI opportunity>,
+    "delivery": <integer 0-100, score for Delivery/Fulfillment — higher means more untapped AI opportunity>,
+    "operations": <integer 0-100, score for Operations/Admin — higher means more untapped AI opportunity>
+  },
   "opportunities": [
     {
       "title": <short title, e.g. "Automated Client Onboarding">,
@@ -68,6 +80,7 @@ Generate a JSON response (ONLY JSON, no markdown) with this exact structure:
 }
 
 Rules:
+- department_scores: base each on the mkt_/sales_/del_/ops_ answers; if no answers for a dept, infer from business type
 - opportunities: exactly 3 items, specific to their business type
 - checklist: exactly 5 items ordered by priority (quick wins first)
 - savings estimates: realistic — based on team size and revenue bracket
@@ -97,8 +110,15 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Invalid JSON from LLM" }, { status: 500 });
         }
 
+        // Build tokenized results URL (base64url-encoded, no DB needed)
+        const token = Buffer.from(JSON.stringify(result)).toString("base64url");
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL?.startsWith("http")
+            ? process.env.NEXT_PUBLIC_BASE_URL
+            : "https://audit.rehabit.ai";
+        const resultsUrl = `${baseUrl}/scorecard-results?token=${token}`;
+
         // Fire-and-forget — don't block the response
-        sendScoreEmail({ name, email, result }).catch((e) =>
+        sendScoreEmail({ name, email, result, resultsUrl }).catch((e) =>
             console.error("Score email failed:", e)
         );
         import("@/lib/crm").then(({ syncLeadToGHL }) =>
@@ -225,16 +245,18 @@ async function sendScoreEmail({
     name,
     email,
     result,
+    resultsUrl,
 }: {
     name: string;
     email: string;
     result: ScoreResult;
+    resultsUrl: string;
 }) {
     const resendKey = process.env.RESEND_API_KEY_TOKEN;
     if (!resendKey) return;
 
     const { buildScoreEmail } = await import("@/lib/emailTemplate");
-    const html = buildScoreEmail({ name, result });
+    const html = buildScoreEmail({ name, result, resultsUrl });
 
     await fetch("https://api.resend.com/emails", {
         method: "POST",

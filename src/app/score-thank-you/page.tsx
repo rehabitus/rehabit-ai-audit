@@ -85,7 +85,7 @@ function ScoreThankYouContent() {
                         {[
                             {
                                 step: "1",
-                                text: "Check your inbox — your AI Score email arrives in minutes, not hours.",
+                                text: "Check your inbox — your score email arrives in minutes with a link to your full interactive scorecard.",
                                 color: "text-brand-green",
                             },
                             {
