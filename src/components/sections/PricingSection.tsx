@@ -60,11 +60,11 @@ export function PricingSection() {
           </span>
         </motion.div>
 
-        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl">
-          AI Transformation Audit
+        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl text-balance">
+          Everything You Need to Stop the Bleed&nbsp;&mdash; In 5&nbsp;Days.
         </motion.h2>
         <motion.p variants={fadeInUp} className="mt-1 text-lg text-slate-400">
-          Complete Package
+          AI Transformation Audit — Complete Package
         </motion.p>
 
         <motion.div variants={fadeInUp} className="mt-6 overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)] relative aspect-video">
