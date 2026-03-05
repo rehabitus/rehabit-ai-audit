@@ -134,6 +134,7 @@ export async function POST(req: NextRequest) {
                 },
             }).catch((e) => console.error("GHL sync failed:", e))
         );
+        const ds = result.department_scores;
         syncLeadToNotion({
             name,
             email,
@@ -143,6 +144,9 @@ export async function POST(req: NextRequest) {
             score: result.score,
             savingsRange: `$${result.savings_min.toLocaleString()}–$${result.savings_max.toLocaleString()}`,
             keyFinding: result.key_finding,
+            departmentScores: ds
+                ? `Mkt:${ds.marketing} / Sales:${ds.sales} / Del:${ds.delivery} / Ops:${ds.operations}`
+                : undefined,
             businessType: answers.business_type || answers.business_model,
             teamSize: answers.team_size,
             revenue: answers.revenue,

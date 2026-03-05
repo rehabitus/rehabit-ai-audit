@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { syncLeadToNotion } from "@/lib/notion";
 
 export interface LeadPayload {
     name: string;
@@ -32,16 +31,8 @@ export async function POST(req: NextRequest) {
             },
         }).catch((e) => console.error("GHL sync failed:", e));
 
-        syncLeadToNotion({
-            name: body.name,
-            email: body.email,
-            source: body.mode === "chat" ? "Chat" : "Scorecard",
-            businessType: body.answers.business_type || body.answers.business_model,
-            teamSize: body.answers.team_size,
-            revenue: body.answers.revenue,
-            painPoint: body.answers.pain_point || body.answers.bottleneck,
-            chatTranscript: body.chatTranscript,
-        }).catch((e) => console.error("Notion sync failed:", e));
+        // Notion sync intentionally omitted here — generate-score handles it
+        // with the full dataset (score, grade, savings, key_finding, dept scores)
 
         if (resendKey && notifyEmail) {
             const labelMap: Record<string, { label: string; category: string }> = {
