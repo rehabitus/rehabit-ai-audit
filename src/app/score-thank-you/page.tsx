@@ -109,7 +109,7 @@ function ScoreThankYouContent() {
                     </ul>
                 </motion.div>
 
-                {/* TODO (roadmap): Bonus callout — re-enable once video walkthrough offer is ready */
+                {/* TODO (roadmap): Bonus callout — re-enable once video walkthrough offer is ready */}
 
                 {/* Back to page */}
                 <motion.div
