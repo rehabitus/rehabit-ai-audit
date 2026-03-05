@@ -1,4 +1,7 @@
+import { syncLeadToNotion } from "@/lib/notion";
 import { NextRequest, NextResponse } from "next/server";
+
+export const maxDuration = 60; // seconds — gpt-4o needs room to breathe
 
 export interface ScoreResult {
     score: number;
@@ -128,22 +131,38 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Invalid JSON from OpenAI" }, { status: 500 });
         }
 
-        // Send the score email
-        await sendScoreEmail({ name, email, result });
-
-        // Sync lead to GHL (including score results)
-        const { syncLeadToGHL } = await import("@/lib/crm");
-        await syncLeadToGHL({
+        // Fire-and-forget — don't block the response
+        sendScoreEmail({ name, email, result }).catch((e) =>
+            console.error("Score email failed:", e)
+        );
+        import("@/lib/crm").then(({ syncLeadToGHL }) =>
+            syncLeadToGHL({
+                name,
+                email,
+                source: "AI Scorecard Generated",
+                tags: ["AI Scorecard", `Grade-${result.grade}`, "Qualified Lead"],
+                customFields: {
+                    ai_readiness_score: result.score,
+                    ai_readiness_grade: result.grade,
+                    potential_savings: `${result.savings_min}-${result.savings_max}`,
+                },
+            }).catch((e) => console.error("GHL sync failed:", e))
+        );
+        syncLeadToNotion({
             name,
             email,
-            source: "AI Scorecard Generated",
-            tags: ["AI Scorecard", `Grade-${result.grade}`, "Qualified Lead"],
-            customFields: {
-                ai_readiness_score: result.score,
-                ai_readiness_grade: result.grade,
-                potential_savings: `${result.savings_min}-${result.savings_max}`
-            }
-        });
+            website,
+            source: chatTranscript ? "Chat" : "Scorecard",
+            grade: result.grade,
+            score: result.score,
+            savingsRange: `$${result.savings_min.toLocaleString()}–$${result.savings_max.toLocaleString()}`,
+            keyFinding: result.key_finding,
+            businessType: answers.business_type || answers.business_model,
+            teamSize: answers.team_size,
+            revenue: answers.revenue,
+            painPoint: answers.pain_point || answers.bottleneck,
+            chatTranscript,
+        }).catch((e) => console.error("Notion sync failed:", e));
 
         return NextResponse.json({ success: true, score: result.score });
     } catch (err) {
@@ -161,7 +180,7 @@ async function sendScoreEmail({
     email: string;
     result: ScoreResult;
 }) {
-    const resendKey = process.env.RESEND_API_KEY;
+    const resendKey = process.env.RESEND_API_KEY_TOKEN;
     if (!resendKey) return;
 
     const { buildScoreEmail } = await import("@/lib/emailTemplate");
