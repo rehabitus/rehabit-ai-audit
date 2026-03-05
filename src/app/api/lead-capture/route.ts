@@ -161,9 +161,9 @@ export async function POST(req: NextRequest) {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    from: "leads@rehabit.biz",
+                    from: "rehabit.ai Leads <leads@rehabit.biz>",
                     to: notifyEmail,
-                    subject: `New Lead: ${body.name} (${body.email})`,
+                    subject: `New Scorecard Lead: ${body.name} — ${body.answers.revenue || body.answers.business_model || body.email}`,
                     html: htmlEmail,
                     text: plainText,
                 }),

@@ -236,7 +236,7 @@ async function sendFallbackEmail({ name, email }: { name: string; email: string 
         method: "POST",
         headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-            from: "Mike @ rehabit.ai <score@rehabit.biz>",
+            from: "Mike Olaski — rehabit.ai <score@rehabit.biz>",
             to: email,
             subject: "Your AI Readiness Score is generating — rehabit.ai",
             reply_to: "mike@rehabit.ai",
@@ -269,7 +269,7 @@ async function sendScoreEmail({
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            from: "Mike @ rehabit.ai <score@rehabit.biz>",
+            from: "Mike Olaski — rehabit.ai <score@rehabit.biz>",
             to: email,
             subject: `Your AI Score: ${result.grade} (${result.score}/100) — $${Math.round(result.savings_min / 1000)}K–$${Math.round(result.savings_max / 1000)}K savings identified`,
             reply_to: "mike@rehabit.ai",
