@@ -76,11 +76,6 @@ Rules:
 `;
 
 export async function POST(req: NextRequest) {
-    const apiKey = process.env.OPENAI_API_KEY;
-    if (!apiKey) {
-        return NextResponse.json({ error: "OpenAI not configured" }, { status: 503 });
-    }
-
     const {
         name,
         email,
@@ -89,6 +84,13 @@ export async function POST(req: NextRequest) {
         chatTranscript,
     }: { name: string; email: string; website?: string; answers: Record<string, string>; chatTranscript?: string } =
         await req.json();
+
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+        console.error("generate-score: OPENAI_API_KEY not set");
+        sendFallbackEmail({ name, email }).catch(() => {});
+        return NextResponse.json({ error: "OpenAI not configured" }, { status: 503 });
+    }
 
     try {
         const response = await fetch("https://api.openai.com/v1/chat/completions", {
@@ -116,7 +118,8 @@ export async function POST(req: NextRequest) {
 
         if (!response.ok) {
             const err = await response.text();
-            console.error("OpenAI error:", err);
+            console.error("OpenAI error:", response.status, err);
+            sendFallbackEmail({ name, email }).catch(() => {});
             return NextResponse.json({ error: "OpenAI request failed" }, { status: 500 });
         }
 
@@ -128,6 +131,7 @@ export async function POST(req: NextRequest) {
             result = JSON.parse(raw);
         } catch {
             console.error("Failed to parse score JSON:", raw);
+            sendFallbackEmail({ name, email }).catch(() => {});
             return NextResponse.json({ error: "Invalid JSON from OpenAI" }, { status: 500 });
         }
 
@@ -167,8 +171,26 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ success: true, score: result.score });
     } catch (err) {
         console.error("generate-score error:", err);
+        sendFallbackEmail({ name, email }).catch(() => {});
         return NextResponse.json({ error: "Internal error" }, { status: 500 });
     }
+}
+
+async function sendFallbackEmail({ name, email }: { name: string; email: string }) {
+    const resendKey = process.env.RESEND_API_KEY_TOKEN;
+    if (!resendKey) return;
+    const { buildApplicationReceivedEmail } = await import("@/lib/emailTemplate");
+    await fetch("https://api.resend.com/emails", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+            from: "AI Score <score@rehabit.biz>",
+            to: email,
+            subject: "Your AI Readiness Scorecard — We're on it",
+            reply_to: "support@rehabit.ai",
+            html: buildApplicationReceivedEmail({ name }),
+        }),
+    });
 }
 
 async function sendScoreEmail({
