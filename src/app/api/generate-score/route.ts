@@ -175,8 +175,11 @@ async function callLLM(userPrompt: string): Promise<string> {
     const openaiKey = process.env.OPENAI_API_KEY;
     if (openaiKey) {
         try {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 20_000);
             const res = await fetch("https://api.openai.com/v1/chat/completions", {
                 method: "POST",
+                signal: controller.signal,
                 headers: { Authorization: `Bearer ${openaiKey}`, "Content-Type": "application/json" },
                 body: JSON.stringify({
                     model: "gpt-4o",
@@ -187,6 +190,7 @@ async function callLLM(userPrompt: string): Promise<string> {
                     ],
                 }),
             });
+            clearTimeout(timeout);
             if (res.ok) {
                 const data = await res.json();
                 return data.choices?.[0]?.message?.content ?? "{}";
@@ -218,17 +222,24 @@ async function callLLM(userPrompt: string): Promise<string> {
 
     for (const model of ["gemini-2.5-pro", "gemini-2.0-flash"]) {
         try {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 18_000);
             const res = await fetch(geminiEndpoint, {
                 method: "POST",
+                signal: controller.signal,
                 headers: { Authorization: `Bearer ${geminiKey}`, "Content-Type": "application/json" },
                 body: geminiBody(model),
             });
+            clearTimeout(timeout);
             if (res.ok) {
                 const data = await res.json();
                 const content = data.choices?.[0]?.message?.content;
                 if (content) return content;
+                console.warn(`Gemini ${model} returned empty content — trying next model`);
+            } else {
+                const errBody = await res.text().catch(() => "");
+                console.warn(`Gemini ${model} failed (${res.status}): ${errBody.slice(0, 200)} — trying next model`);
             }
-            console.warn(`Gemini ${model} failed (${res.status}) — trying next model`);
         } catch (e) {
             console.warn(`Gemini ${model} threw — trying next model:`, e);
         }
@@ -267,9 +278,8 @@ async function sendFallbackEmail({
     });
 
     // 2. Alert Mike so he can follow up manually
-    const notifyEmail = process.env.LEAD_NOTIFY_EMAIL;
-    if (notifyEmail) {
-        await fetch("https://api.resend.com/emails", {
+    const notifyEmail = process.env.LEAD_NOTIFY_EMAIL ?? "mike@rehabit.ai";
+    await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -279,8 +289,7 @@ async function sendFallbackEmail({
                 reply_to: email,
                 html: buildScoreFailureAlert({ name, email, errorMessage, answers }),
             }),
-        });
-    }
+    });
 }
 
 async function sendScoreEmail({
