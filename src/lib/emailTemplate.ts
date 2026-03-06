@@ -248,7 +248,7 @@ export function buildApplicationReceivedEmail({
 </html>`;
 }
 
-/** Sent when the LLM score generation fails — reassures the user their scorecard is coming */
+/** Sent when the LLM score generation fails — sets honest expectations, prompts a reply */
 export function buildScorecardProcessingEmail({
   name,
 }: {
@@ -259,7 +259,7 @@ export function buildScorecardProcessingEmail({
 
   return `<!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your AI Score is on its way</title></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your AI Score — rehabit.ai</title></head>
 <body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:40px 16px;">
     <tr><td>
@@ -268,14 +268,14 @@ export function buildScorecardProcessingEmail({
         <!-- Header -->
         <tr><td style="padding-bottom:32px;text-align:center;">
           <div style="color:#10b981;font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">rehabit.ai</div>
-          <div style="color:#fff;font-size:24px;font-weight:800;">Your AI Score is Being Generated</div>
+          <div style="color:#fff;font-size:24px;font-weight:800;">We Got Your Scorecard</div>
         </td></tr>
 
         <!-- Body -->
         <tr><td style="background:#1e293b;border-radius:16px;padding:32px;border:1px solid #334155;">
           <p style="color:#e2e8f0;font-size:16px;line-height:1.6;margin-top:0;">Hi ${firstName},</p>
           <p style="color:#94a3b8;font-size:15px;line-height:1.6;">
-            Thanks for completing the AI Opportunity Scorecard. Our AI is still analyzing your Big 4 department responses — your full score report will arrive in a second email within the next few minutes.
+            Thanks for completing the AI Opportunity Scorecard. I'm personally reviewing your Big 4 department responses and will send your full score report shortly.
           </p>
 
           <div style="margin:24px 0;background:#0f172a;border-radius:12px;padding:20px 24px;border-left:3px solid #10b981;">
@@ -289,11 +289,13 @@ export function buildScorecardProcessingEmail({
             </table>
           </div>
 
-          <p style="color:#94a3b8;font-size:14px;line-height:1.6;">Keep an eye on your inbox — it's on its way.</p>
+          <p style="color:#94a3b8;font-size:14px;line-height:1.6;">
+            In the meantime — hit reply if you have any questions or want to jump straight to a conversation about what AI could do for your business.
+          </p>
 
           <div style="margin-top:24px;">
-            <a href="${baseUrl}/scorecard" style="display:inline-block;background:#10b981;color:#0f172a;font-size:14px;font-weight:800;padding:14px 28px;border-radius:10px;text-decoration:none;">
-              Retake the Scorecard →
+            <a href="mailto:mike@rehabit.ai?subject=Re: My AI Scorecard&body=Hi Mike," style="display:inline-block;background:#10b981;color:#0f172a;font-size:14px;font-weight:800;padding:14px 28px;border-radius:10px;text-decoration:none;">
+              Reply to Mike →
             </a>
           </div>
 
@@ -305,6 +307,64 @@ export function buildScorecardProcessingEmail({
         <!-- Footer -->
         <tr><td style="padding:32px 0;text-align:center;color:#334155;font-size:12px;">
           rehabit.ai &mdash; <a href="${baseUrl}" style="color:#475569;text-decoration:none;">audit.rehabit.ai</a>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+/** Internal alert sent to LEAD_NOTIFY_EMAIL when score generation fails */
+export function buildScoreFailureAlert({
+  name,
+  email,
+  errorMessage,
+  answers,
+}: {
+  name: string;
+  email: string;
+  errorMessage: string;
+  answers: Record<string, string>;
+}): string {
+  const answerRows = Object.entries(answers)
+    .map(([k, v]) => `<tr><td style="padding:6px 12px;color:#94a3b8;font-size:12px;border-bottom:1px solid #1e293b;">${k}</td><td style="padding:6px 12px;color:#e2e8f0;font-size:12px;font-weight:600;border-bottom:1px solid #1e293b;">${v}</td></tr>`)
+    .join("");
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><title>Score Generation Failed</title></head>
+<body style="margin:0;padding:0;background:#0f172a;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0f172a;padding:32px 16px;">
+    <tr><td>
+      <table width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;margin:0 auto;">
+
+        <tr><td style="padding-bottom:24px;">
+          <div style="background:#ef444420;border:1px solid #ef444440;border-radius:12px;padding:16px 20px;">
+            <div style="color:#ef4444;font-size:12px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px;">Score Generation Failed</div>
+            <div style="color:#fca5a5;font-size:14px;font-weight:700;">${name} &lt;${email}&gt;</div>
+          </div>
+        </td></tr>
+
+        <tr><td style="background:#1e293b;border-radius:12px;padding:20px;border:1px solid #334155;margin-bottom:16px;">
+          <div style="color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Error</div>
+          <div style="background:#0f172a;border-radius:8px;padding:12px;color:#fca5a5;font-family:monospace;font-size:12px;line-height:1.6;word-break:break-all;">${errorMessage}</div>
+        </td></tr>
+
+        <tr><td style="height:12px;"></td></tr>
+
+        <tr><td style="background:#1e293b;border-radius:12px;overflow:hidden;border:1px solid #334155;">
+          <div style="padding:14px 16px;color:#94a3b8;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Lead Survey Answers</div>
+          <table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #334155;">${answerRows}</table>
+        </td></tr>
+
+        <tr><td style="height:16px;"></td></tr>
+
+        <tr><td style="text-align:center;">
+          <a href="mailto:${email}?subject=Your AI Readiness Score — rehabit.ai&body=Hi ${name}," style="display:inline-block;background:#10b981;color:#0f172a;font-size:13px;font-weight:800;padding:12px 24px;border-radius:10px;text-decoration:none;">
+            Reply to ${name} manually →
+          </a>
         </td></tr>
 
       </table>
