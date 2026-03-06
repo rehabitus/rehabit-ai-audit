@@ -39,7 +39,7 @@ export async function GET() {
         results.gemini_2_5_pro = { status: "skipped", reason: "GEMINI_API_KEY not set" };
         results.gemini_2_0_flash = { status: "skipped", reason: "GEMINI_API_KEY not set" };
     } else {
-        for (const model of ["gemini-2.5-pro", "gemini-2.0-flash"] as const) {
+        for (const model of ["gemini-2.5-pro", "gemini-2.0-flash-001"] as const) {
             const key = model.replace(/\./g, "_").replace(/-/g, "_");
             try {
                 const controller = new AbortController();

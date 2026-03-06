@@ -232,10 +232,11 @@ async function callLLM(userPrompt: string): Promise<string> {
             ],
         });
 
-    for (const model of ["gemini-2.5-pro", "gemini-2.0-flash"]) {
+    for (const model of ["gemini-2.5-pro", "gemini-2.0-flash-001"]) {
         try {
             const controller = new AbortController();
-            const timeout = setTimeout(() => controller.abort(), 18_000);
+            // 2.5-pro needs more time on large prompts; flash is a quick fallback
+            const timeout = setTimeout(() => controller.abort(), model === "gemini-2.5-pro" ? 40_000 : 15_000);
             const res = await fetch(geminiEndpoint, {
                 method: "POST",
                 signal: controller.signal,
@@ -257,7 +258,7 @@ async function callLLM(userPrompt: string): Promise<string> {
         }
     }
 
-    throw new Error("All LLM providers failed (OpenAI + Gemini 2.5-pro + Gemini 2.0-flash)");
+    throw new Error("All LLM providers failed (OpenAI + Gemini 2.5-pro + Gemini 2.0-flash-001)");
 }
 
 async function sendFallbackEmail({
