@@ -160,6 +160,18 @@ export async function POST(req: NextRequest) {
         const errorMessage = err instanceof Error ? err.message : String(err);
         console.error("generate-score error:", errorMessage);
         sendFallbackEmail({ name, email, errorMessage, answers }).catch(() => {});
+        // Still capture the lead in Notion even without a score
+        syncLeadToNotion({
+            name,
+            email,
+            website,
+            source: chatTranscript ? "Chat" : "Scorecard",
+            businessType: answers.business_type || answers.business_model,
+            teamSize: answers.team_size,
+            revenue: answers.revenue,
+            painPoint: answers.pain_point || answers.bottleneck,
+            chatTranscript,
+        }).catch((e) => console.error("Notion sync (fallback) failed:", e));
         return NextResponse.json({ error: "Score generation failed" }, { status: 500 });
     }
 }
