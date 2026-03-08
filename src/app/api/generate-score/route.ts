@@ -320,7 +320,8 @@ async function sendScoreEmail({
     if (!resendKey) return;
 
     const { buildScoreEmail } = await import("@/lib/emailTemplate");
-    const html = buildScoreEmail({ name, result, resultsUrl });
+    const { priceUsd } = await import("@/lib/pricing").then(m => ({ priceUsd: m.getCurrentPricing().priceUsd }));
+    const html = buildScoreEmail({ name, result, resultsUrl, priceUsd });
 
     await fetch("https://api.resend.com/emails", {
         method: "POST",

@@ -4,10 +4,12 @@ export function buildScoreEmail({
   name,
   result,
   resultsUrl,
+  priceUsd = 1200,
 }: {
   name: string;
   result: ScoreResult;
   resultsUrl: string;
+  priceUsd?: number;
 }): string {
   const firstName = name.split(" ")[0] || "there";
   const gradeColor = result.score >= 75 ? "#10b981" : result.score >= 55 ? "#f59e0b" : "#ef4444";
@@ -143,7 +145,7 @@ export function buildScoreEmail({
           <div style="color:#fff;font-size:15px;font-weight:700;margin-bottom:8px;">Our 5-day AI Transformation Audit turns your scorecard into a built system.</div>
           <div style="color:#94a3b8;font-size:13px;line-height:1.6;margin-bottom:16px;">Exact tools, costs, ROI projections — and your first Core AI System built in the same window. Guaranteed to uncover $20K+ in savings.</div>
           <a href="${baseUrl}" style="display:inline-block;background:transparent;color:#f59e0b;font-size:13px;font-weight:700;padding:10px 20px;border-radius:10px;text-decoration:none;border:1px solid #f59e0b44;">
-            Reserve My Audit Slot ($1,200) &rarr;
+            Reserve My Audit Slot ($${priceUsd.toLocaleString()}) &rarr;
           </a>
         </td></tr>
 
