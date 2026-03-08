@@ -38,8 +38,12 @@ export async function GET(req: NextRequest) {
     try {
         const stripe = getStripe();
         const sessions = await stripe.checkout.sessions.list({ limit: 100, created: { gte: since } });
-        checkoutStarts = sessions.data.length;
-        const paid = sessions.data.filter((s) => s.payment_status === "paid");
+        // Filter to Audit product only: metadata tag (new sessions) or amount >= $1,000 (historical)
+        const auditSessions = sessions.data.filter(
+            (s) => s.metadata?.product === "ai_transformation_audit" || (s.amount_total ?? 0) >= 40000
+        );
+        checkoutStarts = auditSessions.length;
+        const paid = auditSessions.filter((s) => s.payment_status === "paid");
         purchaseCount = paid.length;
         revenue = paid.reduce((sum, s) => sum + (s.amount_total ?? 0), 0) / 100;
     } catch {
@@ -48,7 +52,10 @@ export async function GET(req: NextRequest) {
 
     // — GA4 data —
     const ga4PropertyId = process.env.GA4_PROPERTY_ID ?? "";
-    const hasGA4 = !!process.env.GOOGLE_SERVICE_ACCOUNT_JSON && !!ga4PropertyId;
+    const hasGA4 = !!ga4PropertyId && (
+        (!!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET && !!process.env.GOOGLE_REFRESH_TOKEN)
+        || !!process.env.GOOGLE_SERVICE_ACCOUNT_JSON
+    );
     const ga4 = hasGA4
         ? await getGA4Metrics(ga4PropertyId, days)
         : { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null };

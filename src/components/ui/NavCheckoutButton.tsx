@@ -2,13 +2,14 @@
 
 import { useState } from "react";
 import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
+import { getCurrentPricing } from "@/lib/pricing";
 
 export function NavCheckoutButton() {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
     trackCtaClick("Reserve Your Slot", "nav");
-    trackBeginCheckout("nav");
+    trackBeginCheckout("nav", getCurrentPricing().priceUsd);
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {

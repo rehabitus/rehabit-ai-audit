@@ -12,6 +12,7 @@ export async function POST(req: Request) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
+      metadata: { product: "ai_transformation_audit" },
       line_items: [
         {
           price_data: {
