@@ -7,6 +7,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const pathname = usePathname();
     const router = useRouter();
 
+    // Login page renders standalone — no nav
+    if (pathname === "/admin/login") {
+        return <>{children}</>;
+    }
+
     const logout = async () => {
         await fetch("/api/admin/auth", { method: "DELETE" });
         router.push("/admin/login");
