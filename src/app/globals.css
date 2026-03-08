@@ -5,6 +5,7 @@
 :root {
   --background: #0F172A;
   --foreground: #F1F5F9;
+  --font-comfortaa: 'Comfortaa', system-ui, sans-serif;
 }
 
 html {

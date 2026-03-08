@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "release": "commit-and-tag-version"
   },
   "dependencies": {
     "@react-three/drei": "^9.122.0",
@@ -26,6 +27,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/three": "^0.182.0",
+    "commit-and-tag-version": "^12.6.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "postcss": "^8",

@@ -75,6 +75,11 @@ function ScorecardResultsContent() {
     const token = params.get("token");
     const result = token ? decodeToken(token) : null;
 
+    const [priceUsd, setPriceUsd] = useState<number>(1200);
+    useEffect(() => {
+        fetch("/api/pricing").then(r => r.json()).then(d => { if (d.priceUsd) setPriceUsd(d.priceUsd); }).catch(() => {});
+    }, []);
+
     if (!result) {
         return (
             <main className="min-h-screen bg-[#0F172A] flex flex-col items-center justify-center px-4">
@@ -94,11 +99,6 @@ function ScorecardResultsContent() {
             </main>
         );
     }
-
-    const [priceUsd, setPriceUsd] = useState<number>(1200);
-    useEffect(() => {
-        fetch("/api/pricing").then(r => r.json()).then(d => { if (d.priceUsd) setPriceUsd(d.priceUsd); }).catch(() => {});
-    }, []);
 
     const depts = result.department_scores ?? { marketing: 0, sales: 0, delivery: 0, operations: 0 };
     const minScore = Math.min(...Object.values(depts));
