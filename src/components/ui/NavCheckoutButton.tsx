@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { trackCtaClick } from "@/lib/analytics";
+import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 
 export function NavCheckoutButton() {
   const [loading, setLoading] = useState(false);
 
   async function handleClick() {
     trackCtaClick("Reserve Your Slot", "nav");
+    trackBeginCheckout("nav");
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {
@@ -17,7 +18,7 @@ export function NavCheckoutButton() {
       });
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        navigateAfterTracking(data.url);
       } else {
         document.getElementById("reserve")?.scrollIntoView({ behavior: "smooth" });
         setLoading(false);
