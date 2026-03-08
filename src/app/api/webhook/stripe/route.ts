@@ -53,8 +53,8 @@ export async function POST(req: NextRequest) {
             });
 
             // 2. Send emails via Resend
-            const resendKey = process.env.RESEND_API_KEY;
-            const notifyEmail = process.env.NOTIFICATION_EMAIL || "mike@rehabit.us";
+            const resendKey = process.env.RESEND_API_KEY_TOKEN ?? process.env.RESEND_API_KEY;
+            const notifyEmail = process.env.LEAD_NOTIFY_EMAIL ?? process.env.NOTIFICATION_EMAIL ?? "mike@rehabit.us";
             if (resendKey) {
                 const { buildBookingSuccessEmail } = await import("@/lib/emailTemplate");
                 const html = buildBookingSuccessEmail({ name: customerName, amountPaid: amountTotal });

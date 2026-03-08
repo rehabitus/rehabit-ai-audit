@@ -102,6 +102,17 @@ export const trackScorecardLinkClick = () => {
   ga("scorecard_link_click");
 };
 
+// ── Video ────────────────────────────────────────────────────────
+export const trackVideoPlay = () => {
+  track("video_play");
+  ga("video_play");
+};
+
+export const trackVideoProgress = (depth: 25 | 50 | 75 | 100) => {
+  track("video_progress", { depth });
+  ga("video_progress", { depth, non_interaction: true });
+};
+
 // ── Scroll depth ────────────────────────────────────────────────
 export const trackScrollDepth = (depth: 25 | 50 | 75 | 100) => {
   track("scroll_depth", { depth });
