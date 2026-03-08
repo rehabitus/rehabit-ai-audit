@@ -13,28 +13,6 @@ interface Props {
     onComplete: (transcript: string) => void;
 }
 
-// Polyfill types for Web Speech API
-interface SpeechRecognitionEvent extends Event {
-    results: SpeechRecognitionResultList;
-}
-
-interface SpeechRecognition extends EventTarget {
-    continuous: boolean;
-    interimResults: boolean;
-    lang: string;
-    start(): void;
-    stop(): void;
-    onresult: ((event: SpeechRecognitionEvent) => void) | null;
-    onerror: ((event: Event) => void) | null;
-    onend: (() => void) | null;
-}
-
-declare global {
-    interface Window {
-        SpeechRecognition?: new () => SpeechRecognition;
-        webkitSpeechRecognition?: new () => SpeechRecognition;
-    }
-}
 
 export function ScorecardChat({ name, onComplete }: Props) {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -42,10 +20,12 @@ export function ScorecardChat({ name, onComplete }: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [initError, setInitError] = useState(false);
     const [isListening, setIsListening] = useState(false);
+    const [isTranscribing, setIsTranscribing] = useState(false);
     const [micError, setMicError] = useState<string | null>(null);
     const [isComplete, setIsComplete] = useState(false);
     const bottomRef = useRef<HTMLDivElement>(null);
-    const recognitionRef = useRef<SpeechRecognition | null>(null);
+    const mediaRecorderRef = useRef<MediaRecorder | null>(null);
+    const audioChunksRef = useRef<Blob[]>([]);
     const messagesRef = useRef<Message[]>([]);
 
     useEffect(() => {
@@ -152,51 +132,64 @@ export function ScorecardChat({ name, onComplete }: Props) {
         await streamResponse(newMessages);
     };
 
-    const toggleVoice = () => {
-        const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognitionAPI) {
-            setMicError("Voice input isn't supported in this browser. Try Chrome.");
-            return;
-        }
-
+    const toggleVoice = async () => {
+        // Stop recording if already active
         if (isListening) {
-            recognitionRef.current?.stop();
-            setIsListening(false);
+            mediaRecorderRef.current?.stop();
             return;
         }
 
         setMicError(null);
-        const recognition = new SpeechRecognitionAPI();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = "en-US";
-        recognitionRef.current = recognition;
 
-        recognition.onresult = (e: SpeechRecognitionEvent) => {
-            const transcript = e.results[0][0].transcript;
-            setInput(transcript);
-            setIsListening(false);
-            setTimeout(() => handleSend(transcript), 300);
+        // Request mic access explicitly — gives a clear browser permission prompt
+        let stream: MediaStream;
+        try {
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch {
+            setMicError("Microphone access denied. Please allow mic access in your browser settings and try again.");
+            return;
+        }
+
+        const mimeType = MediaRecorder.isTypeSupported("audio/webm") ? "audio/webm" : "audio/ogg";
+        const recorder = new MediaRecorder(stream, { mimeType });
+        mediaRecorderRef.current = recorder;
+        audioChunksRef.current = [];
+
+        recorder.ondataavailable = (e) => {
+            if (e.data.size > 0) audioChunksRef.current.push(e.data);
         };
-        recognition.onerror = (e: Event) => {
+
+        recorder.onstop = async () => {
+            stream.getTracks().forEach((t) => t.stop());
             setIsListening(false);
-            const errEvent = e as Event & { error?: string };
-            if (errEvent.error === "not-allowed" || errEvent.error === "permission-denied") {
-                setMicError("Microphone access denied. Please allow mic permission in your browser and try again.");
-            } else if (errEvent.error === "no-speech") {
-                setMicError("No speech detected. Try again.");
-            } else {
-                setMicError("Voice input error. Please type your answer instead.");
+
+            const audioBlob = new Blob(audioChunksRef.current, { type: mimeType });
+            if (audioBlob.size < 1000) {
+                // Too short — likely no speech
+                return;
+            }
+
+            setIsTranscribing(true);
+            try {
+                const form = new FormData();
+                form.append("audio", audioBlob, "audio.webm");
+                const res = await fetch("/api/transcribe", { method: "POST", body: form });
+                const data = await res.json();
+                if (data.transcript?.trim()) {
+                    setInput(data.transcript.trim());
+                    setTimeout(() => handleSend(data.transcript.trim()), 100);
+                } else {
+                    setMicError("Couldn't make out what you said. Try again or type your answer.");
+                }
+            } catch {
+                setMicError("Transcription failed. Please type your answer.");
+            } finally {
+                setIsTranscribing(false);
             }
         };
-        recognition.onend = () => setIsListening(false);
 
-        try {
-            recognition.start();
-            setIsListening(true);
-        } catch {
-            setMicError("Could not start voice input. Please type your answer instead.");
-        }
+        recorder.start();
+        setIsListening(true);
     };
 
     return (
@@ -267,14 +260,24 @@ export function ScorecardChat({ name, onComplete }: Props) {
                         />
                         <button
                             onClick={toggleVoice}
+                            disabled={isTranscribing}
+                            title={isListening ? "Click to stop recording" : "Click to speak"}
                             className={`flex h-12 w-12 items-center justify-center rounded-xl border transition-all ${isListening
                                 ? "border-brand-red bg-brand-red/20 text-brand-red animate-pulse"
-                                : "border-white/10 bg-black/40 text-slate-400 hover:border-brand-green hover:text-brand-green"
+                                : isTranscribing
+                                    ? "border-brand-gold/50 bg-brand-gold/10 text-brand-gold cursor-wait"
+                                    : "border-white/10 bg-black/40 text-slate-400 hover:border-brand-green hover:text-brand-green"
                                 }`}
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
-                            </svg>
+                            {isTranscribing ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5 animate-spin">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                                </svg>
+                            ) : (
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-5 w-5">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 18.75a6 6 0 0 0 6-6v-1.5m-6 7.5a6 6 0 0 1-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 0 1-3-3V4.5a3 3 0 1 1 6 0v8.25a3 3 0 0 1-3 3Z" />
+                                </svg>
+                            )}
                         </button>
                         <button
                             onClick={() => handleSend()}
