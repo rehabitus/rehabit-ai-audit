@@ -133,7 +133,6 @@ export function ScorecardChat({ name, onComplete }: Props) {
     };
 
     const toggleVoice = async () => {
-        // Stop recording if already active
         if (isListening) {
             mediaRecorderRef.current?.stop();
             return;
@@ -158,6 +157,7 @@ export function ScorecardChat({ name, onComplete }: Props) {
         recorder.ondataavailable = (e) => {
             if (e.data.size > 0) audioChunksRef.current.push(e.data);
         };
+<<<<<<< HEAD
 
         recorder.onstop = async () => {
             stream.getTracks().forEach((t) => t.stop());
