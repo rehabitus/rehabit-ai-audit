@@ -15,10 +15,33 @@ function ga(eventName: string, params?: Record<string, unknown>) {
   }
 }
 
+// LinkedIn conversion helper — set conversion_id in Campaign Manager → Conversions
+const LINKEDIN_PURCHASE_CONVERSION_ID = 0; // TODO: replace with your LinkedIn conversion ID
+
+function linkedInTrack(conversionId: number) {
+  try {
+    if (conversionId && typeof window !== "undefined" && typeof (window as unknown as { lintrk?: (a: string, b: object) => void }).lintrk === "function") {
+      (window as unknown as { lintrk: (a: string, b: object) => void }).lintrk("track", { conversion_id: conversionId });
+    }
+  } catch {
+    // fail silently
+  }
+}
+
 // ── CTA / Checkout ──────────────────────────────────────────────
 export const trackCtaClick = (label: string, location: "nav" | "hero" | "pricing" | "final_cta" | "other" = "other") => {
   track("cta_click", { label, location });
   ga("cta_click", { label, location });
+};
+
+export const trackBeginCheckout = (location: "nav" | "hero" | "pricing" | "final_cta" | "other" = "other") => {
+  track("begin_checkout", { location });
+  ga("begin_checkout", {
+    currency: "USD",
+    value: 1200,
+    items: [{ item_name: "AI Transformation Audit", price: 1200, quantity: 1 }],
+    location,
+  });
 };
 
 export const trackPurchase = (sessionId: string, priceUsd: number) => {
@@ -29,6 +52,7 @@ export const trackPurchase = (sessionId: string, priceUsd: number) => {
     currency: "USD",
     items: [{ item_name: "AI Transformation Audit", price: priceUsd, quantity: 1 }],
   });
+  linkedInTrack(LINKEDIN_PURCHASE_CONVERSION_ID);
 };
 
 // ── Lead capture flows ──────────────────────────────────────────

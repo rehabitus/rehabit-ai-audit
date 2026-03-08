@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trackCtaClick } from "@/lib/analytics";
+import { trackCtaClick, trackBeginCheckout } from "@/lib/analytics";
 
 interface CTAButtonProps {
   children: React.ReactNode;
@@ -14,6 +14,7 @@ export function CTAButton({ children, className = "", location = "other" }: CTAB
 
   async function handleClick() {
     trackCtaClick(typeof children === "string" ? children : "Main CTA", location);
+    trackBeginCheckout(location);
     setLoading(true);
     try {
       const res = await fetch("/api/checkout", {

@@ -18,12 +18,14 @@ import { ExitIntentModal } from "@/components/ui/ExitIntentModal";
 import { CTAButton } from "@/components/ui/CTAButton";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { useSectionView } from "@/hooks/useSectionView";
+import { useConversionTracking } from "@/hooks/useConversionTracking";
 
 const SECTION_IDS = ["hero", "problem", "why-now", "offer", "outcomes", "deliverables", "process", "trust", "pricing", "faq", "reserve"];
 
 export default function Home() {
   useScrollDepth();
   useSectionView(SECTION_IDS);
+  useConversionTracking();
 
   return (
     <main className="overflow-x-hidden" id="main-content">
