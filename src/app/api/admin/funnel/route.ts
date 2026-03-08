@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
 import { getGA4Metrics } from "@/lib/ga4";
+import { getLinkedInMetrics } from "@/lib/linkedin";
 import { isAdminAuthenticated } from "@/lib/adminAuth";
 
 export interface FunnelStep {
@@ -60,9 +61,17 @@ export async function GET(req: NextRequest) {
         ? await getGA4Metrics(ga4PropertyId, days)
         : { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null };
 
-    // — Manual / env inputs —
-    const adSpendRaw = process.env.LINKEDIN_AD_SPEND;
-    const adSpend = adSpendRaw ? parseFloat(adSpendRaw) : null;
+    // — LinkedIn API data —
+    const linkedInAccountId = process.env.LINKEDIN_AD_ACCOUNT_ID ?? "";
+    const hasLinkedIn = !!linkedInAccountId && !!process.env.LINKEDIN_CLIENT_ID
+        && !!process.env.LINKEDIN_CLIENT_SECRET && !!process.env.LINKEDIN_REFRESH_TOKEN;
+    const li = hasLinkedIn
+        ? await getLinkedInMetrics(linkedInAccountId, days)
+        : { spend: null, clicks: null, impressions: null, cpc: null };
+
+    // Fall back to manual ad spend env var if LinkedIn API not connected
+    const manualSpend = process.env.LINKEDIN_AD_SPEND ? parseFloat(process.env.LINKEDIN_AD_SPEND) : null;
+    const adSpend = li.spend ?? manualSpend;
     const costPerPurchase = adSpend && purchaseCount > 0 ? adSpend / purchaseCount : null;
 
     const steps: FunnelStep[] = [
@@ -73,20 +82,20 @@ export async function GET(req: NextRequest) {
             value: adSpend,
             formatted: adSpend != null ? `$${adSpend.toLocaleString("en-US")}` : null,
             detail: costPerPurchase != null ? `$${costPerPurchase.toFixed(0)} cost per purchase` : null,
-            source: "manual",
+            source: hasLinkedIn ? "linkedin" : "manual",
             connected: adSpend != null,
-            note: adSpend == null ? "Add LINKEDIN_AD_SPEND to Vercel env vars (e.g. 500)" : null,
+            note: adSpend == null ? "Add LINKEDIN_AD_ACCOUNT_ID + OAuth env vars" : null,
         },
         {
             id: "ad_clicks",
             label: "Ad Clicks",
             sublabel: "LinkedIn Campaign Manager",
-            value: null,
-            formatted: null,
-            detail: null,
+            value: li.clicks,
+            formatted: li.clicks != null ? li.clicks.toLocaleString("en-US") : null,
+            detail: li.cpc != null ? `$${li.cpc.toFixed(2)} CPC` : null,
             source: "linkedin",
-            connected: false,
-            note: "LinkedIn Ads API — connect on Integrations page",
+            connected: hasLinkedIn && li.clicks != null,
+            note: hasLinkedIn ? null : "Add LINKEDIN_AD_ACCOUNT_ID + OAuth env vars",
         },
         {
             id: "pageviews",
