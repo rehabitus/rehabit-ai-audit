@@ -1,22 +1,37 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
+import { OAuth2Client } from "google-auth-library";
 
 export interface GA4Metrics {
-    pageviews: number | null;           // linkedin-sourced landing page views
-    scorecardStarts: number | null;     // /scorecard page visits
+    pageviews: number | null;            // linkedin-sourced landing page views
+    scorecardStarts: number | null;      // /scorecard page visits
     scorecardCompletions: number | null; // scorecard_complete events
-    discoveryClicks: number | null;     // book_call_click events
+    discoveryClicks: number | null;      // book_call_click events
 }
 
 function getClient(): BetaAnalyticsDataClient | null {
-    const json = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-    if (!json) return null;
+    const clientId = process.env.GOOGLE_CLIENT_ID;
+    const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    const refreshToken = process.env.GOOGLE_REFRESH_TOKEN;
 
-    try {
-        const credentials = JSON.parse(json);
-        return new BetaAnalyticsDataClient({ credentials });
-    } catch {
-        return null;
+    // Legacy: service account JSON (kept for backwards compat)
+    const serviceAccountJson = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+
+    if (clientId && clientSecret && refreshToken) {
+        const oauth2 = new OAuth2Client(clientId, clientSecret);
+        oauth2.setCredentials({ refresh_token: refreshToken });
+        return new BetaAnalyticsDataClient({ authClient: oauth2 as never });
     }
+
+    if (serviceAccountJson) {
+        try {
+            const credentials = JSON.parse(serviceAccountJson);
+            return new BetaAnalyticsDataClient({ credentials });
+        } catch {
+            return null;
+        }
+    }
+
+    return null;
 }
 
 export async function getGA4Metrics(propertyId: string, days: number): Promise<GA4Metrics> {
@@ -75,7 +90,6 @@ export async function getGA4Metrics(propertyId: string, days: number): Promise<G
             const count = parseInt(row.metricValues?.[0]?.value ?? "0", 10);
             if (eventName === "scorecard_complete") scorecardCompletions = count;
             if (eventName === "book_call_click") discoveryClicks = count;
-            // scorecard_starts: we use page_view on /scorecard — handled via path filter below
         }
 
         // Scorecard starts: page_view on /scorecard path

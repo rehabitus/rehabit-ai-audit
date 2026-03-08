@@ -1,17 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createHash } from "crypto";
 
-function expectedToken(): string | undefined {
+async function expectedToken(): Promise<string | undefined> {
     if (!process.env.ADMIN_PASSWORD) return undefined;
-    return createHash("sha256").update(`admin-session:${process.env.ADMIN_PASSWORD}`).digest("hex");
+    const encoder = new TextEncoder();
+    const data = encoder.encode(`admin-session:${process.env.ADMIN_PASSWORD}`);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(hashBuffer))
+        .map((b) => b.toString(16).padStart(2, "0"))
+        .join("");
 }
 
-export function middleware(req: NextRequest) {
+export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
     if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
         const token = req.cookies.get("admin_token")?.value;
-        const expected = expectedToken();
+        const expected = await expectedToken();
 
         if (!expected || !token || token !== expected) {
             const loginUrl = new URL("/admin/login", req.url);

@@ -29,7 +29,8 @@ export default async function IntegrationsPage() {
     // Read env vars server-side to show real status
     const hasStripe = !!process.env.STRIPE_SECRET_KEY;
     const hasLinkedInSpend = !!process.env.LINKEDIN_AD_SPEND;
-    const hasGA4 = !!process.env.GOOGLE_SERVICE_ACCOUNT_JSON && !!process.env.GA4_PROPERTY_ID;
+    const hasGA4 = (!!process.env.GOOGLE_CLIENT_ID && !!process.env.GOOGLE_CLIENT_SECRET && !!process.env.GOOGLE_REFRESH_TOKEN && !!process.env.GA4_PROPERTY_ID)
+        || (!!process.env.GOOGLE_SERVICE_ACCOUNT_JSON && !!process.env.GA4_PROPERTY_ID);
     const hasAdminPw = !!process.env.ADMIN_PASSWORD;
 
     const integrations: Integration[] = [
@@ -45,11 +46,11 @@ export default async function IntegrationsPage() {
             name: "Google Analytics 4",
             description: "Pageviews, traffic sources, scorecard funnel, CTA click events.",
             status: hasGA4 ? "connected" : "not_connected",
-            envVar: "GOOGLE_SERVICE_ACCOUNT_JSON + GA4_PROPERTY_ID",
-            docsUrl: "https://console.cloud.google.com/iam-admin/serviceaccounts",
+            envVar: "GOOGLE_CLIENT_ID + GOOGLE_CLIENT_SECRET + GOOGLE_REFRESH_TOKEN + GA4_PROPERTY_ID",
+            docsUrl: "https://console.cloud.google.com/apis/credentials",
             note: hasGA4
                 ? "GA4 data active."
-                : "1) Create a Google service account, give it Viewer access to your GA4 property, paste the JSON into GOOGLE_SERVICE_ACCOUNT_JSON. 2) Add GA4_PROPERTY_ID (numeric ID from GA4 Admin → Property Settings).",
+                : "Create an OAuth2 client in Google Cloud Console → run one-time auth flow to get a refresh token → add all 4 env vars.",
         },
         {
             name: "LinkedIn Ad Spend",

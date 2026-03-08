@@ -53,12 +53,12 @@ export const trackCtaClick = (label: string, location: "nav" | "hero" | "pricing
   ga("cta_click", { label, location });
 };
 
-export const trackBeginCheckout = (location: "nav" | "hero" | "pricing" | "final_cta" | "other" = "other") => {
+export const trackBeginCheckout = (location: "nav" | "hero" | "pricing" | "final_cta" | "other" = "other", priceUsd = 500) => {
   track("begin_checkout", { location });
   ga("begin_checkout", {
     currency: "USD",
-    value: 1200,
-    items: [{ item_name: "AI Transformation Audit", price: 1200, quantity: 1 }],
+    value: priceUsd,
+    items: [{ item_name: "AI Transformation Audit", price: priceUsd, quantity: 1 }],
     location,
   });
 };

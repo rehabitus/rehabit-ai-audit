@@ -4,7 +4,7 @@ export function buildScoreEmail({
   name,
   result,
   resultsUrl,
-  priceUsd = 1200,
+  priceUsd = 500,
 }: {
   name: string;
   result: ScoreResult;
