@@ -140,12 +140,20 @@ export function ScorecardChat({ name, onComplete }: Props) {
 
         setMicError(null);
 
-        // Request mic access explicitly — gives a clear browser permission prompt
+        // Check if permission was previously denied — Chrome won't re-prompt
+        try {
+            const perm = await navigator.permissions.query({ name: "microphone" as PermissionName });
+            if (perm.state === "denied") {
+                setMicError("Microphone is blocked. Click the lock icon in your browser's address bar, set Microphone to Allow, then refresh.");
+                return;
+            }
+        } catch { /* permissions API not available, proceed */ }
+
         let stream: MediaStream;
         try {
             stream = await navigator.mediaDevices.getUserMedia({ audio: true });
         } catch {
-            setMicError("Microphone access denied. Please allow mic access in your browser settings and try again.");
+            setMicError("Microphone access denied. Click the lock icon in your address bar, set Microphone to Allow, then refresh.");
             return;
         }
 
@@ -157,7 +165,6 @@ export function ScorecardChat({ name, onComplete }: Props) {
         recorder.ondataavailable = (e) => {
             if (e.data.size > 0) audioChunksRef.current.push(e.data);
         };
-<<<<<<< HEAD
 
         recorder.onstop = async () => {
             stream.getTracks().forEach((t) => t.stop());
