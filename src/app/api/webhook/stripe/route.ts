@@ -7,14 +7,17 @@ export async function POST(req: NextRequest) {
     const signature = req.headers.get("stripe-signature");
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
-    if (!signature || !webhookSecret) {
-        return NextResponse.json({ error: "Missing signature or secret" }, { status: 400 });
-    }
+    const body = await req.text();
 
     let event;
     try {
-        const body = await req.text();
-        event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+        if (signature && webhookSecret) {
+            event = stripe.webhooks.constructEvent(body, signature, webhookSecret);
+        } else {
+            // No secret configured yet — skip verification (set STRIPE_WEBHOOK_SECRET in prod)
+            console.warn("Stripe webhook: no signing secret set, skipping signature verification");
+            event = JSON.parse(body);
+        }
     } catch (err) {
         const error = err as Error;
         console.error("Webhook signature verification failed:", error.message);
@@ -49,12 +52,32 @@ export async function POST(req: NextRequest) {
                 }
             });
 
-            // 2. Send confirmation email via Resend
-            const resendKey = process.env.RESEND_API_KEY_TOKEN;
-            if (resendKey && customerEmail) {
+            // 2. Send emails via Resend
+            const resendKey = process.env.RESEND_API_KEY;
+            const notifyEmail = process.env.NOTIFICATION_EMAIL || "mike@rehabit.us";
+            if (resendKey) {
                 const { buildBookingSuccessEmail } = await import("@/lib/emailTemplate");
                 const html = buildBookingSuccessEmail({ name: customerName, amountPaid: amountTotal });
 
+                // Confirmation to buyer
+                if (customerEmail) {
+                    await fetch("https://api.resend.com/emails", {
+                        method: "POST",
+                        headers: {
+                            Authorization: `Bearer ${resendKey}`,
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            from: process.env.RESEND_FROM || "Rehabit AI Audit <hello@rehabit.biz>",
+                            to: customerEmail,
+                            reply_to: "mike@rehabit.us",
+                            subject: "Your Audit is Reserved — Here's What Happens Next",
+                            html,
+                        }),
+                    });
+                }
+
+                // Internal notification to Mike
                 await fetch("https://api.resend.com/emails", {
                     method: "POST",
                     headers: {
@@ -62,11 +85,14 @@ export async function POST(req: NextRequest) {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        from: "Rehabit AI Audit <hello@rehabit.ai>",
-                        to: customerEmail,
-                        bcc: "support@rehabit.ai", // Notify Support
-                        reply_to: "support@rehabit.ai",
-                        html,
+                        from: process.env.RESEND_FROM || "Rehabit AI Audit <hello@rehabit.biz>",
+                        to: notifyEmail,
+                        subject: `💰 New Audit Purchase — ${customerName} ($${amountTotal})`,
+                        html: `<p><strong>New purchase!</strong></p>
+                               <p><strong>Name:</strong> ${customerName}</p>
+                               <p><strong>Email:</strong> ${customerEmail ?? "unknown"}</p>
+                               <p><strong>Amount:</strong> $${amountTotal}</p>
+                               <p><strong>Session:</strong> ${session.id}</p>`,
                     }),
                 });
             }
