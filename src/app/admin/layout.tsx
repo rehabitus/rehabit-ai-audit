@@ -7,6 +7,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     const pathname = usePathname();
     const router = useRouter();
 
+    // Login page renders standalone — no nav
+    if (pathname === "/admin/login") {
+        return <>{children}</>;
+    }
     const logout = async () => {
         await fetch("/api/admin/auth", { method: "DELETE" });
         router.push("/admin/login");
@@ -29,11 +33,10 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                                 <Link
                                     key={link.href}
                                     href={link.href}
-                                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                                        pathname === link.href
+                                    className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${pathname === link.href
                                             ? "bg-white/10 text-white"
                                             : "text-slate-400 hover:text-white hover:bg-white/5"
-                                    }`}
+                                        }`}
                                 >
                                     {link.label}
                                 </Link>

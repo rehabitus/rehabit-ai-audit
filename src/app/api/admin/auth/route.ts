@@ -1,4 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
+
+// Derive a session token from the password — never store the password itself in the cookie
+function sessionToken(password: string): string {
+    return createHash("sha256").update(`admin-session:${password}`).digest("hex");
+}
 
 export async function POST(req: NextRequest) {
     const { password } = await req.json();
@@ -8,8 +14,9 @@ export async function POST(req: NextRequest) {
     }
 
     if (password === process.env.ADMIN_PASSWORD) {
+        const token = sessionToken(process.env.ADMIN_PASSWORD);
         const res = NextResponse.json({ ok: true });
-        res.cookies.set("admin_token", password, {
+        res.cookies.set("admin_token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
             sameSite: "lax",

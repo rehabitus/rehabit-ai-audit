@@ -1,11 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
+import { createHash } from "crypto";
+
+function expectedToken(): string | undefined {
+    if (!process.env.ADMIN_PASSWORD) return undefined;
+    return createHash("sha256").update(`admin-session:${process.env.ADMIN_PASSWORD}`).digest("hex");
+}
 
 export function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
     if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
         const token = req.cookies.get("admin_token")?.value;
-        if (!token || token !== process.env.ADMIN_PASSWORD) {
+        const expected = expectedToken();
+
+        if (!expected || !token || token !== expected) {
             const loginUrl = new URL("/admin/login", req.url);
             loginUrl.searchParams.set("from", pathname);
             return NextResponse.redirect(loginUrl);

@@ -1,15 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp } from "@/lib/animations";
+import { trackVideoPlay, trackVideoProgress } from "@/lib/analytics";
 
 const VIDEO_URL = "https://rehabitbiz.s3.eu-north-1.amazonaws.com/Rehabit-4CAudit-v4-StoryboardWithVideo.mp4";
 const THUMBNAIL_PATH = "/images/4c-audit-vsl-thumbnail.png";
 
 export function VideoPlayer() {
     const [showVideo, setShowVideo] = useState(false);
+    const firedDepths = useRef(new Set<number>());
+
+    const handlePlay = useCallback(() => {
+        setShowVideo(true);
+        trackVideoPlay();
+    }, []);
+
+    const handleTimeUpdate = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
+        const video = e.currentTarget;
+        if (!video.duration) return;
+        const pct = (video.currentTime / video.duration) * 100;
+        for (const depth of [25, 50, 75, 100] as const) {
+            if (pct >= depth && !firedDepths.current.has(depth)) {
+                firedDepths.current.add(depth);
+                trackVideoProgress(depth);
+            }
+        }
+    }, []);
 
     return (
         <motion.div
@@ -33,10 +52,11 @@ export function VideoPlayer() {
                         poster={THUMBNAIL_PATH}
                         controlsList="nodownload"
                         onContextMenu={(e) => e.preventDefault()}
+                        onTimeUpdate={handleTimeUpdate}
                     />
                 ) : (
                     <button
-                        onClick={() => setShowVideo(true)}
+                        onClick={handlePlay}
                         className="group absolute inset-0 flex items-center justify-center"
                         aria-label="Play video"
                     >
