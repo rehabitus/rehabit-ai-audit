@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Comfortaa } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 
@@ -13,12 +12,6 @@ const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
-});
-const comfortaa = Comfortaa({
-  subsets: ["latin"],
-  variable: "--font-comfortaa",
-  weight: ["400", "700"],
-  display: "swap",
 });
 
 const BASE_URL = "https://audit.rehabit.ai";
@@ -76,8 +69,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+      <head>
+        {/* Comfortaa — loaded via CDN to avoid build-time font fetch failures */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased font-sans`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
       >
         {children}
         {/* Google Analytics 4 */}
@@ -141,7 +144,7 @@ export default function RootLayout({
             })(window.lintrk);
           `}
         </Script>
-        {/* Microsoft Clarity — add CLARITY_ID when project is created */}
+        {/* Microsoft Clarity */}
         {CLARITY_ID && (
           <Script id="clarity" strategy="afterInteractive">
             {`
