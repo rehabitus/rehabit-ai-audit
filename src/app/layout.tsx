@@ -67,7 +67,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const GA_ID = "G-TMPSPTL3Y6";
 const LINKEDIN_PARTNER_ID = "9703625";
-const CLARITY_ID = ""; // Add Microsoft Clarity project ID when ready
+const CLARITY_ID = "vsinfwt5xe";
 
 export default function RootLayout({
   children,
