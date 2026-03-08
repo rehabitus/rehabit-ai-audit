@@ -22,7 +22,7 @@ export async function POST(req: NextRequest) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            model: "gpt-4o-mini",
+            model: "gpt-4o",
             stream: true,
             messages: [
                 { role: "system", content: systemPrompt },

@@ -42,6 +42,7 @@ export function ScorecardChat({ name, onComplete }: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [initError, setInitError] = useState(false);
     const [isListening, setIsListening] = useState(false);
+    const [micError, setMicError] = useState<string | null>(null);
     const [isComplete, setIsComplete] = useState(false);
     const bottomRef = useRef<HTMLDivElement>(null);
     const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -154,7 +155,7 @@ export function ScorecardChat({ name, onComplete }: Props) {
     const toggleVoice = () => {
         const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognitionAPI) {
-            alert("Voice input not supported in this browser.");
+            setMicError("Voice input isn't supported in this browser. Try Chrome.");
             return;
         }
 
@@ -164,8 +165,10 @@ export function ScorecardChat({ name, onComplete }: Props) {
             return;
         }
 
+        setMicError(null);
         const recognition = new SpeechRecognitionAPI();
         recognition.continuous = false;
+        recognition.interimResults = false;
         recognition.lang = "en-US";
         recognitionRef.current = recognition;
 
@@ -175,11 +178,25 @@ export function ScorecardChat({ name, onComplete }: Props) {
             setIsListening(false);
             setTimeout(() => handleSend(transcript), 300);
         };
-        recognition.onerror = () => setIsListening(false);
+        recognition.onerror = (e: Event) => {
+            setIsListening(false);
+            const errEvent = e as Event & { error?: string };
+            if (errEvent.error === "not-allowed" || errEvent.error === "permission-denied") {
+                setMicError("Microphone access denied. Please allow mic permission in your browser and try again.");
+            } else if (errEvent.error === "no-speech") {
+                setMicError("No speech detected. Try again.");
+            } else {
+                setMicError("Voice input error. Please type your answer instead.");
+            }
+        };
         recognition.onend = () => setIsListening(false);
 
-        recognition.start();
-        setIsListening(true);
+        try {
+            recognition.start();
+            setIsListening(true);
+        } catch {
+            setMicError("Could not start voice input. Please type your answer instead.");
+        }
     };
 
     return (
@@ -235,6 +252,9 @@ export function ScorecardChat({ name, onComplete }: Props) {
                 </div>
             ) : (
                 <div className="px-8 py-8 border-t border-white/10 bg-black/20 backdrop-blur-md">
+                    {micError && (
+                        <p className="text-center text-xs text-brand-red/80 mb-3 max-w-2xl mx-auto">{micError}</p>
+                    )}
                     <div className="flex gap-4 items-center max-w-2xl mx-auto relative">
                         <input
                             type="text"
