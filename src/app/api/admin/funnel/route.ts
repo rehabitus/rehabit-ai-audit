@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
+import { getGA4Metrics } from "@/lib/ga4";
+import { isAdminAuthenticated } from "@/lib/adminAuth";
 
 export interface FunnelStep {
     id: string;
@@ -20,8 +22,7 @@ export interface FunnelData {
 }
 
 export async function GET(req: NextRequest) {
-    const token = req.cookies.get("admin_token")?.value;
-    if (!token || token !== process.env.ADMIN_PASSWORD) {
+    if (!isAdminAuthenticated(req)) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -44,6 +45,13 @@ export async function GET(req: NextRequest) {
     } catch {
         stripeError = true;
     }
+
+    // — GA4 data —
+    const ga4PropertyId = process.env.GA4_PROPERTY_ID ?? "";
+    const hasGA4 = !!process.env.GOOGLE_SERVICE_ACCOUNT_JSON && !!ga4PropertyId;
+    const ga4 = hasGA4
+        ? await getGA4Metrics(ga4PropertyId, days)
+        : { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null };
 
     // — Manual / env inputs —
     const adSpendRaw = process.env.LINKEDIN_AD_SPEND;
@@ -77,34 +85,34 @@ export async function GET(req: NextRequest) {
             id: "pageviews",
             label: "Landing Page Views",
             sublabel: "From LinkedIn (utm_source=linkedin)",
-            value: null,
-            formatted: null,
+            value: ga4.pageviews,
+            formatted: ga4.pageviews != null ? ga4.pageviews.toLocaleString("en-US") : null,
             detail: null,
             source: "ga4",
-            connected: false,
-            note: "Connect GA4 on Integrations page",
+            connected: hasGA4 && ga4.pageviews != null,
+            note: !hasGA4 ? "Connect GA4 on Integrations page" : null,
         },
         {
             id: "scorecard_starts",
             label: "Scorecards Started",
             sublabel: "/scorecard page visits",
-            value: null,
-            formatted: null,
+            value: ga4.scorecardStarts,
+            formatted: ga4.scorecardStarts != null ? ga4.scorecardStarts.toLocaleString("en-US") : null,
             detail: null,
             source: "ga4",
-            connected: false,
-            note: null,
+            connected: hasGA4 && ga4.scorecardStarts != null,
+            note: !hasGA4 ? "Connect GA4 on Integrations page" : null,
         },
         {
             id: "scorecard_completions",
             label: "Scorecards Completed",
-            sublabel: "/scorecard-results page visits",
-            value: null,
-            formatted: null,
+            sublabel: "scorecard_complete events",
+            value: ga4.scorecardCompletions,
+            formatted: ga4.scorecardCompletions != null ? ga4.scorecardCompletions.toLocaleString("en-US") : null,
             detail: null,
             source: "ga4",
-            connected: false,
-            note: null,
+            connected: hasGA4 && ga4.scorecardCompletions != null,
+            note: !hasGA4 ? "Connect GA4 on Integrations page" : null,
         },
         {
             id: "checkout_starts",
@@ -131,13 +139,13 @@ export async function GET(req: NextRequest) {
         {
             id: "discovery_clicks",
             label: "Discovery Call Clicks",
-            sublabel: "Book a call CTA clicks",
-            value: null,
-            formatted: null,
+            sublabel: "book_call_click events",
+            value: ga4.discoveryClicks,
+            formatted: ga4.discoveryClicks != null ? ga4.discoveryClicks.toLocaleString("en-US") : null,
             detail: null,
             source: "ga4",
-            connected: false,
-            note: "Connect GA4 to track CTA events",
+            connected: hasGA4 && ga4.discoveryClicks != null,
+            note: !hasGA4 ? "Connect GA4 to track CTA events" : null,
         },
         {
             id: "discovery_booked",
