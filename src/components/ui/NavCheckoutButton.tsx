@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trackCtaClick, trackBeginCheckout } from "@/lib/analytics";
+import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 
 export function NavCheckoutButton() {
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ export function NavCheckoutButton() {
       });
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        navigateAfterTracking(data.url);
       } else {
         document.getElementById("reserve")?.scrollIntoView({ behavior: "smooth" });
         setLoading(false);

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { trackCtaClick, trackBeginCheckout } from "@/lib/analytics";
+import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 
 interface CTAButtonProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ export function CTAButton({ children, className = "", location = "other" }: CTAB
       });
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        navigateAfterTracking(data.url);
       } else {
         // Fallback: scroll to pricing if Stripe isn't configured yet
         document.getElementById("reserve")?.scrollIntoView({ behavior: "smooth" });

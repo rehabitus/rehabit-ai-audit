@@ -28,6 +28,25 @@ function linkedInTrack(conversionId: number) {
   }
 }
 
+/**
+ * Navigate to a URL only after GA4 has flushed the current event queue.
+ * Falls back to immediate navigation after 300ms if gtag doesn't callback.
+ */
+export function navigateAfterTracking(url: string) {
+  const go = () => { window.location.href = url; };
+  try {
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (typeof w.gtag === "function") {
+      const timer = setTimeout(go, 300);
+      w.gtag("event", "begin_checkout_flush", {
+        event_callback: () => { clearTimeout(timer); go(); },
+      });
+      return;
+    }
+  } catch { /* fall through */ }
+  go();
+}
+
 // ── CTA / Checkout ──────────────────────────────────────────────
 export const trackCtaClick = (label: string, location: "nav" | "hero" | "pricing" | "final_cta" | "other" = "other") => {
   track("cta_click", { label, location });
