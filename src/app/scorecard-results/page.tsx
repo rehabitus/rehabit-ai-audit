@@ -95,11 +95,16 @@ function ScorecardResultsContent() {
         );
     }
 
+    const [priceUsd, setPriceUsd] = useState<number>(1200);
+    useEffect(() => {
+        fetch("/api/pricing").then(r => r.json()).then(d => { if (d.priceUsd) setPriceUsd(d.priceUsd); }).catch(() => {});
+    }, []);
+
     const depts = result.department_scores ?? { marketing: 0, sales: 0, delivery: 0, operations: 0 };
     const minScore = Math.min(...Object.values(depts));
     const weakestDept = DEPT_CONFIG.find((d) => depts[d.key] === minScore);
     const gc = gradeColor(result.grade);
-    const baseUrl = typeof window !== "undefined" ? window.location.origin : "https://audit.rehabit.ai";
+    const baseUrl = "https://audit.rehabit.ai";
 
     return (
         <main className="min-h-screen bg-[#0F172A] text-white">
@@ -245,6 +250,68 @@ function ScorecardResultsContent() {
                     </div>
                 </motion.div>
 
+                {/* ── QUICK WIN — 1 FREE CHECKLIST ITEM ── */}
+                {result.checklist.length > 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="mb-8"
+                    >
+                        <div className="flex items-center gap-2 mb-3">
+                            <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">Your #1 Quick Win</div>
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-brand-green bg-brand-green/10 border border-brand-green/20 px-2 py-0.5 rounded-full">Free Preview</span>
+                        </div>
+                        <div className="bg-[#1e293b] border border-brand-green/20 rounded-2xl p-5">
+                            <div className="flex items-start gap-3">
+                                <div className="shrink-0 w-6 h-6 rounded-full bg-brand-green/20 border border-brand-green/30 flex items-center justify-center mt-0.5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="#10B981" className="w-3 h-3">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                                    </svg>
+                                </div>
+                                <div className="flex-1">
+                                    <div className="font-semibold text-white text-sm mb-1">{result.checklist[0].action}</div>
+                                    <div className="flex items-center gap-2 mt-2">
+                                        <span className={`text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${result.checklist[0].impact === "high" ? "text-brand-green bg-brand-green/10 border border-brand-green/20" : "text-brand-gold bg-brand-gold/10 border border-brand-gold/20"}`}>
+                                            {result.checklist[0].impact} impact
+                                        </span>
+                                        <span className="text-[9px] font-bold uppercase tracking-widest text-slate-500 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
+                                            {result.checklist[0].category}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-4 pt-4 border-t border-white/5 text-xs text-slate-400">
+                                {result.checklist.length - 1} more prioritized actions are inside your full audit — each mapped to specific tools and integration costs.
+                            </div>
+                        </div>
+                    </motion.div>
+                )}
+
+                {/* ── ROI SNAPSHOT ── */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.32 }}
+                    className="mb-8 bg-[#1e293b] border border-white/10 rounded-2xl p-6"
+                >
+                    <div className="text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500 mb-5">Your ROI Snapshot</div>
+                    <div className="grid grid-cols-3 gap-4">
+                        <div className="text-center">
+                            <div className="text-2xl font-black text-brand-green">${Math.round(result.savings_min / 1000)}K+</div>
+                            <div className="text-[10px] text-slate-500 mt-1 uppercase tracking-wide">Estimated Year 1 Savings</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-black text-brand-gold">{Math.round(result.savings_min / priceUsd)}x</div>
+                            <div className="text-[10px] text-slate-500 mt-1 uppercase tracking-wide">Minimum ROI</div>
+                        </div>
+                        <div className="text-center">
+                            <div className="text-2xl font-black text-white">{result.opportunities.reduce((sum, o) => sum + o.hrs_saved_per_year, 0).toLocaleString()}</div>
+                            <div className="text-[10px] text-slate-500 mt-1 uppercase tracking-wide">Hrs/Year Freed</div>
+                        </div>
+                    </div>
+                </motion.div>
+
                 {/* ── IMPLEMENTATION ROADMAP — LOCKED ── */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -296,7 +363,7 @@ function ScorecardResultsContent() {
                                     href={baseUrl}
                                     className="inline-flex items-center gap-2 bg-brand-green text-brand-dark font-bold text-sm px-6 py-3 rounded-xl hover:bg-emerald-400 transition-all shadow-lg shadow-brand-green/20"
                                 >
-                                    Unlock with AI Audit ($1,200)
+                                    Unlock with AI Audit (${`${priceUsd.toLocaleString()}`})
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                                     </svg>
@@ -321,7 +388,7 @@ function ScorecardResultsContent() {
                         href={baseUrl}
                         className="flex-shrink-0 inline-flex items-center gap-2 bg-brand-green text-brand-dark font-bold text-sm px-5 py-3 rounded-xl hover:bg-emerald-400 transition-all shadow-lg shadow-brand-green/20 w-full sm:w-auto justify-center"
                     >
-                        Book My AI Audit — $1,200
+                        Book My AI Audit — ${`${priceUsd.toLocaleString()}`}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-4 h-4">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
                         </svg>
