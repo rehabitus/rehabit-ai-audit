@@ -127,7 +127,10 @@ export default function AdminDashboard() {
 
     const load = useCallback(() => {
         setLoading(true);
-        fetch(`/api/admin/funnel?days=${days}`)
+        fetch(`/api/admin/funnel?days=${days}`, {
+            cache: 'no-store',
+            headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
+        })
             .then((r) => r.json())
             .then((d: FunnelData) => {
                 setData(d);
@@ -154,7 +157,7 @@ export default function AdminDashboard() {
             {/* Header */}
             <div className="flex items-start justify-between">
                 <div>
-                    <h1 className="text-2xl font-bold text-white">Business Health Dashboard</h1>
+                    <h1 className="text-2xl font-bold text-white">Business Health Dashboard (v2.1)</h1>
                     <p className="text-slate-500 text-sm mt-1">
                         {updatedAt ? `Updated ${updatedAt}` : "Loading…"} ·{" "}
                         <span className={connectedCount < totalCount ? "text-brand-orange" : "text-brand-green"}>

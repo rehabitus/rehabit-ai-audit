@@ -4,6 +4,9 @@ import { getGA4Metrics } from "@/lib/ga4";
 import { getLinkedInMetrics } from "@/lib/linkedin";
 import { isAdminAuthenticated } from "@/lib/adminAuth";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export interface FunnelStep {
     id: string;
     label: string;
@@ -181,5 +184,14 @@ export async function GET(req: NextRequest) {
         },
     ];
 
-    return NextResponse.json({ period: days, generatedAt: new Date().toISOString(), steps } satisfies FunnelData);
+    return NextResponse.json(
+        { period: days, generatedAt: new Date().toISOString(), steps } satisfies FunnelData,
+        {
+            headers: {
+                "Cache-Control": "no-store, max-age=0, must-revalidate",
+                "Pragma": "no-cache",
+                "Expires": "0",
+            }
+        }
+    );
 }
