@@ -1,34 +1,62 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp } from "@/lib/animations";
 import { trackVideoPlay, trackVideoProgress } from "@/lib/analytics";
 
-const VIDEO_URL = "https://rehabitbiz.s3.eu-north-1.amazonaws.com/Rehabit-4CAudit-v4-StoryboardWithVideo.mp4";
+const VIMEO_ID = "1171820962";
 const THUMBNAIL_PATH = "/images/4c-audit-vsl-thumbnail.png";
 
 export function VideoPlayer() {
     const [showVideo, setShowVideo] = useState(false);
+    const iframeRef = useRef<HTMLIFrameElement>(null);
     const firedDepths = useRef(new Set<number>());
+    const durationRef = useRef<number>(0);
 
     const handlePlay = useCallback(() => {
         setShowVideo(true);
         trackVideoPlay();
     }, []);
 
-    const handleTimeUpdate = useCallback((e: React.SyntheticEvent<HTMLVideoElement>) => {
-        const video = e.currentTarget;
-        if (!video.duration) return;
-        const pct = (video.currentTime / video.duration) * 100;
-        for (const depth of [25, 50, 75, 100] as const) {
-            if (pct >= depth && !firedDepths.current.has(depth)) {
-                firedDepths.current.add(depth);
-                trackVideoProgress(depth);
-            }
-        }
-    }, []);
+    // Listen for Vimeo postMessage events to track progress
+    useEffect(() => {
+        if (!showVideo) return;
+
+        const onMessage = (e: MessageEvent) => {
+            if (!e.origin.includes("vimeo.com")) return;
+            try {
+                const data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
+                if (data.event === "ready") {
+                    // Tell Vimeo we want timeupdate events
+                    iframeRef.current?.contentWindow?.postMessage(
+                        JSON.stringify({ method: "addEventListener", value: "timeupdate" }),
+                        "https://player.vimeo.com"
+                    );
+                    iframeRef.current?.contentWindow?.postMessage(
+                        JSON.stringify({ method: "getDuration" }),
+                        "https://player.vimeo.com"
+                    );
+                }
+                if (data.method === "getDuration" && data.value) {
+                    durationRef.current = data.value as number;
+                }
+                if (data.event === "timeupdate" && durationRef.current > 0) {
+                    const pct = ((data.data?.seconds ?? 0) / durationRef.current) * 100;
+                    for (const depth of [25, 50, 75, 100] as const) {
+                        if (pct >= depth && !firedDepths.current.has(depth)) {
+                            firedDepths.current.add(depth);
+                            trackVideoProgress(depth);
+                        }
+                    }
+                }
+            } catch { /* ignore */ }
+        };
+
+        window.addEventListener("message", onMessage);
+        return () => window.removeEventListener("message", onMessage);
+    }, [showVideo]);
 
     return (
         <motion.div
@@ -41,18 +69,18 @@ export function VideoPlayer() {
             </div>
 
             {/* Video Container */}
-            <div className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-white/10 bg-black shadow-2xl" aria-label="Watch: How the audit works (4 min)">
+            <div
+                className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-white/10 bg-black shadow-2xl"
+                aria-label="Watch: How the audit works (4 min)"
+            >
                 {showVideo ? (
-                    <video
-                        className="h-full w-full"
-                        src={VIDEO_URL}
-                        controls
-                        autoPlay
-                        playsInline
-                        poster={THUMBNAIL_PATH}
-                        controlsList="nodownload"
-                        onContextMenu={(e) => e.preventDefault()}
-                        onTimeUpdate={handleTimeUpdate}
+                    <iframe
+                        ref={iframeRef}
+                        src={`https://player.vimeo.com/video/${VIMEO_ID}?autoplay=1&api=1&background=0&color=00dc82&title=0&byline=0&portrait=0`}
+                        className="absolute inset-0 h-full w-full"
+                        allow="autoplay; fullscreen; picture-in-picture"
+                        allowFullScreen
+                        title="How the AI Transformation Audit works"
                     />
                 ) : (
                     <button
@@ -60,7 +88,6 @@ export function VideoPlayer() {
                         className="group absolute inset-0 flex items-center justify-center"
                         aria-label="Play video"
                     >
-                        {/* New VSL thumbnail as background */}
                         <Image
                             src={THUMBNAIL_PATH}
                             alt="Video Thumbnail"
