@@ -76,7 +76,6 @@ export async function GET(req: NextRequest) {
     // Fall back to manual ad spend env var if LinkedIn API not connected
     const manualSpend = process.env.LINKEDIN_AD_SPEND ? parseFloat(process.env.LINKEDIN_AD_SPEND) : null;
     const adSpend = li.spend ?? manualSpend;
-    const costPerPurchase = adSpend && purchaseCount > 0 ? adSpend / purchaseCount : null;
 
     const steps: FunnelStep[] = [
         {
