@@ -35,9 +35,9 @@ export function HeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance uppercase"
+          className="mx-auto max-w-4xl text-4xl font-extrabold leading-tight text-white md:text-[58px] lg:text-[66px] uppercase"
         >
-          Profitable, Scalable AI System Implementation Roadmap in&nbsp;5&nbsp;Days
+          Profitable, Scalable AI<br />Roadmap in&nbsp;5&nbsp;Days
         </motion.h1>
 
         <motion.p
