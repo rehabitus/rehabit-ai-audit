@@ -37,7 +37,7 @@ export function HeroSection() {
           variants={heroChild}
           className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance"
         >
-          Find Exactly Where Your Business Is Bleeding Money&nbsp;&mdash; And Get a Plan to Fix It in 5&nbsp;Days.
+          Stop guessing where AI fits. In 5&nbsp;days, get a prioritized audit of what to automate, what to ignore, and what to do first.
         </motion.h1>
 
         <VideoPlayer />
