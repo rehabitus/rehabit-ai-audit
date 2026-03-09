@@ -8,7 +8,8 @@ import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import type { PricingInfo } from "@/lib/pricing";
 
-export function HeroSection() {
+// Frozen hero for /apply — retains original headline + copy independent of homepage changes
+export function ApplyHeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
 
   useEffect(() => {
@@ -35,17 +36,10 @@ export function HeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance uppercase"
+          className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance"
         >
-          Profitable, Scalable AI System Implementation Roadmap in&nbsp;5&nbsp;Days
+          Stop guessing where AI fits. In 5&nbsp;days, get a prioritized audit of what to automate, what to ignore, and what to do first.
         </motion.h1>
-
-        <motion.p
-          variants={heroChild}
-          className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
-        >
-          No more guessing, scaling chaos, or fearing being left&nbsp;behind.
-        </motion.p>
 
         <VideoPlayer />
 
@@ -69,7 +63,6 @@ export function HeroSection() {
           Starting at <span className="font-semibold text-white">${(pricing?.priceUsd ?? 1000).toLocaleString()}</span> &mdash; price rises with every verified client review.
         </motion.p>
 
-        {/* Trust bar — hero size, centered, live review count */}
         <motion.div
           variants={heroChild}
           className="mt-8 flex justify-center"
@@ -77,6 +70,6 @@ export function HeroSection() {
           <NavTrustBar size="md" reviewCount={pricing?.reviewCount ?? 0} />
         </motion.div>
       </motion.div>
-    </section >
+    </section>
   );
 }

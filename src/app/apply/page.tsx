@@ -1,6 +1,6 @@
 "use client";
 
-import { HeroSection } from "@/components/sections/HeroSection";
+import { ApplyHeroSection } from "@/components/sections/ApplyHeroSection";
 import { NavCheckoutButton } from "@/components/ui/NavCheckoutButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { ProblemSection } from "@/components/sections/ProblemSection";
@@ -52,7 +52,7 @@ export default function Home() {
       </nav>
 
       {/* ── SECTIONS ── */}
-      <HeroSection />
+      <ApplyHeroSection />
       <div className="section-divider-blue" />
       <ProblemSection />
       <div className="section-divider-blue" />
