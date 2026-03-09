@@ -14,6 +14,7 @@ export interface FunnelStep {
     source: "stripe" | "ga4" | "linkedin" | "manual" | "calendly";
     connected: boolean;
     note: string | null;
+    breakdown?: { label: string; value: number | string }[];
 }
 
 export interface FunnelData {
@@ -59,7 +60,7 @@ export async function GET(req: NextRequest) {
     );
     const ga4 = hasGA4
         ? await getGA4Metrics(ga4PropertyId, days)
-        : { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null };
+        : { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null, sources: {} };
 
     // — LinkedIn API data —
     const linkedInAccountId = process.env.LINKEDIN_AD_ACCOUNT_ID ?? "";
@@ -81,32 +82,36 @@ export async function GET(req: NextRequest) {
             sublabel: `Last ${days} days`,
             value: adSpend,
             formatted: adSpend != null ? `$${adSpend.toLocaleString("en-US")}` : null,
-            detail: costPerPurchase != null ? `$${costPerPurchase.toFixed(0)} cost per purchase` : null,
-            source: hasLinkedIn ? "linkedin" : "manual",
+            detail: null,
+            source: "manual",
             connected: adSpend != null,
-            note: adSpend == null ? "Add LINKEDIN_AD_ACCOUNT_ID + OAuth env vars" : null,
+            note: adSpend == null ? "Add LINKEDIN_AD_SPEND to Vercel env vars (e.g. 500)" : null,
         },
         {
             id: "ad_clicks",
             label: "Ad Clicks",
             sublabel: "LinkedIn Campaign Manager",
             value: li.clicks,
-            formatted: li.clicks != null ? li.clicks.toLocaleString("en-US") : null,
-            detail: li.cpc != null ? `$${li.cpc.toFixed(2)} CPC` : null,
+            formatted: li.clicks != null ? li.clicks.toLocaleString("en-US") : "—",
+            detail: li.cpc != null ? `$${li.cpc.toFixed(2)} CPC` : (adSpend != null ? `Target: <$1.00 CPC` : null),
             source: "linkedin",
             connected: hasLinkedIn && li.clicks != null,
-            note: hasLinkedIn ? null : "Add LINKEDIN_AD_ACCOUNT_ID + OAuth env vars",
+            note: hasLinkedIn ? null : "LinkedIn Ads API — connect on Integrations page",
         },
         {
             id: "pageviews",
             label: "Landing Page Views",
-            sublabel: "From LinkedIn (utm_source=linkedin)",
+            sublabel: "Total across all traffic sources",
             value: ga4.pageviews,
             formatted: ga4.pageviews != null ? ga4.pageviews.toLocaleString("en-US") : null,
             detail: null,
             source: "ga4",
             connected: hasGA4 && ga4.pageviews != null,
             note: !hasGA4 ? "Connect GA4 on Integrations page" : null,
+            breakdown: Object.entries(ga4.sources || {})
+                .sort(([, a], [, b]) => (b as number) - (a as number))
+                .slice(0, 5)
+                .map(([label, value]) => ({ label, value: value as number })),
         },
         {
             id: "scorecard_starts",

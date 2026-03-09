@@ -2,10 +2,11 @@ import { BetaAnalyticsDataClient } from "@google-analytics/data";
 import { OAuth2Client } from "google-auth-library";
 
 export interface GA4Metrics {
-    pageviews: number | null;            // linkedin-sourced landing page views
-    scorecardStarts: number | null;      // /scorecard page visits
+    pageviews: number | null;            // all landing page views
+    scorecardStarts: number | null;      // scorecard_start events
     scorecardCompletions: number | null; // scorecard_complete events
     discoveryClicks: number | null;      // book_call_click events
+    sources: Record<string, number>;     // Breakdown by utm_source/sessionSource
 }
 
 function getClient(): BetaAnalyticsDataClient | null {
@@ -37,25 +38,19 @@ function getClient(): BetaAnalyticsDataClient | null {
 export async function getGA4Metrics(propertyId: string, days: number): Promise<GA4Metrics> {
     const client = getClient();
     if (!client) {
-        return { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null };
+        return { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null, sources: {} };
     }
 
     const dateRange = { startDate: `${days}daysAgo`, endDate: "today" };
 
     try {
         const [pageviewRes, eventRes] = await Promise.all([
-            // LinkedIn-sourced landing page views
+            // All landing page views (sessions)
             client.runReport({
                 property: `properties/${propertyId}`,
                 dateRanges: [dateRange],
                 dimensions: [{ name: "sessionSource" }],
                 metrics: [{ name: "screenPageViews" }],
-                dimensionFilter: {
-                    filter: {
-                        fieldName: "sessionSource",
-                        stringFilter: { matchType: "CONTAINS", value: "linkedin" },
-                    },
-                },
             }),
             // Event counts for key funnel events
             client.runReport({
@@ -67,51 +62,57 @@ export async function getGA4Metrics(propertyId: string, days: number): Promise<G
                     filter: {
                         fieldName: "eventName",
                         inListFilter: {
-                            values: ["page_view", "scorecard_complete", "book_call_click"],
+                            values: ["page_view", "scorecard_start", "scorecard_complete", "book_call_click"],
                         },
                     },
                 },
             }),
         ]);
 
-        // Parse linkedin pageviews
-        let pageviews: number | null = null;
+        // Total pageviews + source breakdown
+        let pageviews = 0;
+        const sources: Record<string, number> = {};
         for (const row of pageviewRes[0]?.rows ?? []) {
-            pageviews = (pageviews ?? 0) + parseInt(row.metricValues?.[0]?.value ?? "0", 10);
+            const source = row.dimensionValues?.[0]?.value ?? "Direct";
+            const count = parseInt(row.metricValues?.[0]?.value ?? "0", 10);
+            pageviews += count;
+            sources[source] = (sources[source] ?? 0) + count;
         }
 
         // Parse event counts
-        let scorecardStarts: number | null = null;
-        let scorecardCompletions: number | null = null;
-        let discoveryClicks: number | null = null;
+        let scorecardStarts: number | null = 0;
+        let scorecardCompletions: number | null = 0;
+        let discoveryClicks: number | null = 0;
 
         for (const row of eventRes[0]?.rows ?? []) {
             const eventName = row.dimensionValues?.[0]?.value;
             const count = parseInt(row.metricValues?.[0]?.value ?? "0", 10);
+            if (eventName === "scorecard_start") scorecardStarts = count;
             if (eventName === "scorecard_complete") scorecardCompletions = count;
             if (eventName === "book_call_click") discoveryClicks = count;
         }
 
-        // Scorecard starts: page_view on /scorecard path
-        const [scorecardRes] = await client.runReport({
-            property: `properties/${propertyId}`,
-            dateRanges: [dateRange],
-            dimensions: [{ name: "pagePath" }],
-            metrics: [{ name: "screenPageViews" }],
-            dimensionFilter: {
-                filter: {
-                    fieldName: "pagePath",
-                    stringFilter: { matchType: "BEGINS_WITH", value: "/scorecard" },
+        // scorecardStarts fallback: if no event exists yet, use page views as estimate
+        if (scorecardStarts === null) {
+            const [scorecardRes] = await client.runReport({
+                property: `properties/${propertyId}`,
+                dateRanges: [dateRange],
+                dimensions: [{ name: "pagePath" }],
+                metrics: [{ name: "screenPageViews" }],
+                dimensionFilter: {
+                    filter: {
+                        fieldName: "pagePath",
+                        stringFilter: { matchType: "BEGINS_WITH", value: "/scorecard" },
+                    },
                 },
-            },
-        });
-
-        for (const row of scorecardRes?.rows ?? []) {
-            scorecardStarts = (scorecardStarts ?? 0) + parseInt(row.metricValues?.[0]?.value ?? "0", 10);
+            });
+            for (const row of scorecardRes?.rows ?? []) {
+                scorecardStarts = (scorecardStarts ?? 0) + parseInt(row.metricValues?.[0]?.value ?? "0", 10);
+            }
         }
 
-        return { pageviews, scorecardStarts, scorecardCompletions, discoveryClicks };
+        return { pageviews, scorecardStarts, scorecardCompletions, discoveryClicks, sources };
     } catch {
-        return { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null };
+        return { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null, sources: {} };
     }
 }

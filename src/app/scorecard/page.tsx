@@ -6,6 +6,7 @@ import { ScorecardSurvey } from "../../components/scorecard/ScorecardSurvey";
 import { ScorecardChat } from "../../components/scorecard/ScorecardChat";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { trackScorecardStart, trackScorecardComplete } from "@/lib/analytics";
 
 type Mode = "survey" | "chat";
 
@@ -27,7 +28,10 @@ function ScorecardContent() {
         }
     }, [searchParams]);
 
-    const handleStart = () => setStep("contact");
+    const handleStart = () => {
+        trackScorecardStart();
+        setStep("contact");
+    };
 
     const handleContactSubmit = (data: { name: string; email: string; website: string }) => {
         setContact(data);
@@ -35,6 +39,7 @@ function ScorecardContent() {
     };
 
     const handleComplete = async (finalAnswers: Record<string, string>, transcript?: string) => {
+        trackScorecardComplete(transcript ? "chat" : "survey");
         setStep("calculating");
 
         // Sync lead to GHL
@@ -67,7 +72,7 @@ function ScorecardContent() {
                 answers: finalAnswers,
                 chatTranscript: transcript,
             }),
-        }).catch(() => {});
+        }).catch(() => { });
 
         // Redirect immediately — score arrives in their inbox
         window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}`;
@@ -142,15 +147,15 @@ function ScorecardContent() {
                             </button>
                             <div className="mt-8 flex items-center justify-center gap-6 flex-wrap">
                                 <span className="flex items-center gap-1.5 text-xs text-slate-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-brand-green" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-brand-green" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                                     5 minutes
                                 </span>
                                 <span className="flex items-center gap-1.5 text-xs text-slate-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-brand-green" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-brand-green" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                                     No credit card
                                 </span>
                                 <span className="flex items-center gap-1.5 text-xs text-slate-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-brand-green" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5 text-brand-green" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414L8.414 15l-4.121-4.121a1 1 0 011.414-1.414L8.414 12.172l6.879-6.879a1 1 0 011.414 0z" clipRule="evenodd" /></svg>
                                     Real dollar estimates
                                 </span>
                             </div>

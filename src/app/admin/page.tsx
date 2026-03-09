@@ -38,14 +38,15 @@ function conversionRate(from: number | null, to: number | null): string | null {
 }
 
 function StepCard({ step, prevValue }: { step: FunnelStep; prevValue: number | null }) {
-    const rate = conversionRate(prevValue, step.value);
+    // Don't show "conversion rate" for items where the ratio isn't a percentage (like Spend -> Clicks)
+    const skipRate = ["ad_clicks"].includes(step.id);
+    const rate = skipRate ? null : conversionRate(prevValue, step.value);
 
     return (
-        <div className={`relative rounded-2xl border p-5 transition-all ${
-            step.connected
-                ? "bg-white/[0.04] border-white/10 hover:border-white/20"
-                : "bg-white/[0.02] border-white/5"
-        }`}>
+        <div className={`relative rounded-2xl border p-5 transition-all ${step.connected
+            ? "bg-white/[0.04] border-white/10 hover:border-white/20"
+            : "bg-white/[0.02] border-white/5"
+            }`}>
             <div className="flex items-start justify-between gap-4">
                 {/* Left: icon + labels */}
                 <div className="flex items-start gap-3 min-w-0">
@@ -57,6 +58,17 @@ function StepCard({ step, prevValue }: { step: FunnelStep; prevValue: number | n
                         )}
                         {step.detail && (
                             <div className="text-brand-green text-xs font-medium mt-1">{step.detail}</div>
+                        )}
+                        {step.breakdown && step.breakdown.length > 0 && (
+                            <div className="mt-3 space-y-1">
+                                {step.breakdown.map((item) => (
+                                    <div key={item.label} className="flex items-center gap-2 group">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-white/10 group-hover:bg-brand-green/50 transition-colors" />
+                                        <span className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">{item.label}:</span>
+                                        <span className="text-[10px] text-slate-400 tabular-nums">{item.value.toLocaleString()}</span>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                         {step.note && !step.connected && (
                             <div className="text-slate-500 text-xs mt-1 flex items-center gap-1">
@@ -160,11 +172,10 @@ export default function AdminDashboard() {
                         <button
                             key={d}
                             onClick={() => setDays(d)}
-                            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${
-                                days === d
-                                    ? "bg-brand-green text-brand-dark"
-                                    : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
-                            }`}
+                            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${days === d
+                                ? "bg-brand-green text-brand-dark"
+                                : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
+                                }`}
                         >
                             {d}d
                         </button>

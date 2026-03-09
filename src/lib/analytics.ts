@@ -102,6 +102,16 @@ export const trackScorecardLinkClick = () => {
   ga("scorecard_link_click");
 };
 
+export const trackScorecardStart = () => {
+  track("scorecard_start");
+  ga("scorecard_start");
+};
+
+export const trackScorecardComplete = (mode: "survey" | "chat") => {
+  track("scorecard_complete", { mode });
+  ga("scorecard_complete", { mode });
+};
+
 // ── Video ────────────────────────────────────────────────────────
 export const trackVideoPlay = () => {
   track("video_play");
