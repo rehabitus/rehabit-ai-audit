@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 import { OAuth2Client } from "google-auth-library";
 
@@ -35,7 +36,7 @@ function getClient(): BetaAnalyticsDataClient | null {
     return null;
 }
 
-export async function getGA4Metrics(propertyId: string, days: number): Promise<GA4Metrics> {
+export async function getGA4Metrics(propertyId: string, days: number, sourceFilter?: string): Promise<GA4Metrics> {
     const client = getClient();
     if (!client) {
         return { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null, sources: {} };
@@ -44,13 +45,21 @@ export async function getGA4Metrics(propertyId: string, days: number): Promise<G
     const dateRange = { startDate: `${days}daysAgo`, endDate: "today" };
 
     try {
-        const [pageviewRes, eventRes] = await Promise.all([
+        const [pageviewRes, eventRes] = (await Promise.all([
             // All landing page views (sessions)
             client.runReport({
                 property: `properties/${propertyId}`,
                 dateRanges: [dateRange],
                 dimensions: [{ name: "sessionSource" }],
                 metrics: [{ name: "screenPageViews" }],
+                ...(sourceFilter ? {
+                    dimensionFilter: {
+                        filter: {
+                            fieldName: "sessionSource",
+                            stringFilter: { matchType: "CONTAINS" as any, value: sourceFilter },
+                        },
+                    }
+                } : {}),
             }),
             // Event counts for key funnel events
             client.runReport({
@@ -59,20 +68,32 @@ export async function getGA4Metrics(propertyId: string, days: number): Promise<G
                 dimensions: [{ name: "eventName" }],
                 metrics: [{ name: "eventCount" }],
                 dimensionFilter: {
-                    filter: {
-                        fieldName: "eventName",
-                        inListFilter: {
-                            values: ["page_view", "scorecard_start", "scorecard_complete", "book_call_click"],
-                        },
+                    andGroup: {
+                        expressions: [
+                            {
+                                filter: {
+                                    fieldName: "eventName",
+                                    inListFilter: {
+                                        values: ["page_view", "scorecard_start", "scorecard_complete", "book_call_click"],
+                                    },
+                                },
+                            },
+                            ...(sourceFilter ? [{
+                                filter: {
+                                    fieldName: "sessionSource",
+                                    stringFilter: { matchType: "CONTAINS" as any, value: sourceFilter },
+                                },
+                            }] : []),
+                        ],
                     },
-                },
+                } as any,
             }),
-        ]);
+        ])) as any;
 
         // Total pageviews + source breakdown
         let pageviews = 0;
         const sources: Record<string, number> = {};
-        for (const row of pageviewRes[0]?.rows ?? []) {
+        for (const row of pageviewRes.rows ?? []) {
             const source = row.dimensionValues?.[0]?.value ?? "Direct";
             const count = parseInt(row.metricValues?.[0]?.value ?? "0", 10);
             pageviews += count;
@@ -84,7 +105,7 @@ export async function getGA4Metrics(propertyId: string, days: number): Promise<G
         let scorecardCompletions: number | null = 0;
         let discoveryClicks: number | null = 0;
 
-        for (const row of eventRes[0]?.rows ?? []) {
+        for (const row of eventRes.rows ?? []) {
             const eventName = row.dimensionValues?.[0]?.value;
             const count = parseInt(row.metricValues?.[0]?.value ?? "0", 10);
             if (eventName === "scorecard_start") scorecardStarts = count;
@@ -93,26 +114,39 @@ export async function getGA4Metrics(propertyId: string, days: number): Promise<G
         }
 
         // scorecardStarts fallback: if no event exists yet, use page views as estimate
-        if (scorecardStarts === null) {
-            const [scorecardRes] = await client.runReport({
+        if (!scorecardStarts) {
+            const [scorecardRes] = (await client.runReport({
                 property: `properties/${propertyId}`,
                 dateRanges: [dateRange],
                 dimensions: [{ name: "pagePath" }],
                 metrics: [{ name: "screenPageViews" }],
                 dimensionFilter: {
-                    filter: {
-                        fieldName: "pagePath",
-                        stringFilter: { matchType: "BEGINS_WITH", value: "/scorecard" },
+                    andGroup: {
+                        expressions: [
+                            {
+                                filter: {
+                                    fieldName: "pagePath",
+                                    stringFilter: { matchType: "BEGINS_WITH" as any, value: "/scorecard" },
+                                },
+                            },
+                            ...(sourceFilter ? [{
+                                filter: {
+                                    fieldName: "sessionSource",
+                                    stringFilter: { matchType: "CONTAINS" as any, value: sourceFilter },
+                                },
+                            }] : []),
+                        ],
                     },
-                },
-            });
-            for (const row of scorecardRes?.rows ?? []) {
+                } as any,
+            })) as any;
+            for (const row of scorecardRes.rows ?? []) {
                 scorecardStarts = (scorecardStarts ?? 0) + parseInt(row.metricValues?.[0]?.value ?? "0", 10);
             }
         }
 
         return { pageviews, scorecardStarts, scorecardCompletions, discoveryClicks, sources };
-    } catch {
+    } catch (e) {
+        console.error("GA4 Error:", e);
         return { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null, sources: {} };
     }
 }

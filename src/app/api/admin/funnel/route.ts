@@ -32,6 +32,7 @@ export async function GET(req: NextRequest) {
     }
 
     const days = parseInt(req.nextUrl.searchParams.get("days") ?? "30");
+    const source = req.nextUrl.searchParams.get("source") || undefined;
     const since = Math.floor(Date.now() / 1000) - days * 24 * 60 * 60;
 
     // — Stripe data —
@@ -62,7 +63,7 @@ export async function GET(req: NextRequest) {
         || !!process.env.GOOGLE_SERVICE_ACCOUNT_JSON
     );
     const ga4 = hasGA4
-        ? await getGA4Metrics(ga4PropertyId, days)
+        ? await getGA4Metrics(ga4PropertyId, days, source)
         : { pageviews: null, scorecardStarts: null, scorecardCompletions: null, discoveryClicks: null, sources: {} };
 
     // — LinkedIn API data —

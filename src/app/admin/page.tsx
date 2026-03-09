@@ -121,13 +121,15 @@ function Connector({ from, to }: { from: FunnelStep; to: FunnelStep }) {
 
 export default function AdminDashboard() {
     const [days, setDays] = useState(30);
+    const [source, setSource] = useState<string>("");
     const [data, setData] = useState<FunnelData | null>(null);
     const [loading, setLoading] = useState(true);
     const [updatedAt, setUpdatedAt] = useState<string | null>(null);
 
     const load = useCallback(() => {
         setLoading(true);
-        fetch(`/api/admin/funnel?days=${days}`, {
+        const url = `/api/admin/funnel?days=${days}${source ? `&source=${source}` : ""}`;
+        fetch(url, {
             cache: 'no-store',
             headers: { 'Cache-Control': 'no-cache', 'Pragma': 'no-cache' }
         })
@@ -137,7 +139,7 @@ export default function AdminDashboard() {
                 setUpdatedAt(new Date().toLocaleTimeString());
             })
             .finally(() => setLoading(false));
-    }, [days]);
+    }, [days, source]);
 
     useEffect(() => { load(); }, [load]);
 
@@ -170,22 +172,36 @@ export default function AdminDashboard() {
                         )}
                     </p>
                 </div>
-                <div className="flex items-center gap-2">
-                    {[7, 30, 90].map((d) => (
-                        <button
-                            key={d}
-                            onClick={() => setDays(d)}
-                            className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all ${days === d
-                                ? "bg-brand-green text-brand-dark"
-                                : "bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white"
-                                }`}
-                        >
-                            {d}d
-                        </button>
-                    ))}
+                <div className="flex items-center gap-3">
+                    <select
+                        value={source}
+                        onChange={(e) => setSource(e.target.value)}
+                        className="bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-sm text-slate-300 focus:outline-none focus:ring-1 focus:ring-brand-green/50 hover:bg-white/10 transition-all"
+                    >
+                        <option value="">All Traffic</option>
+                        <option value="linkedin">LinkedIn Ads</option>
+                        <option value="google">Google</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="Direct">Direct</option>
+                    </select>
+
+                    <div className="flex items-center gap-1 bg-white/5 p-1 rounded-lg border border-white/5">
+                        {[7, 30, 90].map((d) => (
+                            <button
+                                key={d}
+                                onClick={() => setDays(d)}
+                                className={`px-3 py-1 rounded-md text-sm font-medium transition-all ${days === d
+                                    ? "bg-brand-green text-brand-dark shadow-sm"
+                                    : "text-slate-400 hover:text-white"
+                                    }`}
+                            >
+                                {d}d
+                            </button>
+                        ))}
+                    </div>
                     <button
                         onClick={load}
-                        className="ml-2 px-3 py-1.5 rounded-lg text-sm bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition-all"
+                        className="p-1.5 rounded-lg bg-white/5 text-slate-400 hover:bg-white/10 hover:text-white transition-all border border-white/5"
                     >
                         ↻
                     </button>
