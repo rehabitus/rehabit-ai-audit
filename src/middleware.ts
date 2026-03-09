@@ -13,7 +13,11 @@ async function expectedToken(): Promise<string | undefined> {
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
-    if (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) {
+    const isProtected =
+        (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) ||
+        pathname.startsWith("/home-v1-backup");
+
+    if (isProtected) {
         const token = req.cookies.get("admin_token")?.value;
         const expected = await expectedToken();
 
@@ -28,5 +32,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/admin/:path*"],
+    matcher: ["/admin/:path*", "/home-v1-backup/:path*", "/home-v1-backup"],
 };
