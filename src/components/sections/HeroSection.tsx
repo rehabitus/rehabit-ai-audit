@@ -30,7 +30,7 @@ export function HeroSection() {
           variants={heroChild}
           className="mb-8 inline-flex items-center gap-3 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-6 py-2.5 text-lg font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
-          For 6-Figure Coaches Running on Manual Workflows
+          For 6-7 Figure Coaches Running on Manual Workflows
         </motion.div>
 
         <motion.h1
