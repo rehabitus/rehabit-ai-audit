@@ -7,8 +7,6 @@ import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import type { PricingInfo } from "@/lib/pricing";
-import Link from "next/link";
-import { trackScorecardLinkClick } from "@/lib/analytics";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
@@ -55,33 +53,14 @@ export function HeroSection() {
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
-          <Link
-            href="/scorecard"
-            onClick={trackScorecardLinkClick}
-            className="inline-flex flex-col items-center gap-0.5 rounded-xl bg-white/[0.05] border border-white/10 px-6 py-3 text-base font-bold text-white transition-all hover:bg-white/10 hover:border-brand-green/30"
-          >
-            <span><span className="text-brand-green">Free:</span> Score Your AI Readiness (2&nbsp;min)</span>
-            <span className="text-xs font-normal text-slate-400">See where you rank before you invest</span>
-          </Link>
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-white">
           Guaranteed to reveal $20K+ in savings &mdash; or your money back.
         </motion.p>
         <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">
-          Starting at <span className="font-semibold text-white">${(pricing?.priceUsd ?? 500).toLocaleString()}</span> &mdash; price rises with every verified client review.
+          Starting at <span className="font-semibold text-white">${(pricing?.priceUsd ?? 1000).toLocaleString()}</span> &mdash; price rises with every verified client review.
         </motion.p>
-        <motion.div
-          variants={heroChild}
-          className="mt-10 mx-auto max-w-2xl rounded-xl border border-brand-gold/20 bg-brand-gold/5 p-4"
-        >
-          <p className="text-xs font-bold uppercase tracking-wider text-brand-gold">
-            Limited Bonus
-          </p>
-          <p className="mt-1 text-sm md:text-base text-slate-300 text-balance">
-            Pay in full and get your first Core AI System delivered <span className="font-semibold text-brand-gold">FREE</span> in the same 5-day&nbsp;window.
-          </p>
-        </motion.div>
 
         {/* Trust bar — hero size, centered, live review count */}
         <motion.div

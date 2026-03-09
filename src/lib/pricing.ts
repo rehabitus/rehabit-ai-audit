@@ -12,12 +12,12 @@ export interface PricingTier {
 }
 
 export const PRICING_TIERS: PricingTier[] = [
-  { minReviews: 0,  maxReviews: 4,        priceUsd: 500,  label: "Early Access"    },
-  { minReviews: 5,  maxReviews: 9,        priceUsd: 1000, label: "Founding Member"  },
-  { minReviews: 10, maxReviews: 14,       priceUsd: 1500, label: "Early Adopter"    },
-  { minReviews: 15, maxReviews: 19,       priceUsd: 2000, label: "Standard"         },
-  { minReviews: 20, maxReviews: 24,       priceUsd: 2500, label: "Standard+"        },
-  { minReviews: 25, maxReviews: Infinity, priceUsd: 3000, label: "Full Rate"        },
+  { minReviews: 0, maxReviews: 4, priceUsd: 1000, label: "Early Access" },
+  { minReviews: 5, maxReviews: 9, priceUsd: 1000, label: "Founding Member" },
+  { minReviews: 10, maxReviews: 14, priceUsd: 1500, label: "Early Adopter" },
+  { minReviews: 15, maxReviews: 19, priceUsd: 2000, label: "Standard" },
+  { minReviews: 20, maxReviews: 24, priceUsd: 2500, label: "Standard+" },
+  { minReviews: 25, maxReviews: Infinity, priceUsd: 3000, label: "Full Rate" },
 ];
 
 /**

@@ -14,7 +14,7 @@ import {
   viewportOnce,
 } from "@/lib/animations";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
-import { pricingIncludes, payInFullBonus } from "@/lib/constants";
+import { pricingIncludes } from "@/lib/constants";
 import type { PricingInfo } from "@/lib/pricing";
 
 const TIER_LABELS: Record<string, string> = {
@@ -147,59 +147,6 @@ export function PricingSection() {
         <motion.div variants={fadeInUp} className="mt-6 flex justify-center">
           <NavTrustBar size="md" reviewCount={reviewCount} />
         </motion.div>
-      </motion.div>
-
-      {/* ── PAY IN FULL BONUS — hero callout ── */}
-      <motion.div
-        className="relative z-10 mx-auto mt-12 max-w-4xl overflow-hidden rounded-2xl border-2 border-brand-gold/50 bg-gradient-to-br from-brand-gold/10 via-brand-gold/5 to-transparent"
-        initial="hidden"
-        whileInView="visible"
-        viewport={viewportOnce}
-        variants={fadeInUp}
-      >
-        {/* Top ribbon */}
-        <div className="bg-brand-gold/20 border-b border-brand-gold/30 px-6 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {/* Gift icon */}
-            <svg className="h-5 w-5 text-brand-gold flex-shrink-0" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
-            </svg>
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-gold">
-              Pay-in-Full Bonus — Included
-            </span>
-          </div>
-          <span className="rounded-full bg-brand-gold px-3 py-0.5 text-xs font-extrabold uppercase tracking-wider text-brand-dark">
-            FREE
-          </span>
-        </div>
-
-        {/* Body */}
-        <div className="px-6 py-6">
-          <h3 className="text-2xl font-extrabold text-white leading-tight">
-            Your First Core AI System<br />
-            <span className="text-brand-gold">Built &amp; Delivered in the Same 5 Days</span>
-          </h3>
-
-          <p className="mt-3 text-slate-300 leading-relaxed">
-            {payInFullBonus}
-          </p>
-
-          {/* Value row */}
-          <div className="mt-5 flex items-center justify-between rounded-lg border border-brand-gold/20 bg-brand-gold/5 px-4 py-3">
-            <div>
-              <p className="text-xs uppercase tracking-widest text-slate-500 font-semibold">Standalone value</p>
-              <p className="text-xl font-extrabold text-white line-through decoration-brand-red/50 decoration-2">$3,000+</p>
-            </div>
-            <div className="text-right">
-              <p className="text-xs uppercase tracking-widest text-brand-gold font-semibold">Your cost</p>
-              <p className="text-3xl font-extrabold text-brand-gold">$0</p>
-            </div>
-          </div>
-
-          <p className="mt-4 text-sm text-slate-400">
-            One engagement. One timeline. You leave with a complete audit <em>and</em> a working AI system in your business.
-          </p>
-        </div>
       </motion.div>
 
       {/* Guarantee */}
