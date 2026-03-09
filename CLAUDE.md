@@ -1,7 +1,7 @@
 # rehabit.ai — AI Transformation Audit
 
 ## What This Is
-High-converting sales page + Stripe checkout for rehabit.ai's "AI Transformation Audit" ($1,200). Single Next.js page targeting coaches, course creators, and platform operators losing revenue to broken workflows.
+High-converting sales page + Stripe checkout for rehabit.ai's "AI Transformation Audit" ($1,000 Founding Rate). Single Next.js page targeting coaches, course creators, and platform operators losing revenue to broken workflows.
 
 **Live:** https://rehabit-ai-audit.vercel.app
 **Repo:** https://github.com/rehabitus/rehabit-ai-audit
@@ -29,7 +29,7 @@ git pull origin main   # AntiGravity also pushes here
 | `src/app/page.tsx` | Nav + 11 sections + Trustpilot + footer |
 | `src/app/globals.css` | All custom CSS — gradients, keyframes, section backgrounds |
 | `src/app/layout.tsx` | Root layout, fonts (Geist + Comfortaa), Trustpilot script |
-| `src/app/api/checkout/route.ts` | Stripe checkout endpoint ($1,200 product) |
+| `src/app/api/checkout/route.ts` | Stripe checkout endpoint (dynamic price from `pricing.ts`) |
 | `src/lib/stripe.ts` | Stripe client — uses `getStripe()` factory (lazy, not build-time) |
 | `tailwind.config.ts` | Brand colors + `font-logo` (Comfortaa) |
 | `src/components/sections/` | 10 page sections (Hero → FinalCTA) |
@@ -61,11 +61,10 @@ git pull origin main   # AntiGravity also pushes here
 | `.section-divider-{green\|blue}` | Between sections |
 
 ## Pricing Model
-- Current price: **$1,200**
-- Scarcity: "3 audits left at this price"
-- Escalation: price goes up $100 every 10 audits
-- Final value: $5,000–$10,000
-- Pay-in-full bonus: first Core AI System built FREE in same 5-day window
+- Current price: **$1,000** (Founding / Early Access rate)
+- Escalation: steps up $500 every 5 Trustpilot reviews → $1,500 → $2,000 → $2,500 → $3,000 → $3,500
+- To raise the price: increment `REVIEW_COUNT` in `src/lib/pricing.ts`, commit + push
+- Framing: founding offer, new brand — price rises as social proof builds
 
 ## Environment Variables
 | Var | Where |
@@ -75,7 +74,7 @@ git pull origin main   # AntiGravity also pushes here
 
 ## Stripe Notes
 - Uses `getStripe()` factory in `src/lib/stripe.ts` — lazy init, not build-time
-- Product: "AI Transformation Audit — Complete Package" at $1,200 (120000 cents)
+- Product: "AI Transformation Audit — Complete Package" — price is dynamic via `getCurrentPricing()` in `src/lib/pricing.ts`
 - Promotion codes enabled
 - Success URL: `/?session_id={CHECKOUT_SESSION_ID}&status=success`
 - API version: `2026-01-28.clover`

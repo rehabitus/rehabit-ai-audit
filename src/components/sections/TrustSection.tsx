@@ -168,7 +168,7 @@ export function TrustSection() {
                 role: "Online Coach",
               },
               {
-                quote: "The audit paid for itself in the first week with a single automation. Best $1,200 I've spent on my business this year.",
+                quote: "The audit paid for itself in the first week with a single automation. Best $1,000 I've spent on my business this year.",
                 name: "Priya K.",
                 role: "Community Operator",
               },

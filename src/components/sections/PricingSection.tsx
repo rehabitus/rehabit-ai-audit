@@ -95,9 +95,9 @@ export function PricingSection() {
         <motion.div variants={fadeInUp} className="mt-10">
           {/* Industry compare */}
           <p className="text-sm text-slate-500 mb-3">
-            projected final average price{" "}
+            projected final rate{" "}
             <span className="line-through decoration-brand-red/60 decoration-2">
-              $5,000
+              $3,500
             </span>
           </p>
 

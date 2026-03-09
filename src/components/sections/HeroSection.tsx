@@ -35,9 +35,9 @@ export function HeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance"
+          className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance uppercase"
         >
-          Stop guessing where AI fits. In 5&nbsp;days, get a prioritized audit of what to automate, what to ignore, and what to do first.
+          Profitable, Scalable AI System Implementation Roadmap in&nbsp;5&nbsp;Days
         </motion.h1>
 
         <VideoPlayer />
@@ -46,9 +46,7 @@ export function HeroSection() {
           variants={heroChild}
           className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
         >
-          We audit your workflows, quantify the waste, match you with the right AI tools, and hand
-          you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice.
-          Just real numbers and a real roadmap.
+          No more guessing, scaling chaos, or fearing being left&nbsp;behind.
         </motion.p>
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

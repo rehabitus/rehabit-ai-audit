@@ -75,7 +75,7 @@ function ScorecardResultsContent() {
     const token = params.get("token");
     const result = token ? decodeToken(token) : null;
 
-    const [priceUsd, setPriceUsd] = useState<number>(1200);
+    const [priceUsd, setPriceUsd] = useState<number>(1000);
     useEffect(() => {
         fetch("/api/pricing").then(r => r.json()).then(d => { if (d.priceUsd) setPriceUsd(d.priceUsd); }).catch(() => {});
     }, []);
