@@ -7,17 +7,17 @@ import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 
 const NetworkNodesBackground = dynamic(
   () => import("./NetworkNodesBackground").then((m) => m.NetworkNodesBackground),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="webgl-fallback-network" aria-hidden="true" /> }
 );
 
 const ParticleFieldBackground = dynamic(
   () => import("./ParticleFieldBackground").then((m) => m.ParticleFieldBackground),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="webgl-fallback-particles" aria-hidden="true" /> }
 );
 
 const AuroraOrbsBackground = dynamic(
   () => import("./AuroraOrbsBackground").then((m) => m.AuroraOrbsBackground),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="webgl-fallback-aurora" aria-hidden="true" /> }
 );
 
 type SceneType = "network" | "particles" | "aurora";
@@ -50,7 +50,8 @@ export function WebGLBackground({ scene, fallback }: WebGLBackgroundProps) {
     <div className={fallbackClasses[scene]} aria-hidden="true" />
   );
 
-  if (isMobile || !isWebGL) {
+  // Show CSS fallback while detecting, on mobile, or when WebGL unavailable
+  if (isMobile === null || isWebGL === null || isMobile || !isWebGL) {
     return cssFallback;
   }
 

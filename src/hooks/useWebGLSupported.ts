@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-/** Returns true if the browser supports WebGL */
-export function useWebGLSupported(): boolean {
-  const [supported, setSupported] = useState(true);
+/** Returns true if the browser supports WebGL, null while detecting */
+export function useWebGLSupported(): boolean | null {
+  const [supported, setSupported] = useState<boolean | null>(null);
 
   useEffect(() => {
     try {

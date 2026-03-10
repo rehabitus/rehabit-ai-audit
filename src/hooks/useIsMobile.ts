@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 
-/** Returns true when viewport width < 768px */
-export function useIsMobile(): boolean {
-  const [isMobile, setIsMobile] = useState(false);
+/** Returns true when viewport width < 768px, null while detecting */
+export function useIsMobile(): boolean | null {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
   useEffect(() => {
     const mql = window.matchMedia("(max-width: 767px)");
