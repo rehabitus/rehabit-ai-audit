@@ -1,6 +1,6 @@
 "use client";
 
-import { HeroSection } from "@/components/sections/HeroSection";
+import { FastHeroSection } from "@/components/sections/FastHeroSection";
 import { NavCheckoutButton } from "@/components/ui/NavCheckoutButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { ProblemSection } from "@/components/sections/ProblemSection";
@@ -55,7 +55,7 @@ export default function Fast() {
       </nav>
 
       {/* ── SECTIONS ── */}
-      <HeroSection />
+      <FastHeroSection />
       <div className="section-divider-blue" />
       <ProblemSection />
       <div className="section-divider-blue" />

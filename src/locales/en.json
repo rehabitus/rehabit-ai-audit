@@ -19,6 +19,16 @@
   },
   "hero": {
     "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
+    "headline_1": "Profitable, Scalable",
+    "headline_2": "AI Roadmap in\u00a05\u00a0Days",
+    "subheadline": "No more guessing, scaling chaos, or fearing being left\u00a0behind.",
+    "body": "We audit your workflows, quantify the waste, match you with the right AI tools, and hand you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice. Just real numbers and a real roadmap.",
+    "cta": "\u2192 Reserve Your Audit Slot",
+    "guarantee": "Guaranteed to reveal $20K+ in savings \u2014 or your money back.",
+    "pricing": "Starting at ${price} \u2014 price rises with every verified client review."
+  },
+  "fastHero": {
+    "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
     "headline_1": "Know What to Fix First in Your Business",
     "headline_2": "Before You Buy More AI Tools \u2014 In 5 Days",
     "subheadline": "In 5 business days, you\u2019ll get a focused audit of your biggest workflow bottlenecks, missed follow-up opportunities, and best automation wins \u2014 with clear next steps.",
