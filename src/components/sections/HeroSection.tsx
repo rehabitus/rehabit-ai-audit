@@ -12,6 +12,8 @@ import type { PricingInfo } from "@/lib/pricing";
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
   const { t } = useLanguage();
+  const heroBody = t("hero.body");
+  const heroPricing = t("hero.pricing", { price: (pricing?.priceUsd ?? 1000).toLocaleString() });
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -51,12 +53,14 @@ export function HeroSection() {
 
         <VideoPlayer />
 
-        <motion.p
-          variants={heroChild}
-          className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
-        >
-          {t("hero.body")}
-        </motion.p>
+        {heroBody ? (
+          <motion.p
+            variants={heroChild}
+            className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
+          >
+            {heroBody}
+          </motion.p>
+        ) : null}
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <CTAButton>{t("hero.cta")}</CTAButton>
@@ -65,9 +69,11 @@ export function HeroSection() {
         <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-white">
           {t("hero.guarantee")}
         </motion.p>
-        <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">
-          {t("hero.pricing", { price: (pricing?.priceUsd ?? 1000).toLocaleString() })}
-        </motion.p>
+        {heroPricing ? (
+          <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">
+            {heroPricing}
+          </motion.p>
+        ) : null}
 
         {/* Trust bar — hero size, centered, live review count */}
         <motion.div
