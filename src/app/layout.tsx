@@ -57,6 +57,7 @@ export const metadata: Metadata = {
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const GA_ID = "G-TMPSPTL3Y6";
 const LINKEDIN_PARTNER_ID = "9703625";
@@ -82,7 +83,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased font-sans`}
       >
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
         {/* Google Analytics 4 */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}

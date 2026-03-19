@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { trackPurchase } from "@/lib/analytics";
+import { useLanguage } from "@/context/LanguageContext";
 
 function SuccessContent() {
   const params = useSearchParams();
@@ -23,6 +24,8 @@ function SuccessContent() {
 }
 
 export default function SuccessPage() {
+    const { t, localizeHref } = useLanguage();
+
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-brand-dark px-6 text-center">
             <Suspense>
@@ -54,43 +57,43 @@ export default function SuccessPage() {
                     variants={fadeInUp}
                     className="text-4xl font-extrabold text-white md:text-5xl"
                 >
-                    Audit Reserved!
+                    {t("success.headline")}
                 </motion.h1>
 
                 <motion.p
                     variants={fadeInUp}
                     className="mt-6 text-xl text-slate-300"
                 >
-                    You&rsquo;ve just taken the first step toward reclaiming your time and plugging the leaks in your business.
+                    {t("success.body")}
                 </motion.p>
 
                 <motion.div
                     variants={fadeInUp}
                     className="mt-12 rounded-xl border border-white/10 bg-white/[0.03] p-8 text-left"
                 >
-                    <h2 className="text-lg font-bold text-white uppercase tracking-wider mb-4">What Happens Next:</h2>
+                    <h2 className="text-lg font-bold text-white uppercase tracking-wider mb-4">{t("success.next_headline")}</h2>
                     <ul className="space-y-4 text-slate-400">
                         <li className="flex gap-3">
                             <span className="text-brand-green font-bold">1.</span>
-                            <span>Check your inbox for a confirmation email and your next steps.</span>
+                            <span>{t("success.steps.0")}</span>
                         </li>
                         <li className="flex gap-3">
                             <span className="text-brand-green font-bold">2.</span>
-                            <span>We&rsquo;ll reach out within 24 hours to schedule your 1:1 kickoff call.</span>
+                            <span>{t("success.steps.1")}</span>
                         </li>
                         <li className="flex gap-3">
                             <span className="text-brand-green font-bold">3.</span>
-                            <span>Start gathering your current workflow documentation (standard ops, tech stack).</span>
+                            <span>{t("success.steps.2")}</span>
                         </li>
                     </ul>
                 </motion.div>
 
                 <motion.div variants={fadeInUp} className="mt-12">
                     <Link
-                        href="/"
+                        href={localizeHref("/")}
                         className="inline-block rounded-lg border border-white/20 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10"
                     >
-                        Back to Homepage
+                        {t("success.back_home")}
                     </Link>
                 </motion.div>
             </motion.div>

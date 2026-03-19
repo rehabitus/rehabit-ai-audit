@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 import { getCurrentPricing } from "@/lib/pricing";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CTAButtonProps {
   children: React.ReactNode;
@@ -12,9 +13,10 @@ interface CTAButtonProps {
 
 export function CTAButton({ children, className = "", location = "other" }: CTAButtonProps) {
   const [loading, setLoading] = useState(false);
+  const { t } = useLanguage();
 
   async function handleClick() {
-    trackCtaClick(typeof children === "string" ? children : "Main CTA", location);
+    trackCtaClick(typeof children === "string" ? children : t("common.main_cta"), location);
     trackBeginCheckout(location, getCurrentPricing().priceUsd);
     setLoading(true);
     try {
@@ -46,7 +48,7 @@ export function CTAButton({ children, className = "", location = "other" }: CTAB
     >
       {/* Shimmer sweep */}
       <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/15 to-transparent" />
-      <span className="relative">{loading ? "Redirecting to checkout\u2026" : children}</span>
+      <span className="relative">{loading ? t("common.redirecting_checkout") : children}</span>
     </button>
   );
 }

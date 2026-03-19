@@ -4,8 +4,10 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
-import { timelineSteps } from "@/lib/constants";
 import { WebGLBackground } from "@/components/backgrounds/WebGLBackground";
+import { useLanguage } from "@/context/LanguageContext";
+
+type TimelineStep = { day: string; title: string; body: string };
 
 export function ProcessSection() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -16,6 +18,9 @@ export function ProcessSection() {
 
   const lineScaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
   const lineOpacity = useTransform(scrollYProgress, [0, 0.3], [0.1, 0.4]);
+
+  const { t, tObjects } = useLanguage();
+  const steps = tObjects<TimelineStep>("process.steps");
 
   return (
     <Section className="relative overflow-hidden bg-brand-navy" id="process" noAnimate>
@@ -31,7 +36,7 @@ export function ProcessSection() {
           variants={fadeInUp}
           className="text-3xl font-bold text-white md:text-4xl text-center"
         >
-          Simple. Fast. No disruption to your business.
+          {t("process.headline")}
         </motion.h2>
 
         <div className="relative mt-14" ref={timelineRef}>
@@ -43,7 +48,7 @@ export function ProcessSection() {
           />
 
           <motion.div className="space-y-10" variants={staggerContainer}>
-            {timelineSteps.map((step, i) => (
+            {steps.map((step, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
@@ -81,7 +86,7 @@ export function ProcessSection() {
           className="mt-12 rounded-lg bg-brand-green/10 px-6 py-4 text-center"
         >
           <p className="text-lg font-semibold text-brand-green">
-            Total time investment from you: About 1 hour. We do the rest.
+            {t("process.time_investment")}
           </p>
         </motion.div>
       </motion.div>

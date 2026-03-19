@@ -24,7 +24,7 @@ import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 const SECTION_IDS = ["hero", "problem", "why-now", "offer", "outcomes", "deliverables", "process", "trust", "pricing", "faq", "reserve"];
 
-export default function Home() {
+export default function Fast() {
   useScrollDepth();
   useSectionView(SECTION_IDS);
   useConversionTracking();

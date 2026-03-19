@@ -4,8 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { fadeInUp, slideInLeft, staggerContainer, viewportOnce } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function BridgeSection() {
+  const { t } = useLanguage();
+
   return (
     <Section className="bg-brand-dark dot-grid-bg" id="why-now" noAnimate>
       <motion.div
@@ -26,31 +29,29 @@ export function BridgeSection() {
           />
         </motion.div>
         <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl">
-          Here&rsquo;s what changed.
+          {t("bridge.headline")}
         </motion.h2>
         <motion.p variants={fadeInUp} className="mt-4 text-lg text-slate-300 leading-relaxed">
-          Two years ago, automating your workflows meant hiring a developer,
-          spending <span className="font-semibold text-white">$50K+</span>, and
-          waiting <span className="font-semibold text-white">6 months</span> for something that probably
-          wouldn&rsquo;t work. <span className="font-semibold text-white">95% of complex AI
-            projects failed</span> to deliver ROI.
+          {t("bridge.p1_pre")} <span className="font-semibold text-white">{t("bridge.p1_50k")}</span>,{" "}
+          {t("bridge.p1_mid")} <span className="font-semibold text-white">{t("bridge.p1_6mo")}</span>{" "}
+          {t("bridge.p1_post")}{" "}
+          <span className="font-semibold text-white">{t("bridge.p1_stat")}</span>{" "}
+          {t("bridge.p1_end")}
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-4 text-lg text-slate-300 leading-relaxed">
-          Today? The tools exist. Zapier. Make. n8n. Voice AI agents. Custom GPTs. They&rsquo;re
-          affordable, proven, and designed for <span className="font-semibold text-white">non-technical teams</span>.
+          {t("bridge.p2_pre")}{" "}
+          <span className="font-semibold text-white">{t("bridge.p2_highlight")}</span>
+          {t("bridge.p2_end")}
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-4 text-lg font-semibold text-white">
-          The problem isn&rsquo;t the tools. The problem is knowing which ones to use, where to use
-          them, and in what order.
+          {t("bridge.p3")}
         </motion.p>
         <motion.p variants={fadeInUp} className="mt-2 text-lg text-brand-green font-bold">
-          That&rsquo;s what the audit gives you.
+          {t("bridge.tagline")}
         </motion.p>
 
         <motion.p variants={fadeInUp} className="mt-6 text-lg text-slate-300 leading-relaxed">
-          We don&rsquo;t sell software. We don&rsquo;t build custom code. We diagnose your business
-          like a doctor&nbsp;&mdash; find where you&rsquo;re bleeding time, money, and
-          clients&nbsp;&mdash; and prescribe the exact off-the-shelf tools that fix it.
+          {t("bridge.p4")}
         </motion.p>
 
         <motion.blockquote
@@ -58,8 +59,7 @@ export function BridgeSection() {
           className="mt-10 rounded-lg border-l-4 border-brand-green bg-white/5 px-6 py-5"
         >
           <p className="text-lg italic text-slate-200">
-            &ldquo;Think of it this way: you don&rsquo;t need a surgeon. You need someone who can
-            read the X-ray and tell you which vitamin to take.&rdquo;
+            &ldquo;{t("bridge.quote")}&rdquo;
           </p>
         </motion.blockquote>
       </motion.div>

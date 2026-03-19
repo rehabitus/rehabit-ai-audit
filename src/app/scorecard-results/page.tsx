@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion, useInView } from "framer-motion";
 import type { ScoreResult } from "@/app/api/generate-score/route";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Decode base64url token (no DB needed — result is embedded in the URL)
 function decodeToken(token: string): ScoreResult | null {
@@ -72,6 +73,7 @@ function gradeColor(grade: string): string {
 
 function ScorecardResultsContent() {
     const params = useSearchParams();
+    const { localizeHref } = useLanguage();
     const token = params.get("token");
     const result = token ? decodeToken(token) : null;
 
@@ -90,7 +92,7 @@ function ScorecardResultsContent() {
                         This scorecard link is no longer valid. Take the scorecard again to get a fresh results link.
                     </p>
                     <Link
-                        href="/scorecard"
+                        href={localizeHref("/scorecard")}
                         className="inline-flex items-center gap-2 bg-brand-green text-brand-dark px-8 py-4 rounded-xl font-bold text-sm hover:bg-emerald-400 transition-all"
                     >
                         Retake My Scorecard
@@ -104,7 +106,7 @@ function ScorecardResultsContent() {
     const minScore = Math.min(...Object.values(depts));
     const weakestDept = DEPT_CONFIG.find((d) => depts[d.key] === minScore);
     const gc = gradeColor(result.grade);
-    const baseUrl = "https://audit.rehabit.ai";
+    const baseUrl = localizeHref("/");
 
     return (
         <main className="min-h-screen bg-[#0F172A] text-white">
@@ -120,11 +122,11 @@ function ScorecardResultsContent() {
 
             {/* Nav */}
             <header className="relative z-50 flex items-center justify-between px-6 py-5 border-b border-white/5 bg-black/30 backdrop-blur-md">
-                <Link href="/" className="font-logo text-xl text-brand-green tracking-tight">
+                <Link href={localizeHref("/")} className="font-logo text-xl text-brand-green tracking-tight">
                     rehabit<span className="text-white">.ai</span>
                 </Link>
                 <div className="text-xs text-slate-500 font-semibold uppercase tracking-widest">AI Readiness Scorecard</div>
-                <Link href="/scorecard" className="text-xs text-slate-500 hover:text-white transition-all font-semibold">
+                <Link href={localizeHref("/scorecard")} className="text-xs text-slate-500 hover:text-white transition-all font-semibold">
                     Retake
                 </Link>
             </header>

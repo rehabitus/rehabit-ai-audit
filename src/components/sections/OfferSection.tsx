@@ -11,8 +11,21 @@ import {
 } from "@/lib/animations";
 import { offerCards } from "@/lib/constants";
 import { WebGLBackground } from "@/components/backgrounds/WebGLBackground";
+import { useLanguage } from "@/context/LanguageContext";
+
+type OfferCardTranslation = { title: string; body: string };
 
 export function OfferSection() {
+  const { t, tObjects } = useLanguage();
+  const cardTranslations = tObjects<OfferCardTranslation>("offer.cards");
+
+  // Merge icon/color from constants with translated title/body from JSON
+  const cards = offerCards.map((card, i) => ({
+    ...card,
+    title: cardTranslations[i]?.title ?? card.title,
+    body: cardTranslations[i]?.body ?? card.body,
+  }));
+
   return (
     <Section className="relative overflow-hidden bg-brand-navy" id="offer" noAnimate>
       <WebGLBackground scene="network" />
@@ -25,9 +38,9 @@ export function OfferSection() {
       >
         <motion.div variants={fadeInUp} className="text-center">
           <h2 className="text-3xl font-bold text-white md:text-4xl">
-            The AI Transformation Audit &amp; Implementation Report
+            {t("offer.headline")}
           </h2>
-          <p className="mt-2 text-lg text-slate-400">Everything delivered in 5 business days.</p>
+          <p className="mt-2 text-lg text-slate-400">{t("offer.sub")}</p>
         </motion.div>
 
         <motion.div
@@ -37,7 +50,7 @@ export function OfferSection() {
           viewport={viewportOnce}
           className="mt-14 grid gap-8 md:grid-cols-2"
         >
-          {offerCards.map((card, i) => (
+          {cards.map((card, i) => (
             <motion.div
               key={i}
               variants={fadeInUp}

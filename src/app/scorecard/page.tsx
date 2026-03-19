@@ -7,11 +7,13 @@ import { ScorecardChat } from "../../components/scorecard/ScorecardChat";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { trackScorecardStart, trackScorecardComplete } from "@/lib/analytics";
+import { useLanguage } from "@/context/LanguageContext";
 
 type Mode = "survey" | "chat";
 
 function ScorecardContent() {
     const searchParams = useSearchParams();
+    const { localizeHref } = useLanguage();
     const [mode, setMode] = useState<Mode>("survey");
     const [step, setStep] = useState<"intro" | "contact" | "questions" | "calculating" | "results">("intro");
     const [contact, setContact] = useState({ name: "", email: "", website: "" });
@@ -75,7 +77,7 @@ function ScorecardContent() {
         }).catch(() => { });
 
         // Redirect immediately — score arrives in their inbox
-        window.location.href = `/score-thank-you?name=${encodeURIComponent(contact.name)}`;
+        window.location.href = localizeHref(`/score-thank-you?name=${encodeURIComponent(contact.name)}`);
     };
 
     return (
@@ -88,7 +90,7 @@ function ScorecardContent() {
 
             {/* Header / Nav */}
             <header className="relative z-50 flex items-center justify-between px-6 py-6 border-b border-white/5 bg-black/20 backdrop-blur-md">
-                <Link href="/" className="flex items-center gap-2 group">
+                <Link href={localizeHref("/")} className="flex items-center gap-2 group">
                     <span className="font-logo text-xl text-brand-green group-hover:brightness-110 transition-all tracking-tight">rehabit<span className="text-white">.ai</span></span>
                 </Link>
 
@@ -110,7 +112,7 @@ function ScorecardContent() {
                 )}
 
                 <div className="w-[100px] flex justify-end">
-                    <Link href="/" className="text-slate-500 hover:text-white text-xs font-semibold transition-all">
+                    <Link href={localizeHref("/")} className="text-slate-500 hover:text-white text-xs font-semibold transition-all">
                         Exit
                     </Link>
                 </div>

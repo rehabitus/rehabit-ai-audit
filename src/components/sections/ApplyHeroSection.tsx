@@ -7,10 +7,12 @@ import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import type { PricingInfo } from "@/lib/pricing";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Frozen hero for /apply — retains original headline + copy independent of homepage changes
 export function ApplyHeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -31,14 +33,14 @@ export function ApplyHeroSection() {
           variants={heroChild}
           className="mb-8 inline-flex items-center gap-2 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
-          For 6-7 Figure Coaches Running on Manual Workflows
+          {t("applyHero.pill")}
         </motion.div>
 
         <motion.h1
           variants={heroChild}
           className="mx-auto max-w-4xl text-3xl font-extrabold leading-tight text-white md:text-5xl lg:text-[54px] text-balance"
         >
-          Stop guessing where AI fits. In 5&nbsp;days, get a prioritized audit of what to automate, what to ignore, and what to do first.
+          {t("applyHero.headline")}
         </motion.h1>
 
         <VideoPlayer />
@@ -47,20 +49,18 @@ export function ApplyHeroSection() {
           variants={heroChild}
           className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
         >
-          We audit your workflows, quantify the waste, match you with the right AI tools, and hand
-          you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice.
-          Just real numbers and a real roadmap.
+          {t("applyHero.body")}
         </motion.p>
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+          <CTAButton>{t("applyHero.cta")}</CTAButton>
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-white">
-          Guaranteed to reveal $20K+ in savings &mdash; or your money back.
+          {t("applyHero.guarantee")}
         </motion.p>
         <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">
-          Starting at <span className="font-semibold text-white">${(pricing?.priceUsd ?? 1000).toLocaleString()}</span> &mdash; price rises with every verified client review.
+          {t("applyHero.pricing_pre")} <span className="font-semibold text-white">${(pricing?.priceUsd ?? 1000).toLocaleString()}</span> {t("applyHero.pricing_post")}
         </motion.p>
 
         <motion.div

@@ -1,3 +1,5 @@
+import { useLanguage } from "@/context/LanguageContext";
+
 const STARS = 5;
 
 const AVATAR_COLORS = [
@@ -51,6 +53,7 @@ export function NavTrustBar({
   size?: "sm" | "md";
   reviewCount?: number;
 }) {
+  const { t } = useLanguage();
   const showCount = reviewCount > 5;
   const avatarSize = size === "md" ? 40 : 32;
   const ring = "#0F172A";
@@ -95,9 +98,9 @@ export function NavTrustBar({
         </div>
         <p className={`${labelSize} font-bold text-white/90 whitespace-nowrap`}>
           {showCount ? (
-            <>Trusted by <span className="text-brand-green">{reviewCount}</span> founders like you</>
+            <>{t("trustbar.with_count_pre")} <span className="text-brand-green">{reviewCount}</span> {t("trustbar.with_count_post")}</>
           ) : (
-            <>Trusted by founders like <span className="text-brand-green">you</span></>
+            <>{t("trustbar.default_pre")} <span className="text-brand-green">{t("trustbar.default_highlight")}</span></>
           )}
         </p>
       </div>

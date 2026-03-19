@@ -6,9 +6,11 @@ import { fadeInUp, staggerContainer } from "@/lib/animations";
 
 import { useState } from "react";
 import { BookingQualificationModal } from "@/components/ui/BookingQualificationModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function CancelPage() {
     const [surveyOpen, setSurveyOpen] = useState(false);
+    const { t, localizeHref } = useLanguage();
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-brand-dark px-6 text-center">
@@ -38,14 +40,14 @@ export default function CancelPage() {
                     variants={fadeInUp}
                     className="text-4xl font-extrabold text-white md:text-5xl"
                 >
-                    Checkout Cancelled
+                    {t("cancel.headline")}
                 </motion.h1>
 
                 <motion.p
                     variants={fadeInUp}
                     className="mt-6 text-xl text-slate-300"
                 >
-                    No problem. Timing is everything in business. If you have questions before you&rsquo;re ready to commit, we&rsquo;re here to help.
+                    {t("cancel.body")}
                 </motion.p>
 
                 <motion.div
@@ -53,33 +55,33 @@ export default function CancelPage() {
                     className="mt-12 grid gap-6 md:grid-cols-2"
                 >
                     <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 text-left">
-                        <h3 className="font-bold text-white mb-2">Have Questions?</h3>
-                        <p className="text-sm text-slate-400 mb-4">Not sure if the audit is right for your specific stack? Let&rsquo;s chat.</p>
+                        <h3 className="font-bold text-white mb-2">{t("cancel.questions_title")}</h3>
+                        <p className="text-sm text-slate-400 mb-4">{t("cancel.questions_body")}</p>
                         <button
                             onClick={() => setSurveyOpen(true)}
                             className="text-brand-green font-semibold hover:underline"
                         >
-                            Book 15-min call &rarr;
+                            {t("cancel.questions_cta")}
                         </button>
                     </div>
                     <div className="rounded-xl border border-white/10 bg-white/[0.03] p-6 text-left">
-                        <h3 className="font-bold text-white mb-2">Need More Info?</h3>
-                        <p className="text-sm text-slate-400 mb-4">Check out our FAQs or review the details of the audit package.</p>
+                        <h3 className="font-bold text-white mb-2">{t("cancel.info_title")}</h3>
+                        <p className="text-sm text-slate-400 mb-4">{t("cancel.info_body")}</p>
                         <Link
-                            href="/#faq"
+                            href={localizeHref("/#faq")}
                             className="text-brand-green font-semibold hover:underline"
                         >
-                            View FAQs &rarr;
+                            {t("cancel.info_cta")}
                         </Link>
                     </div>
                 </motion.div>
 
                 <motion.div variants={fadeInUp} className="mt-12">
                     <Link
-                        href="/"
+                        href={localizeHref("/")}
                         className="inline-block rounded-lg border border-white/20 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10"
                     >
-                        Return to Homepage
+                        {t("cancel.back_home")}
                     </Link>
                 </motion.div>
             </motion.div>

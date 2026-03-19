@@ -4,9 +4,11 @@ import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 function ScoreThankYouContent() {
     const params = useSearchParams();
+    const { localizeHref } = useLanguage();
     const rawName = params.get("name") ?? "";
     const firstName = rawName.split(" ")[0] || "there";
     const score = params.get("score");
@@ -118,7 +120,7 @@ function ScoreThankYouContent() {
                     transition={{ duration: 0.4, delay: 0.7 }}
                 >
                     <Link
-                        href="/"
+                        href={localizeHref("/")}
                         className="inline-flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 text-sm font-semibold text-slate-300 transition-all hover:border-white/30 hover:text-white"
                     >
                         ← Back to the page

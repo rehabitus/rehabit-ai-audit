@@ -1,0 +1,352 @@
+{
+  "language_switcher": {
+    "label": "Language switcher"
+  },
+  "common": {
+    "skip_to_content": "Skip to content",
+    "loading": "Loading…",
+    "redirecting_checkout": "Redirecting to checkout…",
+    "main_cta": "Main CTA"
+  },
+  "nav": {
+    "reserve": "Reserve Your Spot"
+  },
+  "trustbar": {
+    "with_count_pre": "Trusted by",
+    "with_count_post": "founders like you",
+    "default_pre": "Trusted by founders like",
+    "default_highlight": "you"
+  },
+  "hero": {
+    "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
+    "headline_1": "Profitable, Scalable",
+    "headline_2": "AI Roadmap in\u00a05\u00a0Days",
+    "subheadline": "No more guessing, scaling chaos, or fearing being left\u00a0behind.",
+    "body": "We audit your workflows, quantify the waste, match you with the right AI tools, and hand you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice. Just real numbers and a real roadmap.",
+    "cta": "\u2192 Reserve Your Audit Slot",
+    "guarantee": "Guaranteed to reveal $20K+ in savings \u2014 or your money back.",
+    "pricing": "Starting at ${price} \u2014 price rises with every verified client review."
+  },
+  "problem": {
+    "headline": "You already know something is\u00a0off.",
+    "p1": "You've built a real business. Clients. Revenue. A team (even if it's small). Programs that get results.",
+    "callout": "But behind the scenes?",
+    "result_pre": "The result? You're",
+    "result_highlight": "working harder than ever",
+    "result_post": ", growing slower than you should, and watching competitors who figured out automation pull ahead.",
+    "worst": "The worst part: You don\u2019t know what you don\u2019t know. You can\u2019t fix what you can\u2019t see.",
+    "reveal": "That\u2019s exactly what this audit reveals.",
+    "painPoints": [
+      "Your team copies data between tools by hand \u2014 and makes mistakes 20-30% of the time",
+      "Onboarding a new client takes 45 minutes of manual busywork across 5 different platforms",
+      "Clients disengage between sessions because there\u2019s no system keeping them connected",
+      "You\u2019re creating content nonstop just to keep people engaged \u2014 and it still isn\u2019t enough",
+      "You hear about AI every day but have no idea what actually applies to YOUR business",
+      "You\u2019ve tried ChatGPT \u2014 it\u2019s interesting, but it didn\u2019t move the needle on revenue or retention"
+    ]
+  },
+  "bridge": {
+    "headline": "Here\u2019s what changed.",
+    "p1_pre": "Two years ago, automating your workflows meant hiring a developer, spending",
+    "p1_50k": "$50K+",
+    "p1_mid": ", and waiting",
+    "p1_6mo": "6 months",
+    "p1_post": "for something that probably wouldn\u2019t work.",
+    "p1_stat": "95% of complex AI projects failed",
+    "p1_end": "to deliver ROI.",
+    "p2_pre": "Today? The tools exist. Zapier. Make. n8n. Voice AI agents. Custom GPTs. They\u2019re affordable, proven, and designed for",
+    "p2_highlight": "non-technical teams",
+    "p2_end": ".",
+    "p3": "The problem isn\u2019t the tools. The problem is knowing which ones to use, where to use them, and in what order.",
+    "tagline": "That\u2019s what the audit gives you.",
+    "p4": "We don\u2019t sell software. We don\u2019t build custom code. We diagnose your business like a doctor \u2014 find where you\u2019re bleeding time, money, and clients \u2014 and prescribe the exact off-the-shelf tools that fix it.",
+    "quote": "Think of it this way: you don\u2019t need a surgeon. You need someone who can read the X-ray and tell you which vitamin to take."
+  },
+  "offer": {
+    "headline": "The AI Transformation Audit & Implementation Report",
+    "sub": "Everything delivered in 5 business days.",
+    "cards": [
+      {
+        "title": "Full Business Workflow Audit",
+        "body": "We evaluate your top 3-5 most time-consuming processes end-to-end. Not surface-level observations \u2014 we document every step, every tool, every handoff, every pain point, and every error. You\u2019ll see exactly where hours disappear, where errors compound, and where money leaks out of your operation."
+      },
+      {
+        "title": "Scored Opportunity Matrix (VALUE Framework)",
+        "body": "Every process gets scored on 5 dimensions \u2014 Volume, Automatable %, Labor, User Impact, and Ease of implementation. Color-coded. Ranked. Prioritized. You\u2019ll know instantly which processes to automate first for maximum impact."
+      },
+      {
+        "title": "Tool-Matched Recommendations",
+        "body": "For each opportunity, we recommend the specific tool (Zapier, Make, n8n, AI agent, etc.), explain why it fits, estimate setup time, and flag any red flags. No guessing. No generic advice. Specific tools matched to your specific workflows."
+      },
+      {
+        "title": "ROI Projections Using YOUR Numbers",
+        "body": "We calculate annual time savings, cost savings, and ROI using your actual hours, your actual rates, and your actual error costs. Not industry averages. Your data. You\u2019ll see the dollar amount you\u2019re leaving on the table."
+      },
+      {
+        "title": "Professional 5-Page Audit Report",
+        "body": "Executive summary. Current state assessment. Opportunity matrix. Solution recommendations. Investment roadmap. Clean, branded, ready to share with your team or partners. This isn\u2019t a slide deck with buzzwords \u2014 it\u2019s a decision-making document with real numbers."
+      },
+      {
+        "title": "3-Tier Implementation Proposal",
+        "body": "Every audit includes three clear paths forward: Quick Wins (top automations in 2 weeks), Foundation (core transformation in 6-8 weeks), Full Transformation (complete overhaul in 12-16 weeks). You pick the pace and the budget. We do the work."
+      }
+    ]
+  },
+  "outcomes": {
+    "headline": "After your audit, you\u2019ll have:",
+    "before_label": "Before",
+    "after_label": "After",
+    "beforeAfter": [
+      ["\u201cI know we\u2019re wasting time somewhere\u201d", "Exact hours and dollars quantified per process"],
+      ["\u201cI don\u2019t know which AI tools to use\u201d", "Specific tools matched to your specific workflows"],
+      ["\u201cI can\u2019t justify the investment\u201d", "ROI calculated with your actual numbers (typically 200-500%)"],
+      ["\u201cMy team copies data by hand\u201d", "Automated workflows running in weeks, not months"],
+      ["\u201cClients disengage between sessions\u201d", "Digital Twin providing 24/7 personalized engagement"],
+      ["\u201cI\u2019m creating content nonstop\u201d", "AI generating content in your voice \u2014 review, tweak, publish"],
+      ["\u201cI hear about AI but don\u2019t know where to start\u201d", "A prioritized, phased implementation roadmap in your hands"]
+    ],
+    "stats": [
+      { "label": "Hours/year saved on average" },
+      { "label": "Annual cost reduction" },
+      { "label": "Move to implementation" },
+      { "label": "From audit to first automation" }
+    ]
+  },
+  "deliverables": {
+    "headline": "What You\u2019re Actually Getting",
+    "sub": "This isn\u2019t a vague PDF. It\u2019s a comprehensive ROI-driven transformation strategy designed to be executed immediately.",
+    "items": [
+      {
+        "title": "Quantified Waste Analysis",
+        "description": "We reveal exactly how many hours and dollars your team is losing to manual busywork, duplicate data entry, and broken workflows."
+      },
+      {
+        "title": "Precision Tool Selection",
+        "description": "No more guessing. We match your specific pain points to the exact AI tools and automations that will solve them for good."
+      },
+      {
+        "title": "Implementation Roadmap",
+        "description": "A step-by-step 90-day execution plan. We don\u2019t just tell you what to fix; we show you exactly how to fix it, phase by phase."
+      }
+    ]
+  },
+  "midCTA": {
+    "eyebrow": "Ready to find your number?",
+    "headline": "Know exactly what your workflows are costing you\u00a0\u2014 in 5\u00a0days.",
+    "cta": "\u2192 Reserve Your Audit Slot"
+  },
+  "process": {
+    "headline": "Simple. Fast. No disruption to your business.",
+    "time_investment": "Total time investment from you: About 1 hour. We do the rest.",
+    "steps": [
+      {
+        "day": "Day 1-2",
+        "title": "Discovery",
+        "body": "You fill out a short questionnaire (10 minutes). We review it, then hop on a 30-minute call to go deeper. We learn your business, your tools, your pain."
+      },
+      {
+        "day": "Day 2-3",
+        "title": "Process Documentation",
+        "body": "We map your top workflows step-by-step. Every trigger, every handoff, every bottleneck \u2014 documented."
+      },
+      {
+        "day": "Day 3-4",
+        "title": "Scoring & Solution Matching",
+        "body": "We score each process using our VALUE framework, match opportunities to specific tools, and calculate ROI using your real data."
+      },
+      {
+        "day": "Day 4-5",
+        "title": "Report & Proposal",
+        "body": "We assemble your complete audit report, generate your 3-tier implementation proposal, and activate your Digital Twin."
+      },
+      {
+        "day": "Day 5",
+        "title": "Delivery Call",
+        "body": "We walk you through everything live. You leave with total clarity on what to do, in what order, and what it\u2019ll cost vs. what it\u2019ll save."
+      }
+    ]
+  },
+  "trust": {
+    "headline": "Built by someone who\u2019s done this before.",
+    "intro_pre": "Mike Olaski",
+    "intro_post": "\u00a0\u2014 founder of Rehabit and the 4C AI Coaching OS. Not a consultant who read a book about AI. Someone who builds and deploys these systems every day.",
+    "closing": "When we audit your business, we\u2019re not just giving advice. We\u2019re applying the exact engineering principles that scale 7-figure digital coaching businesses.",
+    "featured_label": "Worked with or on Projects Featuring:",
+    "results_headline": "Results Delivered",
+    "results": [
+      { "category": "Marketing", "verb": "Built", "value": "250,000", "unit": "email list in 18 mo" },
+      { "category": "Sales", "verb": "Generated", "value": "$75,000 / mo", "unit": "in MRR for agency" },
+      { "category": "Delivery", "verb": "Launched", "value": "7-Figure", "unit": "coaching program" },
+      { "category": "Operations", "verb": "Recovered", "value": "40 hrs / wk", "unit": "in team overhead" }
+    ],
+    "testimonials_headline": "What Customers Say",
+    "testimonials": [
+      {
+        "quote": "Found $47K in annual savings in the first audit session. Mike had already spotted three workflows we could automate before we finished the call.",
+        "name": "Sarah M.",
+        "role": "Course Creator"
+      },
+      {
+        "quote": "75% of what we mapped in the audit window is live and saving us 12 hours a week. The roadmap was that clear \u2014 we just executed it.",
+        "name": "Daniel R.",
+        "role": "Online Coach"
+      },
+      {
+        "quote": "The audit paid for itself in the first week with a single automation. Best $1,000 I\u2019ve spent on my business this year.",
+        "name": "Priya K.",
+        "role": "Community Operator"
+      }
+    ],
+    "trustPoints": [
+      {
+        "title": "Built and scaled a 7-figure coaching business.",
+        "text": "We\u2019ve been in your shoes, from startup to scale-up, and know the exact challenges you face."
+      },
+      {
+        "title": "Developed and deployed AI systems for coaching.",
+        "text": "We\u2019re not just talking about AI; we\u2019re building and integrating it into real-world coaching operations."
+      },
+      {
+        "title": "Proven track record of increasing MRR and audience growth.",
+        "text": "Our strategies are designed for tangible results, focusing on sustainable growth and profitability."
+      }
+    ]
+  },
+  "pricing": {
+    "limited_window": "Limited Window",
+    "headline": "Everything You Need to Stop the Bleed\u00a0\u2014 In 5\u00a0Days.",
+    "sub": "AI Transformation Audit \u2014 Complete Package",
+    "projected_rate": "projected final rate",
+    "slot": "slot",
+    "slots": "slots",
+    "slots_left": "{count} {noun} left at ${price}",
+    "next_price": "next price",
+    "review_note": "Every review is a verified client who found $20k+ in savings. That\u2019s what moves the price.",
+    "cta": "\u2192 Reserve Your Audit Slot",
+    "guarantee_headline": "The \u201c$20,000 Baseline\u201d Guarantee",
+    "guarantee_body_pre": "If the audit doesn\u2019t reveal at least",
+    "guarantee_body_highlight": "$20,000 in annual savings opportunities",
+    "guarantee_body_post": ", you get a full refund. No questions asked.",
+    "guarantee_confidence": "We\u2019re that confident in what we\u2019ll find\u00a0\u2014 because we\u2019ve never done an audit that didn\u2019t find it.",
+    "includes": [
+      "Full business workflow audit (3-5 processes)",
+      "VALUE-scored opportunity matrix",
+      "Tool-matched recommendations with complexity ratings",
+      "ROI projections using your actual numbers",
+      "Professional 5-page audit report (PDF)",
+      "3-tier implementation proposal",
+      "Your first Digital Twin \u2014 activated and live",
+      "30-minute delivery walkthrough call"
+    ],
+    "tierLabels": {
+      "Early Access": "You\u2019re in before anyone else. Lowest price this will ever be.",
+      "Founding Member": "5 verified reviews. Proof is building. Price reflects it.",
+      "Early Adopter": "10 verified reviews. The results are speaking for themselves.",
+      "Standard": "15 verified reviews. Fully validated.",
+      "Standard+": "20 verified reviews. Demand is real.",
+      "Full Rate": "25+ verified reviews. Market rate. Fully earned."
+    }
+  },
+  "faq": {
+    "headline": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "I\u2019m not technical. Will I understand the report?",
+        "a": "Absolutely. The entire report is written in plain English with clear visuals. No jargon, no code, no acronyms. If you can read a menu, you can read this report. We also walk through it live with you on a call."
+      },
+      {
+        "q": "What if AI doesn\u2019t work for my type of business?",
+        "a": "That\u2019s exactly what the audit determines. If we find that automation won\u2019t deliver ROI for a specific process, we tell you \u2014 and we tell you why. We\u2019d rather save you money than sell you something that won\u2019t work. That said, in every audit we\u2019ve conducted, we\u2019ve found significant savings."
+      },
+      {
+        "q": "How is this different from just using ChatGPT?",
+        "a": "ChatGPT is a general tool. It doesn\u2019t know your business, your workflows, your clients, or your numbers. We analyze YOUR specific operation, match solutions to YOUR specific problems, and calculate ROI with YOUR actual data. The Digital Twin is trained on YOUR content \u2014 it\u2019s not generic AI."
+      },
+      {
+        "q": "I\u2019ve been burned by consultants before.",
+        "a": "We get it. That\u2019s why we structured this as a fixed-price, fixed-timeline, guaranteed engagement. You know exactly what you\u2019re getting, exactly when you\u2019re getting it, and exactly what it costs. If we don\u2019t deliver value, you get your money back."
+      },
+      {
+        "q": "Why is the audit priced so low?",
+        "a": "Because the price reflects the proof \u2014 not the value. Right now we\u2019re early. Every verified client review moves the price up. You\u2019re getting in before the market catches up to what this is worth. Industry standard for this type of done-for-you AI assessment runs $5,000\u2013$15,000. We\u2019d rather earn your trust with results at a price that removes friction \u2014 and let the reviews speak for themselves."
+      },
+      {
+        "q": "What happens after the audit?",
+        "a": "You get three clear options: Quick Wins (2 weeks, highest-impact automations), Foundation (6-8 weeks, core transformation), or Full Transformation (12-16 weeks, everything). You choose what fits your budget and timeline. Or you take the report and implement it yourself \u2014 it\u2019s yours either way."
+      },
+      {
+        "q": "How is the Digital Twin different from a chatbot?",
+        "a": "A chatbot follows a script. Your Digital Twin is trained on your actual methodology, your content library, your voice, and your frameworks. It doesn\u2019t give generic answers \u2014 it gives YOUR answers. It cites YOUR sources. It sends people back to YOUR content. And it keeps learning as you publish new material."
+      }
+    ]
+  },
+  "finalCTA": {
+    "headline": "You have two choices.",
+    "optionA_label": "Option A",
+    "optionA_body": "Keep doing things the way you\u2019re doing them. Keep copying data by hand. Keep losing clients between sessions. Keep hearing about AI and wondering if it applies to you. Keep guessing.",
+    "optionB_label": "Option B",
+    "optionB_pre": "Invest",
+    "optionB_post": "and 1 hour of your time. In 5 days, know exactly where you\u2019re losing money, exactly how to fix it, and exactly what it\u2019ll save you. Walk away with a professional report, a clear roadmap, a working Digital Twin\u00a0\u2014 and if you pay in full, your first Core AI System built and live at no extra cost.",
+    "math_pre": "The math is simple: if the audit reveals even",
+    "math_savings": "$20,000 in annual savings",
+    "math_post": "(and it will),",
+    "math_return_pre": "that\u2019s a",
+    "math_return_highlight": "{roi}x return",
+    "math_return_post": "on a",
+    "math_investment": "${price} investment.",
+    "guarantee": "If it doesn\u2019t? You get your money back.",
+    "questions": "Questions?",
+    "book_call": "Book a 15-minute call",
+    "or_email": "or email",
+    "roi_modal_title": "How we calculate ROI",
+    "roi_modal_p1": "The $20,000 baseline is typical for an established business (3+ team members or $200k+ revenue).",
+    "roi_modal_p2": "Automating just",
+    "roi_modal_pct": "2.5%",
+    "roi_modal_p2_end": "of manual operational tasks typically reclaims 8-10 hours per week across the team. At a conservative internal labor rate, this results in",
+    "roi_modal_result": "$20,000+ in annual efficiency gains.",
+    "roi_modal_cta": "Got it",
+    "cta_with_slots": "→ Reserve Your Slot — {count} Left at ${price}",
+    "cta_default": "→ Reserve Your Audit Slot",
+    "pricing_mechanic_next": "Price rises $500 every 5 verified client reviews. Currently ${price} — next tier ${nextPrice}.",
+    "pricing_mechanic_full": "Currently at full rate: ${price}."
+  },
+  "applyHero": {
+    "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
+    "headline": "Stop guessing where AI fits. In 5 days, get a prioritized audit of what to automate, what to ignore, and what to do first.",
+    "body": "We audit your workflows, quantify the waste, match you with the right AI tools, and hand you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice. Just real numbers and a real roadmap.",
+    "cta": "→ Reserve Your Audit Slot",
+    "guarantee": "Guaranteed to reveal $20K+ in savings — or your money back.",
+    "pricing_pre": "Starting at",
+    "pricing_post": "— price rises with every verified client review."
+  },
+  "midCta": {
+    "eyebrow": "Ready to find your number?",
+    "body": "Know exactly what your workflows are costing you — in 5 days.",
+    "cta": "→ Reserve Your Audit Slot"
+  },
+  "success": {
+    "headline": "Audit Reserved!",
+    "body": "You’ve just taken the first step toward reclaiming your time and plugging the leaks in your business.",
+    "next_headline": "What Happens Next:",
+    "steps": [
+      "Check your inbox for a confirmation email and your next steps.",
+      "We’ll reach out within 24 hours to schedule your 1:1 kickoff call.",
+      "Start gathering your current workflow documentation (standard ops, tech stack)."
+    ],
+    "back_home": "Back to Homepage"
+  },
+  "cancel": {
+    "headline": "Checkout Cancelled",
+    "body": "No problem. Timing is everything in business. If you have questions before you’re ready to commit, we’re here to help.",
+    "questions_title": "Have Questions?",
+    "questions_body": "Not sure if the audit is right for your specific stack? Let’s chat.",
+    "questions_cta": "Book 15-min call →",
+    "info_title": "Need More Info?",
+    "info_body": "Check out our FAQs or review the details of the audit package.",
+    "info_cta": "View FAQs →",
+    "back_home": "Return to Homepage"
+  },
+  "footer": {
+    "copyright": "\u00a9 {year} rehabit.ai \u2014 All rights reserved."
+  }
+}

@@ -7,6 +7,7 @@ import { ModalScreen1Hook } from "./modal/ModalScreen1Hook";
 import { ModalScreen2Contact } from "./modal/ModalScreen2Contact";
 import { ModalScreen3Survey } from "./modal/ModalScreen3Survey";
 import { trackExitIntentShown, trackExitIntentDismissed, trackExitIntentConverted } from "@/lib/analytics";
+import { useLanguage } from "@/context/LanguageContext";
 
 const STORAGE_KEY = "rh_exit_modal_dismissed";
 const SUPPRESS_DAYS = 7;
@@ -22,6 +23,7 @@ interface ContactData {
 
 export function ExitIntentModal() {
     const router = useRouter();
+    const { localizeHref } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [step, setStep] = useState<Step>(1);
     const [contact, setContact] = useState<ContactData>({ name: "", email: "", phone: "", website: "" });
@@ -90,7 +92,7 @@ export function ExitIntentModal() {
             website: data.website || "",
             source: "Exit Intent"
         });
-        window.location.href = `/scorecard?${params.toString()}`;
+        window.location.href = localizeHref(`/scorecard?${params.toString()}`);
     };
 
     const handleSurveyComplete = (
@@ -127,7 +129,7 @@ export function ExitIntentModal() {
         } catch { }
         // Close modal and navigate to score page
         setIsOpen(false);
-        router.push(`/score-thank-you?name=${encodeURIComponent(contact.name)}`);
+        router.push(localizeHref(`/score-thank-you?name=${encodeURIComponent(contact.name)}`));
     };
 
     // ── Keyboard: Esc to close ──

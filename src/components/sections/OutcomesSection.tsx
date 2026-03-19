@@ -9,9 +9,23 @@ import {
   staggerContainerFast,
   viewportOnce,
 } from "@/lib/animations";
-import { beforeAfter, stats } from "@/lib/constants";
+import { stats } from "@/lib/constants";
+import { useLanguage } from "@/context/LanguageContext";
+
+type BeforeAfterRow = [string, string];
+type StatTranslation = { label: string };
 
 export function OutcomesSection() {
+  const { t, tObjects } = useLanguage();
+  const beforeAfterRows = tObjects<BeforeAfterRow>("outcomes.beforeAfter");
+  const statTranslations = tObjects<StatTranslation>("outcomes.stats");
+
+  // Merge numeric values from constants with translated labels from JSON
+  const translatedStats = stats.map((stat, i) => ({
+    ...stat,
+    label: statTranslations[i]?.label ?? stat.label,
+  }));
+
   return (
     <Section className="bg-brand-dark mesh-gradient-bg" id="outcomes" noAnimate>
       <motion.div
@@ -25,7 +39,7 @@ export function OutcomesSection() {
           variants={fadeInUp}
           className="text-3xl font-bold text-white md:text-4xl text-center"
         >
-          After your audit, you&rsquo;ll have:
+          {t("outcomes.headline")}
         </motion.h2>
 
         {/* Before / After table */}
@@ -34,10 +48,10 @@ export function OutcomesSection() {
             <thead>
               <tr className="border-b border-white/10">
                 <th className="pb-4 pr-6 text-sm font-semibold uppercase tracking-wider text-brand-red">
-                  Before
+                  {t("outcomes.before_label")}
                 </th>
                 <th className="pb-4 text-sm font-semibold uppercase tracking-wider text-brand-green">
-                  After
+                  {t("outcomes.after_label")}
                 </th>
               </tr>
             </thead>
@@ -48,10 +62,10 @@ export function OutcomesSection() {
               whileInView="visible"
               viewport={viewportOnce}
             >
-              {beforeAfter.map(([before, after], i) => (
+              {beforeAfterRows.map((row, i) => (
                 <motion.tr key={i} variants={fadeInUp} className="border-b border-white/5">
-                  <td className="py-4 pr-6 text-slate-400 italic">{before}</td>
-                  <td className="py-4 font-medium text-white">{after}</td>
+                  <td className="py-4 pr-6 text-slate-400 italic">{row[0]}</td>
+                  <td className="py-4 font-medium text-white">{row[1]}</td>
                 </motion.tr>
               ))}
             </motion.tbody>
@@ -66,7 +80,7 @@ export function OutcomesSection() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          {stats.map((stat, i) => (
+          {translatedStats.map((stat, i) => (
             <motion.div key={i} variants={fadeInUp} className="text-center">
               <p className="text-3xl font-extrabold text-brand-green md:text-4xl">
                 <AnimatedCounter

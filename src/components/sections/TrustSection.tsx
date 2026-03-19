@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Section } from "@/components/ui/Section";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
 
 const PEOPLE = [
   { name: "Eckhart Tolle", image: "/images/social-proof/eckhart-tolle.jpg" },
@@ -18,22 +19,16 @@ const PEOPLE = [
   { name: "Sonia Ricotti", image: "/images/social-proof/sonia-ricotti.jpg" },
 ];
 
-const TRUST_POINTS = [
-  {
-    title: "Built and scaled a 7-figure coaching business.",
-    text: "We've been in your shoes, from startup to scale-up, and know the exact challenges you face.",
-  },
-  {
-    title: "Developed and deployed AI systems for coaching.",
-    text: "We're not just talking about AI; we're building and integrating it into real-world coaching operations.",
-  },
-  {
-    title: "Proven track record of increasing MRR and audience growth.",
-    text: "Our strategies are designed for tangible results, focusing on sustainable growth and profitability.",
-  },
-];
+type TrustPoint = { title: string; text: string };
+type ResultEntry = { category: string; verb: string; value: string; unit: string };
+type Testimonial = { quote: string; name: string; role: string };
 
 export function TrustSection() {
+  const { t, tObjects } = useLanguage();
+  const trustPoints = tObjects<TrustPoint>("trust.trustPoints");
+  const results = tObjects<ResultEntry>("trust.results");
+  const testimonials = tObjects<Testimonial>("trust.testimonials");
+
   return (
     <Section className="bg-brand-dark trust-glow-bg overflow-hidden !py-10 md:!py-14" id="trust" noAnimate>
       <motion.div
@@ -46,16 +41,15 @@ export function TrustSection() {
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <motion.div variants={fadeInUp} className="lg:col-span-7">
             <h2 className="text-[28px] font-bold text-white md:text-[34px] leading-tight text-balance">
-              Built by someone who&rsquo;s done this before.
+              {t("trust.headline")}
             </h2>
             <p className="mt-6 text-xl text-slate-300">
-              <span className="font-semibold text-white">Mike Olaski</span>&nbsp;&mdash;
-              founder of Rehabit and the 4C AI Coaching OS.
-              Not a consultant who read a book about AI. Someone who builds and deploys these systems every day.
+              <span className="font-semibold text-white">{t("trust.intro_pre")}</span>
+              {t("trust.intro_post")}
             </p>
 
             <div className="mt-10 space-y-6">
-              {TRUST_POINTS.map((point, i) => (
+              {trustPoints.map((point, i) => (
                 <div key={i} className="flex gap-4">
                   <div className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-green/20 text-brand-green">
                     &#10003;
@@ -69,8 +63,7 @@ export function TrustSection() {
             </div>
 
             <motion.p variants={fadeInUp} className="mt-10 text-slate-300 italic">
-              When we audit your business, we&rsquo;re not just giving advice.
-              We&rsquo;re applying the exact engineering principles that scale 7-figure digital coaching businesses.
+              {t("trust.closing")}
             </motion.p>
           </motion.div>
 
@@ -88,10 +81,10 @@ export function TrustSection() {
           </motion.div>
         </div>
 
-        {/* Featured Clients Integration */}
+        {/* Featured Clients */}
         <motion.div variants={fadeInUp} className="mt-10">
           <p className="mb-6 text-center text-sm font-bold uppercase tracking-widest text-slate-400">
-            Worked with or on Projects Featuring:
+            {t("trust.featured_label")}
           </p>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:gap-6">
             {PEOPLE.map((person) => (
@@ -118,69 +111,40 @@ export function TrustSection() {
           </div>
         </motion.div>
 
-        {/* Results delivered summary */}
+        {/* Results Delivered */}
         <motion.div
           variants={fadeInUp}
           className="mt-10 mx-auto rounded-2xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm"
         >
-          <h3 className="text-xl font-bold text-white md:text-2xl mb-8 text-center">Results Delivered</h3>
+          <h3 className="text-xl font-bold text-white md:text-2xl mb-8 text-center">{t("trust.results_headline")}</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Marketing</span>
-              <span className="text-2xl font-bold text-brand-green mb-1">Built</span>
-              <span className="text-lg text-slate-300 font-medium">250,000</span>
-              <span className="text-xs text-slate-500 uppercase">email list in 18 mo</span>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Sales</span>
-              <span className="text-2xl font-bold text-brand-blue mb-1">Generated</span>
-              <span className="text-lg text-slate-300 font-medium">$75,000 / mo</span>
-              <span className="text-xs text-slate-500 uppercase">in MRR for agency</span>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Delivery</span>
-              <span className="text-2xl font-bold text-brand-orange mb-1">Launched</span>
-              <span className="text-lg text-slate-300 font-medium">7-Figure</span>
-              <span className="text-xs text-slate-500 uppercase">coaching program</span>
-            </div>
-            <div className="flex flex-col items-center text-center">
-              <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">Operations</span>
-              <span className="text-2xl font-bold text-brand-gold mb-1">Recovered</span>
-              <span className="text-lg text-slate-300 font-medium">40 hrs / wk</span>
-              <span className="text-xs text-slate-500 uppercase">in team overhead</span>
-            </div>
+            {results.map((r, i) => {
+              const colors = ["text-brand-green", "text-brand-blue", "text-brand-orange", "text-brand-gold"];
+              return (
+                <div key={i} className="flex flex-col items-center text-center">
+                  <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">{r.category}</span>
+                  <span className={`text-2xl font-bold mb-1 ${colors[i] ?? "text-white"}`}>{r.verb}</span>
+                  <span className="text-lg text-slate-300 font-medium">{r.value}</span>
+                  <span className="text-xs text-slate-500 uppercase">{r.unit}</span>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
 
-        {/* What Customers Say */}
+        {/* Testimonials */}
         <motion.div variants={fadeInUp} className="mt-10">
-          <h3 className="text-xl font-bold text-white md:text-2xl mb-6 text-center">What Customers Say</h3>
+          <h3 className="text-xl font-bold text-white md:text-2xl mb-6 text-center">{t("trust.testimonials_headline")}</h3>
           <div className="grid gap-4 md:grid-cols-3">
-            {[
-              {
-                quote: "Found $47K in annual savings in the first audit session. Mike had already spotted three workflows we could automate before we finished the call.",
-                name: "Sarah M.",
-                role: "Course Creator",
-              },
-              {
-                quote: "75% of what we mapped in the audit window is live and saving us 12 hours a week. The roadmap was that clear — we just executed it.",
-                name: "Daniel R.",
-                role: "Online Coach",
-              },
-              {
-                quote: "The audit paid for itself in the first week with a single automation. Best $1,000 I've spent on my business this year.",
-                name: "Priya K.",
-                role: "Community Operator",
-              },
-            ].map((t) => (
+            {testimonials.map((t_item) => (
               <div
-                key={t.name}
+                key={t_item.name}
                 className="rounded-xl border border-brand-green/10 bg-brand-green/[0.04] p-6 flex flex-col gap-4"
               >
-                <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{t.quote}&rdquo;</p>
+                <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{t_item.quote}&rdquo;</p>
                 <div className="mt-auto">
-                  <p className="text-sm font-bold text-white">{t.name}</p>
-                  <p className="text-xs text-slate-500">{t.role}</p>
+                  <p className="text-sm font-bold text-white">{t_item.name}</p>
+                  <p className="text-xs text-slate-500">{t_item.role}</p>
                 </div>
               </div>
             ))}

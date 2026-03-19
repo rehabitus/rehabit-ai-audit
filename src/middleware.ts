@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+// ─── Admin auth helper ────────────────────────────────────────────────────────
 async function expectedToken(): Promise<string | undefined> {
     if (!process.env.ADMIN_PASSWORD) return undefined;
     const encoder = new TextEncoder();
@@ -13,6 +14,17 @@ async function expectedToken(): Promise<string | undefined> {
 export async function middleware(req: NextRequest) {
     const { pathname } = req.nextUrl;
 
+    // ── Locale path prefix: rewrite /sk/foo -> /foo while preserving visible URL ──
+    const localeMatch = pathname.match(/^\/(sk|en)(\/.*)?$/);
+    if (localeMatch) {
+        const rest = localeMatch[2] || "/"; // remainder after the locale prefix
+        const url = req.nextUrl.clone();
+        url.pathname = rest;
+        url.searchParams.delete("lang");
+        return NextResponse.rewrite(url);
+    }
+
+    // ── Admin auth ────────────────────────────────────────────────────────────
     const isProtected =
         (pathname.startsWith("/admin") && !pathname.startsWith("/admin/login")) ||
         pathname.startsWith("/home-v1-backup");
@@ -32,5 +44,15 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ["/admin/:path*", "/home-v1-backup/:path*", "/home-v1-backup"],
+    matcher: [
+        // Locale prefixes
+        "/sk",
+        "/sk/:path*",
+        "/en",
+        "/en/:path*",
+        // Admin protection
+        "/admin/:path*",
+        "/home-v1-backup/:path*",
+        "/home-v1-backup",
+    ],
 };

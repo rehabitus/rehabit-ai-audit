@@ -19,6 +19,8 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { useSectionView } from "@/hooks/useSectionView";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
+import { useLanguage } from "@/context/LanguageContext";
+import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 const SECTION_IDS = ["hero", "problem", "why-now", "offer", "outcomes", "deliverables", "process", "trust", "pricing", "faq", "reserve"];
 
@@ -26,6 +28,7 @@ export default function Home() {
   useScrollDepth();
   useSectionView(SECTION_IDS);
   useConversionTracking();
+  const { t } = useLanguage();
 
   return (
     <main className="overflow-x-hidden" id="main-content">
@@ -34,7 +37,7 @@ export default function Home() {
         href="#hero"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:rounded-md focus:bg-brand-green focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-brand-dark"
       >
-        Skip to content
+        {t("common.skip_to_content")}
       </a>
 
       {/* ── STICKY NAV BAR ── */}
@@ -67,11 +70,11 @@ export default function Home() {
       {/* ── MID-PAGE CTA ── high-intent visitors who don't need to read everything */}
       <section className="bg-brand-dark px-6 py-10 text-center">
         <div className="mx-auto max-w-2xl">
-          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-brand-green">Ready to find your number?</p>
+          <p className="mb-2 text-xs font-bold uppercase tracking-widest text-brand-green">{t("midCta.eyebrow")}</p>
           <p className="mb-6 text-xl font-bold text-white text-balance">
-            Know exactly what your workflows are costing you&nbsp;&mdash; in 5&nbsp;days.
+            {t("midCta.body")}
           </p>
-          <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+          <CTAButton>{t("midCta.cta")}</CTAButton>
         </div>
       </section>
 
@@ -91,7 +94,10 @@ export default function Home() {
 
       {/* ── FOOTER ── */}
       <footer className="border-t border-white/5 bg-brand-dark px-6 py-8 text-center text-sm text-slate-500">
-        &copy; {new Date().getFullYear()} rehabit.ai &mdash; All rights reserved.
+        <div className="flex flex-col items-center gap-3">
+          <LanguageSwitcher />
+          <span>{t("footer.copyright", { year: new Date().getFullYear() })}</span>
+        </div>
       </footer>
 
       {/* ── EXIT INTENT LEAD CAPTURE ── */}

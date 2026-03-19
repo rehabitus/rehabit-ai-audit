@@ -6,10 +6,12 @@ import { CTAButton } from "@/components/ui/CTAButton";
 import { NavTrustBar } from "@/components/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import { useLanguage } from "@/context/LanguageContext";
 import type { PricingInfo } from "@/lib/pricing";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -30,21 +32,21 @@ export function HeroSection() {
           variants={heroChild}
           className="mb-8 inline-flex items-center gap-3 rounded-full border border-brand-orange/20 bg-brand-orange/5 px-6 py-2.5 text-lg font-bold uppercase tracking-widest text-brand-orange backdrop-blur-sm"
         >
-          For 6-7 Figure Coaches Running on Manual Workflows
+          {t("hero.pill")}
         </motion.div>
 
         <motion.h1
           variants={heroChild}
           className="mx-auto max-w-4xl text-4xl font-extrabold leading-[0.95] text-white md:text-[58px] lg:text-[66px] uppercase"
         >
-          Profitable, Scalable<br />AI Roadmap in&nbsp;5&nbsp;Days
+          {t("hero.headline_1")}<br />{t("hero.headline_2")}
         </motion.h1>
 
         <motion.p
           variants={heroChild}
           className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
         >
-          No more guessing, scaling chaos, or fearing being left&nbsp;behind.
+          {t("hero.subheadline")}
         </motion.p>
 
         <VideoPlayer />
@@ -53,20 +55,18 @@ export function HeroSection() {
           variants={heroChild}
           className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
         >
-          We audit your workflows, quantify the waste, match you with the right AI tools, and hand
-          you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice.
-          Just real numbers and a real roadmap.
+          {t("hero.body")}
         </motion.p>
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <CTAButton>&rarr; Reserve Your Audit Slot</CTAButton>
+          <CTAButton>{t("hero.cta")}</CTAButton>
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-white">
-          Guaranteed to reveal $20K+ in savings &mdash; or your money back.
+          {t("hero.guarantee")}
         </motion.p>
         <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">
-          Starting at <span className="font-semibold text-white">${(pricing?.priceUsd ?? 1000).toLocaleString()}</span> &mdash; price rises with every verified client review.
+          {t("hero.pricing", { price: (pricing?.priceUsd ?? 1000).toLocaleString() })}
         </motion.p>
 
         {/* Trust bar — hero size, centered, live review count */}
