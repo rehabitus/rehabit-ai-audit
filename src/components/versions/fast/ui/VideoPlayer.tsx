@@ -61,7 +61,7 @@ export function VideoPlayer() {
     return (
         <motion.div
             variants={fadeInUp}
-            className="mx-auto mt-12 w-full max-w-4xl"
+            className="mx-auto mt-12 w-full max-w-[760px]"
         >
             {/* VSL Banner */}
             <div className="bg-brand-green/90 py-2 text-center text-sm font-bold uppercase tracking-wider text-brand-dark">

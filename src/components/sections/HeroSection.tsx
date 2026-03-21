@@ -11,7 +11,7 @@ import type { PricingInfo } from "@/lib/pricing";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
-  const { t } = useLanguage();
+  const { t, tArr } = useLanguage();
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -37,14 +37,14 @@ export function HeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-4xl text-4xl font-extrabold leading-[0.95] text-white md:text-[58px] lg:text-[66px] uppercase"
+          className="mx-auto max-w-4xl text-4xl font-extrabold leading-[0.95] text-white md:text-[58px] lg:text-[66px] uppercase text-balance"
         >
           {t("hero.headline_1")}<br />{t("hero.headline_2")}
         </motion.h1>
 
         <motion.p
           variants={heroChild}
-          className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed"
+          className="mx-auto mt-6 max-w-2xl text-lg text-slate-300 md:text-xl leading-relaxed text-balance"
         >
           {t("hero.subheadline")}
         </motion.p>
@@ -62,7 +62,7 @@ export function HeroSection() {
           <CTAButton>{t("hero.cta")}</CTAButton>
         </motion.div>
 
-        <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-white">
+        <motion.p variants={heroChild} className="mt-8 text-base font-semibold text-white">
           {t("hero.guarantee")}
         </motion.p>
         <motion.p variants={heroChild} className="mt-1 text-sm text-slate-400">

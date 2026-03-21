@@ -19,23 +19,38 @@
   },
   "hero": {
     "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
-    "headline_1": "Profitable, Scalable",
-    "headline_2": "AI Roadmap in\u00a05\u00a0Days",
-    "subheadline": "No more guessing, scaling chaos, or fearing being left\u00a0behind.",
-    "body": "We audit your workflows, quantify the waste, match you with the right AI tools, and hand you a ready-to-execute implementation plan. No jargon. No six-figure consulting invoice. Just real numbers and a real roadmap.",
-    "cta": "\u2192 Reserve Your Audit Slot",
-    "guarantee": "Guaranteed to reveal $20K+ in savings \u2014 or your money back.",
-    "pricing": "Starting at ${price} \u2014 price rises with every verified client review."
-  },
-  "fastHero": {
-    "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
     "headline_1": "Know What to Fix First in Your Business",
     "headline_2": "Before You Buy More AI Tools \u2014 In 5 Days",
     "subheadline": "In 5 business days, you\u2019ll get a focused audit of your biggest workflow bottlenecks, missed follow-up opportunities, and best automation wins \u2014 with clear next steps.",
     "body": "No vague AI strategy. No bloated consulting engagement. Just a clear audit of your most important workflows and a practical plan for what to improve first.",
     "cta": "Book My 5-Day Audit",
+    "guarantee": "Guaranteed to reveal $20K+ in savings \u2014 or your money back.",
+    "pricing": "Starting at ${price} \u2014 price rises with every verified client review."
+  },
+  "fastHero": {
+    "pill": "For 6-7 Figure Coaches Running on Manual Workflows",
+    "headline_1": "Find Where Your Business Is Leaking Time, Leads, and Money",
+    "headline_2": "\u2014 Before You Buy More AI Tools",
+    "subheadline": "In 5 days, get a clear audit of what to fix first, what to ignore, and where AI can actually save or make you money.",
+    "cta": "Get My 5-Day Audit",
     "guarantee": "3 spots available at this rate.",
     "pricing": ""
+  },
+  "fastProblem": {
+    "headline": "You already know something is off.",
+    "bullets": [
+      "You\u2019re using too many tools.",
+      "Manual work is eating your time.",
+      "Leads or follow-up are slipping.",
+      "You\u2019re unsure what AI is worth implementing.",
+      "You know there\u2019s waste, but can\u2019t see it clearly."
+    ],
+    "testimonial": {
+      "quote": "The audit showed me exactly where my business was leaking leads. In 5 days, we had a roadmap that saved us 10+ hours a week.",
+      "author": "Sarah J.",
+      "role": "High-Ticket Coach",
+      "result": "10+ Hours Saved / Week"
+    }
   },
   "problem": {
     "headline": "You already know something is\u00a0off.",
