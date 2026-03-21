@@ -11,7 +11,7 @@ import type { PricingInfo } from "@/lib/pricing";
 
 export function HeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
-  const { t, tArr } = useLanguage();
+  const { t } = useLanguage();
 
   useEffect(() => {
     fetch("/api/pricing")

@@ -61,7 +61,7 @@ export function ProblemSection() {
               </div>
 
               <blockquote className="text-xl text-white font-medium leading-relaxed mb-6 italic">
-                "{t("fastProblem.testimonial.quote")}"
+                &ldquo;{t("fastProblem.testimonial.quote")}&rdquo;
               </blockquote>
 
               <div className="flex items-center gap-3 border-t border-white/10 pt-6">

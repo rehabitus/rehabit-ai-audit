@@ -12,7 +12,6 @@ import type { PricingInfo } from "@/lib/pricing";
 export function FastHeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
   const { t } = useLanguage();
-  const heroPricing = t("fastHero.pricing", { price: (pricing?.priceUsd ?? 1000).toLocaleString() });
 
   useEffect(() => {
     fetch("/api/pricing")
