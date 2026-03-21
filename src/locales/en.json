@@ -82,23 +82,6 @@
       }
     ]
   },
-  "fastOffer": {
-    "headline": "What we look at",
-    "cards": [
-      {
-        "title": "Workflow bottlenecks",
-        "body": "Where your business is slowing down, where steps pile up, and where your time disappears."
-      },
-      {
-        "title": "Revenue leaks",
-        "body": "Where leads go cold, follow-up breaks down, and gaps in your process cost you sales."
-      },
-      {
-        "title": "AI opportunities",
-        "body": "What's worth automating now, what to prioritize first, and what to skip."
-      }
-    ]
-  },
   "problem": {
     "headline": "You already know something is\u00a0off.",
     "p1": "You've built a real business. Clients. Revenue. A team (even if it's small). Programs that get results.",
