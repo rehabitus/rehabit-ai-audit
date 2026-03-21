@@ -1,26 +1,26 @@
 "use client";
 
-import { FastHeroSection } from "@/components/sections/FastHeroSection";
-import { NavCheckoutButton } from "@/components/ui/NavCheckoutButton";
-import { NavTrustBar } from "@/components/ui/NavTrustBar";
-import { ProblemSection } from "@/components/sections/ProblemSection";
-import { BridgeSection } from "@/components/sections/BridgeSection";
-import { OfferSection } from "@/components/sections/OfferSection";
-import { OutcomesSection } from "@/components/sections/OutcomesSection";
-import { ProcessSection } from "@/components/sections/ProcessSection";
-import { TrustSection } from "@/components/sections/TrustSection";
-import { PricingSection } from "@/components/sections/PricingSection";
-import { FAQSection } from "@/components/sections/FAQSection";
-import { FinalCTASection } from "@/components/sections/FinalCTASection";
-import { DeliverablesSection } from "@/components/sections/DeliverablesSection";
-import { TrustpilotWidget } from "@/components/ui/TrustpilotWidget";
-import { ExitIntentModal } from "@/components/ui/ExitIntentModal";
-import { CTAButton } from "@/components/ui/CTAButton";
+import { FastHeroSection } from "@/components/versions/fast/sections/FastHeroSection";
+import { NavCheckoutButton } from "@/components/versions/fast/ui/NavCheckoutButton";
+import { NavTrustBar } from "@/components/versions/fast/ui/NavTrustBar";
+import { ProblemSection } from "@/components/versions/fast/sections/ProblemSection";
+import { BridgeSection } from "@/components/versions/fast/sections/BridgeSection";
+import { OfferSection } from "@/components/versions/fast/sections/OfferSection";
+import { OutcomesSection } from "@/components/versions/fast/sections/OutcomesSection";
+import { ProcessSection } from "@/components/versions/fast/sections/ProcessSection";
+import { TrustSection } from "@/components/versions/fast/sections/TrustSection";
+import { PricingSection } from "@/components/versions/fast/sections/PricingSection";
+import { FAQSection } from "@/components/versions/fast/sections/FAQSection";
+import { FinalCTASection } from "@/components/versions/fast/sections/FinalCTASection";
+import { DeliverablesSection } from "@/components/versions/fast/sections/DeliverablesSection";
+import { TrustpilotWidget } from "@/components/versions/fast/ui/TrustpilotWidget";
+import { ExitIntentModal } from "@/components/versions/fast/ui/ExitIntentModal";
+import { CTAButton } from "@/components/versions/fast/ui/CTAButton";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { useSectionView } from "@/hooks/useSectionView";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { useLanguage } from "@/context/LanguageContext";
-import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { LanguageSwitcher } from "@/components/versions/fast/ui/LanguageSwitcher";
 
 const SECTION_IDS = ["hero", "problem", "why-now", "offer", "outcomes", "deliverables", "process", "trust", "pricing", "faq", "reserve"];
 
