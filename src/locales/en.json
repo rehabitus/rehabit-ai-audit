@@ -52,6 +52,36 @@
       "result": "10+ Hours Saved / Week"
     }
   },
+  "fastBridge": {
+    "headline": "What we look at in your audit",
+    "subhead": "We identify what’s slowing your business down, where revenue is leaking, and where AI can create real leverage.",
+    "cards": [
+      {
+        "title": "Workflow bottlenecks",
+        "points": [
+          "Where manual steps are slowing lead flow, sales, onboarding, or delivery",
+          "Where too much still depends on you",
+          "Where time is being lost each week"
+        ]
+      },
+      {
+        "title": "Revenue leaks",
+        "points": [
+          "Where leads are slipping through the cracks",
+          "Where follow-up is inconsistent or delayed",
+          "Where broken handoffs are costing sales or retention"
+        ]
+      },
+      {
+        "title": "AI opportunities",
+        "points": [
+          "What to automate first for fastest ROI",
+          "What AI is worth using now",
+          "What should wait until the foundation is fixed"
+        ]
+      }
+    ]
+  },
   "problem": {
     "headline": "You already know something is\u00a0off.",
     "p1": "You've built a real business. Clients. Revenue. A team (even if it's small). Programs that get results.",
