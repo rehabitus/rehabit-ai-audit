@@ -15,6 +15,18 @@ function ga(eventName: string, params?: Record<string, unknown>) {
   }
 }
 
+/** Fire a standard event to Meta/Facebook Pixel (no-op if not loaded). */
+function fbq(eventName: string, params?: Record<string, unknown>) {
+  try {
+    if (typeof window !== "undefined" && typeof (window as unknown as { fbq?: (...args: unknown[]) => void }).fbq === "function") {
+      (window as unknown as { fbq: (...args: unknown[]) => void }).fbq("track", eventName, params ?? {});
+    }
+  } catch {
+    // fail silently
+  }
+}
+
+
 // LinkedIn conversion helper — set conversion_id in Campaign Manager → Conversions
 const LINKEDIN_PURCHASE_CONVERSION_ID = 0; // TODO: replace with your LinkedIn conversion ID
 
@@ -61,6 +73,7 @@ export const trackBeginCheckout = (location: "nav" | "hero" | "pricing" | "final
     items: [{ item_name: "AI Transformation Audit", price: priceUsd, quantity: 1 }],
     location,
   });
+  fbq("InitiateCheckout", { currency: "USD", value: priceUsd, num_items: 1 });
 };
 
 export const trackPurchase = (sessionId: string, priceUsd: number) => {
@@ -72,6 +85,7 @@ export const trackPurchase = (sessionId: string, priceUsd: number) => {
     items: [{ item_name: "AI Transformation Audit", price: priceUsd, quantity: 1 }],
   });
   linkedInTrack(LINKEDIN_PURCHASE_CONVERSION_ID);
+  fbq("Purchase", { currency: "USD", value: priceUsd });
 };
 
 // ── Lead capture flows ──────────────────────────────────────────

@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { trackPurchase } from "@/lib/analytics";
+import { getCurrentPricing } from "@/lib/pricing";
 
 const DEDUP_KEY = "rhb_purchase_tracked";
 
@@ -27,7 +28,7 @@ export function useConversionTracking() {
     if (alreadyTracked === sessionId) return;
 
     sessionStorage.setItem(DEDUP_KEY, sessionId);
-    trackPurchase(sessionId, 1000);
+    trackPurchase(sessionId, getCurrentPricing().priceUsd);
 
     // Clean the URL — remove tracking params without triggering a navigation
     const cleanUrl = window.location.pathname;
