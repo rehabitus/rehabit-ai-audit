@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days. Guaranteed to reveal $20K+ in annual savings.",
   openGraph: {
-    title: "AI Transformation Audit — Find Exactly Where Your Business Is Bleeding Money",
+    title: "AI Opporutnity Roadmap - In 5 Days",
     description:
       "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days. Guaranteed to reveal $20K+ in annual savings.",
     url: BASE_URL,
@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/RHB-AI-Audit.png",
-        width: 1766,
-        height: 714,
-        alt: "AI Transformation Audit — rehabit.ai",
+        url: "/images/rhb-audit-poster-square-brand-colors.png",
+        width: 2048,
+        height: 2048,
+        alt: "AI Opporutnity Roadmap - In 5 Days",
       },
     ],
   },
