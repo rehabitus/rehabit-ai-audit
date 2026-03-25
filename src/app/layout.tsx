@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   description:
     "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days. Guaranteed to reveal $20K+ in annual savings.",
   openGraph: {
-    title: "AI Opporutnity Roadmap - In 5 Days",
+    title: "AI Opportunity Roadmap - In 5 Days",
     description:
       "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days. Guaranteed to reveal $20K+ in annual savings.",
     url: BASE_URL,
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
         url: "/images/rhb-audit-poster-square-brand-colors-og.jpg",
         width: 1200,
         height: 1200,
-        alt: "AI Opporutnity Roadmap - In 5 Days",
+        alt: "AI Opportunity Roadmap - In 5 Days",
       },
     ],
   },
