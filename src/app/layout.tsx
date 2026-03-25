@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/rhb-audit-poster-square-brand-colors.png",
-        width: 2048,
-        height: 2048,
+        url: "/images/rhb-audit-poster-square-brand-colors-og.jpg",
+        width: 1200,
+        height: 1200,
         alt: "AI Opporutnity Roadmap - In 5 Days",
       },
     ],
