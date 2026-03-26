@@ -21,14 +21,14 @@ const USE_CASES: UseCase[] = [
   {
     id: "use-case-sales",
     eyebrow: "Sales Conversion",
-    title: "Close more right-fit buyers",
-    accent: "consistently",
+    title: "Close more right-fit buyers with calm",
+    accent: "consistency",
     body:
-      "Your AI pre-handles objections, clarifies your offer, and routes prospects to the right next step so fewer high-intent buyers stall out before payment.",
+      "Rehabit 4C turns your best sales instincts into a repeatable system—handling objections in your voice, sharpening the offer, and guiding each prospect to the right next step so fewer “hot” leads stall, ghost, or slip away.",
     cta: "Improve close rate",
-    chips: ["Objection handling", "Offer clarity", "Pipeline routing"],
+    chips: ["Objection handling", "Offer clarity", "Next-step routing"],
     stat: "2.1×",
-    statBody: "more qualified sales conversations from the same traffic",
+    statBody: "more qualified sales conversations",
     image: "/images/pain-opportunity-features/sales-followup/digital-twin-chat-sales-followup.png",
   },
   {
