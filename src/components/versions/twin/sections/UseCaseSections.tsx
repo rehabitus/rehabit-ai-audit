@@ -51,7 +51,7 @@ const USE_CASES: UseCase[] = [
     title: "Scale your authority content",
     accent: "faster",
     body:
-      "Turn one coaching session into emails, posts, short clips, and lead magnets without starting from scratch each time.",
+      "Rehabit 4C turns one coaching session into a week of on-brand assets. Your Digital Twin extracts the best moments, drafts the posts/emails/clips, and keeps everything consistent with your frameworks—so you publish without starting from scratch.",
     cta: "Scale my content",
     chips: ["Session-to-content", "Multi-channel output", "Brand-safe"],
     stat: "10×",
