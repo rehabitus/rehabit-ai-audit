@@ -12,10 +12,10 @@ Ship conversion-focused updates safely in this order:
 
 ### 1) Change Video / Poster Image (60-90 min)
 - [ ] Replace video source asset(s)
-- [ ] Replace poster image asset(s)
+- [x] Replace poster image asset(s) (`/twin` and shared video player components)
 - [ ] Verify on `/`, `/fast`, `/sprint`, `/apply`, `/twin` (as needed)
 - [ ] Validate mobile + desktop rendering
-- [ ] Confirm no 404 assets in network tab
+- [x] Confirm no 404 assets in network tab (path audit script: no missing image refs)
 - [ ] Confirm fallback behavior works
 
 Definition of done:
@@ -24,9 +24,9 @@ Definition of done:
 ---
 
 ### 2) Change Headline (45-60 min)
-- [ ] Update primary headline copy in relevant versioned components
+- [x] Update primary headline copy in relevant versioned components (`/twin`)
 - [ ] Keep one control headline unchanged for baseline
-- [ ] Validate line breaks and readability
+- [x] Validate line breaks and readability (`/twin`, iterative updates shipped)
 - [ ] Validate mobile + desktop rendering
 
 Definition of done:
@@ -74,7 +74,7 @@ Definition of done:
 ---
 
 ## Commit Rhythm (recommended)
-- [ ] Checkpoint 1: After Steps 1-2
+- [x] Checkpoint 1: After Steps 1-2
 - [ ] Checkpoint 2: After Step 3
 - [ ] Checkpoint 3: After Step 4
 - [ ] Checkpoint 4: After Step 5
@@ -89,5 +89,5 @@ git push origin main
 ```
 
 ## Notes / Decisions
-- [ ] Keep this section updated as we make implementation decisions.
-
+- [x] Keep this section updated as we make implementation decisions.
+- Scope for this working session is `/twin` first; checklist items are marked done only where changes were implemented and pushed.
