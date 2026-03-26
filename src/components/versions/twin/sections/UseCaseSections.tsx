@@ -131,21 +131,25 @@ export function UseCaseSections() {
                 className={`${reverse ? "md:order-1" : ""}`}
               >
                 {useCase.image ? (
-                  <div className="relative w-full overflow-hidden rounded-3xl border border-white/80 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] aspect-[2/1]">
-                    <Image
-                      src={useCase.image}
-                      alt={`${useCase.eyebrow} feature`}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 520px"
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-slate-950/55 to-transparent" />
-                    <p className="absolute left-5 top-5 z-10 text-6xl font-black tracking-tight text-emerald-300 drop-shadow-[0_2px_12px_rgba(15,23,42,0.45)]">
-                      {useCase.stat}
-                    </p>
-                    <p className="absolute bottom-4 left-5 right-5 z-10 text-xl leading-snug text-white drop-shadow-[0_2px_8px_rgba(15,23,42,0.55)]">
-                      {useCase.statBody}
-                    </p>
+                  <div className="relative w-full pb-14">
+                    <div className="relative w-full overflow-hidden rounded-3xl border border-white/80 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] aspect-[16/10]">
+                      <Image
+                        src={useCase.image}
+                        alt={`${useCase.eyebrow} feature`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 520px"
+                        className="object-contain bg-slate-100"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-slate-950/55 to-transparent" />
+                    </div>
+                    <div className="absolute inset-x-5 -bottom-1 z-10 rounded-2xl border border-slate-200/70 bg-white/95 px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-sm">
+                      <p className="text-5xl font-black tracking-tight text-emerald-400">
+                        {useCase.stat}
+                      </p>
+                      <p className="mt-1 text-lg leading-snug text-slate-700">
+                        {useCase.statBody}
+                      </p>
+                    </div>
                   </div>
                 ) : (
                   <div className="relative rounded-3xl border border-white/80 bg-white p-10 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
