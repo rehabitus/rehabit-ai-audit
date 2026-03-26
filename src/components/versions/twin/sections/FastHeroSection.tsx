@@ -37,10 +37,10 @@ export function FastHeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-[1040px] text-4xl font-extrabold leading-[0.95] text-slate-950 md:text-[48px] lg:text-[52px]"
+          className="mx-auto max-w-[1040px] text-4xl font-extrabold leading-[0.95] text-slate-950 md:text-[48px] lg:text-[52px] text-balance"
         >
-          <span className="block">We Built an AI Clone of You.</span>
-          <span className="block">It Found $20,000 You Were Leaving on the{"\u00A0"}Table.</span>
+          We Built an AI Clone of You. It Found $20,000 You Were Leaving on{" "}
+          {"the\u00A0Table."}
         </motion.h1>
 
         <motion.p
