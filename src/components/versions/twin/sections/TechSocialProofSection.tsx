@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
 const TECH_BRANDS = [
-  { name: "OpenAI", logo: "/images/brand-assets/tech-logos/openai-wordmark-white.png" },
-  { name: "Microsoft", logo: "/images/brand-assets/tech-logos/microsoft-wordmark-white.png" },
-  { name: "Google Cloud", logo: "/images/brand-assets/tech-logos/google-cloud-wordmark-white.png" },
-  { name: "Anthropic", logo: "/images/brand-assets/tech-logos/anthropic-wordmark-white.png" },
-  { name: "Zapier", logo: "/images/brand-assets/tech-logos/zapier-wordmark-white.png" },
+  { name: "OpenAI", logo: "/images/brand-assets/tech-logos/openai-white.png" },
+  { name: "Microsoft", logo: "/images/brand-assets/tech-logos/microsoft-white.png" },
+  { name: "Google Cloud", logo: "/images/brand-assets/tech-logos/google-cloud-white.png" },
+  { name: "Anthropic", logo: "/images/brand-assets/tech-logos/anthropic-white.png" },
+  { name: "Zapier", logo: "/images/brand-assets/tech-logos/zapier-white.png" },
 ] as const;
 
 export function TechSocialProofSection() {
@@ -36,20 +36,21 @@ export function TechSocialProofSection() {
           variants={fadeInUp}
           className="mt-6 rounded-2xl border border-white/25 bg-white/5 px-4 py-4 backdrop-blur-sm md:px-6"
         >
-          <div className="grid grid-cols-1 items-center gap-x-6 gap-y-4 sm:grid-cols-2 lg:grid-cols-5">
+          <div className="grid grid-cols-2 items-center gap-x-5 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
             {TECH_BRANDS.map((brand) => (
               <div
                 key={brand.name}
-                className="flex items-center justify-center"
+                className="flex items-center justify-center gap-2"
                 aria-label={brand.name}
               >
                 <Image
                   src={brand.logo}
                   alt={`${brand.name} logo`}
-                  width={220}
-                  height={52}
-                  className="h-10 w-auto object-contain md:h-11"
+                  width={24}
+                  height={24}
+                  className="h-6 w-6 object-contain"
                 />
+                <span className="text-sm font-semibold text-white md:text-base">{brand.name}</span>
               </div>
             ))}
           </div>
