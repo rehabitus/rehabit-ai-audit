@@ -39,7 +39,8 @@ export function FastHeroSection() {
           variants={heroChild}
           className="mx-auto max-w-6xl text-4xl font-extrabold leading-[0.95] text-slate-950 md:text-[54px] lg:text-[62px] text-balance"
         >
-          {t("fastHero.headline_1")} {t("fastHero.headline_2")}
+          We Built an AI Clone of You. It Found $20,000 You Were Leaving on{" "}
+          {"the\u00A0Table."}
         </motion.h1>
 
         <motion.p
