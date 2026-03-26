@@ -16,7 +16,6 @@ import { DeliverablesSection } from "@/components/versions/twin/sections/Deliver
 import { TrustpilotWidget } from "@/components/versions/twin/ui/TrustpilotWidget";
 import { ExitIntentModal } from "@/components/versions/twin/ui/ExitIntentModal";
 import { CTAButton } from "@/components/versions/twin/ui/CTAButton";
-import { TwinStorySections } from "@/components/versions/twin/sections/TwinStorySections";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { useSectionView } from "@/hooks/useSectionView";
 import { useConversionTracking } from "@/hooks/useConversionTracking";
@@ -35,22 +34,6 @@ const SECTION_IDS = [
   "pricing",
   "faq",
   "reserve",
-  "story-hook",
-  "story-problem",
-  "story-shift",
-  "story-method",
-  "story-agency-agents",
-  "story-what-is-an-agent",
-  "story-not",
-  "story-identity",
-  "story-who-this-is-for",
-  "story-digital-twin",
-  "story-social-proof",
-  "story-value-stack",
-  "story-pricing-offer",
-  "story-guarantee",
-  "story-bigger-vision",
-  "story-close",
 ];
 
 export default function Twin() {
@@ -117,7 +100,6 @@ export default function Twin() {
       <FAQSection />
       <div className="twin-divider-green" />
       <FinalCTASection />
-      <TwinStorySections />
 
       {/* ── TRUSTPILOT ── */}
       <TrustpilotWidget />
