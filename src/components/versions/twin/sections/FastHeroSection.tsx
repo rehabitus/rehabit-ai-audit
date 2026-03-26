@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useSearchParams } from "next/navigation";
 import { CTAButton } from "@/components/versions/twin/ui/CTAButton";
 import { NavTrustBar } from "@/components/versions/twin/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
@@ -15,7 +14,6 @@ export function FastHeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
   const [headlineIndex, setHeadlineIndex] = useState(0);
   const { t } = useLanguage();
-  const searchParams = useSearchParams();
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -27,7 +25,7 @@ export function FastHeroSection() {
   useEffect(() => {
     const { queryParam } = TWIN_LOCKED_COPY.hero.splitTest;
     const total = TWIN_LOCKED_COPY.hero.headlines.length;
-    const rawQuery = searchParams.get(queryParam);
+    const rawQuery = new URLSearchParams(window.location.search).get(queryParam);
     const parsedQuery = rawQuery ? Number.parseInt(rawQuery, 10) : NaN;
 
     // Query param uses 1-based indexing for easier manual QA: ?hh=1 ... ?hh=10
@@ -40,7 +38,7 @@ export function FastHeroSection() {
     // Temporary behavior for testing: randomize on each page load/refresh.
     const assignedIndex = Math.floor(Math.random() * total);
     setHeadlineIndex(assignedIndex);
-  }, [searchParams]);
+  }, []);
 
   return (
     <section id="hero" className="twin-hero-gradient bg-white px-6 pt-28 pb-10 md:pt-32 md:pb-14">
