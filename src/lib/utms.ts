@@ -19,10 +19,10 @@ export type UTMData = Partial<Record<(typeof UTM_KEYS)[number], string>>;
 export function useUTMCapture() {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    
+
     const params = new URLSearchParams(window.location.search);
     let hasUTM = false;
-    const currentUTMs: any = {};
+    const currentUTMs: UTMData = {};
 
     UTM_KEYS.forEach((key) => {
       const val = params.get(key);
@@ -34,7 +34,7 @@ export function useUTMCapture() {
 
     if (hasUTM) {
       sessionStorage.setItem("rhb_utms", JSON.stringify(currentUTMs));
-      
+
       // Optional: keep URL clean for user sharing, replace state without UTMs:
       /*
       const cleanUrl = new URL(window.location.href);
@@ -61,7 +61,7 @@ export function getSavedUTMs(): UTMData {
   if (typeof window === "undefined") return {};
   try {
     const raw = sessionStorage.getItem("rhb_utms");
-    return raw ? JSON.parse(raw) : {};
+    return raw ? (JSON.parse(raw) as UTMData) : {};
   } catch {
     return {};
   }
