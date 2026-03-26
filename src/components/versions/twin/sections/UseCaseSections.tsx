@@ -73,13 +73,15 @@ const USE_CASES: UseCase[] = [
 
 export function UseCaseSections() {
   return (
-    <div className="pt-24">
+    <div>
       {USE_CASES.map((useCase, index) => {
         const reverse = index % 2 === 1;
         const bg = index % 2 === 0 ? "bg-slate-50" : "bg-[#eef2f7]";
+        const spacing =
+          index === 0 ? "px-6 pb-16 pt-8 md:pb-24 md:pt-12" : "px-6 py-16 md:py-24";
 
         return (
-          <section key={useCase.id} id={useCase.id} className={`${bg} px-6 py-16 md:py-24`}>
+          <section key={useCase.id} id={useCase.id} className={`${bg} ${spacing}`}>
             <motion.div
               className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2"
               initial="hidden"
@@ -139,4 +141,3 @@ export function UseCaseSections() {
     </div>
   );
 }
-
