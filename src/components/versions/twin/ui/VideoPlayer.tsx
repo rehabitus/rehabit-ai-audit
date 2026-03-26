@@ -115,7 +115,8 @@ export function VideoPlayer() {
                 )}
             </div>
             <p className="mt-2 text-center text-sm text-slate-500">
-                Watch: How the audit works (4 min)
+                7 Minute Preview - Watch how we build your scalable Coaching
+                Authority with your Digital Twin
             </p>
         </motion.div>
     );
