@@ -4,92 +4,12 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
 import { CTAButton } from "@/components/versions/twin/ui/CTAButton";
-
-type UseCase = {
-  id: string;
-  eyebrow: string;
-  title: string;
-  accent: string;
-  body: string;
-  cta: string;
-  chips: string[];
-  stat: string;
-  statBody: string;
-  image?: string;
-};
-
-const USE_CASES: UseCase[] = [
-  {
-    id: "use-case-sales",
-    eyebrow: "Sales Conversion",
-    title: "Close more right-fit buyers with calm",
-    accent: "consistency",
-    body:
-      "Rehabit 4C turns your best sales instincts into a repeatable system—handling objections in your voice, sharpening the offer, and guiding each prospect to the right next step so fewer “hot” leads stall, ghost, or slip away.",
-    cta: "Improve close rate",
-    chips: ["Objection handling", "Offer clarity", "Next-step routing"],
-    stat: "2.1×",
-    statBody: "more qualified sales conversations",
-    image: "/images/pain-opportunity-features/new-digital-twin-chat-sales-followup.png",
-  },
-  {
-    id: "use-case-leads",
-    eyebrow: "Lead Generation",
-    title: "Wake up to better leads—not more",
-    accent: "admin",
-    body:
-      "Your Digital Twin qualifies, collects details, and follows up automatically—so you stop losing fit prospects to slow replies and messy intake.",
-    cta: "Grow with AI",
-    chips: ["Auto lead capture", "CRM sync", "No-code setup"],
-    stat: "3.4×",
-    statBody: "more qualified leads",
-    image: "/images/pain-opportunity-features/new-digital-twin-chat-lead-qualification.png",
-  },
-  {
-    id: "use-case-content",
-    eyebrow: "Content Engine",
-    title: "Scale your authority content",
-    accent: "faster",
-    body:
-      "Rehabit 4C turns one coaching session into a week of on-brand assets. Your Digital Twin extracts the best moments, drafts the posts/emails/clips, and keeps everything consistent with your frameworks—so you publish without starting from scratch.",
-    cta: "Scale my content",
-    chips: ["Session-to-content", "Multi-channel output", "Brand-safe"],
-    stat: "10×",
-    statBody: "more usable content from one core source",
-    image: "/images/pain-opportunity-features/new-digital-twin-chat-content-creation.png",
-  },
-  {
-    id: "use-case-experience",
-    eyebrow: "Client Experience",
-    title: "A premium AI coaching experience",
-    accent: "premium",
-    body:
-      "Your AI delivers support in your tone, using your methods and frameworks. Clients get fast, personal guidance between live sessions.",
-    cta: "Add New Revenue",
-    chips: ["Your voice, your methods", "Always available", "ICF-aligned"],
-    stat: "+$97",
-    statBody: "$20 - $100 per user per month in new product revenue",
-    image: "/images/pain-opportunity-features/new-digital-twin-chat-product-revenue.png",
-  },
-  {
-    id: "use-case-engagement",
-    eyebrow: "Client Engagement",
-    title: "Increase life-time value",
-    accent: "between sessions",
-    body:
-      "Between-session messaging keeps momentum high, improves completion, and creates more upsell and renewal moments by delivering timely nudges, check-ins, and next steps.",
-    cta: "Boost retention",
-    chips: ["Behavior nudges", "Progress check-ins", "Renewal triggers"],
-    stat: "+27%",
-    statBody: "higher client continuation when support stays active between sessions",
-    image: "/images/pain-opportunity-features/new-digital-twin-chat-user-engagement.png",
-  },
-];
+import { TWIN_LOCKED_COPY } from "@/components/versions/twin/constants";
 
 export function UseCaseSections() {
   return (
     <div>
-      {USE_CASES.map((useCase, index) => {
+      {TWIN_LOCKED_COPY.painSections.map((useCase, index) => {
         const reverse = index % 2 === 1;
         const bg = index % 2 === 0 ? "bg-slate-50" : "bg-[#eef2f7]";
 
@@ -107,22 +27,22 @@ export function UseCaseSections() {
                 className={`${reverse ? "md:order-2" : ""}`}
               >
                 <p className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-emerald-800/80">
-                  {useCase.eyebrow}
+                  {useCase.sup}
                 </p>
                 <h3 className="max-w-xl text-4xl font-extrabold leading-[1.05] text-slate-900 md:text-5xl text-balance">
-                  {useCase.title}{" "}
-                  <span className="text-emerald-400">{useCase.accent}</span>
+                  {useCase.head}{" "}
+                  <span className="text-emerald-400">{useCase.headAccent}</span>
                 </h3>
                 <p className="mt-6 max-w-xl text-xl leading-relaxed text-slate-600 text-balance">
-                  {useCase.body}
+                  {useCase.sub}
                 </p>
                 <div className="mt-8">
                   <CTAButton className="px-6 py-3 text-base">
-                    {useCase.cta} →
+                    {useCase.ctaButton} →
                   </CTAButton>
                 </div>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {useCase.chips.map((chip) => (
+                  {useCase.benefitTags.map((chip) => (
                     <span
                       key={chip}
                       className="rounded-full bg-slate-200/70 px-4 py-2 text-sm font-semibold text-slate-600"
@@ -142,7 +62,7 @@ export function UseCaseSections() {
                     <div className="relative w-full overflow-hidden rounded-3xl border border-white/80 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] aspect-[16/10]">
                       <Image
                         src={useCase.image}
-                        alt={`${useCase.eyebrow} feature`}
+                        alt={`${useCase.sup} feature`}
                         fill
                         sizes="(max-width: 1024px) 100vw, 520px"
                         className="object-contain bg-slate-100"
@@ -151,19 +71,19 @@ export function UseCaseSections() {
                     </div>
                     <div className="absolute -bottom-1 right-[-0.25rem] z-10 w-[52%] rounded-2xl border border-slate-200/70 bg-white/95 px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-sm">
                       <p className="text-5xl font-black tracking-tight text-emerald-400">
-                        {useCase.stat}
+                        {useCase.metric}
                       </p>
                       <p className="mt-1 text-lg leading-snug text-slate-700">
-                        {useCase.statBody}
+                        {useCase.metricBenefit}
                       </p>
                     </div>
                   </div>
                 ) : (
                   <div className="relative rounded-3xl border border-white/80 bg-white p-10 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
                     <p className="text-6xl font-black tracking-tight text-emerald-300">
-                      {useCase.stat}
+                      {useCase.metric}
                     </p>
-                    <p className="mt-3 text-xl text-slate-500">{useCase.statBody}</p>
+                    <p className="mt-3 text-xl text-slate-500">{useCase.metricBenefit}</p>
                   </div>
                 )}
               </motion.div>

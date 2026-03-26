@@ -39,4 +39,71 @@ export const TWIN_LOCKED_COPY = {
     caption:
       "7 Minute Preview - Watch how we build your scalable Coaching Authority with your Digital Twin",
   },
+  painSections: [
+    {
+      id: "use-case-sales",
+      sup: "Sales Conversion",
+      head: "Close more right-fit buyers with calm",
+      headAccent: "consistency",
+      sub:
+        "Rehabit 4C turns your best sales instincts into a repeatable system—handling objections in your voice, sharpening the offer, and guiding each prospect to the right next step so fewer “hot” leads stall, ghost, or slip away.",
+      metric: "2.1×",
+      metricBenefit: "more qualified sales conversations",
+      ctaButton: "Improve close rate",
+      benefitTags: ["Objection handling", "Offer clarity", "Next-step routing"],
+      image: "/images/pain-opportunity-features/new-digital-twin-chat-sales-followup.png",
+    },
+    {
+      id: "use-case-leads",
+      sup: "Lead Generation",
+      head: "Wake up to better leads—not more",
+      headAccent: "admin",
+      sub:
+        "Your Digital Twin qualifies, collects details, and follows up automatically—so you stop losing fit prospects to slow replies and messy intake.",
+      metric: "3.4×",
+      metricBenefit: "more qualified leads",
+      ctaButton: "Grow with AI",
+      benefitTags: ["Auto lead capture", "CRM sync", "No-code setup"],
+      image: "/images/pain-opportunity-features/new-digital-twin-chat-lead-qualification.png",
+    },
+    {
+      id: "use-case-content",
+      sup: "Content Engine",
+      head: "Scale your authority content",
+      headAccent: "faster",
+      sub:
+        "Rehabit 4C turns one coaching session into a week of on-brand assets. Your Digital Twin extracts the best moments, drafts the posts/emails/clips, and keeps everything consistent with your frameworks—so you publish without starting from scratch.",
+      metric: "10×",
+      metricBenefit: "more usable content from one core source",
+      ctaButton: "Scale my content",
+      benefitTags: ["Session-to-content", "Multi-channel output", "Brand-safe"],
+      image: "/images/pain-opportunity-features/new-digital-twin-chat-content-creation.png",
+    },
+    {
+      id: "use-case-experience",
+      sup: "Client Experience",
+      head: "A premium AI coaching experience",
+      headAccent: "premium",
+      sub:
+        "Your AI delivers support in your tone, using your methods and frameworks. Clients get fast, personal guidance between live sessions.",
+      metric: "+$97",
+      metricBenefit: "$20 - $100 per user per month in new product revenue",
+      ctaButton: "Add New Revenue",
+      benefitTags: ["Your voice, your methods", "Always available", "ICF-aligned"],
+      image: "/images/pain-opportunity-features/new-digital-twin-chat-product-revenue.png",
+    },
+    {
+      id: "use-case-engagement",
+      sup: "Client Engagement",
+      head: "Increase life-time value",
+      headAccent: "between sessions",
+      sub:
+        "Between-session messaging keeps momentum high, improves completion, and creates more upsell and renewal moments by delivering timely nudges, check-ins, and next steps.",
+      metric: "+27%",
+      metricBenefit: "higher client continuation when support stays active between sessions",
+      ctaButton: "Boost retention",
+      benefitTags: ["Behavior nudges", "Progress check-ins", "Renewal triggers"],
+      image: "/images/pain-opportunity-features/new-digital-twin-chat-user-engagement.png",
+    },
+  ],
 } as const;
