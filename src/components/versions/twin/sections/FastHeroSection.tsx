@@ -25,10 +25,7 @@ export function FastHeroSection() {
   }, []);
 
   useEffect(() => {
-    const {
-      queryParam,
-      storageKey,
-    } = TWIN_LOCKED_COPY.hero.splitTest;
+    const { queryParam } = TWIN_LOCKED_COPY.hero.splitTest;
     const total = TWIN_LOCKED_COPY.hero.headlines.length;
     const rawQuery = searchParams.get(queryParam);
     const parsedQuery = rawQuery ? Number.parseInt(rawQuery, 10) : NaN;
@@ -37,20 +34,12 @@ export function FastHeroSection() {
     if (Number.isFinite(parsedQuery) && parsedQuery >= 1 && parsedQuery <= total) {
       const forcedIndex = parsedQuery - 1;
       setHeadlineIndex(forcedIndex);
-      window.localStorage.setItem(storageKey, String(forcedIndex));
       return;
     }
 
-    const stored = window.localStorage.getItem(storageKey);
-    const parsedStored = stored ? Number.parseInt(stored, 10) : NaN;
-    if (Number.isFinite(parsedStored) && parsedStored >= 0 && parsedStored < total) {
-      setHeadlineIndex(parsedStored);
-      return;
-    }
-
+    // Temporary behavior for testing: randomize on each page load/refresh.
     const assignedIndex = Math.floor(Math.random() * total);
     setHeadlineIndex(assignedIndex);
-    window.localStorage.setItem(storageKey, String(assignedIndex));
   }, [searchParams]);
 
   return (
