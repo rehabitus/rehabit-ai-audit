@@ -82,6 +82,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Behavior nudges", "Progress check-ins", "Renewal triggers"],
     stat: "+27%",
     statBody: "higher client continuation when support stays active between sessions",
+    image: "/images/pain-opportunity-features/user-engagement/digital-twin-chat-user-engagement.png",
   },
 ];
 
