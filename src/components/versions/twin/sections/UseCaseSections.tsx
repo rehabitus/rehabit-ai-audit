@@ -30,7 +30,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Objection handling", "Offer clarity", "Next-step routing"],
     stat: "2.1×",
     statBody: "more qualified sales conversations",
-    image: "/images/pain-opportunity-features/sales-followup/digital-twin-chat-sales-followup.png",
+    image: "/images/pain-opportunity-features/new-digital-twin-chat-sales-followup.png",
   },
   {
     id: "use-case-leads",
@@ -43,7 +43,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Auto lead capture", "CRM sync", "No-code setup"],
     stat: "3.4×",
     statBody: "more qualified leads",
-    image: "/images/pain-opportunity-features/lead-generation/digital-twin-chat-lead-qualification.png",
+    image: "/images/pain-opportunity-features/new-digital-twin-chat-lead-qualification.png",
   },
   {
     id: "use-case-content",
@@ -56,7 +56,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Session-to-content", "Multi-channel output", "Brand-safe"],
     stat: "10×",
     statBody: "more usable content from one core source",
-    image: "/images/pain-opportunity-features/content-creation/digital-twin-content-creation.png",
+    image: "/images/pain-opportunity-features/new-digital-twin-chat-content-creation.png",
   },
   {
     id: "use-case-experience",
@@ -69,7 +69,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Your voice, your methods", "Always available", "ICF-aligned"],
     stat: "5+",
     statBody: "hours saved per week by top coaches using Rehabit AI",
-    image: "/images/pain-opportunity-features/product-revenue/digital-twin-product-revenue.png",
+    image: "/images/pain-opportunity-features/new-digital-twin-chat-product-revenue.png",
   },
   {
     id: "use-case-engagement",
@@ -82,7 +82,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Behavior nudges", "Progress check-ins", "Renewal triggers"],
     stat: "+27%",
     statBody: "higher client continuation when support stays active between sessions",
-    image: "/images/pain-opportunity-features/user-engagement/digital-twin-chat-user-engagement.png",
+    image: "/images/pain-opportunity-features/new-digital-twin-chat-user-engagement.png",
   },
 ];
 
