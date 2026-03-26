@@ -43,6 +43,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Auto lead capture", "CRM sync", "No-code setup"],
     stat: "3.4×",
     statBody: "more qualified leads",
+    image: "/images/pain-opportunity-features/sales-followup/digital-twin-chat-lead-qualification.png",
   },
   {
     id: "use-case-content",
