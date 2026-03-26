@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { fadeInUp } from "@/lib/animations";
 import { trackVideoPlay, trackVideoProgress } from "@/lib/analytics";
+import { TWIN_LOCKED_COPY } from "@/components/versions/twin/constants";
 
 const VIMEO_ID = "1171820962";
 const THUMBNAIL_PATH = "/images/campaign-variations-digital-twin/rhb-audit-poster-square-brand-colors-1.91x1.png";
@@ -115,8 +116,7 @@ export function VideoPlayer() {
                 )}
             </div>
             <p className="mt-2 text-center text-sm text-slate-500">
-                7 Minute Preview - Watch how we build your scalable Coaching
-                Authority with your Digital Twin
+                {TWIN_LOCKED_COPY.video.caption}
             </p>
         </motion.div>
     );

@@ -5,11 +5,12 @@ import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/
 import { getCurrentPricing } from "@/lib/pricing";
 import { getSavedUTMs } from "@/lib/utms";
 import { useLanguage } from "@/context/LanguageContext";
+import { TWIN_LOCKED_COPY } from "@/components/versions/twin/constants";
 
 export function NavCheckoutButton() {
   const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
-  const ctaText = "Get My Spot Now";
+  const ctaText = TWIN_LOCKED_COPY.nav.cta;
 
   async function handleClick() {
     trackCtaClick(ctaText, "nav");

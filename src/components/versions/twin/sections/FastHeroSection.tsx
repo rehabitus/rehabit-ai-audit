@@ -8,6 +8,7 @@ import { heroStagger, heroChild } from "@/lib/animations";
 import { VideoPlayer } from "@/components/versions/twin/ui/VideoPlayer";
 import { useLanguage } from "@/context/LanguageContext";
 import type { PricingInfo } from "@/lib/pricing";
+import { TWIN_LOCKED_COPY } from "@/components/versions/twin/constants";
 
 export function FastHeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
@@ -39,23 +40,20 @@ export function FastHeroSection() {
           variants={heroChild}
           className="mx-auto max-w-[1200px] text-[27px] font-extrabold leading-[0.95] text-slate-950 md:text-[39px] lg:text-[44px] text-balance"
         >
-          We Built an AI Clone of You. It Found $20,000 You Were Leaving on{" "}
-          {"the\u00A0Table."}
+          {TWIN_LOCKED_COPY.hero.headline}
         </motion.h1>
 
         <motion.p
           variants={heroChild}
           className="mx-auto mt-6 max-w-4xl text-lg text-slate-600 md:text-xl leading-relaxed text-balance"
         >
-          In 5 days, get a clear audit of how this digital twin can save you
-          time & money with: content creation, social posting, admin emails,
-          and lead follow up.
+          {TWIN_LOCKED_COPY.hero.subheadline}
         </motion.p>
 
         <VideoPlayer />
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <CTAButton>Get My Twin in 5 Days</CTAButton>
+          <CTAButton>{TWIN_LOCKED_COPY.hero.primaryCta}</CTAButton>
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-slate-950">
