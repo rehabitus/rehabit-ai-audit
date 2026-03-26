@@ -4,15 +4,22 @@ import { getCurrentPricing } from "@/lib/pricing";
 
 export async function POST(req: Request) {
   try {
-    const { origin } = await req.json().catch(() => ({}));
+    const body = await req.json().catch(() => ({}));
+    const { origin, utms } = body;
     const baseUrl = origin || process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
     const stripe = getStripe();
     const { priceCents, priceUsd, label } = getCurrentPricing();
 
+    // Attach any UTMs passed from the frontend to the Stripe metadata
+    const metadata = { 
+      product: "ai_transformation_audit",
+      ...utms 
+    };
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      metadata: { product: "ai_transformation_audit" },
+      metadata,
       line_items: [
         {
           price_data: {

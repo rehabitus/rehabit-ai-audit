@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 import { getCurrentPricing } from "@/lib/pricing";
+import { getSavedUTMs } from "@/lib/utms";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function NavCheckoutButton() {
@@ -16,7 +17,7 @@ export function NavCheckoutButton() {
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
-        body: JSON.stringify({ origin: window.location.origin }),
+        body: JSON.stringify({ origin: window.location.origin, utms: getSavedUTMs() }),
         headers: { "Content-Type": "application/json" }
       });
       const data = await res.json();

@@ -37,6 +37,7 @@ next-env.d.ts
 
 # docs with large media files
 ___DOCS
+___Videos/
 
 # agent config dirs (cursor, windsurf, etc.)
 .cursor/
