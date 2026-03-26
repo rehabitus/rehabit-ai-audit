@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "check:twin-isolation": "node scripts/check-twin-isolation.mjs",
     "release": "commit-and-tag-version"
   },
   "dependencies": {
