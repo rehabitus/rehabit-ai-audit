@@ -130,24 +130,31 @@ export function UseCaseSections() {
                 variants={fadeInUp}
                 className={`${reverse ? "md:order-1" : ""}`}
               >
-                <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white p-10 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                  {useCase.image && (
-                    <>
-                      <Image
-                        src={useCase.image}
-                        alt={`${useCase.eyebrow} feature`}
-                        fill
-                        sizes="(max-width: 1024px) 100vw, 520px"
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-slate-950/55" />
-                    </>
-                  )}
-                  <p className="relative z-10 text-6xl font-black tracking-tight text-emerald-300">
-                    {useCase.stat}
-                  </p>
-                  <p className="relative z-10 mt-3 text-xl text-slate-100">{useCase.statBody}</p>
-                </div>
+                {useCase.image ? (
+                  <div className="relative w-full overflow-hidden rounded-3xl border border-white/80 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.06)] aspect-[2/1]">
+                    <Image
+                      src={useCase.image}
+                      alt={`${useCase.eyebrow} feature`}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 520px"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-slate-950/55 to-transparent" />
+                    <p className="absolute left-5 top-5 z-10 text-6xl font-black tracking-tight text-emerald-300 drop-shadow-[0_2px_12px_rgba(15,23,42,0.45)]">
+                      {useCase.stat}
+                    </p>
+                    <p className="absolute bottom-4 left-5 right-5 z-10 text-xl leading-snug text-white drop-shadow-[0_2px_8px_rgba(15,23,42,0.55)]">
+                      {useCase.statBody}
+                    </p>
+                  </div>
+                ) : (
+                  <div className="relative rounded-3xl border border-white/80 bg-white p-10 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+                    <p className="text-6xl font-black tracking-tight text-emerald-300">
+                      {useCase.stat}
+                    </p>
+                    <p className="mt-3 text-xl text-slate-500">{useCase.statBody}</p>
+                  </div>
+                )}
               </motion.div>
             </motion.div>
           </section>
