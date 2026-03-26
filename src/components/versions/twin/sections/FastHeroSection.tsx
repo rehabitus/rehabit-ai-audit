@@ -37,7 +37,7 @@ export function FastHeroSection() {
 
         <motion.h1
           variants={heroChild}
-          className="mx-auto max-w-[1040px] text-4xl font-extrabold leading-[0.95] text-slate-950 md:text-[48px] lg:text-[52px] text-balance"
+          className="mx-auto max-w-[1200px] text-[27px] font-extrabold leading-[0.95] text-slate-950 md:text-[39px] lg:text-[44px] text-balance"
         >
           We Built an AI Clone of You. It Found $20,000 You Were Leaving on{" "}
           {"the\u00A0Table."}
@@ -47,7 +47,9 @@ export function FastHeroSection() {
           variants={heroChild}
           className="mx-auto mt-6 max-w-2xl text-lg text-slate-600 md:text-xl leading-relaxed text-balance"
         >
-          {t("fastHero.subheadline")}
+          In 5 days, get a clear audit of how this digital twin can save you
+          time & money with: content creation, social posting, admin emails,
+          and lead follow up.
         </motion.p>
 
         <VideoPlayer />
