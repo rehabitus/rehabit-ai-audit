@@ -34,14 +34,14 @@ const USE_CASES: UseCase[] = [
   {
     id: "use-case-leads",
     eyebrow: "Lead Generation",
-    title: "Generate qualified leads",
-    accent: "24/7",
+    title: "Wake up to better leads—not more",
+    accent: "admin",
     body:
-      "Your AI chats to visitors, answers questions, and captures contact details while you coach. Every lead is pre-qualified before it reaches your inbox.",
+      "Your Digital Twin qualifies, collects details, and follows up automatically—so you stop losing fit prospects to slow replies and messy intake.",
     cta: "Grow with AI",
     chips: ["Auto lead capture", "CRM sync", "No-code setup"],
     stat: "3.4×",
-    statBody: "more qualified leads vs. contact forms alone",
+    statBody: "more qualified leads",
   },
   {
     id: "use-case-content",
