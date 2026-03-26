@@ -6,6 +6,7 @@ import { NavTrustBar } from "@/components/versions/twin/ui/NavTrustBar";
 import { ProblemSection } from "@/components/versions/twin/sections/ProblemSection";
 import { BridgeSection } from "@/components/versions/twin/sections/BridgeSection";
 import { UseCaseSections } from "@/components/versions/twin/sections/UseCaseSections";
+import { TechSocialProofSection } from "@/components/versions/twin/sections/TechSocialProofSection";
 import { OfferSection } from "@/components/versions/twin/sections/OfferSection";
 import { OutcomesSection } from "@/components/versions/twin/sections/OutcomesSection";
 import { ProcessSection } from "@/components/versions/twin/sections/ProcessSection";
@@ -32,6 +33,7 @@ const SECTION_IDS = [
   "use-case-content",
   "use-case-experience",
   "use-case-engagement",
+  "tech-proof",
   "offer",
   "outcomes",
   "deliverables",
@@ -79,6 +81,7 @@ export default function Twin() {
       <div className="twin-divider-blue" />
       <BridgeSection />
       <UseCaseSections />
+      <TechSocialProofSection />
       <div className="twin-divider-green" />
       <OfferSection />
       <div className="twin-divider-blue" />
