@@ -43,7 +43,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Auto lead capture", "CRM sync", "No-code setup"],
     stat: "3.4×",
     statBody: "more qualified leads",
-    image: "/images/pain-opportunity-features/sales-followup/digital-twin-chat-lead-qualification.png",
+    image: "/images/pain-opportunity-features/lead-generation/digital-twin-chat-lead-qualification.png",
   },
   {
     id: "use-case-content",
@@ -56,6 +56,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Session-to-content", "Multi-channel output", "Brand-safe"],
     stat: "10×",
     statBody: "more usable content from one core source",
+    image: "/images/pain-opportunity-features/content-creation/digital-twin-content-creation.png",
   },
   {
     id: "use-case-experience",
