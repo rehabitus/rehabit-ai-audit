@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 import { CTAButton } from "@/components/versions/twin/ui/CTAButton";
 import { NavTrustBar } from "@/components/versions/twin/ui/NavTrustBar";
 import { heroStagger, heroChild } from "@/lib/animations";
@@ -12,7 +13,9 @@ import { TWIN_LOCKED_COPY } from "@/components/versions/twin/constants";
 
 export function FastHeroSection() {
   const [pricing, setPricing] = useState<PricingInfo | null>(null);
+  const [headlineIndex, setHeadlineIndex] = useState(0);
   const { t } = useLanguage();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     fetch("/api/pricing")
@@ -20,6 +23,35 @@ export function FastHeroSection() {
       .then((d: PricingInfo) => setPricing(d))
       .catch(() => { });
   }, []);
+
+  useEffect(() => {
+    const {
+      queryParam,
+      storageKey,
+    } = TWIN_LOCKED_COPY.hero.splitTest;
+    const total = TWIN_LOCKED_COPY.hero.headlines.length;
+    const rawQuery = searchParams.get(queryParam);
+    const parsedQuery = rawQuery ? Number.parseInt(rawQuery, 10) : NaN;
+
+    // Query param uses 1-based indexing for easier manual QA: ?hh=1 ... ?hh=10
+    if (Number.isFinite(parsedQuery) && parsedQuery >= 1 && parsedQuery <= total) {
+      const forcedIndex = parsedQuery - 1;
+      setHeadlineIndex(forcedIndex);
+      window.localStorage.setItem(storageKey, String(forcedIndex));
+      return;
+    }
+
+    const stored = window.localStorage.getItem(storageKey);
+    const parsedStored = stored ? Number.parseInt(stored, 10) : NaN;
+    if (Number.isFinite(parsedStored) && parsedStored >= 0 && parsedStored < total) {
+      setHeadlineIndex(parsedStored);
+      return;
+    }
+
+    const assignedIndex = Math.floor(Math.random() * total);
+    setHeadlineIndex(assignedIndex);
+    window.localStorage.setItem(storageKey, String(assignedIndex));
+  }, [searchParams]);
 
   return (
     <section id="hero" className="twin-hero-gradient bg-white px-6 pt-28 pb-10 md:pt-32 md:pb-14">
@@ -40,7 +72,7 @@ export function FastHeroSection() {
           variants={heroChild}
           className="mx-auto max-w-[1200px] text-[27px] font-extrabold leading-[0.95] text-slate-950 md:text-[39px] lg:text-[44px] text-balance"
         >
-          {TWIN_LOCKED_COPY.hero.headline}
+          {TWIN_LOCKED_COPY.hero.headlines[headlineIndex]}
         </motion.h1>
 
         <motion.p
