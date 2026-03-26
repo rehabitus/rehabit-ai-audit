@@ -4,6 +4,7 @@ import { NavCheckoutButton } from "@/components/versions/slides/ui/NavCheckoutBu
 import { NavTrustBar } from "@/components/versions/slides/ui/NavTrustBar";
 import { LanguageSwitcher } from "@/components/versions/slides/ui/LanguageSwitcher";
 import { TrustpilotWidget } from "@/components/versions/slides/ui/TrustpilotWidget";
+import { UseCaseSections } from "@/components/versions/slides/sections/UseCaseSections";
 import { TwinStorySections } from "@/components/versions/slides/sections/TwinStorySections";
 import { useScrollDepth } from "@/hooks/useScrollDepth";
 import { useSectionView } from "@/hooks/useSectionView";
@@ -11,6 +12,10 @@ import { useConversionTracking } from "@/hooks/useConversionTracking";
 import { useLanguage } from "@/context/LanguageContext";
 
 const SECTION_IDS = [
+  "use-case-leads",
+  "use-case-experience",
+  "use-case-content",
+  "use-case-followup",
   "story-hook",
   "story-problem",
   "story-shift",
@@ -56,6 +61,7 @@ export default function Slides() {
         </div>
       </nav>
 
+      <UseCaseSections />
       <TwinStorySections />
 
       <TrustpilotWidget />
