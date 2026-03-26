@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
@@ -13,6 +14,7 @@ type UseCase = {
   chips: string[];
   stat: string;
   statBody: string;
+  image?: string;
 };
 
 const USE_CASES: UseCase[] = [
@@ -27,6 +29,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Objection handling", "Offer clarity", "Pipeline routing"],
     stat: "2.1×",
     statBody: "more qualified sales conversations from the same traffic",
+    image: "/images/pain-opportunity-features/sales-followup/digital-twin-chat-sales-followup.png",
   },
   {
     id: "use-case-leads",
@@ -127,11 +130,23 @@ export function UseCaseSections() {
                 variants={fadeInUp}
                 className={`${reverse ? "md:order-1" : ""}`}
               >
-                <div className="relative rounded-3xl border border-white/80 bg-white p-10 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
-                  <p className="text-6xl font-black tracking-tight text-emerald-300">
+                <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white p-10 shadow-[0_20px_60px_rgba(15,23,42,0.06)]">
+                  {useCase.image && (
+                    <>
+                      <Image
+                        src={useCase.image}
+                        alt={`${useCase.eyebrow} feature`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 520px"
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-slate-950/55" />
+                    </>
+                  )}
+                  <p className="relative z-10 text-6xl font-black tracking-tight text-emerald-300">
                     {useCase.stat}
                   </p>
-                  <p className="mt-3 text-xl text-slate-500">{useCase.statBody}</p>
+                  <p className="relative z-10 mt-3 text-xl text-slate-100">{useCase.statBody}</p>
                 </div>
               </motion.div>
             </motion.div>

@@ -5,11 +5,11 @@ import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
 
 const TECH_BRANDS = [
-  { name: "Google Cloud", logo: "/images/brand-assets/tech-logos/google-cloud-wordmark-white.png" },
   { name: "OpenAI", logo: "/images/brand-assets/tech-logos/openai-wordmark-white.png" },
-  { name: "Zapier", logo: "/images/brand-assets/tech-logos/zapier-wordmark-white.png" },
-  { name: "Anthropic", logo: "/images/brand-assets/tech-logos/anthropic-wordmark-white.png" },
   { name: "Microsoft", logo: "/images/brand-assets/tech-logos/microsoft-wordmark-white.png" },
+  { name: "Google Cloud", logo: "/images/brand-assets/tech-logos/google-cloud-wordmark-white.png" },
+  { name: "Anthropic", logo: "/images/brand-assets/tech-logos/anthropic-wordmark-white.png" },
+  { name: "Zapier", logo: "/images/brand-assets/tech-logos/zapier-wordmark-white.png" },
 ] as const;
 
 export function TechSocialProofSection() {
