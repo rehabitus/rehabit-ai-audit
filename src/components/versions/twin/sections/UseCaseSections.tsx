@@ -142,7 +142,7 @@ export function UseCaseSections() {
                       />
                       <div className="absolute inset-x-0 bottom-0 h-[15%] bg-gradient-to-t from-slate-950/55 to-transparent" />
                     </div>
-                    <div className="absolute inset-x-5 -bottom-1 z-10 rounded-2xl border border-slate-200/70 bg-white/95 px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-sm">
+                    <div className="absolute left-5 right-[-0.25rem] -bottom-1 z-10 rounded-2xl border border-slate-200/70 bg-white/95 px-5 py-4 shadow-[0_18px_40px_rgba(15,23,42,0.14)] backdrop-blur-sm">
                       <p className="text-5xl font-black tracking-tight text-emerald-400">
                         {useCase.stat}
                       </p>
