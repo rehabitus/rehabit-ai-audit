@@ -50,7 +50,7 @@ export function ProblemSection() {
           <div className="flex flex-col gap-6">
             <motion.div variants={fadeInUp} className="relative aspect-video w-full rounded-2xl overflow-hidden shadow-[0_0_60px_rgba(16,185,129,0.12)]">
               <Image
-                src="/images/4C-Audit-1a.jpg"
+                src="/images/section-header-heros/4C-Audit-1a.jpg"
                 alt="Chaotic workflows transformed into a calm, AI-powered business"
                 fill
                 sizes="(max-width: 768px) 100vw, 600px"

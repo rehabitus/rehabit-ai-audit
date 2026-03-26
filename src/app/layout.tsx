@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/images/rhb-audit-poster-square-brand-colors-1.91x1-og.jpg",
+        url: "/images/campaign-variations-digital-twin/rhb-audit-poster-square-brand-colors-1.91x1-og.jpg",
         width: 1200,
         height: 630,
         alt: "AI Coaching Opportunity Roadmap - Clarity in 5 Days!",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     description:
       "We audit your workflows, quantify the waste, and hand you a ready-to-execute AI implementation plan — in 5 days.",
     site: "@rehabitai",
-    images: ["/images/4c-audit-vsl-thumbnail.png"],
+    images: ["/images/campaign-variations-digital-twin/4c-audit-vsl-thumbnail.png"],
   },
   alternates: {
     canonical: BASE_URL,

@@ -66,7 +66,7 @@ export function DeliverablesSection() {
         {/* Full-width report mockup */}
         <motion.div variants={fadeInUp} className="mb-16 w-full overflow-hidden rounded-2xl shadow-[0_0_80px_rgba(16,185,129,0.1)] relative aspect-[2/1] md:aspect-video">
           <Image
-            src="/images/4C-Audit-2a.jpg"
+            src="/images/section-header-heros/4C-Audit-2a.jpg"
             alt="The AI Opportunity Audit — your deliverable"
             fill
             sizes="(max-width: 1024px) 100vw, 1200px"

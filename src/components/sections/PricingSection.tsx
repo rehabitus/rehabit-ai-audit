@@ -63,7 +63,7 @@ export function PricingSection() {
 
         <motion.div variants={fadeInUp} className="mt-6 overflow-hidden rounded-xl shadow-[0_0_40px_rgba(16,185,129,0.1)] relative aspect-video">
           <Image
-            src="/images/4c-audit.jpg"
+            src="/images/section-header-heros/4c-audit.jpg"
             alt="The AI Opportunity Audit report"
             fill
             sizes="(max-width: 768px) 100vw, 896px"

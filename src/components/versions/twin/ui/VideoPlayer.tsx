@@ -7,7 +7,7 @@ import { fadeInUp } from "@/lib/animations";
 import { trackVideoPlay, trackVideoProgress } from "@/lib/analytics";
 
 const VIMEO_ID = "1171820962";
-const THUMBNAIL_PATH = "/images/rehabit-video-poster-audit-1.jpg";
+const THUMBNAIL_PATH = "/images/campaign-variations-digital-twin/rhb-audit-poster-square-brand-colors-1.91x1.png";
 
 export function VideoPlayer() {
     const [showVideo, setShowVideo] = useState(false);

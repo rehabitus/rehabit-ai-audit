@@ -70,7 +70,7 @@ export function TrustSection() {
           <motion.div variants={fadeInUp} className="hidden lg:flex justify-end lg:col-span-5 relative">
             <div className="relative h-[22rem] w-[22rem] overflow-hidden rounded-[2rem] border-2 border-white/10 shadow-[0_0_40px_rgba(16,185,129,0.15)] bg-white/5">
               <Image
-                src="/images/rehabit-mike-olaski-headshot-suit.png"
+                src="/images/social-proof/rehabit-mike-olaski-headshot-suit.png"
                 alt="Mike Olaski"
                 fill
                 sizes="(max-width: 1024px) 100vw, 350px"
