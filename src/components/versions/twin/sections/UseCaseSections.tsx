@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
+import { CTAButton } from "@/components/versions/twin/ui/CTAButton";
 
 type UseCase = {
   id: string;
@@ -111,9 +112,11 @@ export function UseCaseSections() {
                 <p className="mt-6 max-w-xl text-xl leading-relaxed text-slate-600 text-balance">
                   {useCase.body}
                 </p>
-                <p className="mt-8 text-lg font-semibold text-emerald-800">
-                  {useCase.cta} →
-                </p>
+                <div className="mt-8">
+                  <CTAButton className="px-6 py-3 text-base">
+                    {useCase.cta} →
+                  </CTAButton>
+                </div>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {useCase.chips.map((chip) => (
                     <span
