@@ -9,9 +9,10 @@ import { useLanguage } from "@/context/LanguageContext";
 export function NavCheckoutButton() {
   const [loading, setLoading] = useState(false);
   const { t } = useLanguage();
+  const ctaText = "Get My Spot Now";
 
   async function handleClick() {
-    trackCtaClick(t("nav.reserve"), "nav");
+    trackCtaClick(ctaText, "nav");
     trackBeginCheckout("nav", getCurrentPricing().priceUsd);
     setLoading(true);
     try {
@@ -39,7 +40,7 @@ export function NavCheckoutButton() {
       disabled={loading}
       className="min-h-[44px] min-w-[44px] rounded-full bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#ea6a12] hover:shadow-[0_12px_24px_rgba(249,115,22,0.22)] disabled:cursor-wait disabled:opacity-70"
     >
-      {loading ? t("common.loading") : t("nav.reserve")}
+      {loading ? t("common.loading") : ctaText}
     </button>
   );
 }

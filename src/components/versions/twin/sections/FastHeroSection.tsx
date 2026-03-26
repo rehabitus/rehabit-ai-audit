@@ -55,7 +55,7 @@ export function FastHeroSection() {
         <VideoPlayer />
 
         <motion.div variants={heroChild} className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-          <CTAButton>{t("fastHero.cta")}</CTAButton>
+          <CTAButton>Get My Twin in 5 Days</CTAButton>
         </motion.div>
 
         <motion.p variants={heroChild} className="mt-5 text-base font-semibold text-slate-950">
