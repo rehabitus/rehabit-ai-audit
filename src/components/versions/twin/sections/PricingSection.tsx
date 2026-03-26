@@ -14,6 +14,7 @@ import {
   viewportOnce,
 } from "@/lib/animations";
 import { NavTrustBar } from "@/components/versions/twin/ui/NavTrustBar";
+import { TechSocialProofSection } from "@/components/versions/twin/sections/TechSocialProofSection";
 import type { PricingInfo } from "@/lib/pricing";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -144,6 +145,8 @@ export function PricingSection() {
           </motion.div>
         </motion.div>
       </Section>
+
+      <TechSocialProofSection />
 
       <motion.section
         className="border-y border-brand-green/25 bg-brand-green/5 px-6 py-10 md:px-10 md:py-14"
