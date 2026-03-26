@@ -52,7 +52,7 @@ export function FinalCTASection() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl">
+        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-slate-950 md:text-4xl">
           {t("finalCTA.headline")}
         </motion.h2>
 
@@ -60,10 +60,10 @@ export function FinalCTASection() {
           {/* Option A — dimmed, status quo */}
           <motion.div
             variants={slideInLeft}
-            className="rounded-xl border border-white/10 bg-white/[0.03] p-8 text-left opacity-70"
+            className="rounded-xl border border-slate-200 bg-white p-8 text-left opacity-70"
           >
             <p className="text-sm font-bold uppercase tracking-wider text-brand-red/80">{t("finalCTA.optionA_label")}</p>
-            <p className="mt-4 text-slate-400 leading-relaxed">
+            <p className="mt-4 text-slate-500 leading-relaxed">
               {t("finalCTA.optionA_body")}
             </p>
           </motion.div>
@@ -77,20 +77,20 @@ export function FinalCTASection() {
             <p className="text-sm font-bold uppercase tracking-wider text-brand-green">{t("finalCTA.optionB_label")}</p>
             <p className="mt-4 text-slate-200 leading-relaxed">
               {t("finalCTA.optionB_pre")}{" "}
-              <span className="font-semibold text-white">${priceUsd.toLocaleString()}</span>{" "}
+              <span className="font-semibold text-slate-950">${priceUsd.toLocaleString()}</span>{" "}
               {t("finalCTA.optionB_post")}
             </p>
           </motion.div>
         </div>
 
         <motion.div variants={fadeInUp} className="mt-10">
-          <p className="text-lg text-slate-300">
+          <p className="text-lg text-slate-600">
             {t("finalCTA.math_pre")}{" "}
-            <span className="relative inline-flex items-center gap-1 font-semibold text-white">
+            <span className="relative inline-flex items-center gap-1 font-semibold text-slate-950">
               {t("finalCTA.math_savings")}
               <button
                 onClick={() => setInfoOpen(true)}
-                className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/10 text-[10px] text-slate-400 transition-colors hover:bg-white/20 hover:text-white"
+                className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/10 text-[10px] text-slate-500 transition-colors hover:bg-white/20 hover:text-slate-950"
                 title={t("finalCTA.roi_modal_title")}
               >
                 ?
@@ -98,9 +98,9 @@ export function FinalCTASection() {
             </span>{" "}
             {t("finalCTA.math_post")} <br className="hidden md:block" /> {t("finalCTA.math_return_pre")}{" "}
             <span className="font-bold text-brand-green">{t("finalCTA.math_return_highlight", { roi })}</span> {t("finalCTA.math_return_post")}{" "}
-            <span className="font-semibold text-white">{t("finalCTA.math_investment", { price: priceUsd.toLocaleString() })}</span>
+            <span className="font-semibold text-slate-950">{t("finalCTA.math_investment", { price: priceUsd.toLocaleString() })}</span>
           </p>
-          <p className="mt-2 text-lg text-slate-300">
+          <p className="mt-2 text-lg text-slate-600">
             {t("finalCTA.guarantee")}
           </p>
         </motion.div>
@@ -119,10 +119,10 @@ export function FinalCTASection() {
           <NavTrustBar size="md" reviewCount={reviewCount} />
         </motion.div>
 
-        <motion.p variants={fadeInUp} className="mt-4 text-sm text-slate-400">
+        <motion.p variants={fadeInUp} className="mt-4 text-sm text-slate-500">
           {pricingMechanic}
         </motion.p>
-        <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-300">
+        <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-600">
           {t("finalCTA.questions")}{" "}
           <button
             onClick={() => setSurveyOpen(true)}
@@ -155,14 +155,14 @@ export function FinalCTASection() {
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-brand-navy p-6 shadow-2xl"
+              className="relative w-full max-w-sm rounded-2xl border border-slate-200 bg-slate-50 p-6 shadow-2xl"
             >
-              <h3 className="text-lg font-bold text-white">{t("finalCTA.roi_modal_title")}</h3>
-              <p className="mt-3 text-sm text-slate-400 leading-relaxed">
+              <h3 className="text-lg font-bold text-slate-950">{t("finalCTA.roi_modal_title")}</h3>
+              <p className="mt-3 text-sm text-slate-500 leading-relaxed">
                 {t("finalCTA.roi_modal_p1")}
               </p>
-              <p className="mt-3 text-sm text-slate-400 leading-relaxed">
-                {t("finalCTA.roi_modal_p2")} <span className="text-brand-green font-semibold">{t("finalCTA.roi_modal_pct")}</span> {t("finalCTA.roi_modal_p2_end")} <span className="text-white font-medium">{t("finalCTA.roi_modal_result")}</span>
+              <p className="mt-3 text-sm text-slate-500 leading-relaxed">
+                {t("finalCTA.roi_modal_p2")} <span className="text-brand-green font-semibold">{t("finalCTA.roi_modal_pct")}</span> {t("finalCTA.roi_modal_p2_end")} <span className="text-slate-950 font-medium">{t("finalCTA.roi_modal_result")}</span>
               </p>
               <button
                 onClick={() => setInfoOpen(false)}

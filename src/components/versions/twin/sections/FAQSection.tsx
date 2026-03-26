@@ -13,7 +13,7 @@ export function FAQSection() {
   const faqs = tObjects<FAQEntry>("faq.items");
 
   return (
-    <Section className="bg-brand-dark faq-glow-bg" id="faq" noAnimate>
+    <Section className="bg-white twin-faq-glow-bg" id="faq" noAnimate>
       <motion.div
         className="relative z-10 mx-auto max-w-4xl"
         initial="hidden"
@@ -23,7 +23,7 @@ export function FAQSection() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-3xl font-bold text-white md:text-4xl text-center mb-12"
+          className="text-3xl font-bold text-slate-950 md:text-4xl text-center mb-12"
         >
           {t("faq.headline")}
         </motion.h2>

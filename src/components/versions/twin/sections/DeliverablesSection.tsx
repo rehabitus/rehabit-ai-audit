@@ -46,7 +46,7 @@ export function DeliverablesSection() {
   const items = tObjects<DeliverableItem>("deliverables.items");
 
   return (
-    <Section className="bg-brand-dark" id="deliverables">
+    <Section className="bg-white" id="deliverables">
       <motion.div
         className="relative z-10 mx-auto max-w-6xl"
         initial="hidden"
@@ -55,10 +55,10 @@ export function DeliverablesSection() {
         variants={staggerContainer}
       >
         <motion.div variants={fadeInUp} className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-white md:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-bold text-slate-950 md:text-4xl lg:text-5xl">
             {t("deliverables.headline")}
           </h2>
-          <p className="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
             {t("deliverables.sub")}
           </p>
         </motion.div>
@@ -79,13 +79,13 @@ export function DeliverablesSection() {
             <motion.div
               key={i}
               variants={fadeInUp}
-              className="group relative rounded-2xl border border-white/5 bg-white/[0.02] p-8 transition-all hover:bg-white/[0.04] hover:border-white/10"
+              className="group relative rounded-2xl border border-slate-200/70 bg-white/80 p-8 transition-all hover:bg-white/[0.04] hover:border-slate-200"
             >
-              <div className="mb-6 flex h-28 items-center justify-center overflow-hidden rounded-xl bg-brand-dark/50 transition-transform group-hover:scale-105 duration-500">
+              <div className="mb-6 flex h-28 items-center justify-center overflow-hidden rounded-xl bg-white/50 transition-transform group-hover:scale-105 duration-500">
                 {SVGS[i]}
               </div>
-              <h3 className="mb-3 text-xl font-bold text-white">{item.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{item.description}</p>
+              <h3 className="mb-3 text-xl font-bold text-slate-950">{item.title}</h3>
+              <p className="text-slate-500 leading-relaxed">{item.description}</p>
             </motion.div>
           ))}
         </div>

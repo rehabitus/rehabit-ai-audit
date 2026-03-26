@@ -12,15 +12,15 @@ export function FAQItem({ q, a }: FAQItemProps) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="border-b border-white/10">
+    <div className="border-b border-slate-200">
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between rounded-lg px-2 py-5 text-left text-lg font-semibold text-white transition-all duration-200 hover:text-brand-green hover:bg-white/[0.03] cursor-pointer"
+        className="flex w-full items-center justify-between rounded-lg px-2 py-5 text-left text-lg font-semibold text-slate-950 transition-all duration-200 hover:text-brand-green hover:bg-white cursor-pointer"
       >
         {q}
         <motion.span
-          className="ml-4 flex-shrink-0 text-2xl text-slate-400"
+          className="ml-4 flex-shrink-0 text-2xl text-slate-500"
           animate={{ rotate: open ? 45 : 0 }}
           transition={{ duration: 0.2 }}
         >
@@ -36,7 +36,7 @@ export function FAQItem({ q, a }: FAQItemProps) {
             transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="overflow-hidden"
           >
-            <p className="px-2 pb-5 text-slate-300 leading-relaxed">{a}</p>
+            <p className="px-2 pb-5 text-slate-600 leading-relaxed">{a}</p>
           </motion.div>
         )}
       </AnimatePresence>

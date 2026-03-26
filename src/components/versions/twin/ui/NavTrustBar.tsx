@@ -18,7 +18,7 @@ function PersonAvatar({
   size = 32,
   offset = 0,
   zIndex = 1,
-  ring = "#0F172A",
+  ring = "#FFFFFF",
 }: {
   color: string;
   initial: string;
@@ -41,7 +41,7 @@ function PersonAvatar({
       }}
       aria-hidden="true"
     >
-      <span className="font-bold text-white/90 leading-none">{initial}</span>
+      <span className="font-bold text-white leading-none">{initial}</span>
     </div>
   );
 }
@@ -56,7 +56,7 @@ export function NavTrustBar({
   const { t } = useLanguage();
   const showCount = reviewCount > 5;
   const avatarSize = size === "md" ? 40 : 32;
-  const ring = "#0F172A";
+  const ring = "#FFFFFF";
   const starSize = size === "md" ? "h-3.5 w-3.5" : "h-3 w-3";
   const labelSize = size === "md" ? "text-sm" : "text-[11px]";
 
@@ -96,7 +96,7 @@ export function NavTrustBar({
             </svg>
           ))}
         </div>
-        <p className={`${labelSize} font-bold text-white/90 whitespace-nowrap`}>
+        <p className={`${labelSize} font-bold text-slate-900 whitespace-nowrap`}>
           {showCount ? (
             <>{t("trustbar.with_count_pre")} <span className="text-brand-green">{reviewCount}</span> {t("trustbar.with_count_post")}</>
           ) : (

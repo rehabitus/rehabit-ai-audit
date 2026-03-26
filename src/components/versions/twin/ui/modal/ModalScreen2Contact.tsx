@@ -30,7 +30,7 @@ export function ModalScreen2Contact({ onContinue, onBack }: Props) {
     };
 
     const inputClass =
-        "w-full rounded-lg border border-white/10 bg-white/[0.06] px-4 py-3 text-white placeholder-slate-500 outline-none transition-all focus:border-brand-green/60 focus:bg-white/[0.08] focus:ring-2 focus:ring-brand-green/20";
+        "w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-950 placeholder-slate-500 outline-none transition-all focus:border-brand-green/60 focus:bg-white/[0.08] focus:ring-2 focus:ring-brand-green/20";
 
     return (
         <motion.div
@@ -40,10 +40,10 @@ export function ModalScreen2Contact({ onContinue, onBack }: Props) {
             exit={{ opacity: 0, x: -40 }}
             transition={{ duration: 0.3 }}
         >
-            <h2 className="text-xl font-extrabold text-white mb-1">
+            <h2 className="text-xl font-extrabold text-slate-950 mb-1">
                 Almost there &mdash; who should we send your results to?
             </h2>
-            <p className="text-slate-400 text-sm mb-6">
+            <p className="text-slate-500 text-sm mb-6">
                 We&rsquo;ll email your personalized AI Savings Report after you complete the survey.
             </p>
 
@@ -115,7 +115,7 @@ export function ModalScreen2Contact({ onContinue, onBack }: Props) {
 
             <button
                 onClick={onBack}
-                className="mt-4 text-sm text-slate-500 hover:text-slate-300 transition-colors"
+                className="mt-4 text-sm text-slate-500 hover:text-slate-600 transition-colors"
             >
                 &#8592; Go back
             </button>

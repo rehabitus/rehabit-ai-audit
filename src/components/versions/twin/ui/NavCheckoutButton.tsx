@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 import { getCurrentPricing } from "@/lib/pricing";
+import { getSavedUTMs } from "@/lib/utms";
 import { useLanguage } from "@/context/LanguageContext";
 
 export function NavCheckoutButton() {
@@ -16,7 +17,7 @@ export function NavCheckoutButton() {
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
-        body: JSON.stringify({ origin: window.location.origin }),
+        body: JSON.stringify({ origin: window.location.origin, utms: getSavedUTMs() }),
         headers: { "Content-Type": "application/json" }
       });
       const data = await res.json();
@@ -36,7 +37,7 @@ export function NavCheckoutButton() {
     <button
       onClick={handleClick}
       disabled={loading}
-      className="rounded-md bg-brand-green px-5 py-2.5 text-sm font-semibold text-brand-dark transition-colors hover:bg-brand-green-light disabled:opacity-70 disabled:cursor-wait min-h-[44px] min-w-[44px]"
+      className="min-h-[44px] min-w-[44px] rounded-full bg-brand-orange px-5 py-2.5 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#ea6a12] hover:shadow-[0_12px_24px_rgba(249,115,22,0.22)] disabled:cursor-wait disabled:opacity-70"
     >
       {loading ? t("common.loading") : t("nav.reserve")}
     </button>

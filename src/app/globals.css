@@ -244,6 +244,124 @@ body {
   box-shadow: 0 0 12px rgba(59, 130, 246, 0.2), 0 0 4px rgba(59, 130, 246, 0.35);
 }
 
+/* ─── Twin clone — light backgrounds ─── */
+.twin-hero-gradient {
+  position: relative;
+  overflow: hidden;
+}
+
+.twin-hero-gradient::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 50% at 18% 30%, rgba(14, 165, 233, 0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 65% 45% at 82% 25%, rgba(249, 115, 22, 0.12) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 55% at 50% 85%, rgba(16, 185, 129, 0.10) 0%, transparent 60%);
+  filter: blur(8px);
+}
+
+.twin-dot-grid-bg,
+.twin-mesh-gradient-bg,
+.twin-noise-vignette-bg,
+.twin-problem-glow-bg,
+.twin-trust-glow-bg,
+.twin-faq-glow-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.twin-dot-grid-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle at center, rgba(148, 163, 184, 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.7;
+}
+
+.twin-dot-grid-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 65% 45% at 20% 20%, rgba(14, 165, 233, 0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, rgba(249, 115, 22, 0.08) 0%, transparent 50%);
+}
+
+.twin-mesh-gradient-bg::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 45% at 20% 30%, rgba(14, 165, 233, 0.10) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 78% 32%, rgba(16, 185, 129, 0.09) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 45% at 50% 84%, rgba(249, 115, 22, 0.10) 0%, transparent 52%);
+}
+
+.twin-noise-vignette-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 10%, rgba(249, 115, 22, 0.10) 0%, transparent 58%),
+    radial-gradient(ellipse 70% 70% at 50% 100%, rgba(255, 255, 255, 0) 15%, rgba(15, 23, 42, 0.04) 100%);
+}
+
+.twin-problem-glow-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 38% at 50% 0%, rgba(239, 68, 68, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 42% at 80% 78%, rgba(249, 115, 22, 0.06) 0%, transparent 50%);
+}
+
+.twin-trust-glow-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 45% at 24% 72%, rgba(14, 165, 233, 0.08) 0%, transparent 58%),
+    radial-gradient(ellipse 55% 40% at 76% 26%, rgba(16, 185, 129, 0.06) 0%, transparent 50%);
+}
+
+.twin-faq-glow-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 45% 45% at 50% 35%, rgba(249, 115, 22, 0.07) 0%, transparent 60%);
+}
+
+.twin-divider-green,
+.twin-divider-blue {
+  height: 1px;
+}
+
+.twin-divider-green {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.18) 18%, rgba(16, 185, 129, 0.35) 50%, rgba(16, 185, 129, 0.18) 82%, transparent);
+}
+
+.twin-divider-blue {
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.18) 18%, rgba(14, 165, 233, 0.35) 50%, rgba(14, 165, 233, 0.18) 82%, transparent);
+}
+
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   .hero-gradient::before,

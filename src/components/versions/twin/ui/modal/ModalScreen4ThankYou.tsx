@@ -25,16 +25,16 @@ export function ModalScreen4ThankYou({ name, onClose }: Props) {
                 </svg>
             </div>
 
-            <h2 className="text-2xl font-extrabold text-white mb-3">
+            <h2 className="text-2xl font-extrabold text-slate-950 mb-3">
                 Your Score Is Being Calculated, {firstName}!
             </h2>
-            <p className="text-slate-300 text-base mb-6 max-w-sm mx-auto leading-relaxed">
+            <p className="text-slate-600 text-base mb-6 max-w-sm mx-auto leading-relaxed">
                 We&rsquo;ll email your personalized AI Savings Report within 24 hours — showing exactly where your business is leaking money and what to do about it.
             </p>
 
-            <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 text-left mb-6 max-w-sm mx-auto">
+            <div className="rounded-xl border border-slate-200 bg-white p-5 text-left mb-6 max-w-sm mx-auto">
                 <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">What Happens Next</p>
-                <ul className="space-y-2.5 text-sm text-slate-300">
+                <ul className="space-y-2.5 text-sm text-slate-600">
                     <li className="flex gap-2.5">
                         <span className="text-brand-green font-bold shrink-0">1.</span>
                         <span>Check your inbox — your score summary will arrive shortly.</span>
@@ -52,7 +52,7 @@ export function ModalScreen4ThankYou({ name, onClose }: Props) {
 
             <button
                 onClick={onClose}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:bg-white/5 transition-all"
+                className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-950 hover:bg-slate-100 transition-all"
             >
                 Back to the page
             </button>

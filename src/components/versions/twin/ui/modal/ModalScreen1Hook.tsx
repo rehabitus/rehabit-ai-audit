@@ -26,14 +26,14 @@ export function ModalScreen1Hook({ onDismiss }: Props) {
             </div>
 
             {/* Headline */}
-            <h2 className="text-2xl font-extrabold text-white md:text-3xl leading-tight mb-3 text-balance">
+            <h2 className="text-2xl font-extrabold text-slate-950 md:text-3xl leading-tight mb-3 text-balance">
                 Wait — How Much Are You{" "}
                 <span className="text-brand-green">Actually Leaving on&nbsp;the Table?</span>
             </h2>
 
             {/* Value prop */}
-            <p className="text-slate-300 text-base leading-relaxed mb-2 max-w-sm">
-                Get your personalized <span className="text-white font-bold">AI Opportunity Scorecard</span>. We&apos;ll show you exactly where your business is leaking revenue.
+            <p className="text-slate-600 text-base leading-relaxed mb-2 max-w-sm">
+                Get your personalized <span className="text-slate-950 font-bold">AI Opportunity Scorecard</span>. We&apos;ll show you exactly where your business is leaking revenue.
             </p>
             <p className="text-slate-500 text-sm mb-8">
                 Free. No credit card. Under 2 minutes.
@@ -50,7 +50,7 @@ export function ModalScreen1Hook({ onDismiss }: Props) {
             {/* Dismiss */}
             <button
                 onClick={onDismiss}
-                className="mt-4 text-sm text-slate-500 hover:text-slate-300 transition-colors"
+                className="mt-4 text-sm text-slate-500 hover:text-slate-600 transition-colors"
             >
                 No thanks, maybe later
             </button>

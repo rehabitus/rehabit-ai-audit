@@ -38,7 +38,7 @@ export function PricingSection() {
   const tierCopy = subtitle === `pricing.tierLabels.${label}` ? "" : subtitle;
 
   return (
-    <Section className="bg-brand-navy noise-vignette-bg" id="pricing" noAnimate>
+    <Section className="bg-slate-50 twin-noise-vignette-bg" id="pricing" noAnimate>
       <motion.div
         className="relative z-10 mx-auto max-w-4xl text-center"
         initial="hidden"
@@ -54,10 +54,10 @@ export function PricingSection() {
           </span>
         </motion.div>
 
-        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl text-balance">
+        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-slate-950 md:text-4xl text-balance">
           {t("pricing.headline")}
         </motion.h2>
-        <motion.p variants={fadeInUp} className="mt-1 text-lg text-slate-400">
+        <motion.p variants={fadeInUp} className="mt-1 text-lg text-slate-500">
           {t("pricing.sub")}
         </motion.p>
 
@@ -73,7 +73,7 @@ export function PricingSection() {
 
         <motion.ul
           variants={staggerContainerFast}
-          className="mt-8 space-y-3 text-left text-slate-300"
+          className="mt-8 space-y-3 text-left text-slate-600"
         >
           {includes.map((item, i) => (
             <motion.li key={i} variants={fadeInUp} className="flex items-start gap-2">
@@ -97,7 +97,7 @@ export function PricingSection() {
 
           {/* Price */}
           <div className="flex items-baseline justify-center gap-3">
-            <p className="text-7xl font-extrabold text-white tracking-tight">
+            <p className="text-7xl font-extrabold text-slate-950 tracking-tight">
               $<AnimatedCounter to={priceUsd} duration={1.2} />
             </p>
           </div>
@@ -125,8 +125,8 @@ export function PricingSection() {
                 })}
               </span>
               {nextPrice && (
-                <span className="text-sm text-slate-400">
-                  {"\u2014"} {t("pricing.next_price")} <span className="text-white font-semibold">${nextPrice.toLocaleString()}</span>
+                <span className="text-sm text-slate-500">
+                  {"\u2014"} {t("pricing.next_price")} <span className="text-slate-950 font-semibold">${nextPrice.toLocaleString()}</span>
                 </span>
               )}
             </motion.div>
@@ -155,15 +155,15 @@ export function PricingSection() {
         viewport={viewportOnce}
         variants={fadeInUp}
       >
-        <h3 className="flex items-center gap-2 text-xl font-bold text-white">
+        <h3 className="flex items-center gap-2 text-xl font-bold text-slate-950">
           <svg className="h-6 w-6 flex-shrink-0 text-brand-green" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
           </svg>
           {t("pricing.guarantee_headline")}
         </h3>
-        <p className="mt-4 text-slate-300 leading-relaxed text-balance">
+        <p className="mt-4 text-slate-600 leading-relaxed text-balance">
           {t("pricing.guarantee_body_pre")}{" "}
-          <span className="font-semibold text-white">{t("pricing.guarantee_body_highlight")}</span>
+          <span className="font-semibold text-slate-950">{t("pricing.guarantee_body_highlight")}</span>
           {t("pricing.guarantee_body_post")}
         </p>
         <p className="mt-4 text-sm font-semibold text-brand-green">

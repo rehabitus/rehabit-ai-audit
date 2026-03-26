@@ -188,7 +188,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="relative w-full max-w-md rounded-2xl border border-white/10 bg-[#0F172A] shadow-2xl"
+            className="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white shadow-2xl"
             role="dialog"
             aria-modal="true"
             aria-label="Strategy Call Application"
@@ -199,7 +199,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
             <button
               onClick={reset}
               aria-label="Close"
-              className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-white/10 hover:text-white transition-all"
+              className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-950 transition-all"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -231,10 +231,10 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                     <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-green/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-brand-green">
                       Free Strategy Call
                     </div>
-                    <h2 className="text-xl font-bold text-white">
+                    <h2 className="text-xl font-bold text-slate-950">
                       Quick qualification before we book
                     </h2>
-                    <p className="mt-2 text-sm text-slate-400 leading-relaxed">
+                    <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                       4 questions (60 seconds) so we can ensure this call is the
                       right next step for your specific business operations.
                     </p>
@@ -244,8 +244,8 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                       <p className="text-xs font-bold uppercase tracking-wider text-brand-gold">
                         Prefer to skip the call?
                       </p>
-                      <p className="mt-1 text-sm text-slate-300">
-                        If you buy now, you get the <span className="font-semibold text-brand-gold">First Core AI System FREE</span> ($3,000+ value) and you&rsquo;re still 100% covered by our <span className="text-white font-medium italic underline underline-offset-4 decoration-brand-green/30">Risk Reversal Guarantee</span>.
+                      <p className="mt-1 text-sm text-slate-600">
+                        If you buy now, you get the <span className="font-semibold text-brand-gold">First Core AI System FREE</span> ($3,000+ value) and you&rsquo;re still 100% covered by our <span className="text-slate-950 font-medium italic underline underline-offset-4 decoration-brand-green/30">Risk Reversal Guarantee</span>.
                       </p>
                     </div>
 
@@ -257,7 +257,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                       ].map((item) => (
                         <li
                           key={item}
-                          className="flex items-center gap-2 text-sm text-slate-300"
+                          className="flex items-center gap-2 text-sm text-slate-600"
                         >
                           <svg
                             className="h-4 w-4 shrink-0 text-brand-green"
@@ -278,7 +278,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                     </ul>
                     <button
                       onClick={handleStart}
-                      className="mt-6 w-full rounded-lg bg-brand-green px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-green-light active:scale-[0.98]"
+                      className="mt-6 w-full rounded-lg bg-brand-green px-4 py-3 text-sm font-semibold text-slate-950 transition-all hover:bg-brand-green-light active:scale-[0.98]"
                     >
                       Start Application →
                     </button>
@@ -297,10 +297,10 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <h2 className="text-xl font-bold text-white mb-2">
+                    <h2 className="text-xl font-bold text-slate-950 mb-2">
                       About Your Business
                     </h2>
-                    <p className="text-sm text-slate-400 mb-6 leading-relaxed">
+                    <p className="text-sm text-slate-500 mb-6 leading-relaxed">
                       First, let us know who Mike will be speaking with.
                     </p>
 
@@ -313,7 +313,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                           placeholder="Jane Doe"
                           value={contact.name}
                           onChange={(e) => setContact({ ...contact, name: e.target.value })}
-                          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
+                          className="w-full rounded-lg border border-slate-200 bg-white/5 px-4 py-3 text-sm text-slate-950 placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
                         />
                       </div>
                       <div>
@@ -324,7 +324,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                           placeholder="jane@company.com"
                           value={contact.email}
                           onChange={(e) => setContact({ ...contact, email: e.target.value })}
-                          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
+                          className="w-full rounded-lg border border-slate-200 bg-white/5 px-4 py-3 text-sm text-slate-950 placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
                         />
                       </div>
                       <div>
@@ -334,12 +334,12 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                           placeholder="+1 (555) 000-0000"
                           value={contact.phone}
                           onChange={(e) => setContact({ ...contact, phone: e.target.value })}
-                          className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
+                          className="w-full rounded-lg border border-slate-200 bg-white/5 px-4 py-3 text-sm text-slate-950 placeholder:text-slate-600 focus:border-brand-green/50 focus:outline-none focus:ring-1 focus:ring-brand-green/50 transition-all"
                         />
                       </div>
                       <button
                         type="submit"
-                        className="mt-4 w-full rounded-lg bg-brand-green px-4 py-3 text-sm font-semibold text-white transition-all hover:bg-brand-green-light active:scale-[0.98]"
+                        className="mt-4 w-full rounded-lg bg-brand-green px-4 py-3 text-sm font-semibold text-slate-950 transition-all hover:bg-brand-green-light active:scale-[0.98]"
                       >
                         Continue to Questions →
                       </button>
@@ -376,7 +376,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                       </div>
                     </div>
 
-                    <h2 className="text-lg font-bold text-white">
+                    <h2 className="text-lg font-bold text-slate-950">
                       {question.question}
                     </h2>
 
@@ -385,10 +385,10 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                         <button
                           key={opt}
                           onClick={() => handleAnswer(question.id, opt)}
-                          className="group w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-left text-sm text-slate-300 transition-all hover:border-brand-green/50 hover:bg-brand-green/5 hover:text-white active:scale-[0.99]"
+                          className="group w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-left text-sm text-slate-600 transition-all hover:border-brand-green/50 hover:bg-brand-green/5 hover:text-slate-950 active:scale-[0.99]"
                         >
                           <span className="flex items-center gap-3">
-                            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/20 text-[10px] text-slate-500 group-hover:border-brand-green/50 group-hover:text-brand-green transition-all">
+                            <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-slate-300 text-[10px] text-slate-500 group-hover:border-brand-green/50 group-hover:text-brand-green transition-all">
                               {String.fromCharCode(65 + idx)}
                             </span>
                             {opt}
@@ -408,11 +408,11 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                     exit={{ opacity: 0 }}
                     className="py-14 text-center"
                   >
-                    <div className="mx-auto mb-5 h-11 w-11 animate-spin rounded-full border-2 border-white/10 border-t-brand-green" />
-                    <p className="text-sm font-semibold text-white">
+                    <div className="mx-auto mb-5 h-11 w-11 animate-spin rounded-full border-2 border-slate-200 border-t-brand-green" />
+                    <p className="text-sm font-semibold text-slate-950">
                       Reviewing your application…
                     </p>
-                    <p className="mt-1 text-xs text-slate-400">
+                    <p className="mt-1 text-xs text-slate-500">
                       Matching you to the right next step
                     </p>
                   </motion.div>
@@ -443,10 +443,10 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                         />
                       </svg>
                     </div>
-                    <h2 className="text-xl font-bold text-white">
+                    <h2 className="text-xl font-bold text-slate-950">
                       You&rsquo;re a great fit.
                     </h2>
-                    <p className="mt-2 text-sm text-slate-400 leading-relaxed">
+                    <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                       Based on your answers, this call will be genuinely
                       valuable. Pick a time and Mike will come prepared with
                       specific insights for your business.
@@ -455,14 +455,14 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                       href={redirectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-6 block w-full rounded-lg bg-brand-green px-4 py-3 text-center text-sm font-semibold text-white transition-all hover:bg-brand-green-light"
+                      className="mt-6 block w-full rounded-lg bg-brand-green px-4 py-3 text-center text-sm font-semibold text-slate-950 transition-all hover:bg-brand-green-light"
                       onClick={reset}
                     >
                       Book Your 15-Minute Call →
                     </a>
                     <button
                       onClick={reset}
-                      className="mt-3 text-xs text-slate-500 hover:text-slate-300 transition-colors"
+                      className="mt-3 text-xs text-slate-500 hover:text-slate-600 transition-colors"
                     >
                       Close
                     </button>
@@ -494,10 +494,10 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                         />
                       </svg>
                     </div>
-                    <h2 className="text-xl font-bold text-white">
+                    <h2 className="text-xl font-bold text-slate-950">
                       Here&rsquo;s a better starting point.
                     </h2>
-                    <p className="mt-2 text-sm text-slate-400 leading-relaxed">
+                    <p className="mt-2 text-sm text-slate-500 leading-relaxed">
                       Based on where you are right now, we have free resources
                       at Rehabit designed exactly for your stage. Start there
                       — it&rsquo;s free and immediately actionable.
@@ -506,7 +506,7 @@ export function BookingQualificationModal({ isOpen, onClose }: Props) {
                       href={redirectUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-6 block w-full rounded-lg bg-brand-orange px-4 py-3 text-center text-sm font-semibold text-white transition-all hover:opacity-90"
+                      className="mt-6 block w-full rounded-lg bg-brand-orange px-4 py-3 text-center text-sm font-semibold text-slate-950 transition-all hover:opacity-90"
                       onClick={reset}
                     >
                       Visit Rehabit.pro →

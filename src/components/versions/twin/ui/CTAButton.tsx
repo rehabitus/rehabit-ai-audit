@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { trackCtaClick, trackBeginCheckout, navigateAfterTracking } from "@/lib/analytics";
 import { getCurrentPricing } from "@/lib/pricing";
+import { getSavedUTMs } from "@/lib/utms";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface CTAButtonProps {
@@ -22,7 +23,7 @@ export function CTAButton({ children, className = "", location = "other" }: CTAB
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
-        body: JSON.stringify({ origin: window.location.origin }),
+        body: JSON.stringify({ origin: window.location.origin, utms: getSavedUTMs() }),
         headers: { "Content-Type": "application/json" }
       });
       const data = await res.json();
@@ -44,10 +45,10 @@ export function CTAButton({ children, className = "", location = "other" }: CTAB
     <button
       onClick={handleClick}
       disabled={loading}
-      className={`group relative inline-block overflow-hidden rounded-lg bg-brand-green px-8 py-4 text-lg font-bold text-brand-dark transition-all hover:bg-brand-green-light hover:shadow-[0_0_25px_4px_rgba(16,185,129,0.3)] hover:-translate-y-0.5 disabled:opacity-70 disabled:cursor-wait ${className}`}
+      className={`group relative inline-block min-h-[52px] overflow-hidden rounded-full bg-brand-orange px-8 py-4 text-lg font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-[#ea6a12] hover:shadow-[0_20px_50px_rgba(249,115,22,0.28)] disabled:cursor-wait disabled:opacity-70 ${className}`}
     >
       {/* Shimmer sweep */}
-      <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+      <span className="pointer-events-none absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/20 to-transparent" />
       <span className="relative">{loading ? t("common.redirecting_checkout") : children}</span>
     </button>
   );

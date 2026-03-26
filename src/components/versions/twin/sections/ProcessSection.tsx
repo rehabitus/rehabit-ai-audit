@@ -23,7 +23,7 @@ export function ProcessSection() {
   const steps = tObjects<TimelineStep>("process.steps");
 
   return (
-    <Section className="relative overflow-hidden bg-brand-navy" id="process" noAnimate>
+    <Section className="relative overflow-hidden bg-slate-50" id="process" noAnimate>
       <WebGLBackground scene="particles" />
       <motion.div
         className="relative z-10 mx-auto max-w-4xl"
@@ -34,7 +34,7 @@ export function ProcessSection() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-3xl font-bold text-white md:text-4xl text-center"
+          className="text-3xl font-bold text-slate-950 md:text-4xl text-center"
         >
           {t("process.headline")}
         </motion.h2>
@@ -73,8 +73,8 @@ export function ProcessSection() {
                   <p className="text-sm font-semibold uppercase tracking-wider text-brand-green">
                     {step.day}
                   </p>
-                  <h3 className="mt-1 text-xl font-bold text-white">{step.title}</h3>
-                  <p className="mt-2 text-slate-300 leading-relaxed">{step.body}</p>
+                  <h3 className="mt-1 text-xl font-bold text-slate-950">{step.title}</h3>
+                  <p className="mt-2 text-slate-600 leading-relaxed">{step.body}</p>
                 </div>
               </motion.div>
             ))}

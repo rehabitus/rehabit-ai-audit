@@ -22,7 +22,7 @@ export function TrustpilotWidget() {
     }, []);
 
     return (
-        <div className="py-8 bg-brand-dark/50 border-t border-white/5">
+        <div className="border-t border-slate-200/80 bg-gradient-to-r from-sky-50 via-white to-amber-50 py-8">
             <div className="mx-auto max-w-6xl px-6">
                 <div
                     ref={ref}
@@ -38,7 +38,7 @@ export function TrustpilotWidget() {
                         href="https://www.trustpilot.com/review/rehabit.us"
                         target="_blank"
                         rel="noopener"
-                        className="text-slate-400 hover:text-white transition-colors"
+                        className="text-slate-500 hover:text-slate-950 transition-colors"
                     >
                         Trustpilot
                     </a>

@@ -27,7 +27,7 @@ export function OfferSection() {
   }));
 
   return (
-    <Section className="relative overflow-hidden bg-brand-navy" id="offer" noAnimate>
+    <Section className="relative overflow-hidden bg-slate-50" id="offer" noAnimate>
       <WebGLBackground scene="network" />
       <motion.div
         className="relative z-10 mx-auto max-w-4xl"
@@ -37,10 +37,10 @@ export function OfferSection() {
         variants={staggerContainer}
       >
         <motion.div variants={fadeInUp} className="text-center">
-          <h2 className="text-3xl font-bold text-white md:text-4xl">
+          <h2 className="text-3xl font-bold text-slate-950 md:text-4xl">
             {t("offer.headline")}
           </h2>
-          <p className="mt-2 text-lg text-slate-400">{t("offer.sub")}</p>
+          <p className="mt-2 text-lg text-slate-500">{t("offer.sub")}</p>
         </motion.div>
 
         <motion.div
@@ -55,7 +55,7 @@ export function OfferSection() {
               key={i}
               variants={fadeInUp}
               whileHover={cardHover}
-              className="rounded-xl border border-white/10 bg-white/5 p-6 transition-shadow hover:border-brand-green/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.08)]"
+              className="rounded-xl border border-slate-200 bg-white/5 p-6 transition-shadow hover:border-brand-green/30 hover:shadow-[0_0_30px_rgba(16,185,129,0.08)]"
             >
               <motion.span
                 className={`font-mono text-sm font-bold ${card.color}`}
@@ -64,8 +64,8 @@ export function OfferSection() {
               >
                 {card.icon}
               </motion.span>
-              <h3 className="mt-2 text-xl font-bold text-white">{card.title}</h3>
-              <p className="mt-3 text-slate-300 leading-relaxed">{card.body}</p>
+              <h3 className="mt-2 text-xl font-bold text-slate-950">{card.title}</h3>
+              <p className="mt-3 text-slate-600 leading-relaxed">{card.body}</p>
             </motion.div>
           ))}
         </motion.div>

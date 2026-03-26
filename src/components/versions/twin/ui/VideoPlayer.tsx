@@ -70,7 +70,7 @@ export function VideoPlayer() {
 
             {/* Video Container */}
             <div
-                className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-white/10 bg-black shadow-2xl"
+                className="relative aspect-video w-full overflow-hidden rounded-b-xl border-x border-b border-slate-200 bg-black shadow-2xl"
                 aria-label="Watch: How the audit works (4 min)"
             >
                 {showVideo ? (
@@ -97,7 +97,7 @@ export function VideoPlayer() {
                             className="object-cover"
                         />
                         <div className="absolute inset-0 bg-black/30 transition-colors group-hover:bg-black/20" />
-                        <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-brand-green/90 text-white shadow-lg shadow-brand-green/25 transition-transform group-hover:scale-110">
+                        <div className="relative flex h-20 w-20 items-center justify-center rounded-full bg-brand-green/90 text-slate-950 shadow-lg shadow-brand-green/25 transition-transform group-hover:scale-110">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"

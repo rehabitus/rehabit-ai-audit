@@ -163,7 +163,7 @@ export function ExitIntentModal() {
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className={`relative w-full rounded-2xl border border-white/10 bg-[#0F172A] shadow-2xl ${isWide ? "max-w-lg" : "max-w-sm"}`}
+                        className={`relative w-full rounded-2xl border border-slate-200 bg-white shadow-2xl ${isWide ? "max-w-lg" : "max-w-sm"}`}
                         role="dialog"
                         aria-modal="true"
                         aria-label="AI Readiness Survey"
@@ -174,7 +174,7 @@ export function ExitIntentModal() {
                         <button
                             onClick={dismiss}
                             aria-label="Close"
-                            className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-white/10 hover:text-white transition-all"
+                            className="absolute right-4 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-950 transition-all"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />

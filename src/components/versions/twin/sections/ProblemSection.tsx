@@ -11,7 +11,7 @@ export function ProblemSection() {
 
 
   return (
-    <Section className="bg-brand-navy problem-glow-bg" id="problem" noAnimate>
+    <Section className="bg-slate-50 twin-problem-glow-bg" id="problem" noAnimate>
       <motion.div
         className="relative z-10 mx-auto max-w-6xl"
         initial="hidden"
@@ -23,7 +23,7 @@ export function ProblemSection() {
 
           {/* ── Left: headline + bullets ── */}
           <div className="flex flex-col justify-center h-full">
-            <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-5xl leading-tight">
+            <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-slate-950 md:text-5xl leading-tight">
               {t("fastProblem.headline")}
             </motion.h2>
 
@@ -36,7 +36,7 @@ export function ProblemSection() {
                   >
                     <div className="h-2 w-2 rounded-full bg-brand-red shadow-[0_0_8px_rgba(239,68,68,0.5)]" />
                   </motion.div>
-                  <span className="text-xl text-slate-300 font-medium">{item}</span>
+                  <span className="text-xl text-slate-600 font-medium">{item}</span>
                 </motion.li>
               ))}
             </motion.ul>
@@ -46,7 +46,7 @@ export function ProblemSection() {
           <div className="flex items-center justify-center">
             <motion.div 
               variants={fadeInUp} 
-              className="relative w-full max-w-md bg-brand-dark/40 border border-white/10 rounded-2xl p-8 backdrop-blur-sm shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+              className="relative w-full max-w-md rounded-2xl border border-slate-200 bg-white/90 p-8 shadow-[0_24px_80px_rgba(15,23,42,0.09)] backdrop-blur-sm"
             >
               {/* Result Badge */}
               <div className="absolute -top-4 -right-4 bg-brand-green text-brand-dark px-4 py-1.5 rounded-full text-sm font-bold shadow-lg transform rotate-3">
@@ -60,17 +60,17 @@ export function ProblemSection() {
                 </svg>
               </div>
 
-              <blockquote className="text-xl text-white font-medium leading-relaxed mb-6 italic">
+              <blockquote className="text-xl text-slate-950 font-medium leading-relaxed mb-6 italic">
                 &ldquo;{t("fastProblem.testimonial.quote")}&rdquo;
               </blockquote>
 
-              <div className="flex items-center gap-3 border-t border-white/10 pt-6">
-                <div className="h-10 w-10 rounded-full bg-brand-navy flex items-center justify-center border border-white/5 font-bold text-brand-green">
+              <div className="flex items-center gap-3 border-t border-slate-200 pt-6">
+                <div className="h-10 w-10 rounded-full bg-slate-50 flex items-center justify-center border border-slate-200/70 font-bold text-brand-green">
                   {t("fastProblem.testimonial.author")[0]}
                 </div>
                 <div>
-                  <div className="text-white font-bold">{t("fastProblem.testimonial.author")}</div>
-                  <div className="text-slate-400 text-sm">{t("fastProblem.testimonial.role")}</div>
+                  <div className="text-slate-950 font-bold">{t("fastProblem.testimonial.author")}</div>
+                  <div className="text-slate-500 text-sm">{t("fastProblem.testimonial.role")}</div>
                 </div>
               </div>
             </motion.div>

@@ -33,23 +33,23 @@ export function ModalScreen3Survey({ name, onComplete }: Props) {
         >
             {/* Header */}
             <div className="mb-5">
-                <h2 className="text-lg font-extrabold text-white mb-1">
+                <h2 className="text-lg font-extrabold text-slate-950 mb-1">
                     Your AI Readiness Survey
                 </h2>
-                <p className="text-slate-400 text-sm">
+                <p className="text-slate-500 text-sm">
                     {name ? `Hi ${name.split(" ")[0]} — ` : ""}5 quick questions to calculate your savings potential.
                 </p>
             </div>
 
             {/* Mode toggle */}
-            <div className="flex mb-5 rounded-lg border border-white/10 bg-white/[0.03] p-1 gap-1">
+            <div className="flex mb-5 rounded-lg border border-slate-200 bg-white p-1 gap-1">
                 {(["survey", "chat"] as SurveyTab[]).map((t) => (
                     <button
                         key={t}
                         onClick={() => setTab(t)}
                         className={`flex-1 flex items-center justify-center gap-2 rounded-md px-3 py-2 text-xs font-semibold uppercase tracking-wider transition-all ${tab === t
                             ? "bg-brand-green/20 text-brand-green border border-brand-green/30"
-                            : "text-slate-500 hover:text-slate-300"
+                            : "text-slate-500 hover:text-slate-600"
                             }`}
                     >
                         {t === "survey" ? (

@@ -130,7 +130,7 @@ export function SurveyMode({ onComplete }: Props) {
                     exit={{ opacity: 0, x: -30 }}
                     transition={{ duration: 0.25 }}
                 >
-                    <p className="text-base font-semibold text-white mb-4 leading-snug">
+                    <p className="text-base font-semibold text-slate-950 mb-4 leading-snug">
                         {question.question}
                     </p>
 
@@ -144,8 +144,8 @@ export function SurveyMode({ onComplete }: Props) {
                                     <button
                                         onClick={() => handleSelect(option)}
                                         className={`w-full rounded-lg border px-4 py-3 text-left text-sm transition-all flex items-center gap-2 ${isActive
-                                                ? "border-brand-green bg-brand-green/10 text-white"
-                                                : "border-white/10 bg-white/[0.03] text-slate-300 hover:border-white/20 hover:bg-white/[0.06]"
+                                                ? "border-brand-green bg-brand-green/10 text-slate-950"
+                                                : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-white"
                                             }`}
                                     >
                                         {isActive && (
@@ -182,7 +182,7 @@ export function SurveyMode({ onComplete }: Props) {
                                                         onChange={(e) => setOtherText(e.target.value)}
                                                         placeholder="Describe your business or situation..."
                                                         rows={2}
-                                                        className="flex-1 resize-none bg-transparent text-sm text-white placeholder-slate-500 outline-none leading-relaxed"
+                                                        className="flex-1 resize-none bg-transparent text-sm text-slate-950 placeholder-slate-500 outline-none leading-relaxed"
                                                     />
                                                     {/* Mic button */}
                                                     <button
@@ -190,7 +190,7 @@ export function SurveyMode({ onComplete }: Props) {
                                                         title={isListening ? "Stop recording" : "Speak to fill"}
                                                         className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border transition-all ${isListening
                                                                 ? "border-brand-red bg-brand-red/20 text-brand-red animate-pulse"
-                                                                : "border-white/10 text-slate-400 hover:border-brand-green/40 hover:text-brand-green"
+                                                                : "border-slate-200 text-slate-500 hover:border-brand-green/40 hover:text-brand-green"
                                                             }`}
                                                     >
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">

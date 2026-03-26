@@ -19,8 +19,8 @@ export function LanguageSwitcher() {
             aria-pressed={locale === code}
             className={`flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium transition-colors ${
               locale === code
-                ? "bg-white/10 text-white"
-                : "text-slate-500 hover:text-slate-300"
+                ? "bg-slate-100 text-slate-950"
+                : "text-slate-500 hover:text-slate-700"
             }`}
           >
             <span aria-hidden="true">{flag}</span>

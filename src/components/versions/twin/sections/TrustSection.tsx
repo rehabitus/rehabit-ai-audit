@@ -30,7 +30,7 @@ export function TrustSection() {
   const testimonials = tObjects<Testimonial>("trust.testimonials");
 
   return (
-    <Section className="bg-brand-dark trust-glow-bg overflow-hidden !py-10 md:!py-14" id="trust" noAnimate>
+    <Section className="bg-white twin-trust-glow-bg overflow-hidden !py-10 md:!py-14" id="trust" noAnimate>
       <motion.div
         className="relative z-10 mx-auto max-w-4xl"
         initial="hidden"
@@ -40,11 +40,11 @@ export function TrustSection() {
       >
         <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
           <motion.div variants={fadeInUp} className="lg:col-span-7">
-            <h2 className="text-[28px] font-bold text-white md:text-[34px] leading-tight text-balance">
+            <h2 className="text-[28px] font-bold text-slate-950 md:text-[34px] leading-tight text-balance">
               {t("trust.headline")}
             </h2>
-            <p className="mt-6 text-xl text-slate-300">
-              <span className="font-semibold text-white">{t("trust.intro_pre")}</span>
+            <p className="mt-6 text-xl text-slate-600">
+              <span className="font-semibold text-slate-950">{t("trust.intro_pre")}</span>
               {t("trust.intro_post")}
             </p>
 
@@ -55,20 +55,20 @@ export function TrustSection() {
                     &#10003;
                   </div>
                   <div>
-                    <h3 className="font-bold text-white">{point.title}</h3>
-                    <p className="text-slate-400">{point.text}</p>
+                    <h3 className="font-bold text-slate-950">{point.title}</h3>
+                    <p className="text-slate-500">{point.text}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <motion.p variants={fadeInUp} className="mt-10 text-slate-300 italic">
+            <motion.p variants={fadeInUp} className="mt-10 text-slate-600 italic">
               {t("trust.closing")}
             </motion.p>
           </motion.div>
 
           <motion.div variants={fadeInUp} className="hidden lg:flex justify-end lg:col-span-5 relative">
-            <div className="relative h-[22rem] w-[22rem] overflow-hidden rounded-[2rem] border-2 border-white/10 shadow-[0_0_40px_rgba(16,185,129,0.15)] bg-white/5">
+            <div className="relative h-[22rem] w-[22rem] overflow-hidden rounded-[2rem] border-2 border-slate-200 shadow-[0_20px_80px_rgba(14,165,233,0.12)] bg-white">
               <Image
                 src="/images/rehabit-mike-olaski-headshot-suit.png"
                 alt="Mike Olaski"
@@ -83,7 +83,7 @@ export function TrustSection() {
 
         {/* Featured Clients */}
         <motion.div variants={fadeInUp} className="mt-10">
-          <p className="mb-6 text-center text-sm font-bold uppercase tracking-widest text-slate-400">
+          <p className="mb-6 text-center text-sm font-bold uppercase tracking-widest text-slate-500">
             {t("trust.featured_label")}
           </p>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:gap-6">
@@ -93,7 +93,7 @@ export function TrustSection() {
                 variants={fadeInUp}
                 className="group relative flex flex-col items-center"
               >
-                <div className="relative mb-3 h-24 w-24 overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition-all duration-300 group-hover:border-brand-green/30 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.15)] md:h-28 md:w-28">
+                <div className="relative mb-3 h-24 w-24 overflow-hidden rounded-2xl border border-slate-200 bg-white transition-all duration-300 group-hover:border-brand-green/30 group-hover:shadow-[0_16px_40px_rgba(16,185,129,0.12)] md:h-28 md:w-28">
                   <Image
                     src={person.image}
                     alt={person.name}
@@ -103,7 +103,7 @@ export function TrustSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
-                <p className="text-[10px] font-semibold text-slate-500 transition-colors duration-300 group-hover:text-white md:text-xs">
+                <p className="text-[10px] font-semibold text-slate-500 transition-colors duration-300 group-hover:text-slate-950 md:text-xs">
                   {person.name}
                 </p>
               </motion.div>
@@ -114,17 +114,17 @@ export function TrustSection() {
         {/* Results Delivered */}
         <motion.div
           variants={fadeInUp}
-          className="mt-10 mx-auto rounded-2xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm"
+          className="mt-10 mx-auto rounded-2xl border border-slate-200/70 bg-white/80 p-8 backdrop-blur-sm"
         >
-          <h3 className="text-xl font-bold text-white md:text-2xl mb-8 text-center">{t("trust.results_headline")}</h3>
+          <h3 className="text-xl font-bold text-slate-950 md:text-2xl mb-8 text-center">{t("trust.results_headline")}</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {results.map((r, i) => {
               const colors = ["text-brand-green", "text-brand-blue", "text-brand-orange", "text-brand-gold"];
               return (
                 <div key={i} className="flex flex-col items-center text-center">
                   <span className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-2">{r.category}</span>
-                  <span className={`text-2xl font-bold mb-1 ${colors[i] ?? "text-white"}`}>{r.verb}</span>
-                  <span className="text-lg text-slate-300 font-medium">{r.value}</span>
+                  <span className={`text-2xl font-bold mb-1 ${colors[i] ?? "text-slate-950"}`}>{r.verb}</span>
+                  <span className="text-lg text-slate-600 font-medium">{r.value}</span>
                   <span className="text-xs text-slate-500 uppercase">{r.unit}</span>
                 </div>
               );
@@ -134,16 +134,16 @@ export function TrustSection() {
 
         {/* Testimonials */}
         <motion.div variants={fadeInUp} className="mt-10">
-          <h3 className="text-xl font-bold text-white md:text-2xl mb-6 text-center">{t("trust.testimonials_headline")}</h3>
+          <h3 className="text-xl font-bold text-slate-950 md:text-2xl mb-6 text-center">{t("trust.testimonials_headline")}</h3>
           <div className="grid gap-4 md:grid-cols-3">
             {testimonials.map((t_item) => (
               <div
                 key={t_item.name}
                 className="rounded-xl border border-brand-green/10 bg-brand-green/[0.04] p-6 flex flex-col gap-4"
               >
-                <p className="text-sm text-slate-300 leading-relaxed italic">&ldquo;{t_item.quote}&rdquo;</p>
+                <p className="text-sm text-slate-600 leading-relaxed italic">&ldquo;{t_item.quote}&rdquo;</p>
                 <div className="mt-auto">
-                  <p className="text-sm font-bold text-white">{t_item.name}</p>
+                  <p className="text-sm font-bold text-slate-950">{t_item.name}</p>
                   <p className="text-xs text-slate-500">{t_item.role}</p>
                 </div>
               </div>

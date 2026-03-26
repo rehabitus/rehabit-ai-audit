@@ -199,7 +199,7 @@ export function ChatMode({ name, onComplete }: Props) {
         return (
             <div className="rounded-xl border border-brand-orange/20 bg-brand-orange/10 p-6 text-center">
                 <p className="text-brand-orange font-semibold mb-1">Chat Mode Unavailable</p>
-                <p className="text-slate-400 text-sm">OpenAI API key not configured. Please use Survey Mode instead.</p>
+                <p className="text-slate-500 text-sm">OpenAI API key not configured. Please use Survey Mode instead.</p>
             </div>
         );
     }
@@ -219,7 +219,7 @@ export function ChatMode({ name, onComplete }: Props) {
                             <div
                                 className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm leading-relaxed ${msg.role === "user"
                                     ? "bg-brand-green text-brand-dark font-medium rounded-br-sm"
-                                    : "bg-white/[0.06] text-slate-200 border border-white/5 rounded-bl-sm"
+                                    : "bg-white text-slate-200 border border-slate-200/70 rounded-bl-sm"
                                     }`}
                             >
                                 {msg.content || (
@@ -235,7 +235,7 @@ export function ChatMode({ name, onComplete }: Props) {
                 </AnimatePresence>
                 {isLoading && messages.length === 0 && (
                     <div className="flex justify-start">
-                        <div className="bg-white/[0.06] border border-white/5 rounded-2xl rounded-bl-sm px-4 py-2.5 text-slate-400 text-sm flex gap-1">
+                        <div className="bg-white border border-slate-200/70 rounded-2xl rounded-bl-sm px-4 py-2.5 text-slate-500 text-sm flex gap-1">
                             <span className="animate-bounce">·</span>
                             <span className="animate-bounce [animation-delay:0.1s]">·</span>
                             <span className="animate-bounce [animation-delay:0.2s]">·</span>
@@ -256,7 +256,7 @@ export function ChatMode({ name, onComplete }: Props) {
 
             {/* Input */}
             {!isComplete && (
-                <div className="flex gap-2 pt-3 border-t border-white/10 mt-1">
+                <div className="flex gap-2 pt-3 border-t border-slate-200 mt-1">
                     <input
                         type="text"
                         value={input}
@@ -264,7 +264,7 @@ export function ChatMode({ name, onComplete }: Props) {
                         onKeyDown={(e) => e.key === "Enter" && handleSend()}
                         placeholder="Type your answer..."
                         disabled={isLoading}
-                        className="flex-1 rounded-xl border border-white/10 bg-white/[0.06] px-4 py-2.5 text-sm text-white placeholder-slate-600 outline-none focus:border-brand-green/50 focus:ring-1 focus:ring-brand-green/20 transition-all"
+                        className="flex-1 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-950 placeholder-slate-600 outline-none focus:border-brand-green/50 focus:ring-1 focus:ring-brand-green/20 transition-all"
                     />
                     {/* Voice button */}
                     <button
@@ -272,7 +272,7 @@ export function ChatMode({ name, onComplete }: Props) {
                         title={isListening ? "Stop listening" : "Voice input"}
                         className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all ${isListening
                             ? "border-brand-red bg-brand-red/20 text-brand-red"
-                            : "border-white/10 bg-white/[0.06] text-slate-400 hover:border-brand-green/40 hover:text-brand-green"
+                            : "border-slate-200 bg-white text-slate-500 hover:border-brand-green/40 hover:text-brand-green"
                             }`}
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="h-4 w-4">
