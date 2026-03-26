@@ -65,10 +65,10 @@ const USE_CASES: UseCase[] = [
     accent: "premium",
     body:
       "Your AI delivers support in your tone, using your methods and frameworks. Clients get fast, personal guidance between live sessions.",
-    cta: "Create my AI",
+    cta: "Add New Revenue",
     chips: ["Your voice, your methods", "Always available", "ICF-aligned"],
-    stat: "5+",
-    statBody: "hours saved per week by top coaches using Rehabit AI",
+    stat: "+$97",
+    statBody: "$20 - $100 per user per month in new product revenue",
     image: "/images/pain-opportunity-features/new-digital-twin-chat-product-revenue.png",
   },
   {
