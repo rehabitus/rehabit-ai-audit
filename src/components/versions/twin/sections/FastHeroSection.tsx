@@ -45,7 +45,7 @@ export function FastHeroSection() {
 
         <motion.p
           variants={heroChild}
-          className="mx-auto mt-6 max-w-2xl text-lg text-slate-600 md:text-xl leading-relaxed text-balance"
+          className="mx-auto mt-6 max-w-4xl text-lg text-slate-600 md:text-xl leading-relaxed text-balance"
         >
           In 5 days, get a clear audit of how this digital twin can save you
           time & money with: content creation, social posting, admin emails,
