@@ -69,6 +69,7 @@ const USE_CASES: UseCase[] = [
     chips: ["Your voice, your methods", "Always available", "ICF-aligned"],
     stat: "5+",
     statBody: "hours saved per week by top coaches using Rehabit AI",
+    image: "/images/pain-opportunity-features/product-revenue/digital-twin-product-revenue.png",
   },
   {
     id: "use-case-engagement",
@@ -81,7 +82,6 @@ const USE_CASES: UseCase[] = [
     chips: ["Behavior nudges", "Progress check-ins", "Renewal triggers"],
     stat: "+27%",
     statBody: "higher client continuation when support stays active between sessions",
-    image: "/images/pain-opportunity-features/product-revenue/digital-twin-product-revenue.png",
   },
 ];
 
