@@ -3,16 +3,12 @@
 import { motion } from "framer-motion";
 import { Section } from "@/components/versions/twin/ui/Section";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/animations";
-import { useLanguage } from "@/context/LanguageContext";
 
 export function BridgeSection() {
-  const { t, tObjects } = useLanguage();
-  const bullets = tObjects<string>("fastBridge.bullets");
-
   return (
     <Section className="bg-white twin-dot-grid-bg py-10 md:py-14" id="why-now" noAnimate>
       <motion.div
-        className="relative z-10 mx-auto max-w-2xl text-center"
+        className="relative z-10 mx-auto max-w-5xl text-left"
         initial="hidden"
         whileInView="visible"
         viewport={viewportOnce}
@@ -20,19 +16,27 @@ export function BridgeSection() {
       >
         <motion.h2
           variants={fadeInUp}
-          className="text-2xl font-bold text-slate-950 md:text-3xl"
+          className="text-4xl font-bold leading-tight text-slate-900 md:text-6xl text-balance"
         >
-          {t("fastBridge.headline")}
+          💡 Your Digital Twin Is Powerful Alone. With the Full Audit, It Becomes
+          Unstoppable.
         </motion.h2>
 
-        <motion.ul variants={fadeInUp} className="mt-6 space-y-3 text-left inline-block">
-          {bullets.map((bullet, i) => (
-            <li key={i} className="flex items-start gap-3 text-slate-600 text-base md:text-lg">
-              <span className="mt-1 h-2 w-2 rounded-full bg-brand-green flex-shrink-0" />
-              {bullet}
-            </li>
-          ))}
-        </motion.ul>
+        <motion.p
+          variants={fadeInUp}
+          className="mt-10 text-3xl leading-relaxed text-slate-800 md:text-5xl text-balance"
+        >
+          The free Twin proves AI can replicate your genius.
+        </motion.p>
+
+        <motion.p
+          variants={fadeInUp}
+          className="mt-10 text-3xl leading-relaxed text-slate-800 md:text-5xl text-balance"
+        >
+          The <strong>AI Transformation Audit &amp; Implementation Report</strong>{" "}
+          shows you <em>exactly</em> where to deploy it to stop the bleeding —
+          and start compounding growth.
+        </motion.p>
       </motion.div>
     </Section>
   );
