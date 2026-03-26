@@ -132,10 +132,6 @@ export function PricingSection() {
             </motion.div>
           )}
 
-
-          <motion.p variants={fadeInUp} className="mt-3 text-xs text-slate-500 italic">
-            {t("pricing.review_note")}
-          </motion.p>
         </motion.div>
 
         <motion.div variants={fadeInUp} className="mt-8">
