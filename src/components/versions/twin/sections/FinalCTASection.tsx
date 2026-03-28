@@ -52,45 +52,55 @@ export function FinalCTASection() {
         viewport={viewportOnce}
         variants={staggerContainer}
       >
-        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-slate-950 md:text-4xl">
+        <motion.h2 variants={fadeInUp} className="text-3xl font-bold text-white md:text-4xl text-balance">
           {t("finalCTA.headline")}
         </motion.h2>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2">
-          {/* Option A — dimmed, status quo */}
+        {/* Two-choice cards with OR divider */}
+        <div className="relative mt-10 grid items-start gap-6 md:grid-cols-2">
+          {/* OR pill — visible only on desktop between the two cards */}
+          <div className="absolute inset-y-0 left-1/2 z-10 hidden -translate-x-1/2 items-center md:flex">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-brand-dark text-xs font-bold tracking-widest text-slate-400">
+              OR
+            </span>
+          </div>
+
+          {/* Option A — dead end */}
           <motion.div
             variants={slideInLeft}
-            className="rounded-xl border border-slate-200 bg-white p-8 text-left opacity-70"
+            className="rounded-xl border border-white/8 bg-white/3 p-8 text-left grayscale"
+            style={{ filter: 'grayscale(0.4) brightness(0.75)' }}
           >
-            <p className="text-sm font-bold uppercase tracking-wider text-brand-red/80">{t("finalCTA.optionA_label")}</p>
-            <p className="mt-4 text-slate-500 leading-relaxed">
+            <p className="text-xs font-bold uppercase tracking-widest text-red-400/70">{t("finalCTA.optionA_label")}</p>
+            <p className="mt-4 text-slate-500 leading-relaxed text-balance">
               {t("finalCTA.optionA_body")}
             </p>
           </motion.div>
 
-          {/* Option B — elevated, the choice */}
+          {/* Option B — elevated, the clear winner */}
           <motion.div
             variants={slideInRight}
             whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
-            className="rounded-xl border-2 border-brand-green/50 bg-brand-green/10 p-8 text-left shadow-[0_0_40px_rgba(16,185,129,0.1)]"
+            className="rounded-xl border-2 border-brand-green/60 bg-brand-green/10 p-8 text-left shadow-[0_0_60px_rgba(16,185,129,0.15)] ring-1 ring-brand-green/20"
           >
-            <p className="text-sm font-bold uppercase tracking-wider text-brand-green">{t("finalCTA.optionB_label")}</p>
-            <p className="mt-4 text-slate-200 leading-relaxed">
+            <p className="text-xs font-bold uppercase tracking-widest text-brand-green">{t("finalCTA.optionB_label")}</p>
+            <p className="mt-4 text-slate-300 leading-relaxed text-balance">
               {t("finalCTA.optionB_pre")}{" "}
-              <span className="font-semibold text-slate-950">${priceUsd.toLocaleString()}</span>{" "}
+              <span className="font-bold text-white">${priceUsd.toLocaleString()}</span>{" "}
               {t("finalCTA.optionB_post")}
             </p>
           </motion.div>
         </div>
 
+        {/* ROI math */}
         <motion.div variants={fadeInUp} className="mt-10">
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-slate-400">
             {t("finalCTA.math_pre")}{" "}
-            <span className="relative inline-flex items-center gap-1 font-semibold text-slate-950">
+            <span className="relative inline-flex items-center gap-1 font-semibold text-white">
               {t("finalCTA.math_savings")}
               <button
                 onClick={() => setInfoOpen(true)}
-                className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/10 text-[10px] text-slate-500 transition-colors hover:bg-white/20 hover:text-slate-950"
+                className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-white/10 text-[10px] text-slate-400 transition-colors hover:bg-white/20 hover:text-white"
                 title={t("finalCTA.roi_modal_title")}
               >
                 ?
@@ -98,9 +108,9 @@ export function FinalCTASection() {
             </span>{" "}
             {t("finalCTA.math_post")} <br className="hidden md:block" /> {t("finalCTA.math_return_pre")}{" "}
             <span className="font-bold text-brand-green">{t("finalCTA.math_return_highlight", { roi })}</span> {t("finalCTA.math_return_post")}{" "}
-            <span className="font-semibold text-slate-950">{t("finalCTA.math_investment", { price: priceUsd.toLocaleString() })}</span>
+            <span className="font-semibold text-white">{t("finalCTA.math_investment", { price: priceUsd.toLocaleString() })}</span>
           </p>
-          <p className="mt-2 text-lg text-slate-600">
+          <p className="mt-2 text-lg text-slate-400">
             {t("finalCTA.guarantee")}
           </p>
         </motion.div>
@@ -122,7 +132,7 @@ export function FinalCTASection() {
         <motion.p variants={fadeInUp} className="mt-4 text-sm text-slate-500">
           {pricingMechanic}
         </motion.p>
-        <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-600">
+        <motion.p variants={fadeInUp} className="mt-4 text-base text-slate-400">
           {t("finalCTA.questions")}{" "}
           <button
             onClick={() => setSurveyOpen(true)}
