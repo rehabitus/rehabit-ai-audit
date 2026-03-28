@@ -34,13 +34,13 @@ export function TechSocialProofSection() {
 
         <motion.div
           variants={fadeInUp}
-          className="mt-6 rounded-2xl border border-white/25 bg-white/5 px-4 py-4 backdrop-blur-sm md:px-6"
+          className="mt-6 rounded-2xl border border-white/25 bg-white/5 px-3 py-3 backdrop-blur-sm md:px-6 md:py-4"
         >
-          <div className="grid grid-cols-2 items-center gap-x-5 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="flex flex-wrap justify-center gap-2.5 md:gap-3 lg:grid lg:grid-cols-5 lg:gap-x-5 lg:gap-y-4">
             {TECH_BRANDS.map((brand) => (
               <div
                 key={brand.name}
-                className="flex items-center justify-center gap-2"
+                className="flex min-w-[8.5rem] items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-3 py-2.5 shadow-[0_10px_30px_rgba(15,23,42,0.12)] lg:min-w-0 lg:rounded-none lg:border-0 lg:bg-transparent lg:px-0 lg:py-0 lg:shadow-none"
                 aria-label={brand.name}
               >
                 <Image
@@ -48,9 +48,9 @@ export function TechSocialProofSection() {
                   alt={`${brand.name} logo`}
                   width={24}
                   height={24}
-                  className="h-6 w-6 object-contain"
+                  className="h-5 w-5 object-contain md:h-6 md:w-6"
                 />
-                <span className="text-sm font-semibold text-white md:text-base">{brand.name}</span>
+                <span className="text-[13px] font-semibold text-white md:text-sm lg:text-base">{brand.name}</span>
               </div>
             ))}
           </div>
