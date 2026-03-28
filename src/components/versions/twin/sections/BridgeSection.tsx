@@ -24,12 +24,14 @@ export function BridgeSection() {
           {TWIN_LOCKED_COPY.bridge.title}
         </motion.h2>
 
-        <motion.p
-          variants={fadeInUp}
-          className="mx-auto mt-8 max-w-4xl text-xl leading-relaxed text-slate-800 md:text-2xl text-balance"
-        >
-          {TWIN_LOCKED_COPY.bridge.line1}
-        </motion.p>
+        {TWIN_LOCKED_COPY.bridge.line1 ? (
+          <motion.p
+            variants={fadeInUp}
+            className="mx-auto mt-8 max-w-4xl text-xl leading-relaxed text-slate-800 md:text-2xl text-balance"
+          >
+            {TWIN_LOCKED_COPY.bridge.line1}
+          </motion.p>
+        ) : null}
 
         <motion.p
           variants={fadeInUp}

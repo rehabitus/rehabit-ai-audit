@@ -28,7 +28,7 @@ export const TWIN_LOCKED_COPY = {
   },
   bridge: {
     title: "💡 Your Digital Twin Is Powerful Alone. With the Full Audit, It Becomes Unstoppable.",
-    line1: "The free Twin proves AI can replicate your genius.",
+    line1: "",
     line2Prefix: "The ",
     line2Bold: "AI Transformation Audit & Implementation Report",
     line2Middle: " shows you ",
@@ -106,4 +106,28 @@ export const TWIN_LOCKED_COPY = {
       image: "/images/pain-opportunity-features/new-digital-twin-chat-user-engagement.png",
     },
   ],
+  integrationSection: {
+    id: "integration",
+    title: "Integrations That Fit Your Workflow",
+    sub:
+      "Connect your Digital Twin to the tools you already use for lead capture, qualification, follow-up, and community delivery. We can finalize exact ingestion + deployment paths as your stack is confirmed.",
+    features: [
+      {
+        title: "Connect in one layer",
+        body: "Use secure connectors and API/webhook patterns to route lead + chat context into your CRM and automation stack.",
+      },
+      {
+        title: "Deploy where buyers already are",
+        body: "Embed on pages, forms, chat surfaces, and community touchpoints so high-intent conversations start in the right place.",
+      },
+      {
+        title: "Ingest from your source of truth",
+        body: "Train from docs, call notes, offers, FAQs, and messaging frameworks to keep responses consistent and on-brand.",
+      },
+      {
+        title: "Escalate to humans when needed",
+        body: "Use confidence thresholds and intent rules to hand off critical moments to your team without losing context.",
+      },
+    ],
+  },
 } as const;
