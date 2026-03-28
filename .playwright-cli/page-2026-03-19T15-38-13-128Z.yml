@@ -1,0 +1,467 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - link "Skip to content" [ref=e3] [cursor=pointer]:
+      - /url: "#hero"
+    - navigation [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]: rehabit.ai
+        - generic [ref=e8]:
+          - generic [ref=e9]:
+            - generic [ref=e11]: M
+            - generic [ref=e13]: S
+            - generic [ref=e15]: J
+            - generic [ref=e17]: A
+            - generic [ref=e19]: K
+          - generic [ref=e20]:
+            - generic [ref=e21]:
+              - img [ref=e22]
+              - img [ref=e24]
+              - img [ref=e26]
+              - img [ref=e28]
+              - img [ref=e30]
+            - paragraph [ref=e32]: Trusted by founders like you
+        - button "Reserve Your Spot" [ref=e33] [cursor=pointer]
+    - generic [ref=e35]:
+      - generic [ref=e36]: For 6-7 Figure Coaches Running on Manual Workflows
+      - heading "Know What to Fix First in Your Business Before You Buy More AI Tools — In 5 Days" [level=1] [ref=e37]:
+        - text: Know What to Fix First in Your Business
+        - text: Before You Buy More AI Tools — In 5 Days
+      - paragraph [ref=e38]: In 5 business days, you’ll get a focused audit of your biggest workflow bottlenecks, missed follow-up opportunities, and best automation wins — with clear next steps.
+      - generic [ref=e39]:
+        - generic [ref=e40]: Watch this before you do anything
+        - 'generic "Watch: How the audit works (4 min)" [ref=e41]':
+          - button "Play video" [ref=e42] [cursor=pointer]:
+            - img "Video Thumbnail" [ref=e43]
+            - img [ref=e46]
+        - paragraph [ref=e48]: "Watch: How the audit works (4 min)"
+      - paragraph [ref=e49]: No vague AI strategy. No bloated consulting engagement. Just a clear audit of your most important workflows and a practical plan for what to improve first.
+      - button "Book My 5-Day Audit" [ref=e51] [cursor=pointer]: Book My 5-Day Audit
+      - paragraph [ref=e52]: 3 spots available at this rate.
+      - generic [ref=e54]:
+        - generic [ref=e55]:
+          - generic [ref=e57]: M
+          - generic [ref=e59]: S
+          - generic [ref=e61]: J
+          - generic [ref=e63]: A
+          - generic [ref=e65]: K
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - img [ref=e68]
+            - img [ref=e70]
+            - img [ref=e72]
+            - img [ref=e74]
+            - img [ref=e76]
+          - paragraph [ref=e78]: Trusted by founders like you
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - heading "You already know something is off." [level=2] [ref=e85]
+        - paragraph [ref=e86]: You've built a real business. Clients. Revenue. A team (even if it's small). Programs that get results.
+        - paragraph [ref=e87]: But behind the scenes?
+        - list [ref=e88]:
+          - listitem [ref=e89]:
+            - generic [ref=e90]: Your team copies data between tools by hand — and makes mistakes 20-30% of the time
+          - listitem [ref=e91]:
+            - generic [ref=e92]: Onboarding a new client takes 45 minutes of manual busywork across 5 different platforms
+          - listitem [ref=e93]:
+            - generic [ref=e94]: Clients disengage between sessions because there’s no system keeping them connected
+          - listitem [ref=e95]:
+            - generic [ref=e96]: You’re creating content nonstop just to keep people engaged — and it still isn’t enough
+          - listitem [ref=e97]:
+            - generic [ref=e98]: You hear about AI every day but have no idea what actually applies to YOUR business
+          - listitem [ref=e99]:
+            - generic [ref=e100]: You’ve tried ChatGPT — it’s interesting, but it didn’t move the needle on revenue or retention
+      - generic [ref=e101]:
+        - img "Chaotic workflows transformed into a calm, AI-powered business" [ref=e103]
+        - paragraph [ref=e104]: The result? You're working harder than ever, growing slower than you should, and watching competitors who figured out automation pull ahead.
+        - paragraph [ref=e105]: "The worst part: You don’t know what you don’t know. You can’t fix what you can’t see."
+        - paragraph [ref=e106]: That’s exactly what this audit reveals.
+    - generic [ref=e110]:
+      - img "AI Audit Visualization" [ref=e112]
+      - heading "Here’s what changed." [level=2] [ref=e113]
+      - paragraph [ref=e114]: Two years ago, automating your workflows meant hiring a developer, spending $50K+, , and waiting 6 months for something that probably wouldn’t work. 95% of complex AI projects failed to deliver ROI.
+      - paragraph [ref=e115]: Today? The tools exist. Zapier. Make. n8n. Voice AI agents. Custom GPTs. They’re affordable, proven, and designed for non-technical teams.
+      - paragraph [ref=e116]: The problem isn’t the tools. The problem is knowing which ones to use, where to use them, and in what order.
+      - paragraph [ref=e117]: That’s what the audit gives you.
+      - paragraph [ref=e118]: We don’t sell software. We don’t build custom code. We diagnose your business like a doctor — find where you’re bleeding time, money, and clients — and prescribe the exact off-the-shelf tools that fix it.
+      - blockquote [ref=e119]:
+        - paragraph [ref=e120]: "“Think of it this way: you don’t need a surgeon. You need someone who can read the X-ray and tell you which vitamin to take.”"
+    - generic [ref=e127]:
+      - generic [ref=e128]:
+        - heading "The AI Transformation Audit & Implementation Report" [level=2] [ref=e129]
+        - paragraph [ref=e130]: Everything delivered in 5 business days.
+      - generic [ref=e131]:
+        - generic [ref=e132]:
+          - text: "01"
+          - heading "Full Business Workflow Audit" [level=3] [ref=e133]
+          - paragraph [ref=e134]: We evaluate your top 3-5 most time-consuming processes end-to-end. Not surface-level observations — we document every step, every tool, every handoff, every pain point, and every error. You’ll see exactly where hours disappear, where errors compound, and where money leaks out of your operation.
+        - generic [ref=e135]:
+          - text: "02"
+          - heading "Scored Opportunity Matrix (VALUE Framework)" [level=3] [ref=e136]
+          - paragraph [ref=e137]: Every process gets scored on 5 dimensions — Volume, Automatable %, Labor, User Impact, and Ease of implementation. Color-coded. Ranked. Prioritized. You’ll know instantly which processes to automate first for maximum impact.
+        - generic [ref=e138]:
+          - text: "03"
+          - heading "Tool-Matched Recommendations" [level=3] [ref=e139]
+          - paragraph [ref=e140]: For each opportunity, we recommend the specific tool (Zapier, Make, n8n, AI agent, etc.), explain why it fits, estimate setup time, and flag any red flags. No guessing. No generic advice. Specific tools matched to your specific workflows.
+        - generic [ref=e141]:
+          - text: "04"
+          - heading "ROI Projections Using YOUR Numbers" [level=3] [ref=e142]
+          - paragraph [ref=e143]: We calculate annual time savings, cost savings, and ROI using your actual hours, your actual rates, and your actual error costs. Not industry averages. Your data. You’ll see the dollar amount you’re leaving on the table.
+        - generic [ref=e144]:
+          - text: "05"
+          - heading "Professional 5-Page Audit Report" [level=3] [ref=e145]
+          - paragraph [ref=e146]: Executive summary. Current state assessment. Opportunity matrix. Solution recommendations. Investment roadmap. Clean, branded, ready to share with your team or partners. This isn’t a slide deck with buzzwords — it’s a decision-making document with real numbers.
+        - generic [ref=e147]:
+          - text: "06"
+          - heading "3-Tier Implementation Proposal" [level=3] [ref=e148]
+          - paragraph [ref=e149]: "Every audit includes three clear paths forward: Quick Wins (top automations in 2 weeks), Foundation (core transformation in 6-8 weeks), Full Transformation (complete overhaul in 12-16 weeks). You pick the pace and the budget. We do the work."
+    - generic [ref=e153]:
+      - heading "After your audit, you’ll have:" [level=2] [ref=e154]
+      - table [ref=e156]:
+        - rowgroup [ref=e157]:
+          - row "Before After" [ref=e158]:
+            - columnheader "Before" [ref=e159]
+            - columnheader "After" [ref=e160]
+        - rowgroup [ref=e161]:
+          - row "“I know we’re wasting time somewhere” Exact hours and dollars quantified per process" [ref=e162]:
+            - cell "“I know we’re wasting time somewhere”" [ref=e163]
+            - cell "Exact hours and dollars quantified per process" [ref=e164]
+          - row "“I don’t know which AI tools to use” Specific tools matched to your specific workflows" [ref=e165]:
+            - cell "“I don’t know which AI tools to use”" [ref=e166]
+            - cell "Specific tools matched to your specific workflows" [ref=e167]
+          - row "“I can’t justify the investment” ROI calculated with your actual numbers (typically 200-500%)" [ref=e168]:
+            - cell "“I can’t justify the investment”" [ref=e169]
+            - cell "ROI calculated with your actual numbers (typically 200-500%)" [ref=e170]
+          - row "“My team copies data by hand” Automated workflows running in weeks, not months" [ref=e171]:
+            - cell "“My team copies data by hand”" [ref=e172]
+            - cell "Automated workflows running in weeks, not months" [ref=e173]
+          - row "“Clients disengage between sessions” Digital Twin providing 24/7 personalized engagement" [ref=e174]:
+            - cell "“Clients disengage between sessions”" [ref=e175]
+            - cell "Digital Twin providing 24/7 personalized engagement" [ref=e176]
+          - row "“I’m creating content nonstop” AI generating content in your voice — review, tweak, publish" [ref=e177]:
+            - cell "“I’m creating content nonstop”" [ref=e178]
+            - cell "AI generating content in your voice — review, tweak, publish" [ref=e179]
+          - row "“I hear about AI but don’t know where to start” A prioritized, phased implementation roadmap in your hands" [ref=e180]:
+            - cell "“I hear about AI but don’t know where to start”" [ref=e181]
+            - cell "A prioritized, phased implementation roadmap in your hands" [ref=e182]
+      - generic [ref=e183]:
+        - generic [ref=e184]:
+          - paragraph [ref=e185]:
+            - generic [ref=e186]: 650+
+          - paragraph [ref=e187]: Hours/year saved on average
+        - generic [ref=e188]:
+          - paragraph [ref=e189]:
+            - generic [ref=e190]: $30K-$90K
+          - paragraph [ref=e191]: Annual cost reduction
+        - generic [ref=e192]:
+          - paragraph [ref=e193]:
+            - generic [ref=e194]: 75%
+          - paragraph [ref=e195]: Move to implementation
+        - generic [ref=e196]:
+          - paragraph [ref=e197]:
+            - generic [ref=e198]: 2 weeks
+          - paragraph [ref=e199]: From audit to first automation
+    - generic [ref=e203]:
+      - generic [ref=e204]:
+        - heading "What You’re Actually Getting" [level=2] [ref=e205]
+        - paragraph [ref=e206]: This isn’t a vague PDF. It’s a comprehensive ROI-driven transformation strategy designed to be executed immediately.
+      - img "The AI Opportunity Audit — your deliverable" [ref=e208]
+      - generic [ref=e209]:
+        - generic [ref=e210]:
+          - img [ref=e212]
+          - heading "Quantified Waste Analysis" [level=3] [ref=e218]
+          - paragraph [ref=e219]: We reveal exactly how many hours and dollars your team is losing to manual busywork, duplicate data entry, and broken workflows.
+        - generic [ref=e220]:
+          - img [ref=e222]
+          - heading "Precision Tool Selection" [level=3] [ref=e228]
+          - paragraph [ref=e229]: No more guessing. We match your specific pain points to the exact AI tools and automations that will solve them for good.
+        - generic [ref=e230]:
+          - img [ref=e232]
+          - heading "Implementation Roadmap" [level=3] [ref=e240]
+          - paragraph [ref=e241]: A step-by-step 90-day execution plan. We don’t just tell you what to fix; we show you exactly how to fix it, phase by phase.
+    - generic [ref=e243]:
+      - paragraph [ref=e244]: Ready to find your number?
+      - paragraph [ref=e245]: Know exactly what your workflows are costing you — in 5 days.
+      - button "→ Reserve Your Audit Slot" [ref=e246] [cursor=pointer]: → Reserve Your Audit Slot
+    - generic [ref=e253]:
+      - heading "Simple. Fast. No disruption to your business." [level=2] [ref=e254]
+      - generic [ref=e257]:
+        - generic [ref=e258]:
+          - generic [ref=e259]: "1"
+          - generic [ref=e260]:
+            - paragraph [ref=e261]: Day 1-2
+            - heading "Discovery" [level=3] [ref=e262]
+            - paragraph [ref=e263]: You fill out a short questionnaire (10 minutes). We review it, then hop on a 30-minute call to go deeper. We learn your business, your tools, your pain.
+        - generic [ref=e264]:
+          - generic [ref=e265]: "2"
+          - generic [ref=e266]:
+            - paragraph [ref=e267]: Day 2-3
+            - heading "Process Documentation" [level=3] [ref=e268]
+            - paragraph [ref=e269]: We map your top workflows step-by-step. Every trigger, every handoff, every bottleneck — documented.
+        - generic [ref=e270]:
+          - generic [ref=e271]: "3"
+          - generic [ref=e272]:
+            - paragraph [ref=e273]: Day 3-4
+            - heading "Scoring & Solution Matching" [level=3] [ref=e274]
+            - paragraph [ref=e275]: We score each process using our VALUE framework, match opportunities to specific tools, and calculate ROI using your real data.
+        - generic [ref=e276]:
+          - generic [ref=e277]: "4"
+          - generic [ref=e278]:
+            - paragraph [ref=e279]: Day 4-5
+            - heading "Report & Proposal" [level=3] [ref=e280]
+            - paragraph [ref=e281]: We assemble your complete audit report, generate your 3-tier implementation proposal, and activate your Digital Twin.
+        - generic [ref=e282]:
+          - generic [ref=e283]: "5"
+          - generic [ref=e284]:
+            - paragraph [ref=e285]: Day 5
+            - heading "Delivery Call" [level=3] [ref=e286]
+            - paragraph [ref=e287]: We walk you through everything live. You leave with total clarity on what to do, in what order, and what it’ll cost vs. what it’ll save.
+      - paragraph [ref=e289]: "Total time investment from you: About 1 hour. We do the rest."
+    - generic [ref=e293]:
+      - generic [ref=e294]:
+        - generic [ref=e295]:
+          - heading "Built by someone who’s done this before." [level=2] [ref=e296]
+          - paragraph [ref=e297]: Mike Olaski — founder of Rehabit and the 4C AI Coaching OS. Not a consultant who read a book about AI. Someone who builds and deploys these systems every day.
+          - generic [ref=e298]:
+            - generic [ref=e299]:
+              - generic [ref=e300]: ✓
+              - generic [ref=e301]:
+                - heading "Built and scaled a 7-figure coaching business." [level=3] [ref=e302]
+                - paragraph [ref=e303]: We’ve been in your shoes, from startup to scale-up, and know the exact challenges you face.
+            - generic [ref=e304]:
+              - generic [ref=e305]: ✓
+              - generic [ref=e306]:
+                - heading "Developed and deployed AI systems for coaching." [level=3] [ref=e307]
+                - paragraph [ref=e308]: We’re not just talking about AI; we’re building and integrating it into real-world coaching operations.
+            - generic [ref=e309]:
+              - generic [ref=e310]: ✓
+              - generic [ref=e311]:
+                - heading "Proven track record of increasing MRR and audience growth." [level=3] [ref=e312]
+                - paragraph [ref=e313]: Our strategies are designed for tangible results, focusing on sustainable growth and profitability.
+          - paragraph [ref=e314]: When we audit your business, we’re not just giving advice. We’re applying the exact engineering principles that scale 7-figure digital coaching businesses.
+        - img "Mike Olaski" [ref=e317]
+      - generic [ref=e318]:
+        - paragraph [ref=e319]: "Worked with or on Projects Featuring:"
+        - generic [ref=e320]:
+          - generic [ref=e321]:
+            - img "Eckhart Tolle" [ref=e323]
+            - paragraph [ref=e325]: Eckhart Tolle
+          - generic [ref=e326]:
+            - img "Joe Dispenza" [ref=e328]
+            - paragraph [ref=e330]: Joe Dispenza
+          - generic [ref=e331]:
+            - img "Shefali Tsabury" [ref=e333]
+            - paragraph [ref=e335]: Shefali Tsabury
+          - generic [ref=e336]:
+            - img "Les Brown" [ref=e338]
+            - paragraph [ref=e340]: Les Brown
+          - generic [ref=e341]:
+            - img "Don Miguel Ruiz Sr" [ref=e343]
+            - paragraph [ref=e345]: Don Miguel Ruiz Sr
+          - generic [ref=e346]:
+            - img "Lewis Howes" [ref=e348]
+            - paragraph [ref=e350]: Lewis Howes
+          - generic [ref=e351]:
+            - img "John Assaraf" [ref=e353]
+            - paragraph [ref=e355]: John Assaraf
+          - generic [ref=e356]:
+            - img "Brian Tracy" [ref=e358]
+            - paragraph [ref=e360]: Brian Tracy
+          - generic [ref=e361]:
+            - img "Bob Proctor" [ref=e363]
+            - paragraph [ref=e365]: Bob Proctor
+          - generic [ref=e366]:
+            - img "Sonia Ricotti" [ref=e368]
+            - paragraph [ref=e370]: Sonia Ricotti
+      - generic [ref=e371]:
+        - heading "Results Delivered" [level=3] [ref=e372]
+        - generic [ref=e373]:
+          - generic [ref=e374]:
+            - generic [ref=e375]: Marketing
+            - generic [ref=e376]: Built
+            - generic [ref=e377]: 250,000
+            - generic [ref=e378]: email list in 18 mo
+          - generic [ref=e379]:
+            - generic [ref=e380]: Sales
+            - generic [ref=e381]: Generated
+            - generic [ref=e382]: $75,000 / mo
+            - generic [ref=e383]: in MRR for agency
+          - generic [ref=e384]:
+            - generic [ref=e385]: Delivery
+            - generic [ref=e386]: Launched
+            - generic [ref=e387]: 7-Figure
+            - generic [ref=e388]: coaching program
+          - generic [ref=e389]:
+            - generic [ref=e390]: Operations
+            - generic [ref=e391]: Recovered
+            - generic [ref=e392]: 40 hrs / wk
+            - generic [ref=e393]: in team overhead
+      - generic [ref=e394]:
+        - heading "What Customers Say" [level=3] [ref=e395]
+        - generic [ref=e396]:
+          - generic [ref=e397]:
+            - paragraph [ref=e398]: “Found $47K in annual savings in the first audit session. Mike had already spotted three workflows we could automate before we finished the call.”
+            - generic [ref=e399]:
+              - paragraph [ref=e400]: Sarah M.
+              - paragraph [ref=e401]: Course Creator
+          - generic [ref=e402]:
+            - paragraph [ref=e403]: “75% of what we mapped in the audit window is live and saving us 12 hours a week. The roadmap was that clear — we just executed it.”
+            - generic [ref=e404]:
+              - paragraph [ref=e405]: Daniel R.
+              - paragraph [ref=e406]: Online Coach
+          - generic [ref=e407]:
+            - paragraph [ref=e408]: “The audit paid for itself in the first week with a single automation. Best $1,000 I’ve spent on my business this year.”
+            - generic [ref=e409]:
+              - paragraph [ref=e410]: Priya K.
+              - paragraph [ref=e411]: Community Operator
+    - generic [ref=e414]:
+      - generic [ref=e415]:
+        - generic [ref=e418]: Early Access — Limited Window
+        - heading "Everything You Need to Stop the Bleed — In 5 Days." [level=2] [ref=e419]
+        - paragraph [ref=e420]: AI Transformation Audit — Complete Package
+        - img "The AI Opportunity Audit report" [ref=e422]
+        - list [ref=e423]:
+          - listitem [ref=e424]:
+            - generic: ✓
+            - generic [ref=e425]: Full business workflow audit (3-5 processes)
+          - listitem [ref=e426]:
+            - generic: ✓
+            - generic [ref=e427]: VALUE-scored opportunity matrix
+          - listitem [ref=e428]:
+            - generic: ✓
+            - generic [ref=e429]: Tool-matched recommendations with complexity ratings
+          - listitem [ref=e430]:
+            - generic: ✓
+            - generic [ref=e431]: ROI projections using your actual numbers
+          - listitem [ref=e432]:
+            - generic: ✓
+            - generic [ref=e433]: Professional 5-page audit report (PDF)
+          - listitem [ref=e434]:
+            - generic: ✓
+            - generic [ref=e435]: 3-tier implementation proposal
+          - listitem [ref=e436]:
+            - generic: ✓
+            - generic [ref=e437]: Your first Digital Twin — activated and live
+          - listitem [ref=e438]:
+            - generic: ✓
+            - generic [ref=e439]: 30-minute delivery walkthrough call
+        - generic [ref=e440]:
+          - paragraph [ref=e441]: projected final rate $3,500
+          - paragraph [ref=e443]: $500
+          - paragraph [ref=e444]: Early Access
+          - paragraph [ref=e445]: You’re in before anyone else. Lowest price this will ever be.
+          - generic [ref=e446]:
+            - generic [ref=e448]: 5 slots left at $1,000
+            - generic [ref=e449]:
+              - text: — next price
+              - generic [ref=e450]: $1,500
+          - paragraph [ref=e451]: Every review is a verified client who found $20k+ in savings. That’s what moves the price.
+        - button "→ Reserve Your Audit Slot" [ref=e453] [cursor=pointer]: → Reserve Your Audit Slot
+        - generic [ref=e455]:
+          - generic [ref=e456]:
+            - generic [ref=e458]: M
+            - generic [ref=e460]: S
+            - generic [ref=e462]: J
+            - generic [ref=e464]: A
+            - generic [ref=e466]: K
+          - generic [ref=e467]:
+            - generic [ref=e468]:
+              - img [ref=e469]
+              - img [ref=e471]
+              - img [ref=e473]
+              - img [ref=e475]
+              - img [ref=e477]
+            - paragraph [ref=e479]: Trusted by founders like you
+      - generic [ref=e480]:
+        - heading "The “$20,000 Baseline” Guarantee" [level=3] [ref=e481]:
+          - img [ref=e482]
+          - text: The “$20,000 Baseline” Guarantee
+        - paragraph [ref=e484]: If the audit doesn’t reveal at least $20,000 in annual savings opportunities, you get a full refund. No questions asked.
+        - paragraph [ref=e485]: We’re that confident in what we’ll find — because we’ve never done an audit that didn’t find it.
+    - generic [ref=e489]:
+      - heading "Frequently Asked Questions" [level=2] [ref=e490]
+      - generic [ref=e491]:
+        - button "I’m not technical. Will I understand the report? +" [ref=e494] [cursor=pointer]:
+          - text: I’m not technical. Will I understand the report?
+          - generic [ref=e495]: +
+        - button "What if AI doesn’t work for my type of business? +" [ref=e498] [cursor=pointer]:
+          - text: What if AI doesn’t work for my type of business?
+          - generic [ref=e499]: +
+        - button "How is this different from just using ChatGPT? +" [ref=e502] [cursor=pointer]:
+          - text: How is this different from just using ChatGPT?
+          - generic [ref=e503]: +
+        - button "I’ve been burned by consultants before. +" [ref=e506] [cursor=pointer]:
+          - text: I’ve been burned by consultants before.
+          - generic [ref=e507]: +
+        - button "Why is the audit priced so low? +" [ref=e510] [cursor=pointer]:
+          - text: Why is the audit priced so low?
+          - generic [ref=e511]: +
+        - button "What happens after the audit? +" [ref=e514] [cursor=pointer]:
+          - text: What happens after the audit?
+          - generic [ref=e515]: +
+        - button "How is the Digital Twin different from a chatbot? +" [ref=e518] [cursor=pointer]:
+          - text: How is the Digital Twin different from a chatbot?
+          - generic [ref=e519]: +
+    - generic [ref=e526]:
+      - heading "You have two choices." [level=2] [ref=e527]
+      - generic [ref=e528]:
+        - generic [ref=e529]:
+          - paragraph [ref=e530]: Option A
+          - paragraph [ref=e531]: Keep doing things the way you’re doing them. Keep copying data by hand. Keep losing clients between sessions. Keep hearing about AI and wondering if it applies to you. Keep guessing.
+        - generic [ref=e532]:
+          - paragraph [ref=e533]: Option B
+          - paragraph [ref=e534]:
+            - text: Invest
+            - generic [ref=e535]: $1,000
+            - text: and 1 hour of your time. In 5 days, know exactly where you’re losing money, exactly how to fix it, and exactly what it’ll save you. Walk away with a professional report, a clear roadmap, a working Digital Twin — and if you pay in full, your first Core AI System built and live at no extra cost.
+      - generic [ref=e536]:
+        - paragraph [ref=e537]:
+          - text: "The math is simple: if the audit reveals even"
+          - generic [ref=e538]:
+            - text: $20,000 in annual savings
+            - button "?" [ref=e539] [cursor=pointer]
+          - text: (and it will),
+          - text: that’s a 20x return on a $1,000 investment.
+        - paragraph [ref=e540]: If it doesn’t? You get your money back.
+      - button "→ Reserve Your Slot — 5 Left at $1,000" [ref=e543] [cursor=pointer]: → Reserve Your Slot — 5 Left at $1,000
+      - generic [ref=e545]:
+        - generic [ref=e546]:
+          - generic [ref=e548]: M
+          - generic [ref=e550]: S
+          - generic [ref=e552]: J
+          - generic [ref=e554]: A
+          - generic [ref=e556]: K
+        - generic [ref=e557]:
+          - generic [ref=e558]:
+            - img [ref=e559]
+            - img [ref=e561]
+            - img [ref=e563]
+            - img [ref=e565]
+            - img [ref=e567]
+          - paragraph [ref=e569]: Trusted by founders like you
+      - paragraph [ref=e570]: Price rises $500 every 5 verified client reviews. Currently $1,000 — next tier $1,500.
+      - paragraph [ref=e571]:
+        - text: Questions?
+        - button "Book a 15-minute call" [ref=e572] [cursor=pointer]
+        - text: or email
+        - link "support@rehabit.ai" [ref=e573] [cursor=pointer]:
+          - /url: mailto:support@rehabit.ai
+        - text: .
+    - iframe [ref=e577]:
+      - generic [ref=f1e2]:
+        - link "Review us on Trustpilot" [ref=f1e3] [cursor=pointer]:
+          - /url: https://www.trustpilot.com/review/rehabit.us?utm_medium=trustbox&utm_source=TrustBoxReviewCollector
+          - generic [ref=f1e4]: Review us on
+          - img "Trustpilot" [ref=f1e8]
+        - generic [ref=f1e12]: Click to view the company's Trustpilot profile
+    - generic [ref=e579]:
+      - generic "Language switcher" [ref=e580]:
+        - generic [ref=e581]:
+          - button "EN" [pressed] [ref=e582] [cursor=pointer]:
+            - generic [ref=e583]: 🇬🇧
+            - text: EN
+          - generic [ref=e584]: "|"
+        - button "SK" [ref=e586] [cursor=pointer]:
+          - generic [ref=e587]: 🇸🇰
+          - text: SK
+      - generic [ref=e588]: © 2026 rehabit.ai — All rights reserved.
+  - alert [ref=e589]

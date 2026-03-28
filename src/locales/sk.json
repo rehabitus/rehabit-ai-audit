@@ -1,0 +1,352 @@
+{
+  "language_switcher": {
+    "label": "Prepínač jazyka"
+  },
+  "common": {
+    "skip_to_content": "Preskočiť na obsah",
+    "loading": "Načítava sa…",
+    "redirecting_checkout": "Presmerovanie na checkout…",
+    "main_cta": "Hlavné CTA"
+  },
+  "nav": {
+    "reserve": "Rezervovať miesto"
+  },
+  "trustbar": {
+    "with_count_pre": "Dôveruje nám",
+    "with_count_post": "zakladateľov ako vy",
+    "default_pre": "Dôverujú nám zakladatelia ako",
+    "default_highlight": "vy"
+  },
+  "hero": {
+    "pill": "Pre koučov s príjmami 6–7 cifier závislých od manuálnych procesov",
+    "headline_1": "Výnosný, škálovateľný",
+    "headline_2": "AI plán za\u00a05\u00a0dní",
+    "subheadline": "Žiadne hádanie, škálovací chaos ani strach zostať pozadu.",
+    "body": "Auditujeme vaše pracovné postupy, kvantifikujeme plytvania, nájdeme správne AI nástroje a odovzdáme vám plán pripravený na okamžitú realizáciu. Žiadny žargón. Žiadna šesťciferná konzultačná faktúra. Len reálne čísla a reálny plán.",
+    "cta": "\u2192 Rezervovať miesto",
+    "guarantee": "Garantované odhalenie úspor $20K+ \u2014 alebo vrátenie peňazí.",
+    "pricing": "Od ${price} \u2014 cena rastie s každou overenou recenziou klienta."
+  },
+  "problem": {
+    "headline": "Už viete, že niečo nie je v\u00a0poriadku.",
+    "p1": "Vytvorili ste skutočné podnikanie. Klienti. Tržby. Tím (hoci aj malý). Programy, ktoré prinášajú výsledky.",
+    "callout": "Ale v zákulisí?",
+    "result_pre": "Výsledok? Pracujete",
+    "result_highlight": "tvrdšie ako kedykoľvek predtým",
+    "result_post": ", rastie pomalšie než by ste mali a sledujete konkurentov, ktorí prišli na automatizáciu, ako sa posúvajú dopredu.",
+    "worst": "Najhoršie: Neviete, čo neviete. Nemôžete opraviť to, čo nevidíte.",
+    "reveal": "Presne toto audit odhaľuje.",
+    "painPoints": [
+      "Váš tím ručne kopíruje dáta medzi nástrojmi \u2014 a robí chyby 20\u201330\u00a0% času",
+      "Zapracovanie nového klienta trvá 45 minút manuálnej práce na 5 rôznych platformách",
+      "Klienti strácajú záujem medzi sedeniami, pretože neexistuje systém, ktorý by ich udržal v kontakte",
+      "Nonstop vytvárate obsah, len aby ste udržali ľudí angažovaných \u2014 a stále to nestačí",
+      "Každý deň počujete o AI, ale nemáte potuchy, čo sa vzťahuje na VAŠE podnikanie",
+      "Skúšali ste ChatGPT \u2014 je to zaujímavé, ale nepohol ihlou v príjmoch ani udržaní klientov"
+    ]
+  },
+  "bridge": {
+    "headline": "Tu je to, čo sa zmenilo.",
+    "p1_pre": "Pred dvomi rokmi znamenala automatizácia pracovných postupov najať vývojára a zaplatiť",
+    "p1_50k": "$50K+",
+    "p1_mid": "a čakať",
+    "p1_6mo": "6 mesiacov",
+    "p1_post": "na niečo, čo pravdepodobne nefungovalo.",
+    "p1_stat": "95\u00a0% zložitých AI projektov zlyhalo",
+    "p1_end": "pri dosahovaní ROI.",
+    "p2_pre": "Dnes? Nástroje existujú. Zapier. Make. n8n. Hlasové AI agenty. Custom GPTs. Sú dostupné, overené a navrhnuté pre",
+    "p2_highlight": "netechnické tímy",
+    "p2_end": ".",
+    "p3": "Problém nie sú nástroje. Problém je vedieť, ktoré použiť, kde ich použiť a v akom poradí.",
+    "tagline": "To je to, čo vám audit poskytne.",
+    "p4": "Nepredávame softvér. Nestavíme kód. Diagnostikujeme vaše podnikanie ako lekár \u2014 nájdeme, kde krvácate čas, peniaze a klientov \u2014 a predpíšeme presné nástroje, ktoré to opravujú.",
+    "quote": "Pomysli na to takto: nepotrebuješ chirurga. Potrebuješ niekoho, kto vie prečítať röntgen a povedať ti, ktorý vitamín brať."
+  },
+  "offer": {
+    "headline": "AI Transformačný Audit & Implementačná Správa",
+    "sub": "Všetko doručené do 5 pracovných dní.",
+    "cards": [
+      {
+        "title": "Kompletný audit firemných procesov",
+        "body": "Vyhodnocujeme vaše 3\u20135 najnáročnejších procesov od začiatku do konca. Nie povrchné pozorovania \u2014 dokumentujeme každý krok, každý nástroj, každý odovzdávací bod, každý problém a každú chybu. Uvidíte presne, kde miznú hodiny, kde sa násobí chyby a kde unikajú peniaze."
+      },
+      {
+        "title": "Hodnotená matica príležitostí (VALUE framework)",
+        "body": "Každý proces je hodnotený na 5 dimenziách \u2014 Objem, % automatizovateľnosti, Práca, Dopad na používateľa a Jednoduchosť implementácie. Farebne kódovaný. Zoradený. Prioritizovaný. Okamžite viete, ktoré procesy automatizovať ako prvé."
+      },
+      {
+        "title": "Odporúčania k špecifickým nástrojom",
+        "body": "Pre každú príležitosť odporúčame konkrétny nástroj (Zapier, Make, n8n, AI agent atď.), vysvetlíme prečo sa hodí, odhadneme čas nastavenia a upozorníme na riziká. Žiadne hádanie. Žiadne všeobecné rady. Konkrétne nástroje pre vaše konkrétne procesy."
+      },
+      {
+        "title": "ROI projekcie s VAŠIMI číslami",
+        "body": "Počítame ročné úspory času, nákladov a ROI pomocou vašich skutočných hodín, vašich skutočných sadzieb a vašich skutočných nákladov na chyby. Nie priemery odvetvia. Vaše dáta. Uvidíte výšku sumy, ktorú necháváte na stole."
+      },
+      {
+        "title": "Profesionálna 5-stranová správa auditu",
+        "body": "Výkonné zhrnutie. Súčasný stav. Matica príležitostí. Odporúčania riešení. Investičný plán. Čisté, brandované, pripravené na zdieľanie s vaším tímom. Toto nie je prezentácia s buzzwords \u2014 je to rozhodovací dokument s reálnymi číslami."
+      },
+      {
+        "title": "3-úrovňový implementačný návrh",
+        "body": "Každý audit zahŕňa tri jasné cesty dopredu: Rýchle výhry (top automatizácie za 2 týždne), Základ (jadrová transformácia za 6\u20138 týždňov), Plná transformácia (kompletná obnova za 12\u201316 týždňov). Vy si vyberiete tempo a rozpočet. My urobíme prácu."
+      }
+    ]
+  },
+  "outcomes": {
+    "headline": "Po audite budete mať:",
+    "before_label": "Pred",
+    "after_label": "Po",
+    "beforeAfter": [
+      ["\u201eViem, že niekde strácame čas\u201c", "Presné hodiny a doláre kvantifikované pre každý proces"],
+      ["\u201eNeviem, ktoré AI nástroje použiť\u201c", "Konkrétne nástroje matched na vaše konkrétne procesy"],
+      ["\u201eNeviem zdôvodniť investíciu\u201c", "ROI vypočítané s vašimi skutočnými číslami (typicky 200\u2013500\u00a0%)"],
+      ["\u201eMôj tím kopíruje dáta ručne\u201c", "Automatizované procesy bežiace za týždne, nie mesiace"],
+      ["\u201eKlienti strácajú záujem medzi sedeniami\u201c", "Digital Twin poskytujúci 24/7 personalizovanú komunikáciu"],
+      ["\u201eNonstop vytváram obsah\u201c", "AI generuje obsah vo vašom hlase \u2014 skontrolujte, upravte, publikujte"],
+      ["\u201ePočujem o AI, ale neviem kde začať\u201c", "Prioritizovaný, fazový implementačný plán vo vašich rukách"]
+    ],
+    "stats": [
+      { "label": "Hodín/rok ušetrených v priemere" },
+      { "label": "Ročné zníženie nákladov" },
+      { "label": "Prejde na implementáciu" },
+      { "label": "Od auditu po prvú automatizáciu" }
+    ]
+  },
+  "deliverables": {
+    "headline": "Čo skutočne dostanete",
+    "sub": "Toto nie je vágne PDF. Je to komplexná ROI-driven stratégia transformácie navrhnutá na okamžitú realizáciu.",
+    "items": [
+      {
+        "title": "Analýza kvantifikovaného plytvania",
+        "description": "Presne odhalíme, koľko hodín a dolárov váš tím stráca na manuálnej práci, duplicitnom zadávaní dát a nefunkčných procesoch."
+      },
+      {
+        "title": "Precízny výber nástrojov",
+        "description": "Žiadne hádanie. Mapujeme vaše konkrétne bolesti na presné AI nástroje a automatizácie, ktoré ich definitívne vyriešia."
+      },
+      {
+        "title": "Implementačný plán",
+        "description": "Krok za krokom 90-dňový plán realizácie. Nehovoríme vám iba čo opraviť; ukážeme vám presne ako to opraviť, fázu po fáze."
+      }
+    ]
+  },
+  "midCTA": {
+    "eyebrow": "Pripravení nájsť vaše číslo?",
+    "headline": "Vedzte presne, koľko vás stoja vaše procesy\u00a0\u2014 za 5\u00a0dní.",
+    "cta": "\u2192 Rezervovať miesto"
+  },
+  "process": {
+    "headline": "Jednoduché. Rýchle. Bez narušenia vášho podnikania.",
+    "time_investment": "Celkový čas z vašej strany: Asi 1 hodina. Zvyšok urobíme my.",
+    "steps": [
+      {
+        "day": "Deň 1\u20132",
+        "title": "Úvodné zistenie",
+        "body": "Vyplníte krátky dotazník (10 minút). Preskúmame ho, potom sa s vami spojíme na 30-minútový hovor. Zistíme o vašom podnikaní, nástrojoch a bolestiach."
+      },
+      {
+        "day": "Deň 2\u20133",
+        "title": "Dokumentácia procesov",
+        "body": "Mapujeme vaše hlavné procesy krok za krokom. Každý spúšťač, každý odovzdávací bod, každé úzke miesto \u2014 zdokumentované."
+      },
+      {
+        "day": "Deň 3\u20134",
+        "title": "Hodnotenie & matching riešení",
+        "body": "Hodnotíme každý proces pomocou nášho VALUE frameworku, mapujeme príležitosti na konkrétne nástroje a počítame ROI s vašimi reálnymi dátami."
+      },
+      {
+        "day": "Deň 4\u20135",
+        "title": "Správa & návrh",
+        "body": "Zostavujeme kompletnú správu auditu, generujeme váš 3-úrovňový implementačný návrh a aktivujeme vášho Digital Twin."
+      },
+      {
+        "day": "Deň 5",
+        "title": "Odovzdávací hovor",
+        "body": "Prejdeme cez všetko naživo. Odejdete s úplnou jasnosťou o tom, čo robiť, v akom poradí a čo to bude stáť verzus čo to ušetrí."
+      }
+    ]
+  },
+  "trust": {
+    "headline": "Postavené niekým, kto to robil pred vami.",
+    "intro_pre": "Mike Olaski",
+    "intro_post": "\u00a0\u2014 zakladateľ Rehabit a 4C AI Coaching OS. Nie konzultant, ktorý čítal knihu o AI. Niekto, kto tieto systémy buduje a nasadzuje každý deň.",
+    "closing": "Keď auditujeme vaše podnikanie, neposkytujeme len rady. Aplikujeme presné inžinierske princípy, ktoré škálujú 7-ciferné digitálne koučovacie podniky.",
+    "featured_label": "Pracoval s alebo na projektoch zahŕňajúcich:",
+    "results_headline": "Dosiahnuté výsledky",
+    "results": [
+      { "category": "Marketing", "verb": "Vybudoval", "value": "250\u00a0000", "unit": "email lista za 18 mes." },
+      { "category": "Predaj", "verb": "Generoval", "value": "$75\u00a0000 / mes.", "unit": "MRR pre agentúru" },
+      { "category": "Doručovanie", "verb": "Spustil", "value": "7-ciferný", "unit": "koučovací program" },
+      { "category": "Operácie", "verb": "Získal späť", "value": "40 hod./týž.", "unit": "v tímovej réžii" }
+    ],
+    "testimonials_headline": "Čo hovoria klienti",
+    "testimonials": [
+      {
+        "quote": "Našli sme $47K v ročných úsporách počas prvého auditu. Mike už mal tri procesy identifikované skôr, než sme hovor ukončili.",
+        "name": "Sarah M.",
+        "role": "Tvorkyňa kurzov"
+      },
+      {
+        "quote": "75\u00a0% toho, čo sme namapovali, je naživo a šetrí nám 12 hodín týždenne. Plán bol taký jasný \u2014 stačilo ho len realizovať.",
+        "name": "Daniel R.",
+        "role": "Online kouč"
+      },
+      {
+        "quote": "Audit sa vrátil v prvom týždni vďaka jedinej automatizácii. Najlepšie vynaložených $1\u00a0000 na môj biznis tento rok.",
+        "name": "Priya K.",
+        "role": "Operátorka komunity"
+      }
+    ],
+    "trustPoints": [
+      {
+        "title": "Vybudoval a škáloval 7-ciferné koučovacie podnikanie.",
+        "text": "Boli sme na vašom mieste, od startupu po škálovanie, a poznáme presné výzvy, ktorým čelíte."
+      },
+      {
+        "title": "Vyvinul a nasadil AI systémy pre koučing.",
+        "text": "Nielen hovoríme o AI; budujeme a integrujeme ho do reálnych koučovacích operácií."
+      },
+      {
+        "title": "Overený track record rastu MRR a publika.",
+        "text": "Naše stratégie sú navrhnuté pre hmatateľné výsledky so zameraním na udržateľný rast a ziskovosť."
+      }
+    ]
+  },
+  "pricing": {
+    "limited_window": "Obmedzené okno",
+    "headline": "Všetko, čo potrebujete na zastavenie krvácania\u00a0\u2014 Za 5\u00a0dní.",
+    "sub": "AI Transformačný Audit \u2014 Kompletný balík",
+    "projected_rate": "predpokladaná finálna cena",
+    "slot": "miesto",
+    "slots": "miesta",
+    "slots_left": "{count} {noun} zostáva za ${price}",
+    "next_price": "ďalšia cena",
+    "review_note": "Každá recenzia je overený klient, ktorý našiel $20k+ úspor. To je to, čo hýbe cenou.",
+    "cta": "\u2192 Rezervovať miesto",
+    "guarantee_headline": "Záruka \u201ezákladu $20\u00a0000\u201c",
+    "guarantee_body_pre": "Ak audit neodhalí aspoň",
+    "guarantee_body_highlight": "$20\u00a0000 v ročných úsporách",
+    "guarantee_body_post": ", dostanete plnú refundáciu. Bez otázok.",
+    "guarantee_confidence": "Sme si tým natoľko istí \u2014 pretože sme ešte nevykonali audit, ktorý by to nenašiel.",
+    "includes": [
+      "Kompletný audit firemných procesov (3\u20135 procesov)",
+      "VALUE-hodnotená matica príležitostí",
+      "Odporúčania nástrojov s hodnotením náročnosti",
+      "ROI projekcie s vašimi skutočnými číslami",
+      "Profesionálna 5-stranová správa auditu (PDF)",
+      "3-úrovňový implementačný návrh",
+      "Váš prvý Digital Twin \u2014 aktivovaný a naživo",
+      "30-minútový odovzdávací hovor"
+    ],
+    "tierLabels": {
+      "Early Access": "Ste tu ako prví. Najnižšia cena, aká to kedy bude.",
+      "Founding Member": "5 overených recenzií. Dôkazy sa hromadia. Cena to odráža.",
+      "Early Adopter": "10 overených recenzií. Výsledky hovoria za seba.",
+      "Standard": "15 overených recenzií. Plne overené.",
+      "Standard+": "20 overených recenzií. Dopyt je reálny.",
+      "Full Rate": "25+ overených recenzií. Trhová cena. Plne zaslúžená."
+    }
+  },
+  "faq": {
+    "headline": "Často kladené otázky",
+    "items": [
+      {
+        "q": "Nie som technický. Pochopím správu?",
+        "a": "Absolútne. Celá správa je napísaná v jednoduchom jazyku s jasnými vizuálmi. Žiadny žargón, žiadny kód, žiadne skratky. Ak viete čítať jedálny lístok, viete čítať túto správu. Tiež vás ňou prevedieme naživo na hovore."
+      },
+      {
+        "q": "Čo ak AI nefunguje pre môj typ podnikania?",
+        "a": "Presne to audit určí. Ak zistíme, že automatizácia neprinesie ROI pre konkrétny proces, povieme vám to \u2014 a prečo. Radšej vám ušetríme peniaze, než predáme niečo, čo nefunguje. To povedané, v každom audite sme našli výrazné úspory."
+      },
+      {
+        "q": "Čím sa to líši od používania ChatGPT?",
+        "a": "ChatGPT je všeobecný nástroj. Nepozná vaše podnikanie, vaše procesy, vašich klientov ani vaše čísla. My analyzujeme VAŠU konkrétnu operáciu, priraďujeme riešenia k VAŠIM konkrétnym problémom a počítame ROI s VAŠIMI skutočnými dátami. Digital Twin je trénovaný na VAŠOM obsahu \u2014 nie je to generická AI."
+      },
+      {
+        "q": "Mal som zlé skúsenosti s konzultantmi.",
+        "a": "Chápeme to. Preto sme toto štruktúrovali ako záväzok s pevnou cenou, pevným časovým rámcom a zárukou. Presne viete, čo dostanete, kedy to dostanete a čo to stojí. Ak nedoručíme hodnotu, dostanete peniaze späť."
+      },
+      {
+        "q": "Prečo je audit takto lacný?",
+        "a": "Pretože cena odráža dôkazy \u2014 nie hodnotu. Teraz sme na začiatku. Každá overená recenzia zvyšuje cenu. Vstupujete skôr, než trh dobehne to, čo toto stojí. Štandardná cena za tento typ done-for-you AI hodnotenia je $5\u00a0000\u2013$15\u00a0000. Radšej si zaslúžime vašu dôveru cez výsledky pri cene, ktorá odstraňuje trenie."
+      },
+      {
+        "q": "Čo sa stane po audite?",
+        "a": "Dostanete tri jasné možnosti: Rýchle výhry (2 týždne, najvýraznejšie automatizácie), Základ (6\u20138 týždňov, jadrová transformácia) alebo Plná transformácia (12\u201316 týždňov, všetko). Vy si vyberiete, čo vyhovuje vášmu rozpočtu a časovému plánu. Alebo si vezmete správu a implementujete sami \u2014 je vaša v každom prípade."
+      },
+      {
+        "q": "Čím sa Digital Twin líši od chatbota?",
+        "a": "Chatbot sleduje skript. Váš Digital Twin je trénovaný na vašej skutočnej metodológii, vašej knižnici obsahu, vašom hlase a vašich frameworkoch. Nedáva všeobecné odpovede \u2014 dáva VAŠE odpovede. Cituje VAŠE zdroje. Posiela ľudí späť k VÁŠMU obsahu. A stále sa učí, keď publikujete nový materiál."
+      }
+    ]
+  },
+  "finalCTA": {
+    "headline": "Máte dve možnosti.",
+    "optionA_label": "Možnosť A",
+    "optionA_body": "Pokračujte tak, ako to robíte. Kopírujte dáta ručne. Strácajte klientov medzi sedeniami. Naďalej počúvajte o AI a premýšľajte, či sa to vzťahuje na vás. Naďalej hádajte.",
+    "optionB_label": "Možnosť B",
+    "optionB_pre": "Investujte",
+    "optionB_post": "a 1 hodinu vášho času. Za 5 dní vedzte presne, kde strácate peniaze, presne ako to opraviť a presne čo to ušetrí. Odídete s profesionálnou správou, jasným plánom, funkčným Digital Twin \u2014 a ak zaplatíte v plnej výške, váš prvý Core AI System postavený a naživo bez ďalšieho poplatku.",
+    "math_pre": "Matematika je jednoduchá: ak audit odhalí len",
+    "math_savings": "$20\u00a0000 v ročných úsporách",
+    "math_post": "(a odhalí),",
+    "math_return_pre": "je to",
+    "math_return_highlight": "{roi}x návratnosť",
+    "math_return_post": "na",
+    "math_investment": "investíciu ${price}.",
+    "guarantee": "Ak nie? Dostanete peniaze späť.",
+    "questions": "Otázky?",
+    "book_call": "Zarezervujte si 15-minútový hovor",
+    "or_email": "alebo napíšte na",
+    "roi_modal_title": "Ako počítame ROI",
+    "roi_modal_p1": "Základných $20\u00a0000 je typických pre zavedené podnikanie (3+ členovia tímu alebo $200k+ príjem).",
+    "roi_modal_p2": "Automatizácia len",
+    "roi_modal_pct": "2,5\u00a0%",
+    "roi_modal_p2_end": "manuálnych prevádzkových úloh typicky vráti 8\u201310 hodín týždenne naprieč tímom. Pri konzervatívnej internej sadzbe práce to predstavuje",
+    "roi_modal_result": "$20\u00a0000+ v ročných efektívnostných ziskoch.",
+    "roi_modal_cta": "Rozumiem",
+    "cta_with_slots": "→ Rezervovať miesto — zostáva {count} za ${price}",
+    "cta_default": "→ Rezervovať audit",
+    "pricing_mechanic_next": "Cena rastie o $500 každých 5 overených recenzií klientov. Aktuálne ${price} — ďalší stupeň ${nextPrice}.",
+    "pricing_mechanic_full": "Momentálne na plnej cene: ${price}."
+  },
+  "applyHero": {
+    "pill": "Pre koučov s príjmami 6–7 cifier závislých od manuálnych procesov",
+    "headline": "Prestaňte hádať, kde sa hodí AI. Za 5 dní získate prioritizovaný audit toho, čo automatizovať, čo ignorovať a čo urobiť ako prvé.",
+    "body": "Auditujeme vaše workflowy, kvantifikujeme plytvanie, priradíme vám správne AI nástroje a odovzdáme plán pripravený na realizáciu. Bez žargónu. Bez šesťcifernej konzultačnej faktúry. Len reálne čísla a reálny plán.",
+    "cta": "→ Rezervovať audit",
+    "guarantee": "Garantované odhalenie úspor $20K+ — alebo vrátenie peňazí.",
+    "pricing_pre": "Od",
+    "pricing_post": "— cena rastie s každou overenou recenziou klienta."
+  },
+  "midCta": {
+    "eyebrow": "Ste pripravení nájsť svoje číslo?",
+    "body": "Zistite presne, koľko vás vaše workflowy stoja — za 5 dní.",
+    "cta": "→ Rezervovať audit"
+  },
+  "success": {
+    "headline": "Audit rezervovaný!",
+    "body": "Práve ste urobili prvý krok k získaniu svojho času späť a k utesneniu únikov vo vašom podnikaní.",
+    "next_headline": "Čo sa stane ďalej:",
+    "steps": [
+      "Skontrolujte si e-mail pre potvrdenie a ďalšie kroky.",
+      "Ozveme sa vám do 24 hodín, aby sme naplánovali váš 1:1 úvodný hovor.",
+      "Začnite zhromažďovať dokumentáciu vašich súčasných workflowov (štandardné procesy, technologický stack)."
+    ],
+    "back_home": "Späť na domovskú stránku"
+  },
+  "cancel": {
+    "headline": "Checkout zrušený",
+    "body": "Žiadny problém. Načasovanie je v biznise všetko. Ak máte otázky skôr, než sa rozhodnete, sme tu, aby sme pomohli.",
+    "questions_title": "Máte otázky?",
+    "questions_body": "Nie ste si istí, či je audit správny pre váš konkrétny stack? Poďme sa porozprávať.",
+    "questions_cta": "Rezervovať 15-min. hovor →",
+    "info_title": "Potrebujete viac informácií?",
+    "info_body": "Pozrite si naše FAQ alebo si prejdite detaily audit balíka.",
+    "info_cta": "Zobraziť FAQ →",
+    "back_home": "Späť na domovskú stránku"
+  },
+  "footer": {
+    "copyright": "\u00a9 {year} rehabit.ai \u2014 Všetky práva vyhradené."
+  }
+}
