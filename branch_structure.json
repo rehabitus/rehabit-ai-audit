@@ -1,0 +1,24 @@
+{
+  "default_branch": "main",
+  "branches": [
+    "claude/check-ga4-installation-kQR0r",
+    "claude/fix-chat-ui-mic-HKXm0",
+    "feat/bridge-section-structured-cards",
+    "main",
+    "origin"
+  ],
+  "parent": {
+    "claude/check-ga4-installation-kQR0r": "main",
+    "claude/fix-chat-ui-mic-HKXm0": "main",
+    "feat/bridge-section-structured-cards": "main",
+    "main": null,
+    "origin": "main"
+  },
+  "order": [
+    "main",
+    "claude/check-ga4-installation-kQR0r",
+    "claude/fix-chat-ui-mic-HKXm0",
+    "feat/bridge-section-structured-cards",
+    "origin"
+  ]
+}
